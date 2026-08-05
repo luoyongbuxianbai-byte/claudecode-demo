@@ -1,32 +1,34 @@
 #!/usr/bin/env python3
-"""协议11 留出保留区·分层抽样器。
+"""协议11 留出保留区·分层抽样器 **v2**。
 
-规则（协议11）：
-- 只从**干净案**中抽（引擎三重grep零命中 ∧ 与C卷验案无文本重叠）；
-- 按**七族分层**随机抽 ≥30%（不少于30则）；
-- 抽中者写入 holdout/cases/，**引擎侧零消费**；
-- 映射（案号→源书+偏移）单独存 holdout/_mapping/，与引擎分离。
+v1 缺陷（⑰批查获）：按"初诊"前后定长切窗，**30/37 件跨了案边界**——
+片段里混着上一案的处方尾、下一段的理论文，医师无法据以作答。**v1 产物作废。**
+
+v2 改为**真边界切案**：
+  案起 = 「例N」/「初诊日期」/「(一)(二)…」＋人口学串
+  案止 = 「结果…」段末，或下一案起
+并要求每案**同时含** ①症状描述 ②处方或结果——否则不成其为可判之案。
+再加 OCR 可读性闸门（生僻符号率），**宁弃勿猜**。
 
 用法：python3 tools/holdout_sample.py [--apply]
 """
 import re, os, sys, random, hashlib, json
+from collections import Counter, defaultdict
 
 B = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 SRC = os.path.join(B, "sources")
 SEED = 20260805
 random.seed(SEED)
 
-ENG = re.sub(r"[^一-鿿0-9]", "", open(os.path.join(B, "hxs_engine_v79_full.md"), encoding="utf-8").read())
-ENG_RAW = open(os.path.join(B, "hxs_engine_v79_full.md"), encoding="utf-8").read()
-_CT = "".join(re.findall(r"^\[原文\][^\n]*", ENG_RAW, re.M)) + \
-      "".join(re.findall(r"^①条文谱[^\n]*", ENG_RAW, re.M))
-CANON = re.sub(r"[^一-鿿]", "", _CT)
-NAMES = sorted({m.group(1) for m in re.finditer(r"^【([^】·|]*?(?:汤|散|丸|饮|煎))[^】]*】", ENG_RAW, re.M)},
+RAW = open(os.path.join(B, "hxs_engine_v79_full.md"), encoding="utf-8").read()
+ENG = re.sub(r"[^一-鿿0-9]", "", RAW)
+CANON = re.sub(r"[^一-鿿]", "", "".join(re.findall(r"^\[原文\][^\n]*", RAW, re.M)) +
+               "".join(re.findall(r"^①条文谱[^\n]*", RAW, re.M)))
+NAMES = sorted({m.group(1) for m in re.finditer(r"^【([^】·|]*?(?:汤|散|丸|饮|煎))[^】]*】", RAW, re.M)},
                key=len, reverse=True)
 C = re.sub(r"[\s　]+", "", open(os.path.join(SRC, "C_jingfangliyu.txt"), encoding="utf-8").read())
 CCASE = "".join(re.sub(r"[^一-鿿]", "", x) for x in re.findall(r"【验案】(.{40,500}?)(?:【|$)", C, re.S))
 
-# 七族：族名 → 判族关键方名片段（最长优先匹配处方文本）
 FAM = [("柴胡族", ["柴胡"]),
        ("桂枝族", ["桂枝", "建中", "苓桂"]),
        ("麻黄族", ["麻黄", "葛根", "大青龙", "小青龙", "越婢", "麻杏"]),
@@ -34,6 +36,11 @@ FAM = [("柴胡族", ["柴胡"]),
        ("四逆附子族", ["四逆", "附子", "乌头", "干姜", "理中", "真武"]),
        ("金匮各篇族", ["防己", "薏苡", "栝蒌", "薤白", "当归", "芎归", "胶艾", "温经", "肾气", "五苓", "猪苓"]),
        ("其他", [])]
+
+START = re.compile(r"(?:例\s*\d+|[（(][一二三四五六七八九十]{1,2}[)）])?"
+                   r"[一-鿿]{1,3}[某]?[，,、]?\s*(?:男|女)(?:性)?[，,、]?\s*\d{1,2}\s*岁"
+                   r"|初诊日期|初诊[：:]")
+END = re.compile(r"结果[：:].{0,220}?(?:愈|已|消失|正常|好转|减|止)|按[：:]")
 
 
 def benign(g):
@@ -44,59 +51,61 @@ def benign(g):
     return len(re.sub(r"[合加去及与并方证汤散丸饮煎的]", "", t)) <= 1
 
 
-def famof(txt):
+def famof(t):
     for fam, keys in FAM[:-1]:
         for k in keys:
-            if k in txt: return fam
+            if k in t: return fam
     return "其他"
 
 
 def harvest(fn):
     F = re.sub(r"[\s　]+", "", open(os.path.join(SRC, fn), encoding="utf-8", errors="ignore").read())
-    out = []
-    for m in re.finditer(r"初诊", F):
-        s, e = max(0, m.start() - 80), m.start() + 420
-        c = F[s:e]
+    starts = [m.start() for m in START.finditer(F)]
+    out, rej = [], Counter()
+    for i, s in enumerate(starts):
+        lim = starts[i + 1] if i + 1 < len(starts) else len(F)
+        seg = F[s:min(lim, s + 900)]
+        e = END.search(seg)
+        c = seg[:e.end()] if e else seg
+        if len(c) < 120: rej["过短"] += 1; continue
+        if not re.search(r"苔|脉|痛|热|寒|呕|利|汗|渴", c): rej["无症状描述"] += 1; continue
+        if not (re.search(r"结果|愈|克|钱", c)): rej["无处方或结果"] += 1; continue
+        if len(re.findall(r"[㐀-䶿]|[`'\"|_={}\[\]]", c)) > 8: rej["OCR重噪"] += 1; continue
         cn = re.sub(r"[^一-鿿]", "", c)
-        grams = {cn[i:i + 9] for i in range(len(cn) - 8)}
-        if any(g in ENG and not benign(g) for g in grams): continue          # 引擎已曝光
-        if any(cn[i:i + 11] in CCASE for i in range(len(cn) - 10)): continue  # 与C卷重叠
-        if re.search(r"病历号\s*[:：]?\s*(\d{4,})", c) and \
-           re.search(r"病历号\s*[:：]?\s*(\d{4,})", c).group(1) in ENG_RAW: continue
+        if any(cn[i:i + 9] in ENG and not benign(cn[i:i + 9]) for i in range(len(cn) - 8)):
+            rej["引擎已曝光"] += 1; continue
+        if any(cn[i:i + 11] in CCASE for i in range(len(cn) - 10)):
+            rej["与C卷重叠"] += 1; continue
         out.append(dict(src=fn, off=s, text=c, fam=famof(c)))
-    return out
+    return out, rej
 
 
 BOOKS = ["ocr_冯世纶2005汤液经方系_书名待定.txt", "ocr_中医临床家胡希恕.txt",
          "ocr_冯世纶带教实录第一辑.txt", "ocr_解读张仲景医学.txt"]
 pool = []
 for b in BOOKS:
-    got = harvest(b)
-    print("%-38s 干净案 %d" % (b[:36], len(got)))
+    got, rej = harvest(b)
+    print("%-38s 可用 %3d  ｜剔除 %s" % (b[:36], len(got), dict(rej)))
     pool += got
-print("\n干净案池合计 %d" % len(pool))
-
-from collections import Counter, defaultdict
+print("\n**可用干净案池 %d**" % len(pool))
 byfam = defaultdict(list)
 for c in pool: byfam[c["fam"]].append(c)
-print("\n分族：")
-for f, _ in FAM: print("  %-16s %d" % (f, len(byfam[f])))
+print("分族：" + " ".join("%s%d" % (f, len(byfam[f])) for f, _ in FAM))
 
 RATE = 0.30
 picked = []
 for f, _ in FAM:
     g = byfam[f]
-    if not g: continue
-    k = max(1, round(len(g) * RATE))
-    picked += random.sample(g, k)
+    if g: picked += random.sample(g, max(1, round(len(g) * RATE)))
 if len(picked) < 30:
     rest = [c for c in pool if c not in picked]
     picked += random.sample(rest, min(30 - len(picked), len(rest)))
-print("\n**抽中 %d 则 (占干净池 %.1f%%)**" % (len(picked), 100 * len(picked) / len(pool)))
-print(dict(Counter(c["fam"] for c in picked)))
+print("\n**抽中 %d 则**（占池 %.1f%%）%s" %
+      (len(picked), 100 * len(picked) / max(1, len(pool)), dict(Counter(c["fam"] for c in picked))))
 
 if "--apply" in sys.argv:
     cd = os.path.join(B, "holdout", "cases"); os.makedirs(cd, exist_ok=True)
+    for old in os.listdir(cd): os.remove(os.path.join(cd, old))
     md = os.path.join(B, "holdout", "_mapping"); os.makedirs(md, exist_ok=True)
     mapping = []
     for i, c in enumerate(sorted(picked, key=lambda x: (x["fam"], x["src"], x["off"])), 1):
@@ -104,8 +113,8 @@ if "--apply" in sys.argv:
         open(os.path.join(cd, hid + ".txt"), "w", encoding="utf-8").write(c["text"])
         mapping.append(dict(id=hid, src=c["src"], off=c["off"], fam=c["fam"],
                             sha=hashlib.sha256(c["text"].encode()).hexdigest()[:16]))
-    json.dump(dict(seed=SEED, rate=RATE, n=len(picked), items=mapping),
+    json.dump(dict(seed=SEED, rate=RATE, n=len(picked), version="v2-真边界切案", items=mapping),
               open(os.path.join(md, "mapping.json"), "w"), ensure_ascii=False, indent=1)
-    print("\n[已写入] holdout/cases/ %d 件；映射 holdout/_mapping/mapping.json" % len(picked))
+    print("\n[已写入] holdout/cases/ %d 件（v1 产物已清除）" % len(picked))
 else:
     print("\n[dry-run]")
