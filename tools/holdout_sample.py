@@ -71,6 +71,13 @@ def harvest(fn):
         if not re.search(r"苔|脉|痛|热|寒|呕|利|汗|渴", c): rej["无症状描述"] += 1; continue
         if not (re.search(r"结果|愈|克|钱", c)): rej["无处方或结果"] += 1; continue
         if len(re.findall(r"[㐀-䶿]|[`'\"|_={}\[\]]", c)) > 8: rej["OCR重噪"] += 1; continue
+        # ⑱批闸门：教材条目结构标记＝本片段已越过案文进入方证讲解段
+        # (⑰批漏设此闸，致10/33出件粘着"15.茯苓四逆汤证【证象】…"一类条目，
+        #  其"烦躁/小便不利"是条目证象而非病人症状，直接坏掉金标准)
+        if re.search(r"\d{1,2}\s*[.、]\s*[一-鿿]{2,14}[汤散丸煎]证|【证象|【证质|【类证|【禁忌|证象〗|证质〗", c):
+            rej["粘教材条目"] += 1; continue
+        if len(re.findall(r"[（(][一二三四五六七八九十]{1,2}[)）]|例\s*\d+|初诊日期|初诊[：:]", c)) >= 2:
+            rej["跨案"] += 1; continue
         cn = re.sub(r"[^一-鿿]", "", c)
         if any(cn[i:i + 9] in ENG and not benign(cn[i:i + 9]) for i in range(len(cn) - 8)):
             rej["引擎已曝光"] += 1; continue
