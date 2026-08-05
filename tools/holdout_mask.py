@@ -83,18 +83,18 @@ for i, f in enumerate(order):
 
 bmap = []
 for b, fs in sorted(bybatch.items()):
-    L = ["# 留出盲测·第 %d 批（共 %d 批）" % (b, NB), "",
+    L = ["# 留出盲测·第 %d 批（共 %d 批·v3 出件）" % (b + 5, NB), "",
          "> **给医师**：按引擎流通件逐案走查，原样回传 Schema（含拒绝／异常输出）。",
          "> 遇引擎判止方，请照实输出止方及其分型；遇引擎无对应方证，亦请照实写。",
          "> **不必猜**——止方与「★库无对应」都是有效结果，不算错。",
          "> 案文出自 OCR，错别字与残缺处请按可读部分判断，读不出的部分**不要脑补**。", ""]
     for k, f in enumerate(fs, 1):
         raw = open(os.path.join(CD, f), encoding="utf-8").read()
-        cid = "B%d-%d" % (b, k)
+        cid = "B%d-%d" % (b + 5, k)
         L += ["---", "", "## 案 %s" % cid, "", mask(raw), ""]
         bmap.append(dict(blind=cid, src_id=f[:-4], fam=fam[f[:-4]], gold=gold(raw)))
-    open(os.path.join(BD, "批%d.md" % b), "w", encoding="utf-8").write("\n".join(L))
-    print("批%d：%d 案" % (b, len(fs)))
+    open(os.path.join(BD, "批%d.md" % (b + 5)), "w", encoding="utf-8").write("\n".join(L))
+    print("批%d：%d 案" % (b + 5, len(fs)))
 
 json.dump(dict(n=len(bmap), dropped=dropped, items=bmap),
           open(os.path.join(MD, "blind_map.json"), "w"), ensure_ascii=False, indent=1)

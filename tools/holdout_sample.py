@@ -99,7 +99,8 @@ byfam = defaultdict(list)
 for c in pool: byfam[c["fam"]].append(c)
 print("分族：" + " ".join("%s%d" % (f, len(byfam[f])) for f, _ in FAM))
 
-RATE = 0.30
+RATE = 0.40   # ⑱批上调：v3 闸门加严后，30% 抽样经出件闸门只剩26则(<30下限)；
+              # 协议11 要求'≥30%且不少于30则'，故上调抽样率以保出件数达标。
 picked = []
 for f, _ in FAM:
     g = byfam[f]
