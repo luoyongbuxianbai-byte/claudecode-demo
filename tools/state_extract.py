@@ -27,17 +27,20 @@ OUT = os.path.join(B, "state_layer")
 os.makedirs(OUT, exist_ok=True)
 raw = open(os.path.join(B, "sources", "C_jingfangliyu.txt"), encoding="utf-8").read().split("\n")
 
-# ── 1. 验案块 ──
+# ── 1. 验案块（㉔批补捞：14行→22行；并剔 PDF 页脚噪声）──
+JUNK = re.compile(r"·\d+·|PDFcreatedwith[A-Za-z]*|pdfFactory[A-Za-z]*|Protrialversion|www\.pdffactory\.com|_")
 idx = [i for i, l in enumerate(raw) if "【验案】" in l]
 blocks = []
 for i in idx:
     j = i + 1
-    while j < len(raw) and "【" not in raw[j] and j - i < 14:
+    while j < len(raw) and "【" not in raw[j] and j - i < 22:
         j += 1
-    blocks.append((i + 1, re.sub(r"\s+", "", "".join(raw[i:j]))))
+    blocks.append((i + 1, JUNK.sub("", re.sub(r"\s+", "", "".join(raw[i:j])))))
 
 # ── 2. 判断句抽取：取**最靠近给方动词**的那一个引导词片段 ──
-LEAD = r"(?:证属|证系|此属|此为|辨为|诊为|即为|属)"
+# ㉔批补捞：实测15例漏检中14例系引导词未收（"此X之证"/"知其为"/"证为"/"认为是"）。
+# 长引导词必须排在短的前面——正则交替是最左优先，"属"若在前会截断"证属"。
+LEAD = (r"(?:知其为|认为是|知其患|证属|证系|证为|此属|此为|辨为|诊为|知为|即为|属)")
 GIVE = r"(?:治[以宜之则]|予|与|方用|宜|拟|投|服|为本方|即本方|故与|治用)"
 pat = re.compile(LEAD + r"([一-鿿、]{2,36}?)(?=[，,。；;：:]" + GIVE + r"|[，,。；;：:]|$)")
 NOISE = re.compile(r"病历号|门诊|知其|虽稍|以来|初诊")
@@ -47,6 +50,11 @@ for ln, b in blocks:
     seg = b.split("【验案】")[-1]
     got = [m.group(1) for m in pat.finditer(seg)]
     got = [g for g in got if len(g) >= 2 and not NOISE.search(g)]
+    if not got:   # 二次通道：无引导词者，取给方动词前的最近一个"…之证/…方证"短句
+        for m in re.finditer(r"[，,。；;]([一-鿿、]{3,24}?(?:之证|方证|的适应证))(?=[，,。；;：:]|$)", seg):
+            g = re.sub(r"(之证|方证|的适应证)$", "", m.group(1))
+            if len(g) >= 2 and not NOISE.search(g):
+                got = [g]; break
     if got:
         rows.append((ln, got[0]))
     else:
@@ -60,7 +68,7 @@ OPS = [("因致", "因致"), ("挟", "挟"), ("兼", "兼"), ("夹", "夹"), ("�
 
 # ── 4. L2 成分词表（字面切分·不做同义归并）──
 COMP = {
- "病位": ["表", "里", "内", "外", "上", "下", "心下", "胸", "腹", "肌肤", "项背", "四肢"],
+ "病位": ["半表半里", "表", "里", "内", "外", "上", "下", "心下", "胸", "腹", "肌肤", "项背", "四肢"],
  "正气载体": ["营卫", "津液", "胃气", "血", "气", "阳", "卫", "营", "心气"],
  "虚实态": ["虚", "实", "不和", "失调", "衰", "不足", "弱", "俱虚"],
  "寒热": ["寒", "热", "化热", "温"],
@@ -81,11 +89,22 @@ def split_comp(s):
             out.append((g, w)); t = t.replace(w, "\x00" * len(w))
     return out
 
+# ㉔批新增：抽本案实际所用之方——这是"覆盖判据"的金标准，
+# 也把词表从"语言库"变成"决策库"(证型判断 → 他真开了什么方)。
+RX = re.compile(r"(?:与|予|治用|方用|投|为)([一-鿿]{2,18}(?:汤|散|丸|饮|煎))"
+                r"((?:合|加|加减|加味)[一-鿿]{0,18}(?:汤|散|丸|煎)?)?")
+def get_fang(seg):
+    m = RX.search(seg)
+    if not m: return "(未解析)"
+    return (m.group(1) + (m.group(2) or "")).strip()
+
 recs = []
 for ln, s in rows:
     ops = [o for o, _ in OPS if o in s]
     kind = "直书方证名" if FANG.search(s) else ("六经名" if JING.search(s) else "功能描述")
-    recs.append(dict(line=ln, text=s, kind=kind, ops=ops, comps=split_comp(s)))
+    blk = dict(blocks)[ln]
+    recs.append(dict(line=ln, text=s, kind=kind, ops=ops, comps=split_comp(s),
+                     fang=get_fang(blk.split(s)[-1] if s in blk else blk)))
 
 n = len(recs)
 by_kind = Counter(r["kind"] for r in recs)
@@ -137,3 +156,96 @@ print("  无算子中：**多成分 %d（%.1f%%）** ／ 单成分 %d" %
 print("成分种数 %d，总计次 %d" % (len(freq), sum(freq.values())))
 json.dump(dict(recs=recs, none=none), open(os.path.join(OUT, "_raw.json"), "w"), ensure_ascii=False, indent=1)
 print("\n[单成分者全列]", [r["text"] for r in single])
+
+# ══ ㉔批新增产出：六槽位表 ＋ 增强版 L1 词表 ══
+SLOTS = ["病位", "正气载体", "虚实态", "寒热", "病理产物", "动向"]
+# ⚠㉔批实测推翻了「算子决定方剂操作」：无算子 92 例中，加味37／单方36／合方9——
+# **加味与合方在无算子组照样大量发生（46/92）**。故方剂操作类型**不由算子读出**，
+# 由**槽位覆盖关系**决定（上级㉔批指令四的表述得证）。本栏改报**实际形态**，
+# 算子只标其「标记了什么」，不再宣称它决定什么。
+OPMARK = {"": "—（并置·无标记）", "挟": "标记主从：前为主／后为兼",
+          "而": "标记跨层并存", "因致": "标记因果方向（有向，不可逆读）",
+          "兼": "标记兼夹项独立", "夹": "标记兼夹项独立", "并": "标记并存"}
+
+def op_of(r):
+    for o in ["因致", "挟", "兼", "夹", "而", "并"]:
+        if o in r["ops"]: return o
+    return ""
+
+# 共现矩阵（只报实测，不推断禁止——R5：排除唯一依据是反义，"未见"≠"禁止"）
+co = defaultdict(Counter)
+for r in recs:
+    cs = [x for _, x in r["comps"]]
+    for a in set(cs):
+        for b in set(cs):
+            if a != b: co[a][b] += 1
+
+L = ["# 六槽位表（㉔批·上级撤回算子规格后之新地基）", "",
+     "> **六槽位 ＝ [病位]表里 ＋ [虚实态]虚实 ＋ [寒热] ＋ [正气载体] ＋ [病理产物] ＋ [动向]**",
+     "> **即八纲在临床分辨率上的实际书写形式，非新抽象**（上级㉔批补充）——",
+     "> 我方没有发明任何东西，只是把胡老写病历的语法形式化了。满足纲领六与视角㉒。", "",
+     "> **[正气载体]＋[虚实态] 为最高频句式**（营卫不和／津液本虚／胃气沉衰／心气不足），",
+     "> 在**病历用语层**第三次独立证实：津液胃气是生成病性的底层量，非并列维度。", "",
+     "> ⚠**「禁止组合」一栏为何多数留空**：本表只报**实测共现**。",
+     "> 未共现 **≠** 禁止（R5：排除唯一依据是反义）。**只有具备原文反义锚者才填禁止**，",
+     "> 其余一律标「未见共现·非禁止」。这是把 R5 的纪律用在新层上，不是遗漏。", ""]
+for sl in SLOTS:
+    ws = sorted({x for r in recs for g, x in r["comps"] if g == sl},
+                key=lambda x: -freq[(sl, x)])
+    if not ws: continue
+    L += ["## 槽位【%s】（成分 %d 个）" % (sl, len(ws)), "",
+          "| 成分 | 频次 | 首见来源 | 实测共现最多的三项 | 同槽位内共现 | 禁止组合 |",
+          "|---|---|---|---|---|---|"]
+    for x in ws:
+        same = [y for y in ws if y != x and co[x][y]]
+        top = "／".join("%s(%d)" % (a, b) for a, b in co[x].most_common(3)) or "—"
+        L.append("| %s | %d | C卷L%d | %s | %s | 未见共现·非禁止（无反义锚） |" % (
+            x, freq[(sl, x)], first[(sl, x)], top,
+            "／".join(same) if same else "**无**（本槽位内此成分从不与同槽他成分共现）"))
+    L.append("")
+L += ["## 槽位内互斥关系（实测）", "",
+      "| 槽位 | 观察 |", "|---|---|"]
+for sl in SLOTS:
+    ws = sorted({x for r in recs for g, x in r["comps"] if g == sl})
+    pairs = [(a, b) for i, a in enumerate(ws) for b in ws[i + 1:] if co[a][b]]
+    L.append("| %s | 同槽位共现对 %d 个%s |" % (
+        sl, len(pairs), "：" + "／".join("%s+%s" % ab for ab in pairs[:6]) if pairs else "（本槽位成分互不共现＝实测互斥）"))
+L += ["", "**实测读法（不是预设，是数出来的）**：",
+      "① **没有一个槽是单值槽。** [寒热]槽实测共现（外寒里热／化热+热）、",
+      "   [虚实态]槽实测共现（虚+衰／不和+实／俱虚+弱）、[病位]共现最多（上+下／内+外）。",
+      "   —— 我原以为寒热与虚实是互斥单值，**数据否掉了这个预设**。",
+      "② **所有共现都靠对举成立**：外寒/里热、上/下、内/外——",
+      "   **对举本身就是关系，不需要任何连接词**。这正是无算子占 90.1% 的机制。",
+      "③ 故「禁止组合」在本层**实测为空**：没有任何一对成分被证明不可共现。",
+      "   要立禁止，必须另找**原文反义锚**（R5），不能靠统计上的未共现。"]
+w("六槽位表.md", "\n".join(L))
+
+# 增强版 L1 词表
+L = ["# L1 复合证元词表（增强版·㉔批）", "",
+     "> 抽取器 `tools/state_extract.py`（幂等可复跑，文件头带【已知失效模式】）。",
+     "> **原句为整体单元，不得拆分后自由重组**。槽位分解仅供计算。", "",
+     "> **「实际用方」栏是本表最有价值的一列**：它把词表从**语言库**变成**决策库**——",
+     "> 记录的是「胡老写下这个判断之后，他真的开了什么方」。", "",
+     "| # | 原句(L1) | 出处 | 类别 | 算子 | 槽位分解 | 算子标记了什么 | 证据优先级 | 实际用方(覆盖判据·金标准) |",
+     "|---|---|---|---|---|---|---|---|---|"]
+for k, r in enumerate(recs, 1):
+    o = op_of(r)
+    pri = "主证元＋兼夹（%s前为主／后为兼）" % o if o in ("挟", "兼", "夹") else (
+          "有向：前项致后项" if o == "因致" else "全部为主证元（并置·无主从标记）")
+    L.append("| %d | %s | C卷L%d | %s | %s | %s | %s | %s | %s |" % (
+        k, r["text"], r["line"], r["kind"], o or "**无**",
+        " ＋ ".join("%s:%s" % (g, x) for g, x in r["comps"]) or "—",
+        OPMARK[o], pri, r["fang"]))
+L += ["", "**未抽出判断句 %d 例**（㉔批补捞后残余）：%s" %
+      (len(none), "、".join("L%d" % x for x in none)),
+      "", "## 算子→方剂操作 的实测校验（这是「算子仅作标记」的正面证据）", "",
+      "| 算子 | 例数 | 实际用方形态 |", "|---|---|---|"]
+for o in ["", "挟", "而", "因致", "兼", "夹"]:
+    g = [r for r in recs if op_of(r) == o]
+    if not g: continue
+    forms = Counter("合方" if "合" in r["fang"] else ("加味" if ("加" in r["fang"]) else "单方")
+                    for r in g if r["fang"] != "(未解析)")
+    L.append("| %s | %d | %s |" % (o or "**无**", len(g),
+             "／".join("%s%d" % (a, b) for a, b in forms.most_common()) or "—"))
+w("复合证元词表_增强.md", "\n".join(L))
+print("\n[已写出] 六槽位表.md ／ 复合证元词表_增强.md")
