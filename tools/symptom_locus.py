@@ -49,18 +49,32 @@ def load(fn):
         lines[fn] = open(p, encoding="utf-8", errors="ignore").read().split("\n") if os.path.exists(p) else []
     return lines[fn]
 
+# ㉜批：按【术语异写映射层】桥接后再扫。未桥接的统计已被证明会产生零共现假象。
+ALIAS_MAP = json.load(open(os.path.join(B, "term_layer", "_alias_raw.json"), encoding="utf-8")) \
+    if os.path.exists(os.path.join(B, "term_layer", "_alias_raw.json")) else {}
+# 反向：胡老用语 → 其所属现代族（用于在表中标注"本词属某族"）
+def family(tok):
+    """返回该 token 的检索族（自身 ＋ 其异写）。不合并语义，只并检索。"""
+    if tok in ALIAS_MAP:
+        return [tok] + list(ALIAS_MAP[tok]["alias"].keys())
+    for mod, v in ALIAS_MAP.items():
+        if tok in v["alias"]:
+            return [tok]          # 本词已是胡老用语，不再上溯（避免把外延撑大）
+    return [tok]
+
 def scan(tok):
+    fam = family(tok)
     n = 0; jc = Counter(); fc = Counter(); bc = Counter(); ex = []
     for bk, fn in BOOKS:
         for i, raw in enumerate(load(fn)):
             l = JUNK.sub("", re.sub(r"\s+", "", raw))
-            if tok not in l: continue
+            if not any(t in l for t in fam): continue
             n += 1; bc[bk] += 1
             for j in JING:
                 if j in l: jc[j] += 1
             fc.update(FANG.findall(l))
             if len(ex) < 3: ex.append("%s L%d｜%s" % (bk, i + 1, l[:70]))
-    return n, jc, fc, bc, ex
+    return n, jc, fc, bc, ex, fam
 
 L = ["# 【症状→病位】全量对照表（R24·㉛批）", "",
      "> 根因锚（逐字·讲伤寒 L3281-3283 页132）：",
@@ -69,18 +83,24 @@ L = ["# 【症状→病位】全量对照表（R24·㉛批）", "",
      "> 该段同时给出三件事：①症状先归**病位**再由病位＋阴阳定经；",
      "> ②**同一症状可见于多经——归位 ≠ 归经**；",
      "> ③**归位不因治法取消**（葛根汤从表治，但「里」这个病位从未被删除）。", "",
-     "> ⚠**本表只报共现分布，不报归属判定**——共现 ≠ 因果，判定须人读上下文。", ""]
+     "> ⚠**本表只报共现分布，不报归属判定**——共现 ≠ 因果，判定须人读上下文。", "",
+     "> ⛔**㉜批订正**：本表首版按**现代病历用语**建，产生零共现假象",
+     "> （「便溏与太阴共现0次」）。现已接入【术语异写映射层】重算，",
+     "> 「桥接的异写」栏列出实际并入检索的胡老用语。**桥接前后数不可直接比较。**", ""]
 data = {}
 for loc, toks in LOCUS.items():
     L += ["## 病位【%s】" % loc, "",
-          "| 症状 | 全库命中 | 与六经名共现分布 | 高频共现方 | 分书 |", "|---|---|---|---|---|"]
+          "| 症状 | 全库命中(**含异写**) | 与六经名共现分布 | 高频共现方 | 分书 | 桥接的异写 |",
+          "|---|---|---|---|---|---|"]
     for t in toks:
-        n, jc, fc, bc, ex = scan(t)
-        data[t] = dict(locus=loc, n=n, jing=dict(jc), fang=dict(fc.most_common(5)), book=dict(bc))
-        L.append("| **%s** | %d | %s | %s | %s |" % (
+        n, jc, fc, bc, ex, fam = scan(t)
+        data[t] = dict(locus=loc, n=n, jing=dict(jc), fang=dict(fc.most_common(5)),
+                       book=dict(bc), family=fam)
+        L.append("| **%s** | %d | %s | %s | %s | %s |" % (
             t, n, "／".join("%s%d" % (k, v) for k, v in jc.most_common()) or "—",
             "／".join(k for k, _ in fc.most_common(3)) or "—",
-            "／".join("%s%d" % (k, v) for k, v in bc.most_common(3))))
+            "／".join("%s%d" % (k, v) for k, v in bc.most_common(3)),
+            "／".join(fam[1:]) if len(fam) > 1 else "—"))
     L.append("")
 
 # 下利专表——本批根因所在，单列
