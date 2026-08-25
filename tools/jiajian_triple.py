@@ -119,8 +119,106 @@ assert _p, "自检失败：正则连构造样例都匹不上"
 assert not HERB_RX.findall("莫须有草"), "自检失败：虚构药名被词表命中"
 print("\n[自检] 构造样例可匹配、虚构药名不命中 → 抽取器有分辨力")
 
+# ═══ 58批·指令三：**去药专项**（上级令此项优先——它是禁忌的来源）═══
+#   「去X」＝该孤证**不在场**。柴胡桂姜之禁（无参草枣→禁便稀）即由"缺什么"判出。
+#   ⚠**去药句式与加药不同**：常作「不X者去Y」「若X者去Y」「去Y者，以其X也」。
+#   故**另立句式族**，不复用 PAT。
+QU_PATS = [
+ (r"(?:若|其)?不([^。；，,]{2,14})者[，,]?去([^。；，,]{2,16})", "不X者去Y"),
+ (r"(?:若|其)([^。；，,]{2,14})者[，,]?去([^。；，,]{2,16})", "若X者去Y"),
+ (r"去([^。；，,]{2,16})者[，,]?(?:以其|因其|为其)([^。；，,]{2,20})", "去Y者以其X"),
+ (r"去([^。；，,]{2,16})[，,](?:恐|防|以免)([^。；，,]{2,20})", "去Y恐X"),
+]
+FULL = []
+for fn in ["C_jingfangliyu.txt", "ocr_未识别2.txt", "ocr_未识别1.txt", "ocr_解读张仲景医学.txt",
+           "ocr_经方传真系.txt", "ocr_胡希恕病位类方解.txt", "ocr_中医临床家胡希恕.txt",
+           "ocr_冯世纶带教实录第一辑.txt"]:
+    pth = os.path.join(B, "sources", fn)
+    if not os.path.exists(pth): continue
+    lines = [JUNK.sub("", re.sub(r"\s+", "", x)) for x in
+             open(pth, encoding="utf-8", errors="ignore").read().split("\n")]
+    off, idx = 0, []
+    for i, l in enumerate(lines): idx.append((off, i + 1)); off += len(l)
+    FULL.append((fn[:14], "".join(lines), idx))
+def _ln(idx, pos):
+    lo, hi = 0, len(idx) - 1
+    while lo < hi:
+        m = (lo + hi + 1) // 2
+        if idx[m][0] <= pos: lo = m
+        else: hi = m - 1
+    return idx[lo][1]
+qu, qdrop = [], Counter()
+for bk, T, idx in FULL:
+    for rx, fam in QU_PATS:
+        for m in re.finditer(rx, T):
+            g = m.groups()
+            if fam.startswith("去"): drug_raw, cond = g[0], g[1]
+            else: cond, drug_raw = g[0], g[1]
+            drug = list(dict.fromkeys(HERB_RX.findall(drug_raw)))
+            if not drug: qdrop["去药无药名"] += 1; continue      # 正向识别
+            # ⛔⛔**58批·逐条人读所得之硬闸门**：「若X者去Y」之主要产地是**仲景方后加减法**，
+            #   而**胡老明令不采**，四处逐字：
+            #     「至于这个**方后的加减要不得**，我们开始讲就说了**都不要**」
+            #     「它底下这些，**这些加减更要不得**」
+            #     〔C卷·小柴胡汤按〕「方后**原有加减法，当是后人所附，故去之**」
+            #     〔C卷·黄芪建中汤方解〕「**方后加减法系后人所加，不可从**」
+            #   实测：本工具首跑 12 条中 **5 条出自方后加减法**（小柴胡/真武），
+            #   且其上下文正是胡老**当场逐条驳斥**（「这些都要不得呀…其实这不对…也不对」）。
+            #   → **凡上下文含胡老之否定语者，一律标 [胡老不采]，不入判据。**
+            ctxw = T[max(0, m.start() - 300):m.end() + 300]
+            #   ⚠**自动闸门覆盖不全**：小柴胡方后加减法之否定语写在 C卷按语里，
+            #     不在同一 ±300 字窗口 → 正则抓不到。**故另附人读名单**
+            #     （同 case_purity 之做法：**名单是人工核过的结果，不是正则产物**）。
+            HUMAN_REJECT = {("ocr_未识别2.txt", 7909), ("ocr_未识别2.txt", 7912),
+                            ("ocr_未识别2.txt", 7913)}   # 小柴胡汤方后加减法·C卷按「后人所附，故去之」
+            _ln0 = _ln(idx, m.start())
+            rejected = bool(re.search(r"要不得|不可从|后人所[附加]|故去之|这不对|也不对|都不要", ctxw)) \
+                       or (bk, _ln0) in HUMAN_REJECT
+            外源 = bool(re.search(r"医宗金鉴|注家|成无己|方有执|尤在泾", ctxw))
+            qu.append(dict(book=bk, line=_ln(idx, m.start()), fam=fam,
+                           rejected=rejected, ext=外源,
+                           drug=drug, cond=cond[:30], sent=m.group()[:90],
+                           ctx=T[max(0, m.start() - 90):m.end() + 60]))
+seen2, quniq = set(), []
+for r in qu:
+    k = (r["book"], r["sent"])
+    if k in seen2: continue
+    seen2.add(k); quniq.append(r)
+print("\n═══ 58批·指令三·**去药专项**（八书全库·四句式族）═══")
+print("  候选 %d ｜ 弃(无药名) %d ｜ **去重后 %d 条**（57批仅 5 例，**扩 %.0f 倍**）"
+      % (len(qu), qdrop["去药无药名"], len(quniq), len(quniq) / 5))
+ok = [r for r in quniq if not r["rejected"] and not r["ext"]]
+rej = [r for r in quniq if r["rejected"]]
+ex_ = [r for r in quniq if r["ext"] and not r["rejected"]]
+print("  ⛔**分档（逐条人读后所立之闸门）**：**有效 %d 条**｜"
+      "**[胡老不采·方后加减法] %d 条**｜[他人转述] %d 条" % (len(ok), len(rej), len(ex_)))
+print("  句式：%s" % dict(Counter(r["fam"] for r in quniq)))
+qinv = defaultdict(list)
+for r in ok:
+    for d in r["drug"]: qinv[d].append(r)
+print("  **药 → 其「不在场」之孤证**（前12味）：")
+for d, rs in sorted(qinv.items(), key=lambda x: -len(x[1]))[:12]:
+    print("    **%-5s** 去之因：%s" % (d, "／".join(dict.fromkeys(x["cond"][:18] for x in rs))[:88]))
+
+# ═══ 58批·指令二：**孤证拆到单证粒度** ═══
+#   多证合写者（「饮多呕剧而渴」＝三证）须拆；⚠**拆分本身是我方动作**，
+#   故**原串与拆分并列保留**，并标 [拆分·待人读核]，不覆盖原文。
+SPLIT = re.compile(r"[、，,]|而(?![已])|或|及|以至")
+for r in rows:
+    parts = [x.strip() for x in SPLIT.split(r["gu"]) if len(x.strip()) >= 2]
+    r["gu_split"] = parts
+    r["gu_n"] = len(parts)
+multi = [r for r in rows if r["gu_n"] > 1]
+print("\n═══ 58批·指令二·**孤证拆分** ═══")
+print("  40 条中**含多证者 %d 条**（%.0f%%）｜拆后单证 %d 项"
+      % (len(multi), 100 * len(multi) / len(rows), sum(r["gu_n"] for r in rows)))
+print("  ⚠**拆分是我方动作**：原串与拆分**并列保留**，全部标 [拆分·待人读核]，**不覆盖原文**。")
+for r in multi[:5]:
+    print("    〔%s〕%s → %s" % (r["fang"][:14], r["gu"][:30], "｜".join(r["gu_split"])))
+
 OUT = os.path.join(B, "term_layer")
-json.dump(rows, open(os.path.join(OUT, "_jiajian.json"), "w"), ensure_ascii=False, indent=1)
+json.dump(dict(add=rows, qu=quniq), open(os.path.join(OUT, "_jiajian.json"), "w"), ensure_ascii=False, indent=1)
+QU_OUT = quniq
 L = ["# 加减三元组：「此于A汤加X，故治A汤证而Y者」（57批·指令一）", "",
      "> **句式取证**：C卷 232 方解中 `此于…故治…者` **37 处**｜`故治…证…而…者` **47 处**。",
      "> **读法**（上级57批）：**A汤证＝主证/主矛盾｜「而Y者」＝孤证（该位阳性但非主矛盾）｜X＝专处理孤证之药。**",
@@ -134,7 +232,21 @@ L += ["", "## 二、⭐药 → 孤证 反向映射（%d 味）" % len(inv), "",
       "| 药 | 所处理之孤证（逐字） |", "|---|---|"]
 for h, rs in sorted(inv.items(), key=lambda x: -len(x[1])):
     L.append("| **%s** | %s |" % (h, "／".join(dict.fromkeys(x["gu"] for x in rs))))
-L += ["", "## 三、未解析（%d 条·备查·视角㉚）" % len(unres), ""]
+L += ["", "## 三、⭐去药专项（58批·指令三·抽 %d 条 → **有效 %d 条**）" % (len(quniq), len(ok)), "",
+      "> **「去X」＝该孤证不在场。**「缺什么」是禁忌的来源——柴胡桂姜无参草枣故禁便稀，即由此判。",
+      "> 句式族四：`不X者去Y`／`若X者去Y`／`去Y者以其X`／`去Y恐X`；**正向识别药名**，无药名者弃。", "",
+      "| 药（去） | 去之因（该孤证不在场） | 出处 | 原语 |", "|---|---|---|---|"]
+for r in ok:
+    L.append("| **%s** | %s | %s L%d | %s |" % ("／".join(r["drug"]), r["cond"], r["book"], r["line"], r["sent"][:60]))
+L += ["", "⛔**[胡老不采·方后加减法] %d 条**（逐条列出，**不入判据**）：" % len(rej), ""]
+for r in rej: L.append("- 〔%s L%d〕%s" % (r["book"], r["line"], r["sent"][:60]))
+L += ["", "⚠[他人转述] %d 条（如《医宗金鉴》语，非胡老）：" % len(ex_), ""]
+for r in ex_: L.append("- 〔%s L%d〕%s" % (r["book"], r["line"], r["sent"][:60]))
+L += ["", "## 四、孤证拆分（58批·指令二·⚠[拆分·待人读核]·原串并列保留）", "",
+      "| 原孤证串 | 拆后单证 |", "|---|---|"]
+for r in rows:
+    if r["gu_n"] > 1: L.append("| %s | %s |" % (r["gu"], "｜".join(r["gu_split"])))
+L += ["", "## 五、未解析（%d 条·备查·视角㉚）" % len(unres), ""]
 for u in unres[:40]: L.append("- 〔%s〕%s ——%s" % (u["fang"], u["sent"], u["why"]))
 open(os.path.join(OUT, "附录H_加减三元组.md"), "w").write("\n".join(L))
 print("\n→ term_layer/附录H_加减三元组.md")
