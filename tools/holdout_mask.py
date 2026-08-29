@@ -21,7 +21,7 @@ os.makedirs(BD, exist_ok=True)
 mapping = json.load(open(os.path.join(MD, "mapping.json")))
 fam = {it["id"]: it["fam"] for it in mapping["items"]}
 
-JUNK = re.compile(r"http\S*|---第\d+页---|[A-Za-z0-9|/.]{6,}")
+JUNK = re.compile(r"http\S{0,60}|---第\d+页---|[A-Za-z0-9|/.]{6,}")
 # 切点须尽可能早、尽可能全——⑰批实测：每放宽一处，就漏一种形态。
 CUT = re.compile(
     r"证属|此为|辨为|诊为|证系|乃[一-鿿]{0,4}之证|属[一-鿿]{2,8}证"

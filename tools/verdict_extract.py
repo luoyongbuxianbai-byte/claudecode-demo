@@ -40,7 +40,7 @@ BOOKS = [("C卷", "C_jingfangliyu.txt"), ("讲伤寒", "ocr_未识别2.txt"), ("
          ("带教", "ocr_冯世纶带教实录第一辑.txt")]
 JUNK = re.compile(r"·\d+·|PDFcreatedwith[A-Za-z]*|pdfFactory[A-Za-z]*|Protrialversion|"
                   r"www\.pdffactory\.com|胡希恕讲伤寒\d*|胡希恕《金匮要略》讲义[-—]龙门课栈[\d/]*|"
-                  r"---第\d+页---|http\S*|快乐人生久久久\S*")
+                  r"---第\d+页---|http\S{0,60}|快乐人生久久久\S*")
 
 # ── 判断句式（上级指定 5 式 ＋ 补 5 式）───────────────────────────────
 CONCL = r"[^。；，、！？]{2,24}"

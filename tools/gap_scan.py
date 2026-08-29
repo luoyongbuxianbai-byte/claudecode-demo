@@ -36,7 +36,7 @@ B = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # ── 协议16·静默数据销毁防护（㊹批任务6）────────────────────────────
 JUNK = re.compile(r"·\d+·|PDFcreatedwith[A-Za-z]*|pdfFactory[A-Za-z]*|Protrialversion|"
-                  r"www\.pdffactory\.com|胡希恕讲伤寒\d*|---第\d+页---|http\S*|快乐人生久久\S*")
+                  r"www\.pdffactory\.com|胡希恕讲伤寒\d*|---第\d+页---|http\S{0,60}|快乐人生久久\S{0,40}")
 def load(fn):
     """协议16：清洗式**逐行施加**；并**报前后字数比，降幅 >50% 即中止告警**。
     [事故]㊸批 `http\\S*` 跑在整文单行串上，把《临床家》30 万字吃剩 144 字，

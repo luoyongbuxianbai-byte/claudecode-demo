@@ -31,7 +31,7 @@ from collections import Counter, defaultdict
 
 B = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 JUNK = re.compile(r"·\d+·|PDFcreatedwith[A-Za-z]*|pdfFactory[A-Za-z]*|Protrialversion|"
-                  r"www\.pdffactory\.com|胡希恕讲伤寒\d*|---第\d+页---|http\S*|快乐人生久久\S*")
+                  r"www\.pdffactory\.com|胡希恕讲伤寒\d*|---第\d+页---|http\S{0,60}|快乐人生久久\S{0,40}")
 C = JUNK.sub("", re.sub(r"\s+", "", open(os.path.join(B, "sources", "C_jingfangliyu.txt"),
                                          encoding="utf-8", errors="ignore").read()))
 

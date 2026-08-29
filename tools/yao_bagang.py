@@ -129,7 +129,7 @@ def load(fn):
     if not os.path.exists(p): return ""
     raw = open(p, encoding="utf-8", errors="ignore").read()
     n0 = len(re.sub(r"\s+", "", raw))
-    T = "".join(re.sub(r"·\d+·|http\S*|---第\d+页---", "", re.sub(r"\s+", "", ln)) for ln in raw.split("\n"))
+    T = "".join(re.sub(r"·\d+·|http\S{0,60}|---第\d+页---", "", re.sub(r"\s+", "", ln)) for ln in raw.split("\n"))
     if n0 and len(T) / n0 < 0.5: raise SystemExit("⛔协议16 中止：%s" % fn)
     return T
 BOOKS = ["C_jingfangliyu.txt", "ocr_中医临床家胡希恕.txt", "ocr_冯世纶带教实录第一辑.txt",

@@ -36,7 +36,7 @@ from collections import Counter, defaultdict
 
 B = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 JUNK = re.compile(r"·\d+·|PDFcreatedwith[A-Za-z]*|pdfFactory[A-Za-z]*|Protrialversion|"
-                  r"www\.pdffactory\.com|胡希恕讲伤寒\d*|---第\d+页---|http\S*|快乐人生久久久\S*")
+                  r"www\.pdffactory\.com|胡希恕讲伤寒\d*|---第\d+页---|http\S{0,60}|快乐人生久久久\S*")
 BOOKS = [("C卷", "C_jingfangliyu.txt"), ("临床家", "ocr_中医临床家胡希恕.txt"),
          ("带教", "ocr_冯世纶带教实录第一辑.txt"), ("传真", "ocr_经方传真系.txt"),
          ("解读", "ocr_解读张仲景医学.txt")]
@@ -132,7 +132,7 @@ for bk, fn in BOOKS:
     if not os.path.exists(p): continue
     # ⛔⛔[**首跑事故·静默数据销毁·本批最严重的一次**]
     #   原写法先 `re.sub(r"\s+","",...)` 把全文压成**一行**，再对整串跑 JUNK。
-    #   而 JUNK 含 `http\S*` —— 全文已无空白，`\S*` 从**第一个 http 一直吃到文件末尾**。
+    #   而 JUNK 含 `http\S{0,60}` —— 全文已无空白，`\S*` 从**第一个 http 一直吃到文件末尾**。
     #   《中医临床家·胡希恕》有页脚 URL，**全书 30 万字被吃剩 144 字，119 案全部消失**。
     #   而工具**不报错、不告警**，只是安静地少了一本书。
     #   → **JUNK 必须逐行施加，在压缩空白之前**；贪婪通配符绝不可跑在全文单行串上。

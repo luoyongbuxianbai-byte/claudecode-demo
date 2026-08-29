@@ -38,7 +38,7 @@ BOOKS = [("C卷", "C_jingfangliyu.txt"), ("讲伤寒", "ocr_未识别2.txt"), ("
          ("带教", "ocr_冯世纶带教实录第一辑.txt")]
 JUNK = re.compile(r"·\d+·|PDFcreatedwith[A-Za-z]*|pdfFactory[A-Za-z]*|Protrialversion|"
                   r"www\.pdffactory\.com|胡希恕讲伤寒\d*|胡希恕《金匮要略》讲义[-—]龙门课栈[\d/]*|"
-                  r"---第\d+页---|http\S*")
+                  r"---第\d+页---|http\S{0,60}")
 
 # ── 问诊项词表：**按胡老实际用语列**（视角㉞ 术语关）────────────────
 # 每项：(大类, [胡老用语…])  —— 现代病历词不入表，只在别写栏桥接
