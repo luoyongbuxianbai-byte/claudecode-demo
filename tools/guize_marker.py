@@ -108,6 +108,30 @@ for r in rows:
     if k in seen2: continue
     seen2.add(k)
     L.append("- 〔%s·**%s**〕…%s…" % (r["book"], r["mark"], r["ctx"][-170:]))
-L += ["", "⛔**共 %d 条，本批只做候选抽取，未逐条判规则性。**" % len(seen2)]
+L += ["", "⛔**共 %d 条。**" % len(seen2), "",
+      "## 四、⭐标记词分级（73批·上级指令二）", "",
+      "| 级 | 标记词 | 处理 | 实测处数 |", "|---|---|---|---|"]
+TIER = [("**硬规则**", ["须记","切记","宜记","应记","定法","定则"], "**优先全挂**"),
+        ("次级", ["不可不知","最要紧","大法","常法","大要","要记"], "人读后择挂"),
+        ("⛔口语强调", ["关键","千万","之要","准则","要着","为要"], "⛔**须逐条判，不得批量入**")]
+tier_rows = {}
+for name, ws, act in TIER:
+    n = sum(sum(T[bk].count(w) for bk in T) for w in ws)
+    tier_rows[name] = [r for r in rows if r["mark"] in ws]
+    L.append("| %s | %s | %s | **%d** |" % (name, "／".join(ws), act, n))
+L += ["", "⭐**硬规则级共 %d 处**——此为下一步全挂之对象。" % len(tier_rows["**硬规则**"]), "",
+      "### 硬规则级逐条（须记／切记／宜记／应记／定法／定则）", ""]
+seen3 = set()
+for r in tier_rows["**硬规则**"]:
+    k = r["ctx"][-60:]
+    if k in seen3: continue
+    seen3.add(k)
+    L.append("- 〔%s·**%s**〕…%s…" % (r["book"], r["mark"], r["ctx"][-175:]))
+L += ["", "⛔**去重后 %d 条。本批完成分级与逐条列出；规则性之最终判定仍须人读。**" % len(seen3)]
+print("\n═══ ⭐标记词分级（指令二）═══")
+for name, ws, act in TIER:
+    n = sum(sum(T[bk].count(w) for bk in T) for w in ws)
+    print("  %-10s %-34s %s  **%d 处**" % (name, "／".join(ws)[:34], act, n))
+print("  ⭐**硬规则级 %d 处，去重后 %d 条**" % (len(tier_rows["**硬规则**"]), len(seen3)))
 open(os.path.join(B, "term_layer", "附录N_胡老明标规则集.md"), "w").write("\n".join(L))
 print("\n→ term_layer/附录N_胡老明标规则集.md（候选 %d 处，高价值 %d 条）" % (len(rows), len(seen2)))
