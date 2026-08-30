@@ -189,8 +189,12 @@ unsourced = [e for e in matched if not XY.search(e["body"])]
 assert len(sourced) + len(unsourced) == len(matched)
 
 # ── ⑤ 非C卷条目定级 ──────────────────────────────────────────────
-BOOKS = ["ocr_未识别2.txt", "ocr_未识别1.txt", "ocr_解读张仲景医学.txt", "ocr_经方传真系.txt",
-         "ocr_胡希恕病位类方解.txt", "ocr_中医临床家胡希恕.txt", "ocr_冯世纶带教实录第一辑.txt"]
+BOOKS = [("C卷", "C_jingfangliyu.txt"), ("讲伤寒", "ocr_未识别2.txt"), ("讲金匮", "ocr_未识别1.txt"),
+         ("解读", "ocr_解读张仲景医学.txt"), ("传真系", "ocr_经方传真系.txt"),
+         ("病位类方解", "ocr_胡希恕病位类方解.txt"), ("临床家", "ocr_中医临床家胡希恕.txt"),
+         ("带教", "ocr_冯世纶带教实录第一辑.txt"), ("汤液经方系", "ocr_冯世纶2005汤液经方系_书名待定.txt"),
+         ("伤寒论传真", "传真_伤寒论传真.txt"), ("金匮传真", "传真_金匮要略传真.txt"),
+         ("中国汤液方证", "汤液_中国汤液方证.txt")]
 T = "".join(JUNK.sub("", re.sub(r"\s+", "", open(os.path.join(B, "sources", f), encoding="utf-8",
             errors="ignore").read())) for f in BOOKS if os.path.exists(os.path.join(B, "sources", f)))
 

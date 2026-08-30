@@ -35,9 +35,11 @@ from collections import Counter, defaultdict
 
 B = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BOOKS = [("C卷", "C_jingfangliyu.txt"), ("讲伤寒", "ocr_未识别2.txt"), ("讲金匮", "ocr_未识别1.txt"),
-         ("解读", "ocr_解读张仲景医学.txt"), ("传真", "ocr_经方传真系.txt"),
+         ("解读", "ocr_解读张仲景医学.txt"), ("传真系", "ocr_经方传真系.txt"),
          ("病位类方解", "ocr_胡希恕病位类方解.txt"), ("临床家", "ocr_中医临床家胡希恕.txt"),
-         ("带教", "ocr_冯世纶带教实录第一辑.txt")]
+         ("带教", "ocr_冯世纶带教实录第一辑.txt"), ("汤液经方系", "ocr_冯世纶2005汤液经方系_书名待定.txt"),
+         ("伤寒论传真", "传真_伤寒论传真.txt"), ("金匮传真", "传真_金匮要略传真.txt"),
+         ("中国汤液方证", "汤液_中国汤液方证.txt")]
 JUNK = re.compile(r"·\d+·|PDFcreatedwith[A-Za-z]*|pdfFactory[A-Za-z]*|Protrialversion|"
                   r"www\.pdffactory\.com|胡希恕讲伤寒\d*|胡希恕《金匮要略》讲义[-—]龙门课栈[\d/]*|"
                   r"---第\d+页---|http\S{0,60}|快乐人生久久久\S*")

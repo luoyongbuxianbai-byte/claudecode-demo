@@ -43,9 +43,11 @@ JUNK = re.compile(r"·\d+·|PDFcreatedwith[A-Za-z]*|pdfFactory[A-Za-z]*|Protrial
                   r"www\.pdffactory\.com|胡希恕讲伤寒\d*|胡希恕《金匮要略》讲义[-—]龙门课栈[\d/]*|"
                   r"---第\d+页---|http\S{0,60}|快乐人生久久\S{0,40}")
 BOOKS = [("C卷", "C_jingfangliyu.txt"), ("讲伤寒", "ocr_未识别2.txt"), ("讲金匮", "ocr_未识别1.txt"),
-         ("解读", "ocr_解读张仲景医学.txt"), ("传真", "ocr_经方传真系.txt"),
+         ("解读", "ocr_解读张仲景医学.txt"), ("传真系", "ocr_经方传真系.txt"),
          ("病位类方解", "ocr_胡希恕病位类方解.txt"), ("临床家", "ocr_中医临床家胡希恕.txt"),
-         ("带教", "ocr_冯世纶带教实录第一辑.txt")]
+         ("带教", "ocr_冯世纶带教实录第一辑.txt"), ("汤液经方系", "ocr_冯世纶2005汤液经方系_书名待定.txt"),
+         ("伤寒论传真", "传真_伤寒论传真.txt"), ("金匮传真", "传真_金匮要略传真.txt"),
+         ("中国汤液方证", "汤液_中国汤液方证.txt")]
 
 # ── 医学宾语（**正向识别**·无之则弃）──────────────────────────
 FANG = r"[一-鿿]{2,16}(?:汤|散|丸|饮|煎)"
@@ -145,7 +147,7 @@ for bk, fn in BOOKS:
             s, e = max(0, m.start() - 130), min(len(T), m.end() + 90)
             rows.append(dict(book=bk, line=lineno(m.start()), fam=fam,
                              sent=m.group()[:60], body=body, ctx=T[s:e]))
-print("八书扫描：候选 %d 条 ｜ 弃件 %s\n" % (len(rows), dict(drop)))
+print("十二书扫描：候选 %d 条 ｜ 弃件 %s\n" % (len(rows), dict(drop)))
 
 # ── 去重（同书同句）──────────────────────────────────────────
 seen, uniq = set(), []
@@ -208,5 +210,5 @@ L += ["## ⚠未归入任何观察项（%d 条·逐条列出备查·视角㉚）
 for r in unm[:60]:
     L.append("- 〔%s L%d·%s〕%s" % (r["book"], r["line"], r["fam"], r["sent"]))
 if len(unm) > 60: L.append("- …另 %d 条见 `_veto_full.json`" % (len(unm) - 60))
-open(os.path.join(OUT, "附录E_八书否决与限定全量索引.md"), "w").write("\n".join(L))
-print("\n→ term_layer/附录E_八书否决与限定全量索引.md ／ _veto_full.json")
+open(os.path.join(OUT, "附录E_十二书否决与限定全量索引.md"), "w").write("\n".join(L))
+print("\n→ term_layer/附录E_十二书否决与限定全量索引.md ／ _veto_full.json")
