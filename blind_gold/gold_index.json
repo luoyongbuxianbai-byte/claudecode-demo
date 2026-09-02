@@ -1,34 +1,29 @@
 {
  "T1": {
-  "src": "H039",
   "gold_sha256": "34ad8012ff4d4a91a961308aac137b15b5532cab3e0ffdacbe13b99e5b9ed7bd",
   "blind_len": 214,
   "leak_hits": [],
   "is_control": false
  },
  "T2": {
-  "src": "H033",
   "gold_sha256": "d518410cbcec4d3209b565f8668935c880f6153d74942fc5aea7e4739c2154d8",
   "blind_len": 98,
   "leak_hits": [],
   "is_control": false
  },
  "T3": {
-  "src": "H013",
   "gold_sha256": "6a535238f8bd72cf79d8325032308e6a9799e12ae3a4d0fcd4c73f037918f024",
   "blind_len": 140,
   "leak_hits": [],
   "is_control": false
  },
  "T4": {
-  "src": "H041",
   "gold_sha256": "86a6fbb8f491047bddfdc98fcc293afc7bdd8ba655686aaa0349a56aa84b5403",
   "blind_len": 94,
   "leak_hits": [],
   "is_control": false
  },
  "T5": {
-  "src": "H032",
   "gold_sha256": "16c62054627d1bc1f6e24def02a326021526a01de8cea04eedcbd1d94fea23c7",
   "blind_len": 74,
   "leak_hits": [],
