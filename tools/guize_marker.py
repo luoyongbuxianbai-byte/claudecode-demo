@@ -87,7 +87,7 @@ assert not re.search(r"不可不知", "子虚乌有绝无一词"), "⛔自检失
 print("\n[自检] 定法有命中｜虚构句零命中")
 json.dump(rows, open(os.path.join(B, "term_layer", "_guize_marker.json"), "w"),
           ensure_ascii=False, indent=1)
-L = ["# 附录N：胡老明标规则集（72批·用**他的词**检索，不用**我们的词**）", "",
+L = ["# 附录N2：胡老明标规则集（72批·用**他的词**检索，不用**我们的词**）", "",
      "> ⭐**立法缘由（71批教训）**：四条「定法」一直在书里，「须记」二字是胡老自己加的。",
      "> 我们检索「主次」「权重」（**我们的术语**）找不到，检索「**定法**」（**胡老的词**）一找就有。",
      "> → **凡找规则，须先用胡老自己的标记词检索。**", "",
@@ -136,5 +136,5 @@ for name, ws, act in TIER:
     n = sum(sum(T[bk].count(w) for bk in T) for w in ws)
     print("  %-10s %-34s %s  **%d 处**" % (name, "／".join(ws)[:34], act, n))
 print("  ⭐**硬规则级 %d 处，去重后 %d 条**" % (len(tier_rows["**硬规则**"]), len(seen3)))
-open(os.path.join(B, "term_layer", "附录N_胡老明标规则集.md"), "w").write("\n".join(L))
-print("\n→ term_layer/附录N_胡老明标规则集.md（候选 %d 处，高价值 %d 条）" % (len(rows), len(seen2)))
+open(os.path.join(B, "term_layer", "附录N2_胡老明标规则集.md"), "w").write("\n".join(L))
+print("\n→ term_layer/附录N2_胡老明标规则集.md（候选 %d 处，高价值 %d 条）" % (len(rows), len(seen2)))

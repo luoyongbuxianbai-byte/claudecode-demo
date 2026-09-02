@@ -86,7 +86,7 @@ assert REACT.search("服吴茱萸汤而呕反增剧者"), "⛔自检失败：金
 print("\n[自检] 金标准召回｜向愈反应被剔｜瞑眩另列｜虚构句零命中")
 json.dump(dict(fanzheng=uniq, mingxuan=[dict(book=b, hit=h, ctx=c) for b, h, c in mx]),
           open(os.path.join(B, "term_layer", "_fuhou.json"), "w"), ensure_ascii=False, indent=1)
-L = ["# 附录P：服后反证表（78批·上级新增判据类型·引擎从未有过）", "",
+L = ["# 附录P2：服后反证表（78批·上级新增判据类型·引擎从未有过）", "",
      "> ⭐**立表锚**〔A·§243＋胡老注按·逐字〕",
      "> 「食谷欲呕，属阳明也，吴茱萸汤主之。**得汤反剧者，属上焦也。**」",
      "> 注：「属阳明，**这里是指胃，不是指阳明病**……若**服吴茱萸汤而呕反增剧者，是误犯上焦有热的呕，不当用本方治之**。」",
@@ -109,5 +109,5 @@ L += ["", "## 三、执行含义", "",
       "**方已投而反应与预期相反者，⛔不得径判「药力不足」或「病重药轻」，",
       "须先按本表复核原判——特定方之特定反应，可指向特定替代方证。**",
       "〔样本：吴茱萸汤服后呕反剧 → 非胃寒，乃上焦热 → 转小柴胡汤〕"]
-open(os.path.join(B, "term_layer", "附录P_服后反证表.md"), "w").write("\n".join(L))
-print("→ term_layer/附录P_服后反证表.md")
+open(os.path.join(B, "term_layer", "附录P2_服后反证表.md"), "w").write("\n".join(L))
+print("→ term_layer/附录P2_服后反证表.md")

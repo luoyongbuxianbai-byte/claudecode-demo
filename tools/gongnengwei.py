@@ -132,7 +132,7 @@ print("\n[自检] 虚构句零命中｜真句命中｜非药名被闸门挡下�
 
 json.dump(dict(gnw=rows, dose=xd), open(os.path.join(B, "term_layer", "_gongnengwei.json"), "w"),
           ensure_ascii=False, indent=1)
-L = ["# 附录L：症状-功能位-填充药表 ＋ 剂量判据层（64批·上级⑨ ＋ 61批剂量欠账）", "",
+L = ["# 附录L2：症状-功能位-填充药表 ＋ 剂量判据层（64批·上级⑨ ＋ 61批剂量欠账）", "",
      "> ⭐**上级⑨**：**方 = 基方证 + Σ(症状→功能位→填充药)**；",
      "> **功能位由症状定义，非由药性定义**；**填充药可替换**。", "",
      "> ⛔**与附录H 之别**：附录H 走完整三元组（40条），本表只锚右半句「故治…而Y者」",
@@ -154,5 +154,5 @@ L += ["", "## 三、剂量判据层（八书·跨书去重 %d 条·**言明「�
       "| 出处 | 操作 | 药 | 故治（＝所填之位） | ⭐类型 |", "|---|---|---|---|---|"]
 for d in withy:
     L.append("| %s | %s | **%s** | %s | **%s** |" % (d["book"], d["op"], d["herb"], d["why"], d["kind"]))
-open(os.path.join(B, "term_layer", "附录L_功能位与剂量判据层.md"), "w").write("\n".join(L))
-print("→ term_layer/附录L_功能位与剂量判据层.md")
+open(os.path.join(B, "term_layer", "附录L2_功能位与剂量判据层.md"), "w").write("\n".join(L))
+print("→ term_layer/附录L2_功能位与剂量判据层.md")
