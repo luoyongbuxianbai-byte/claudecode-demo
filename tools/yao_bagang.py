@@ -124,26 +124,18 @@ for k in SLOT:
     if n: print("   %-14s %3d 味" % (k, n))
 
 # ── 指令五·558案加减可解释率回归 ────────────────────────────────
-def load(fn):
-    p = os.path.join(B, "sources", fn)
-    if not os.path.exists(p): return ""
-    raw = open(p, encoding="utf-8", errors="ignore").read()
-    n0 = len(re.sub(r"\s+", "", raw))
-    T = "".join(re.sub(r"·\d+·|http\S{0,60}|---第\d+页---", "", re.sub(r"\s+", "", ln)) for ln in raw.split("\n"))
-    if n0 and len(T) / n0 < 0.5: raise SystemExit("⛔协议16 中止：%s" % fn)
-    return T
-BOOKS = [("C卷", "C_jingfangliyu.txt"), ("讲伤寒", "ocr_未识别2.txt"), ("讲金匮", "ocr_未识别1.txt"),
-         ("解读", "ocr_解读张仲景医学.txt"), ("传真系", "ocr_经方传真系.txt"),
-         ("病位类方解", "ocr_胡希恕病位类方解.txt"), ("临床家", "ocr_中医临床家胡希恕.txt"),
-         ("带教", "ocr_冯世纶带教实录第一辑.txt"), ("汤液经方系", "ocr_冯世纶2005汤液经方系_书名待定.txt"),
-         ("伤寒论传真", "传真_伤寒论传真.txt"), ("金匮传真", "传真_金匮要略传真.txt"),
-         ("中国汤液方证", "汤液_中国汤液方证.txt")]
+# ⚠99批修：①`for fn in BOOKS` 迭代元组致 load() 收到 tuple——**自 76批 改元组起本工具即崩，
+#   附录F 从此未再生成过**；②按闸门9第六款「用到即改」接入 corpus_guard（阈值 20%＋基线核对）。
+import sys as _sys
+_sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from corpus_guard import load_one as _load_one, BOOKS as _CG_BOOKS
+BOOKS = _CG_BOOKS   # 99批：统一用 corpus_guard 之十二书
 CASE_START = re.compile(r"【验案】|【检案】|例\s*\d{1,3}[，,、]?[一-鿿]{2,3}[，,]|病案号\s*\d+|"
                         r"[一-鿿]{1,3}某[，,]\s*(?:男|女)(?:性)?[，,]|"
                         r"\d{4}年\d{1,2}月\d{1,2}日初诊|初诊日期\s*\d{4}")
 cases = []
-for fn in BOOKS:
-    T = load(fn)
+for _bk, _fn in BOOKS:
+    T = _load_one(_bk)
     st = [m.start() for m in CASE_START.finditer(T)]
     for i, s0 in enumerate(st):
         e = st[i + 1] if i + 1 < len(st) else min(len(T), s0 + 2500)
