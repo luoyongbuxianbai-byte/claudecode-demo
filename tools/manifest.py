@@ -136,8 +136,64 @@ def parse_existing():
     return d
 
 
+# ── 100批新增·产出新鲜度断言 ────────────────────────────────
+# 事故谱系：yao_bagang.py 自 76批 起崩溃，附录F 三十余批未生成而历批照引其数；
+#   附录E/G/N2/O2/P2 表旧于其工具；附录D 直接缺失。
+# ⛔ 本工程之工具失败有两类：①跑了但结果错（assert 与人读能拦一部分）
+#   ②**根本没跑／跑崩／产出过期**——**此类此前完全无防护，且是主因。**
+# 本检即为②之防护：表比其工具旧 ⇒ 该表所载之数已不可引用。
+PRODUCT = [
+    ("term_layer/附录D_全局否决索引.md",             "tools/veto_index.py"),   # ⚠100批订正：原写「全判据索引/verdict_extract」，二者皆错
+    ("term_layer/附录E_十二书否决与限定全量索引.md",   "tools/veto_full_scan.py"),
+    ("term_layer/附录F_方八纲对应表.md",             "tools/yao_bagang.py"),
+    ("term_layer/附录H_加减三元组.md",               "tools/jiajian_triple.py"),
+    ("term_layer/附录I_方剂结构表.md",               "tools/fang_structure.py"),
+    ("term_layer/附录J_部位病位对照表.md",            "tools/buwei_bingwei.py"),
+    ("term_layer/附录K2_状态组合表与单状态方表.md",     "tools/zhuangtai_tables.py"),
+    ("term_layer/附录L2_功能位与剂量判据层.md",        "tools/gongnengwei.py"),
+    ("term_layer/附录M2_三毒与肾虚归属对照表.md",      "tools/sandu_shenxu.py"),
+    ("term_layer/附录N2_胡老明标规则集.md",           "tools/guize_marker.py"),
+    ("term_layer/附录O2_特异指征反噬表.md",           "tools/tezheng_fanshi.py"),
+    ("term_layer/附录P2_服后反证表.md",              "tools/fuhou_fanzheng.py"),
+]
+
+
+# ⛔ 手工件（无产出工具，故无法重跑、无从验证是否随语料更新）——本身即为一类风险，单列
+MANUAL = [("term_layer/附录G_八纲三毒客观判定表.md",
+           "56批手写·62行·⛔无产出工具，语料由九书增至十二书后从未随之更新")]
+
+
+def fresh():
+    print("== 产出新鲜度（表须不旧于其工具，否则其数不可引用）==\n")
+    bad = miss = 0
+    for prod, tool in PRODUCT:
+        pp, tp = os.path.join(B, prod), os.path.join(B, tool)
+        name = os.path.basename(prod)
+        if not os.path.exists(tp):
+            print("  %-34s ⛔工具缺失 %s" % (name[:32], tool)); bad += 1; continue
+        if not os.path.exists(pp):
+            print("  %-34s ⛔产出缺失——工具在而表不在，疑跑崩" % name[:32]); miss += 1; continue
+        dp, dt = os.path.getmtime(pp), os.path.getmtime(tp)
+        if dp < dt:
+            print("  %-34s ⛔表旧于工具 %.1f 小时——须重跑，其数暂不可引用"
+                  % (name[:32], (dt - dp) / 3600)); bad += 1
+        else:
+            print("  %-34s ✅" % name[:32])
+    print("\n结果：%d/%d 新鲜｜⛔过期 %d｜⛔缺失 %d"
+          % (len(PRODUCT) - bad - miss, len(PRODUCT), bad, miss))
+    if MANUAL:
+        print("\n⚠ 手工件（无工具，不可重跑，其数须人读复核）：")
+        for m, why in MANUAL:
+            print("   %-34s %s" % (os.path.basename(m)[:32], why))
+    if bad or miss:
+        print("⛔ 有过期或缺失项——**引用其数前须先重跑**。")
+    return 1 if (bad or miss) else 0
+
+
 def main():
     rows = collect()
+    if "--fresh" in sys.argv:
+        return fresh()
     if "--check" in sys.argv:
         old = parse_existing()
         if not old:
