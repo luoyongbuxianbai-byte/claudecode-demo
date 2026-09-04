@@ -156,12 +156,16 @@ PRODUCT = [
     ("term_layer/附录O2_特异指征反噬表.md",           "tools/tezheng_fanshi.py"),
     ("term_layer/附录P2_服后反证表.md",              "tools/fuhou_fanzheng.py"),
     ("term_layer/必要条件表.md",                    "tools/biyao_tiaojian.py"),   # 102批
+    ("term_layer/标记面清单.md",                    "tools/biaoji_mian.py"),      # 104批
 ]
 
 
 # ⛔ 手工件（无产出工具，故无法重跑、无从验证是否随语料更新）——本身即为一类风险，单列
 MANUAL = [("term_layer/附录G_八纲三毒客观判定表.md",
            "56批手写·62行·⛔无产出工具，语料由九书增至十二书后从未随之更新"),
+          ("term_layer/显隐映射表_人读判定.md",
+           "104批立·⭐人读判定册（显隐映射 148 条）。工具不得写入。"
+           "每批须报『已读/命中』比例。"),
           ("term_layer/必要条件表_人读判定.md",
            "103批立·⭐人读判定册，工具不得写入。与 `必要条件表.md`（工具候选池）分离，"
            "因 102批 将判定写在工具产出内，重跑即被覆盖——乙类事故同型。"
