@@ -157,12 +157,17 @@ PRODUCT = [
     ("term_layer/附录P2_服后反证表.md",              "tools/fuhou_fanzheng.py"),
     ("term_layer/必要条件表.md",                    "tools/biyao_tiaojian.py"),   # 102批
     ("term_layer/标记面清单.md",                    "tools/biaoji_mian.py"),      # 104批
+    ("state_layer/方剂组成.json",                  "tools/fang_compose.py"),     # 106批
 ]
 
 
 # ⛔ 手工件（无产出工具，故无法重跑、无从验证是否随语料更新）——本身即为一类风险，单列
 MANUAL = [("term_layer/附录G_八纲三毒客观判定表.md",
            "56批手写·62行·⛔无产出工具，语料由九书增至十二书后从未随之更新"),
+          ("term_layer/统一对应表.md",
+           "106批立·⭐用户令之核心表：症候×八纲×六经×三毒×药物，五类判据合一。"
+           "工具 tongyi_yansuan.py 读其编码副本（TONGYI 常量），本文为人读正本。"
+           "⛔三毒栏 1/16 有值，为全表最大缺口，每批须报其填充进度。"),
           ("term_layer/显隐映射表_人读判定.md",
            "104批立·⭐人读判定册（显隐映射 148 条）。工具不得写入。"
            "每批须报『已读/命中』比例。"),
