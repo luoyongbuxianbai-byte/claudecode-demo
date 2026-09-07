@@ -158,6 +158,7 @@ PRODUCT = [
     ("term_layer/必要条件表.md",                    "tools/biyao_tiaojian.py"),   # 102批
     ("term_layer/标记面清单.md",                    "tools/biaoji_mian.py"),      # 104批
     ("state_layer/方剂组成.json",                  "tools/fang_compose.py"),     # 106批
+    ("term_layer/格子表.md",                      "tools/gezi_biao.py"),        # 108批
 ]
 
 
