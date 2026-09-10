@@ -23,6 +23,12 @@ OUT = os.path.join(B, "MANIFEST.md")
 ASSETS = [
     ("引擎·V7.9",  "hxs_engine_v79_full.md",       False),   # 114批起：只读·迁移源
     ("引擎·V8",    "V8",                           True),    # ⭐114批起：当前结构底座
+    ("规范",       "docs",                         True),    # 120批
+    ("IR·schema",  "schema",                       True),    # 120批
+    ("IR·规则",    "rules",                        True),    # 120批
+    ("编译器",     "compiler",                     True),    # 120批
+    ("参考执行器",  "runtime",                      True),    # 120批
+    ("测试",       "tests",                        True),    # 120批
     ("引擎·执行核", "hxs_engine_执行核.md",          False),
     ("引擎·执行件", "hxs_engine_执行件.md",          False),
     ("白皮书",     "白皮书",                        True),
@@ -164,6 +170,9 @@ PRODUCT = [
     ("term_layer/同题双答表.md",                   "tools/tongti_shuangda.py"),   # 116批
     ("term_layer/必要条件_适用域候选类型.md",        "tools/shiyongyu_fenji.py"),   # 118批重写
     ("term_layer/P0真实下游依赖审计.md",           "tools/chuanbo_shenji.py"),    # 119批重写
+    ("term_layer/P0真实下游依赖审计_120批.md",     "tools/yilai_shenji_120.py"),  # 120批·76/76 全读
+    ("term_layer/P0复合前件合法性复核.md",         "tools/yilai_shenji_120.py"),  # 120批
+    ("runtime/compiled_rules.json",             "compiler/compile_rules.py"),  # 120批
     ("term_layer/P0候选确认类型传播矩阵.md",       "tools/chuanbo_shenji.py"),    # 119批
     ("term_layer/unknown_false审计.md",          "tools/unknown_shenji.py"),    # 119批
     ("term_layer/资产索引_供上级审查.md",            "tools/zichan_suoyin.py"),     # 116批
@@ -171,7 +180,29 @@ PRODUCT = [
 
 
 # ⛔ 手工件（无产出工具，故无法重跑、无从验证是否随语料更新）——本身即为一类风险，单列
-MANUAL = [("docs/ASSERTION_TYPE_SPEC.md",
+MANUAL = [("docs/RULE_SCHEMA_V0.md",
+           "120批立·⭐**Typed IR 规范**（用户令四、十）。五维正交："
+           "rule_effect／validation_status／observation_state／runtime_status／source_layer。"
+           "⛔七条硬锁由 `compiler/lint_rules.py` 实装。"
+           "**最要紧者：validation_status != runtime_status——「规则有出处」不是「患者已确诊」。**"),
+          ("schema/rule_v0.json",
+           "120批·Rule IR 之 JSON Schema。"),
+          ("rules/core_v0.json",
+           "120批·⭐首批 Typed IR 规则 5 条。含 `NEC-TAIYANG-WUHAN`（**falsified_overbroad·inactive**，"
+           "§172 反例已挂）、`S70-HANHOU-SHI`（**stage_conditional·发汗后 scope 已锁**）、"
+           "`NEC-LGZG-QICHONG`（speaker uncertain ⇒ fail_closed）、"
+           "`JUEYIN-SHANGREXIAHAN`（L5 vs L4 ⇒ disputed·inactive）。"),
+          ("term_layer/太阳提纲_作用域与反例矩阵.md",
+           "120批·⛔**撤销 119批 之「太阳病⇒恶寒 D5 硬门」与「本工程第一条完成四条件者」二说**。"
+           "反例〔讲伤寒·188178 §172〕；⭐并新发现**同一 §172 胡老另一书作相反之读**"
+           "〔C卷·125102「太阳病之发热恶寒」〕⇒ text_status=disputed。"),
+          ("term_layer/§70_病程适用域审计.md",
+           "120批·§70 恢复【发汗后】scope；T15/T15b 已证 scope 真实生效于 reference runtime。"),
+          ("term_layer/版本与source_layer规范.md",
+           "120批·六层 provenance ＋ speaker_status ＋ text_status；L5 不得静默覆盖 L4/L2。"),
+          ("term_layer/苓桂术甘_说话主体与反例状态.md",
+           "120批·维持 fail_closed；解锁条件＝定【临床应用】栏之层级。"),
+          ("docs/ASSERTION_TYPE_SPEC.md",
            "119批立·⭐**断言类型最小规范**（用户令一）。七类 assertion_type ＋五态 observation_state ＋"
            "传播格。⛔其参考实现为 `tools/assertion_engine.py`，**只证规范可解析，不证 LLM 照做**。"),
           ("term_layer/必要条件_D5反例攻击.md",

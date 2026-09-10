@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Rule IR v0 (120批)",
+  "type": "object",
+  "required": ["rule_id","proposition","object","scope","antecedent","rule_effect",
+               "validation_status","source_layer","speaker_status","text_status","compile_status"],
+  "additionalProperties": false,
+  "properties": {
+    "rule_id": {"type":"string","pattern":"^[A-Z0-9_.-]+$"},
+    "proposition": {"type":"string","minLength":2},
+    "object": {"type":"string","minLength":1},
+    "scope": {
+      "type":"object","required":["kind"],"additionalProperties": false,
+      "properties":{
+        "kind":{"enum":["standalone_pattern","composite_component","formula_pattern",
+                        "stage_conditional","differential","cross_scenario"]},
+        "conditions":{"type":"array","items":{"type":"string"}},
+        "exclusions":{"type":"array","items":{"type":"string"}}}},
+    "antecedent": {"type":"array","items":{
+      "type":"object","required":["observation","required_state"],"additionalProperties": false,
+      "properties":{"observation":{"type":"string"},
+        "required_state":{"enum":["present","absent_explicit"]}}}},
+    "rule_effect": {"enum":["trigger","support","confirm","exclude","contraindicate"]},
+    "effect": {"type":"string"},
+    "validation_status": {"enum":["candidate","source_verified","scope_verified",
+        "counterexample_audited","disputed","rejected","falsified_overbroad"]},
+    "source_author": {"type":"string"},
+    "source_layer": {"enum":["L1_fact","L2_hu_behavior","L3_response",
+                             "L4_hu_theory","L5_editorial","L6_engine"]},
+    "source_version": {"type":"string"},
+    "speaker_status": {"enum":["hu_direct","hu_notes","editor_attributed_to_hu",
+                               "editorial","uncertain"]},
+    "source_refs": {"type":"array","items":{"type":"string"}},
+    "counterexamples": {"type":"array","items":{
+      "type":"object","required":["ref","note"],"additionalProperties": false,
+      "properties":{"ref":{"type":"string"},"note":{"type":"string"},
+                    "effect_on_rule":{"enum":["falsifies","narrows","disputes","none"]}}}},
+    "revision_relation": {"type":"string"},
+    "text_status": {"enum":["accepted","disputed","suspected_corruption",
+                            "rejected_by_hu","unresolved"]},
+    "observation_requirements": {"type":"array","items":{"type":"string"}},
+    "compile_status": {"enum":["active","support_only","inactive","fail_closed","manual_review"]},
+    "notes": {"type":"string"}
+  }
+}

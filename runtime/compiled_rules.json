@@ -1,0 +1,71 @@
+[
+ {
+  "rule_id": "SUP-WUHAN-BIAOYANG",
+  "proposition": "恶寒 → 支持 表位/太阳",
+  "object": "表位候选",
+  "scope": {
+   "kind": "cross_scenario"
+  },
+  "antecedent": [
+   {
+    "observation": "恶寒",
+    "required_state": "present"
+   }
+  ],
+  "rule_effect": "support",
+  "effect": "提高表位/太阳候选之后验",
+  "validation_status": "source_verified",
+  "source_author": "胡希恕",
+  "source_layer": "L4_hu_theory",
+  "speaker_status": "hu_direct",
+  "source_refs": [
+   "讲伤寒·5483",
+   "C卷·7875(§3)"
+  ],
+  "counterexamples": [],
+  "text_status": "accepted",
+  "compile_status": "support_only",
+  "notes": "⭐这是 NEC-TAIYANG-WUHAN 撤销后【最多可保留者】。恶寒 → supporting_evidence，不得作 exclusion。"
+ },
+ {
+  "rule_id": "S70-HANHOU-SHI",
+  "proposition": "发汗后·不恶寒但热者 ⇒ 里实（阳明）",
+  "object": "实纲/阳明里实",
+  "scope": {
+   "kind": "stage_conditional",
+   "conditions": [
+    "treatment_history.includes(发汗)"
+   ],
+   "exclusions": [
+    "无发汗史者不适用"
+   ]
+  },
+  "antecedent": [
+   {
+    "observation": "发汗史",
+    "required_state": "present"
+   },
+   {
+    "observation": "恶寒",
+    "required_state": "absent_explicit"
+   },
+   {
+    "observation": "但热",
+    "required_state": "present"
+   }
+  ],
+  "rule_effect": "confirm",
+  "effect": "里实（阳明）成立，当和胃气",
+  "validation_status": "scope_verified",
+  "source_author": "胡希恕",
+  "source_layer": "L4_hu_theory",
+  "speaker_status": "hu_direct",
+  "source_refs": [
+   "C卷·71679(§70注解)"
+  ],
+  "counterexamples": [],
+  "text_status": "accepted",
+  "compile_status": "active",
+  "notes": "⛔120批 恢复病程作用域·用户令七。§70 完整前件含【发汗后】。禁升级为『任何场景：不恶寒+发热→阳明里实』。119批 只改了措辞未锁 scope。"
+ }
+]
