@@ -65,8 +65,8 @@ TESTS = [
   "must", r"候选触发|【候选",
   "117批 之候选措辞须在场"),
  ("C", "C2 ⛔候选与确认须有类型区分",
-  "must", r"\[候选\]|\[确认\]|type\s*[:：]\s*(candidate|confirmed)|证据类型\s*[:：]",
-  "⛔**本测应为红**：引擎目前无候选/确认之类型区分，此测即为暴露该缺口而设"),
+  "must", r"\{\{at:(trigger_candidate|supporting_evidence|confirmed|exclusion|contraindication|unknown|disputed)\b",
+  "⭐119批：引擎已植入机器可解析之 {{at:...}} 类型标记（docs/ASSERTION_TYPE_SPEC.md）"),
 
  ("D", "D1 人虚与病实须可并存",
   "must", r"虚指人虚[，,]实指病实|正虚病实|人虚[^。\n]{0,10}病实",

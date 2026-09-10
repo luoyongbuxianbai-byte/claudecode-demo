@@ -163,13 +163,34 @@ PRODUCT = [
     ("term_layer/资产地图.md",                     "tools/zichan_ditu.py"),      # 112批
     ("term_layer/同题双答表.md",                   "tools/tongti_shuangda.py"),   # 116批
     ("term_layer/必要条件_适用域候选类型.md",        "tools/shiyongyu_fenji.py"),   # 118批重写
-    ("term_layer/P0下游传播审计.md",               "tools/chuanbo_shenji.py"),    # 118批
+    ("term_layer/P0真实下游依赖审计.md",           "tools/chuanbo_shenji.py"),    # 119批重写
+    ("term_layer/P0候选确认类型传播矩阵.md",       "tools/chuanbo_shenji.py"),    # 119批
+    ("term_layer/unknown_false审计.md",          "tools/unknown_shenji.py"),    # 119批
     ("term_layer/资产索引_供上级审查.md",            "tools/zichan_suoyin.py"),     # 116批
 ]
 
 
 # ⛔ 手工件（无产出工具，故无法重跑、无从验证是否随语料更新）——本身即为一类风险，单列
-MANUAL = [("backup/必要条件_适用域分级_116批作废.md",
+MANUAL = [("docs/ASSERTION_TYPE_SPEC.md",
+           "119批立·⭐**断言类型最小规范**（用户令一）。七类 assertion_type ＋五态 observation_state ＋"
+           "传播格。⛔其参考实现为 `tools/assertion_engine.py`，**只证规范可解析，不证 LLM 照做**。"),
+          ("term_layer/必要条件_D5反例攻击.md",
+           "119批·⭐D5 唯一跨场景候选（讲伤寒·2288 太阳病提纲三征）之反例攻击。"
+           "⛔结论：**三项合取式已证伪**（栝蒌桂枝汤条：太阳病而脉反沉迟）；"
+           "只余「太阳病⇒恶寒」一项，四处互证。**本工程第一条走完晋升四条件者**，"
+           "但状态记为 `confirmed·检索范围有限`，非「已证明无反例」。"),
+          ("term_layer/苓桂术甘_必要条件反例审计.md",
+           "119批·同域反例攻击。⛔**卡在【说话主体未定】**：【临床应用】栏未经体例界定，"
+           "不能径称胡老说。⭐并记一处自我克制：刘某案未载气冲而有效，"
+           "**但『未载』是 unknown_not_recorded 不是 absent_explicit，故不构成反例**——"
+           "若据以反证，即犯本工程打了十五批的『未提及=阴性推定』。"),
+          ("term_layer/治疗反馈类型.md",
+           "119批立·七类治疗反馈及其权重。⛔撤「治疗反应=病机最硬证据」。"
+           "唯【原文预先给出分支预测】者方为诊断性试治。并区分「以方测证」(读原文之法) 与"
+           "「治疗有效反推病机」(判病例之法)——V8 原条混二者为一。"),
+          ("backup/hxs_engine_v8_full_v2_改前_119批.md",
+           "119批·⛔**类型标注与三项旧P0修改前之原件·不得删**。"),
+          ("backup/必要条件_适用域分级_116批作废.md",
            "⛔**116批 作废件**：该批分诊用错载入器（`read().replace` 只去换行），"
            "而锚是 `corpus_guard.load_one()`（去尽空白＋去 JUNK）之字位，相差上千字"
            "——**读的是别处的文字**。其 D0–D5 全部数字作废。留档备追溯，**不得引用其数**。"
