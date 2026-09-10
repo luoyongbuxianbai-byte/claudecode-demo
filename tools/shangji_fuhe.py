@@ -146,9 +146,20 @@ def main():
         print("⛔ V8 v2 缺失：%s" % V8)
         return 1
     L = open(V8, encoding="utf-8").read().split("\n")
-    still = gone = 0
+    # ⛔117批：撤销注里会**引用**旧写法（与上级 R11 之 `作废原文` 同式），
+    #   若不排除，则「已撤之条」会被本器报成「仍在」——即 114批 L429/430 之同型
+    #   （字符串出现在【否定】里，不等于它被主张）。
+    REVOKED = re.compile(r"117批(撤|收窄|改|降|加注)|作废原文|已撤|勘误|R11勘误")
+    still = gone = revoked = 0
     for no, desc, pat in V8RULE:
-        h = [i + 1 for i in range(len(L)) if re.search(pat, L[i])]
+        h = [i + 1 for i in range(len(L))
+             if re.search(pat, L[i]) and not REVOKED.search(L[i])]
+        hr = [i + 1 for i in range(len(L))
+              if re.search(pat, L[i]) and REVOKED.search(L[i])]
+        if not h and hr:
+            revoked += 1
+            print("✅已撤 %-3s L%-6d %s" % (no, hr[0], desc[:52]))
+            continue
         if h:
             still += 1
             if not only_miss:
@@ -157,8 +168,8 @@ def main():
         else:
             gone += 1
             print("⛔未查得 %-3s %s" % (no, desc[:56]))
-    print("\n  V8 条款：%d/%d 仍在｜⛔ 未查得 %d（未查得者上级之裁决无对象）"
-          % (still, len(V8RULE), gone))
+    print("\n  V8 条款：%d 仍在｜✅已撤（带撤销标记）%d｜⛔未查得 %d ／共 %d"
+          % (still, revoked, gone, len(V8RULE)))
 
     # ── 三、盲测泄漏检查（98批 T5 事故同型）──────────────────
     print("\n═══ 三、⛔盲测泄漏检查（98批 T5 答案逐字在 L9211，同型事故）═══\n")
