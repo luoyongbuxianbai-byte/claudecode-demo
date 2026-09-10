@@ -162,13 +162,28 @@ PRODUCT = [
     ("term_layer/格子表.md",                      "tools/gezi_biao.py"),        # 108批
     ("term_layer/资产地图.md",                     "tools/zichan_ditu.py"),      # 112批
     ("term_layer/同题双答表.md",                   "tools/tongti_shuangda.py"),   # 116批
-    ("term_layer/必要条件_适用域分级.md",            "tools/shiyongyu_fenji.py"),   # 116批
+    ("term_layer/必要条件_适用域候选类型.md",        "tools/shiyongyu_fenji.py"),   # 118批重写
+    ("term_layer/P0下游传播审计.md",               "tools/chuanbo_shenji.py"),    # 118批
     ("term_layer/资产索引_供上级审查.md",            "tools/zichan_suoyin.py"),     # 116批
 ]
 
 
 # ⛔ 手工件（无产出工具，故无法重跑、无从验证是否随语料更新）——本身即为一类风险，单列
-MANUAL = [("V8/blind/病例区_20组.md",
+MANUAL = [("backup/必要条件_适用域分级_116批作废.md",
+           "⛔**116批 作废件**：该批分诊用错载入器（`read().replace` 只去换行），"
+           "而锚是 `corpus_guard.load_one()`（去尽空白＋去 JUNK）之字位，相差上千字"
+           "——**读的是别处的文字**。其 D0–D5 全部数字作废。留档备追溯，**不得引用其数**。"
+           "现行件为 `term_layer/必要条件_适用域候选类型.md`。"),
+          ("backup/V8v2_盲测段原件_L20558-L20623_117批.md",
+           "117批·⛔**归档原件·不得删**（协议16）。P0-7 盲测段自 V8 v2 执行版移出前之原样，"
+           "66 行（病例区＋金标准区）。移出经用户令明文授权，git 亦可追溯。"),
+          ("backup/hxs_engine_v8_full_v2_改前_117批.md",
+           "117批·⛔**P0 修复前之 V8 v2 原件·不得删**。16 处改动之比对基线，"
+           "`python3 tools/v8_p0_fix.py --check` 可对其重放。"),
+          ("backup/hxs_engine_v8_full_v2_改前_118批.md",
+           "118批·⛔**文本订正前之 V8 v2 原件·不得删**（P0-1 论证／P0-9 缺一不成立／"
+           "P0-10 对象枚举／P0-16 保留状态 四处订正之基线）。"),
+          ("V8/blind/病例区_20组.md",
            "115批·⭐P0-7 盲测病例（20组）·**本档不含答案，可入执行上下文**。"
            "⛔与 `金标准_禁入执行上下文.md` **必须分档**——原套件二者同文件相隔 29 行，"
            "仅以文本「禁读」作隔离；98批 T5 答案逐字在引擎 L9211 即同型事故。"
