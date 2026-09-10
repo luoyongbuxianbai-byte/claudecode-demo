@@ -161,6 +161,9 @@ PRODUCT = [
     ("state_layer/方剂组成.json",                  "tools/fang_compose.py"),     # 106批
     ("term_layer/格子表.md",                      "tools/gezi_biao.py"),        # 108批
     ("term_layer/资产地图.md",                     "tools/zichan_ditu.py"),      # 112批
+    ("term_layer/同题双答表.md",                   "tools/tongti_shuangda.py"),   # 116批
+    ("term_layer/必要条件_适用域分级.md",            "tools/shiyongyu_fenji.py"),   # 116批
+    ("term_layer/资产索引_供上级审查.md",            "tools/zichan_suoyin.py"),     # 116批
 ]
 
 
