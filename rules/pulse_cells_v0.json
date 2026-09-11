@@ -1,7 +1,7 @@
 {
   "schema": "pulse_cell_v0",
-  "batch": "123",
-  "note": "⛔ 上级令一：肠痈反例只挂到它【实际证伪】的传播链上，不得越权用它否定所有「数—热」关系。⛔ 本批只审三格；L4055 之五格同型而未审，一律 candidate+fail_closed，不得当作已审。",
+  "batch": "123批立｜124批改",
+  "note": "⛔ 令一(123批)：肠痈反例只挂到它实际证伪的传播链上。⛔ 令六(124批)：`洪大` 已拆为两命题——A(→阳明气分, 无源 rejected) 与 B(→热盛于里, 有锚 research candidate)，**不得因 A 无源而一起删 B**。⛔ 令七(124批)：`数=热` 已做对象层级审计，15 处 `数主热` 分为四类，不再作同类计数。⛔ 令十(124批)：余五格已逐格审，**仍一律 fail_closed**（审计所得只入研究层，不放行）。",
   "cells": [
     {
       "cell_id": "PULSE-SHU-HEAT",
@@ -36,6 +36,11 @@
           "anchor": "A·讲伤寒·146519",
           "text": "同条讲伤寒作「**数为客热**」，C卷 作「数为热者」——**两本用字不同**",
           "effect": "disputes"
+        },
+        {
+          "anchor": "A·讲金匮·260630",
+          "effect": "narrows_scope",
+          "text": "胡老（薏苡附子败酱散条）「**脉数应该有热，但是痈脓啊都是脉数无热的**」——痈脓域内明文否定"
         }
       ],
       "cannot_decide": [
@@ -44,8 +49,30 @@
         "⛔ 不能定【热之部位】",
         "⛔ 单见脉数不能 confirm 热；只可 support"
       ],
-      "revision_status": "123批·由裸映射降为 support_only。⛔**未改为「数≠热」**——上级令一明禁。",
-      "audit_note": "source ✅有源｜object ✅逐字｜scope ⛔无｜counterexample ⭐胡老自陈「不光主热，也主虚」。⇒ 本格之病不在「数不主热」，在【无 scope 且被当作可直通治疗决策之硬映射】。"
+      "revision_status": "123批 降为 support_only｜⭐124批 加对象层级审计：**15 处同源计数作废**，改为四类（state_support 2／mechanism_explanation 2／location 3／formula_pattern 2），且四类中**无一处是独立断言**。⛔ 方向仍未反改（令一）。",
+      "audit_note": "source ✅有源｜object ✅逐字｜scope ⛔无｜counterexample ⭐胡老自陈「不光主热，也主虚」。⇒ 本格之病不在「数不主热」，在【无 scope 且被当作可直通治疗决策之硬映射】。",
+      "object_level_audit": {
+        "令七·分类": "⛔ 不得再把『数主热』15 处当同一类证据计数。严式检索（数主热15／数为热11／数为客热8／§122『数为热者』1，合计35）归并后只得【四条不同论述】：",
+        "state_support": [
+          "A·病位类方解·19983 胡老脉学总表「数主热，**但久病脉数多属虚损故亦主虚**」——⛔**当场自限**",
+          "A·讲伤寒·155445「数则为虚，数主热，热盛伤及阴液，也主虚……**所以数脉又主热，又主虚**」——⛔**当场自限**"
+        ],
+        "mechanism_explanation": [
+          "A·C卷·83817 §134「脉浮主风邪，脉数主热，脉动主痛。**热盛伤津，故脉数而虚浮**」——用于解释脉证相应，非独立断言",
+          "A·讲伤寒·146752 §122「这个数脉，**也不光主热，也主虚**……数呢是客热……**所以它不是胃里真有热**」"
+        ],
+        "location": [
+          "⭐A·C卷·150468《金匮·肠痈》薏苡附子败酱散「脉数主热，**今身无热**，其为肠内有痈脓无疑」——**用以定热之【部位】（非表热，当为里热）**",
+          "⭐A·C卷·143112《金匮·狐惑》赤小豆当归散「脉数主热，**但热不在表**，故外无热，**内有虚热**」——定部位＋定【虚热】",
+          "⭐A·讲伤寒·253892 §257「脉数主热，脉浮主表亦主热，**今有脉浮而没有表证，可见此脉浮主热而不主表**」"
+        ],
+        "formula_pattern": [
+          "A·C卷·68137《金匮·宿食》「脉数而滑者，为**热实于里**之应，故知此为有宿食，宜大承气汤」——须与【滑】合",
+          "A·C卷·80690 §257 脉浮数＋不大便＋消谷善饥 ⇒ 抵当汤（**瘀血**）"
+        ],
+        "⭐结论": "⛔⛔ **35 处严式命中里，没有一处是【脉数 ⇒ 热】之独立断言。** 每一处不是当场自限（『又主热，又主虚』），就是与【身无热】【不在表】【滑】等合用以**定部位或定方证**。⇒ 我 123批 记『有源（十二书总 15 处）』——**该计数把四种不同用法当成了一种**，本批撤该计法。⇒ 本格之正确读法是：**`脉数` 是一个须与他项合用方有指向的观察项，其单独之状态支持力，原文从未主张过。**",
+        "⭐强反例·新": "A·讲金匮·260630（薏苡附子败酱散条）胡老：「那么外边没有热，脉也数……**脉数应该有热，但是痈脓啊都是脉数无热的**」⇒ **在痈脓域，脉数不主热**，此为胡老明文之域内否定。"
+      }
     },
     {
       "cell_id": "PULSE-HONGDA-YANGMING",
@@ -77,8 +104,8 @@
         "⛔ 不能单独定位；胡老只说「热盛于里」，未说洪大即阳明",
         "⚠ 本批未查得可用之反例（§25 已排除）⇒ **「未查得」不等于「不存在」**"
       ],
-      "revision_status": "123批·⛔**以【无源】否决**，非以反例否决。二者不同：前者是这句话本工程根本没有权利说，后者是这句话被原文推翻。",
-      "audit_note": "⭐⭐ 本格是三格中问题最重者：**它断言的那个对象，在十二书里一次也没出现过。**「阳明气分」是温病学语，不是胡老语。⇒ 这不是「规则过宽」，是【术语走私】。"
+      "revision_status": "123批 以无源否决｜⭐124批·令六：本格只保留命题 A（洪大→**阳明气分**）。命题 B（洪大→热盛于里）**另立 `PULSE-HONGDA-LIRESHENG`，有锚，不随 A 一并删**。",
+      "audit_note": "⭐⭐ 本格是三格中问题最重者：**它断言的那个对象，在十二书里一次也没出现过。**「阳明气分」是温病学语，不是胡老语。⇒ 这不是「规则过宽」，是【术语走私】。 ⛔124批 补：本格之否决**只及于「阳明气分」五字**，不及于「洪大与里热之关系」——后者见 `PULSE-HONGDA-LIRESHENG`。"
     },
     {
       "cell_id": "PULSE-JIEDAI-ZHIGANCAO",
@@ -124,76 +151,248 @@
       "revision_status": "123批·⛔**撤销 `结代→炙甘草汤` 直映**。理由有二且各自独立：①对象术语无源（心血虚 0 命中）；②直映被原文证伪（平人脉结不须服药）。",
       "audit_note": "⭐ 本格之危险在【跨级】：它把一个观察项直接接到一张方子上，中间的状态层与并见条件全被吞掉。⇒ 正是上级所说「不得保留 结代→炙甘草汤 直映」。"
     },
-
     {
       "cell_id": "PULSE-FU-BIAO",
       "origin": "V8 L4055#0 原文 `浮=表/热浮`",
       "observable": "脉浮",
       "candidate_effect": "trigger",
-      "object": "表/热",
-      "scope": {"kind": "unaudited", "note": "⛔ 本批未审（上级令十只点名三格）"},
-      "source_refs": [],
-      "validation_status": "candidate",
+      "object": "表／热（⛔二者并列而原文明说不定）",
+      "scope": {
+        "kind": "unaudited",
+        "note": "⛔ 正作用域未定"
+      },
+      "source_refs": [
+        "A·病位类方解·19983 胡老脉学总表「浮**主表、主热亦主虚**」——⭐**原表即三值**",
+        "A·C卷·83811 §134「**脉浮主风邪**」",
+        "A·C卷·74186 §247「**脉浮主热**，胃有热则气盛」"
+      ],
+      "validation_status": "counterexample_audited",
       "compile_status": "fail_closed",
-      "counterexamples": [],
-      "cannot_decide": ["⛔ 未审，不得据以判任何事"],
-      "revision_status": "123批·**发现但未审**。原为裸映射，暂置 fail_closed 以免静默生效。"
+      "counterexamples": [
+        {
+          "anchor": "⭐A·讲金匮·150671",
+          "effect": "falsifies",
+          "text": "胡老「趺阳脉，浮而涩，**浮主热，浮不一定主表的，有时主热**」——**明文否定「浮⇒表」之无条件性**"
+        },
+        {
+          "anchor": "A·C卷·16866 §276",
+          "effect": "narrows_scope",
+          "text": "「**太阴病，脉浮者**，可发汗，宜桂枝汤」——脉浮见于太阴，非太阳专有"
+        },
+        {
+          "anchor": "A·讲伤寒·253892 §257",
+          "effect": "narrows_scope",
+          "text": "「**今有脉浮而没有表证**，可见此脉浮**主热而不主表**也」"
+        }
+      ],
+      "cannot_decide": [
+        "⛔ 不能独立定【表位】——胡老明说「浮不一定主表」",
+        "⛔ 不能在【表/热/虚】三者间择一——原表即三值并列",
+        "⚠ 与 00_执行件之表位判定链之关系本批未查"
+      ],
+      "revision_status": "⭐124批·令十 已审。**V8 原格作 `浮=表/热浮` 已是二值，而胡老原表是三值（表/热/虚），且明文否定其无条件性。** 仍 fail_closed。",
+      "object_source_status": "verbatim",
+      "audit_note": "⛔ 本格之病与 `数=热` 同型：**原文本是多值并自限，落到引擎里变成了单值硬映射。**"
     },
     {
       "cell_id": "PULSE-JIN-HANSHI",
       "origin": "V8 L4055#2 原文 `紧=寒实/痛`",
       "observable": "脉紧",
       "candidate_effect": "trigger",
-      "object": "寒实/痛",
-      "scope": {"kind": "unaudited", "note": "⛔ 本批未审"},
-      "source_refs": [],
-      "validation_status": "candidate",
+      "object": "寒（＋实／水饮／津血虚，OCR 待复核）",
+      "scope": {
+        "kind": "unaudited",
+        "note": "⛔ 未定"
+      },
+      "source_refs": [
+        "「紧为寒」10 处：C卷 2｜讲金匮 4｜解读 2｜传真系 1｜金匮要略传真 1",
+        "A·病位类方解·54635「**脉紧主寒**，关后以候里……尺中小紧」（⚠ OCR 件）",
+        "⚠ 病位类方解·19983 脉学总表该行 OCR 残损，「紧」条内容**不可辨**，本批不引"
+      ],
+      "validation_status": "counterexample_audited",
       "compile_status": "fail_closed",
-      "counterexamples": [],
-      "cannot_decide": ["⛔ 未审，不得据以判任何事"],
-      "revision_status": "123批·发现但未审。⚠ 并注：121批 肠痈条之【脉迟紧→脓未成→可下】与本格之【紧=寒实】同用一个「紧」而所指不同，须待审。"
+      "counterexamples": [
+        {
+          "anchor": "⭐A·C卷·79113《金匮·肠痈》",
+          "effect": "falsifies",
+          "text": "「其脉**迟紧**者，**脓未成，可下之**」——胡老注「这个**紧都是实象**，说明里头还是**实**而没有完全化脓」〔讲金匮·261650〕。⇒ **同一『紧』在肠痈域所主为【实】非【寒】，且导向【可下】而非温**"
+        },
+        {
+          "anchor": "A·讲伤寒·4132",
+          "effect": "narrows_scope",
+          "text": "胡老「紧脉就象烟卷一样，裹的很紧……**它一点汗都不出，它的脉就特别紧**」⇒ 紧之机制在【无汗·津液未泄】，非径指寒"
+        }
+      ],
+      "cannot_decide": [
+        "⛔ 不能独立定【寒】——肠痈域内所主为实",
+        "⛔ 不能由紧推治法方向（肠痈之迟紧反导向【可下】）",
+        "⚠ 「实／水饮／津血虚」诸值因 OCR 残损**本批未能取锚**"
+      ],
+      "revision_status": "⭐124批·令十 已审。⛔**并解决 123批 留下之疑问**：肠痈之【脉迟紧→脓未成→可下】与本格之【紧=寒实】**确为同字异指**，胡老在肠痈条取【实】而非【寒】。仍 fail_closed。",
+      "object_source_status": "hu_paraphrase",
+      "audit_note": "⭐ 本格之反例来自 FLIP-01 本身——**本工程两条线在此对上了**：脉学表说『紧=寒』，而肠痈条用『紧』定【实】并据以攻下。"
     },
     {
       "cell_id": "PULSE-HUAN-ZHONGFENG",
       "origin": "V8 L4055#3 原文 `缓=中风/胃气`",
       "observable": "脉缓",
       "candidate_effect": "trigger",
-      "object": "中风/胃气",
-      "scope": {"kind": "unaudited", "note": "⛔ 本批未审"},
-      "source_refs": [],
-      "validation_status": "candidate",
+      "object": "汗出而津液丧失之脉象（⛔非「中风」，更非「胃气」）",
+      "scope": {
+        "kind": "unaudited",
+        "note": "⛔ 未定"
+      },
+      "source_refs": [
+        "⛔ **`缓主` 全库零命中**",
+        "⛔ **「缓者为中风／缓为中风」全库仅 1 处**（讲伤寒），且即 §2 条文本身",
+        "A·讲伤寒·3939 §2「太阳病，发热，汗出，恶风，**脉缓者，名为中风**」（仲景条文）",
+        "⭐A·讲伤寒·4062 胡老「**为什么脉缓呢？就是因为出汗了**……水份丧失一部分了，所以这个脉一按就缓了」"
+      ],
+      "validation_status": "unsourced_rejected",
       "compile_status": "fail_closed",
-      "counterexamples": [],
-      "cannot_decide": ["⛔ 未审，不得据以判任何事"],
-      "revision_status": "123批·发现但未审。"
+      "counterexamples": [
+        {
+          "anchor": "⭐⭐A·讲伤寒·4227",
+          "effect": "falsifies",
+          "text": "胡老论「中风」二字：「这个风在古人的意思就是风邪了，就是中的风邪了，**这是错的**……**其实它就是个类型的问题**」〔又 4868「由于恶风，古人说是风邪，**这风邪是不对的**」〕⇒ **胡老明文否定「中风」之病因义**，只取其为【类型名】"
+        },
+        {
+          "anchor": "⛔ 「胃气」一值",
+          "effect": "falsifies",
+          "text": "**V8 原格之 `缓=中风/胃气` 中，「胃气」一值本批未查得任何出处**；`缓主` 0 命中，脉学总表该行亦无。⇒ 与「阳明气分」同型之**无源值**"
+        }
+      ],
+      "cannot_decide": [
+        "⛔ 不能以【中风】为状态——胡老明说那是古人误名，只是类型标签",
+        "⛔ 不能以【胃气】为对象——无源",
+        "⛔ 缓之可读者只有【汗出／津液丧失】之机制，而这已被『汗出』本身涵盖 ⇒ 本格之增量信息近乎零"
+      ],
+      "revision_status": "⭐124批·令十 已审。**由 candidate 降为 unsourced_rejected**：二值之中，「中风」被胡老明文否定其病因义，「胃气」无源。仍 fail_closed。",
+      "object_source_status": "unsourced",
+      "audit_note": "⭐ 本格是 `阳明气分` 之后第二例【无源值】，且它还多一重病：**保留了一个胡老明说『是错的』的古人用语作为状态名。**"
     },
     {
       "cell_id": "PULSE-XI-XUE",
       "origin": "V8 L4055#5 原文 `细=虚/血少`",
       "observable": "脉细",
       "candidate_effect": "trigger",
-      "object": "虚/血少",
-      "scope": {"kind": "unaudited", "note": "⛔ 本批未审"},
-      "source_refs": [],
-      "validation_status": "candidate",
+      "object": "血少／津血虚（⛔非「虚/血少」之泛虚）",
+      "scope": {
+        "kind": "formula_pattern",
+        "note": "⚠ 已查得之用例多与【浮】合（脉浮细），指体表津血不足"
+      },
+      "source_refs": [
+        "A·C卷·43994 §37「**脉细主血少**，而见之于浮，乃**体表津血不足**的为候，即小柴胡汤条所谓**血弱气尽腠理开**的情况」",
+        "「细主血少」4 处：C卷 1｜解读 1｜传真系 1｜病位类方解 1",
+        "A·讲伤寒·264417「**细就是气虚血少的脉，就是津液虚**」"
+      ],
+      "validation_status": "source_verified",
       "compile_status": "fail_closed",
-      "counterexamples": [],
-      "cannot_decide": ["⛔ 未审，不得据以判任何事"],
-      "revision_status": "123批·发现但未审。"
+      "counterexamples": [
+        {
+          "anchor": "A·C卷·43994 §37",
+          "effect": "narrows_scope",
+          "text": "「若脉**但浮而不细**，并亦无嗜卧及胸胁满痛者，则病仍在表」⇒ **细之有无用作【表→半表半里】之分野，须与嗜卧/胸胁满痛并见**，单脉不足"
+        },
+        {
+          "anchor": "⚠ 未查得",
+          "effect": "disputes",
+          "text": "**未查得『脉细而非血少』之反例**。⇒ 只能写 `not_found_within_audited_scope`，检索式为 `细主`／`脉细`；⛔**不得写「无反例」**"
+        }
+      ],
+      "cannot_decide": [
+        "⛔ 不能定【六经】——细之用在分野，须并嗜卧/胸胁满痛",
+        "⛔ 「虚」过泛：原文作【血少／津血虚】，不是一般之虚"
+      ],
+      "revision_status": "⭐124批·令十 已审。四格中**唯一 source_verified** 者，且对象须由「虚/血少」收窄为【血少／津血虚】。仍 fail_closed（scope 未过审）。",
+      "object_source_status": "verbatim",
+      "audit_note": "⚠ 本格是五格里最干净的一条，但**干净不等于可放行**——scope 未审，且反例只是『未查得』。"
     },
     {
       "cell_id": "PULSE-WEI-YANGSHUAI",
       "origin": "V8 L4055#6 原文 `微=阳衰少阴`",
       "observable": "脉微",
       "candidate_effect": "trigger",
-      "object": "阳衰少阴",
-      "scope": {"kind": "unaudited", "note": "⛔ 本批未审"},
-      "source_refs": [],
-      "validation_status": "candidate",
+      "object": "虚／亡阳欲脱（⛔非「阳衰少阴」）",
+      "scope": {
+        "kind": "unaudited",
+        "note": "⛔ 已审而【正作用域仍未定】：已见于少阴、霍乱虚脱、通脉四逆等，是否限于阴证未判。"
+      },
+      "source_refs": [
+        "⛔ **`微主` 全库零命中**——胡老脉学总表未立此条",
+        "「微者为亡阳／微为亡阳」8 处：讲伤寒 4｜金匮要略传真 1（余为异写）",
+        "A·C卷·98882 §370「**脉微欲绝为极虚欲脱之证**」（通脉四逆汤）",
+        "A·C卷·98241「**四逆、脉微欲绝里虚寒甚者**」【辨证要点】",
+        "⛔⛔ **「阳衰」二字在胡老本人两部（C卷 0｜讲伤寒 0）零命中**；21 处全在冯世纶系编纂本（讲金匮3｜汤液经方系6｜伤寒论传真1｜金匮要略传真2｜中国汤液方证9）⇒ `speaker_status=editor`"
+      ],
+      "validation_status": "falsified_overbroad",
       "compile_status": "fail_closed",
-      "counterexamples": [],
-      "cannot_decide": ["⛔ 未审，不得据以判任何事"],
-      "revision_status": "123批·发现但未审。⚠ 本格亦跨级（脉→六经），与 PULSE-JIEDAI 同型，优先待审。"
+      "counterexamples": [
+        {
+          "anchor": "A·C卷·39060",
+          "effect": "narrows_scope",
+          "text": "「今寸脉沉而**尺脉微**，仍属**饮盛里虚**之应」——脉微而所主为【饮盛里虚】，非少阴"
+        },
+        {
+          "anchor": "⭐检索学反例·共现≠断言",
+          "effect": "falsifies",
+          "text": "「少阴…脉微」共现 82 处，而**「微主(少阴)」0 处**。⇒ **共现频次高不等于胡老作过该断言**；以共现充作出处，即是我方造规则"
+        }
+      ],
+      "cannot_decide": [
+        "⛔⛔ 不能定【六经】——脉微→少阴 这一跨级无直接出处，只有共现",
+        "⛔ 不能用「阳衰」为对象——该词非胡老本人语",
+        "⛔ 不能排除【水饮里虚】（见反例一）"
+      ],
+      "revision_status": "⭐124批·令十 已审。**由 candidate 降为 falsified_overbroad**：对象用语无源（阳衰）＋跨级无据（少阴）。**仍 fail_closed，不放行。**",
+      "object_source_status": "hu_paraphrase",
+      "audit_note": "⭐ 五格中最危者如上级所判。其病与 `PULSE-JIEDAI` 同型（跨级），又与 `PULSE-HONGDA-YANGMING` 同型（对象无源）——**一格犯两病**。"
+    },
+    {
+      "cell_id": "PULSE-HONGDA-LIRESHENG",
+      "origin": "124批·令六 自 `PULSE-HONGDA-YANGMING` 拆出之命题 B",
+      "observable": "脉洪大",
+      "candidate_effect": "support",
+      "object": "热盛于里／里热盛",
+      "object_source_status": "verbatim",
+      "scope": {
+        "kind": "unaudited",
+        "note": "⛔ 正作用域未审。已查得之用例集中于【服桂枝汤大汗出后·大烦渴不解】与【白虎(加人参)汤证】，但是否限于此域未定。"
+      },
+      "source_refs": [
+        "A·C卷·14885「脉洪大，当是脉浮。**脉洪大为热盛于里**，如何可与桂枝汤？」",
+        "A·C卷·54285「若**脉洪大为里热盛**，如何可与桂枝汤？」",
+        "A·C卷·75686 §26「**脉洪大为热盛津虚之应**，故以白虎加人参汤主之」",
+        "A·讲伤寒·32297「这时候脉呢洪大，**脉洪大是里热的情形**」",
+        "⚠A·病位类方解·19983 胡老脉学总表「**洪主热盛**，大热之证脉多洪」（OCR 件，字迹可辨但须复核）"
+      ],
+      "validation_status": "source_verified",
+      "compile_status": "fail_closed",
+      "counterexamples": [
+        {
+          "anchor": "A·汤液经方系·25593 ／ 中国汤液方证·25496",
+          "text": "「里热盛，气阴不足，故**脉虽洪大但按之较软**」——⇒ **洪大须以【按之】分虚实**，单取脉形不足。⚠ 此二书为冯世纶系编纂，`speaker_status=editor`，非胡老本人语",
+          "effect": "narrows_scope"
+        },
+        {
+          "anchor": "A·C卷·75686 ／ 病位类方解·118845",
+          "text": "胡老此处作「热盛**津虚**之应」「热盛津虚之候」——⇒ 对象不止【里热】，**含津虚一面**；只写「里热盛」会丢掉治须加人参之理由",
+          "effect": "narrows_scope"
+        },
+        {
+          "anchor": "⚠ §25「服桂枝汤，大汗出，脉洪大者，与桂枝汤」",
+          "text": "⛔**不可用**：胡老判其传抄有误并改「当是脉浮」〔C卷·14885〕。列此是为防后批再把它当反例捡起来",
+          "effect": "not_usable_emended_by_hu"
+        }
+      ],
+      "cannot_decide": [
+        "⛔ 不能定【阳明】——那是命题 A，已以无源否决",
+        "⛔ 不能单取脉形——须并【按之】之软硬（见反例一）",
+        "⛔ 不能只写【里热】而略【津虚】（见反例二）",
+        "⚠ **未查得『洪大而非里热』之反例**；⇒ 只能写 `not_found_within_audited_scope`，**不得写「无反例」**"
+      ],
+      "revision_status": "124批·令六新立。**research candidate，不是 runtime rule**——故 compile_status=fail_closed。",
+      "audit_note": "⭐ 本格证明了令六那一步的必要：`阳明气分` 与 `热盛于里` 是两个命题，**前者无源、后者有五处锚**。123批 我把二者当一件事否决掉，**等于把一条有原文支撑的观察—状态关系连带扔了。**"
     }
   ]
 }

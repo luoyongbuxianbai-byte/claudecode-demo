@@ -5,66 +5,149 @@
   "description": "一格 = 一条【可观察项 → 候选状态】之映射。⛔ 禁止一格之撤销状态污染相邻格。⛔ 禁止 observable → formula 之直映（须经 latent state）。",
   "type": "object",
   "required": [
-    "cell_id", "observable", "candidate_effect", "object", "scope",
-    "source_refs", "validation_status", "compile_status",
-    "counterexamples", "revision_status"
+    "cell_id",
+    "observable",
+    "candidate_effect",
+    "object",
+    "scope",
+    "source_refs",
+    "validation_status",
+    "compile_status",
+    "counterexamples",
+    "revision_status"
   ],
   "additionalProperties": false,
   "properties": {
-    "cell_id":   {"type": "string", "pattern": "^[A-Z]+-[A-Z0-9-]+$"},
-    "origin":    {"type": "string", "description": "原 V8 行#格，供追溯"},
-    "observable":{"type": "string", "description": "可观察项本身。⛔ 不得填状态名"},
+    "cell_id": {
+      "type": "string",
+      "pattern": "^[A-Z]+-[A-Z0-9-]+$"
+    },
+    "origin": {
+      "type": "string",
+      "description": "原 V8 行#格，供追溯"
+    },
+    "observable": {
+      "type": "string",
+      "description": "可观察项本身。⛔ 不得填状态名"
+    },
     "candidate_effect": {
       "type": "string",
-      "enum": ["support", "trigger", "confirm", "exclude", "contraindicate"],
+      "enum": [
+        "support",
+        "trigger",
+        "confirm",
+        "exclude",
+        "contraindicate"
+      ],
       "description": "⛔ 未经 scope+反例审计者不得为 confirm/exclude"
     },
-    "object":    {"type": "string", "description": "该映射所断之对象（寒热/病位/虚实/阶段…）"},
+    "object": {
+      "type": "string",
+      "description": "该映射所断之对象（寒热/病位/虚实/阶段…）"
+    },
     "object_source_status": {
       "type": "string",
-      "enum": ["verbatim", "hu_paraphrase", "unsourced"],
+      "enum": [
+        "verbatim",
+        "hu_paraphrase",
+        "unsourced"
+      ],
       "description": "⛔ unsourced＝该术语全库零命中，属无源对象"
     },
     "scope": {
       "type": "object",
-      "required": ["kind", "note"],
+      "required": [
+        "kind",
+        "note"
+      ],
       "properties": {
-        "kind": {"type": "string",
-                 "enum": ["unbounded_ILLEGAL", "formula_pattern", "stage_conditional",
-                          "differential", "unaudited"]},
-        "note": {"type": "string"}
+        "kind": {
+          "type": "string",
+          "enum": [
+            "unbounded_ILLEGAL",
+            "formula_pattern",
+            "stage_conditional",
+            "differential",
+            "unaudited"
+          ]
+        },
+        "note": {
+          "type": "string"
+        }
       }
     },
-    "source_refs":     {"type": "array", "items": {"type": "string"}},
+    "source_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
     "validation_status": {
       "type": "string",
-      "enum": ["candidate", "source_verified", "scope_verified",
-               "counterexample_audited", "disputed", "rejected",
-               "falsified_overbroad", "unsourced_rejected"]
+      "enum": [
+        "candidate",
+        "source_verified",
+        "scope_verified",
+        "counterexample_audited",
+        "disputed",
+        "rejected",
+        "falsified_overbroad",
+        "unsourced_rejected"
+      ]
     },
     "compile_status": {
       "type": "string",
-      "enum": ["active", "support_only", "inactive", "fail_closed"]
+      "enum": [
+        "active",
+        "support_only",
+        "inactive",
+        "fail_closed"
+      ]
     },
     "counterexamples": {
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["anchor", "text", "effect"],
+        "required": [
+          "anchor",
+          "text",
+          "effect"
+        ],
         "properties": {
-          "anchor": {"type": "string"},
-          "text":   {"type": "string"},
-          "effect": {"type": "string",
-                     "enum": ["falsifies", "narrows_scope", "disputes",
-                              "not_usable_emended_by_hu"]}
+          "anchor": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          },
+          "effect": {
+            "type": "string",
+            "enum": [
+              "falsifies",
+              "narrows_scope",
+              "disputes",
+              "not_usable_emended_by_hu"
+            ]
+          }
         }
       }
     },
     "cannot_decide": {
-      "type": "array", "items": {"type": "string"},
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
       "description": "本格【不能】判定之事——上级令三要求逐格写明"
     },
-    "revision_status": {"type": "string"},
-    "audit_note":      {"type": "string"}
+    "revision_status": {
+      "type": "string"
+    },
+    "audit_note": {
+      "type": "string"
+    },
+    "object_level_audit": {
+      "type": "object",
+      "description": "124批·令七：把该观察项之全部命中按【所断对象之层级】分类——state_support／mechanism_explanation／location／formula_pattern。⛔ 不得把不同用法之命中作同类计数。"
+    }
   }
 }

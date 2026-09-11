@@ -37,8 +37,15 @@ def load_all_with_skipped():
         if isinstance(d, list):
             out += d
         else:
-            skipped.append((f, d.get("schema", "<未声明 schema>"),
-                            len(d.get("cells", d.get("rules", [])))))
+            # ⛔ 条目数须按各档自己的容器键取；写死 cells/rules 会把
+            #   `state_variables_v0.json`（容器键为 variables）显示成「条目 0」——
+            #   **一个看起来像空文件的显示，比不显示更坏**（124批 自查）。
+            n = 0
+            for k in ("cells", "rules", "variables", "items"):
+                if isinstance(d.get(k), list):
+                    n = len(d[k])
+                    break
+            skipped.append((f, d.get("schema", "<未声明 schema>"), n))
     return out, skipped
 
 
@@ -104,8 +111,11 @@ def main():
         print("⚠ 非 Rule IR 形制之档（**本器不校，另有校验器**）：")
         for f, sch, n in skipped:
             print("   %-26s schema=%-16s 条目 %d" % (f, sch, n))
-        print("   ⛔ `rules/pulse_cells_v0.json` 之校验器为 "
-              "`tests/test_pulse_cells.py`（schema `schema/pulse_cell_v0.json`）")
+        print("   ⛔ 各档之校验器：")
+        for f, _, _ in skipped:
+            v = {"pulse_cells_v0.json": "tests/test_pulse_cells.py",
+                 "state_variables_v0.json": "tests/test_state_variables.py"}.get(f)
+            print("      %-26s → %s" % (f, v or "⛔**无校验器——此即缺口，须报**"))
     print()
     for rid, m in warns:
         print("⚠ %-24s %s" % (rid, m))

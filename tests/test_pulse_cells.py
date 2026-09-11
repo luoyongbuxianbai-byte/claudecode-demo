@@ -67,9 +67,17 @@ ck("⭐令一·`数=热` 未被反向改写为「数≠热」",
 ck("⭐令一·`数=热` 仍保有正面出处",
    any("数主热" in s or "数为热" in s for s in shu["source_refs"]),
    "正面出处被误删")
-ck("⭐令一·肠痈反例未挂到本格",
-   not any("肠痈" in x["text"] or "脓" in x["text"] for x in shu["counterexamples"]),
-   "肠痈反例被越权挂到数—热关系上")
+# ⛔ 令一之禁止，其要害是【不得以「可攻下与否」去否定「数—热」关系】，
+#    不是「凡提到痈脓的反例一概不许挂」。
+#    初版写成後者 ⇒ 把〔讲金匮·260630〕胡老「痈脓啊都是脉数无热的」这条
+#    **正面的域内数—热反例**也挡掉了。已改为只禁【攻下链】式论证。
+bad = [x for x in shu["counterexamples"]
+       if any(k in x["text"] for k in ("可下", "不可下", "攻之", "下之"))]
+ck("⭐令一·不得以【可攻下与否】否定数—热关系", not bad,
+   "以治疗决策链越权否定观察—状态关系：%s" % [x["anchor"] for x in bad])
+ck("⭐令一·域内数—热反例须为【热之有无】之论证",
+   any("无热" in x["text"] for x in shu["counterexamples"]),
+   "缺域内直接反例")
 ck("`数=热` 已降为 support_only", shu["compile_status"] == "support_only")
 ck("`数=热` 已写明【不能判】之事", len(shu.get("cannot_decide", [])) >= 3)
 
