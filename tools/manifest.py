@@ -29,6 +29,7 @@ ASSETS = [
     ("编译器",     "compiler",                     True),    # 120批
     ("参考执行器",  "runtime",                      True),    # 120批
     ("测试",       "tests",                        True),    # 120批
+    ("研究层证据",  "evidence",                     True),    # ⭐121批：研究层，禁入 runtime
     ("引擎·执行核", "hxs_engine_执行核.md",          False),
     ("引擎·执行件", "hxs_engine_执行件.md",          False),
     ("白皮书",     "白皮书",                        True),
@@ -173,11 +174,30 @@ PRODUCT = [
     ("term_layer/P0真实下游依赖审计_120批.md",     "tools/yilai_shenji_120.py"),  # 120批·76/76 全读
     ("term_layer/P0复合前件合法性复核.md",         "tools/yilai_shenji_120.py"),  # 120批
     ("runtime/compiled_rules.json",             "compiler/compile_rules.py"),  # 120批
+    ("evidence/最小翻转对证据集.md",              "tools/fanzhuandui.py"),       # 121批
+    ("evidence/二味方低复杂度验证集.md",           "tools/fanzhuandui.py"),       # 121批
     ("term_layer/P0候选确认类型传播矩阵.md",       "tools/chuanbo_shenji.py"),    # 119批
     ("term_layer/unknown_false审计.md",          "tools/unknown_shenji.py"),    # 119批
     ("term_layer/资产索引_供上级审查.md",            "tools/zichan_suoyin.py"),     # 116批
 ]
 
+
+# ⛔⛔ 人录件（**有产出工具，但工具里的数据是人手录入的**）——单列，不得与 MANUAL 混
+#    与 MANUAL 之别：MANUAL 无工具，重跑不能；本类**能重跑，但重跑只重排版，不重取证**。
+#    ⇒ 故 `--fresh` 对本类之「新鲜」只证【排版是新的】，**不证【证据是新查的】**。
+HANDCODED = [
+    ("evidence/最小翻转对证据集.md", "tools/fanzhuandui.py",
+     "121批立·⭐**研究层**·11 组最小翻转对（high 6｜mid 4｜low 1）＋四模型测试＋4 型反例＋5 条 residual。"
+     "⛔⛔**研究层证据未经反例攻击不得进入 Typed IR runtime**（用户令十）——"
+     "本批 `rules/` 与 `runtime/compiled_rules.json` **一字未改**。"
+     "⛔并记一处可证伪性自查：M4 得 9 支持 0 反驳，**此结果本身可疑**，"
+     "至少一半因该模型述得太宽而近乎不可证伪。"),
+    ("evidence/二味方低复杂度验证集.md", "tools/fanzhuandui.py",
+     "121批立·5 首二味方逐首人读（桔梗汤｜芍药甘草汤｜甘草干姜汤｜桂枝甘草汤｜枳术汤）。"
+     "⛔**本批不解释药性**（用户令七）；表中功能语皆原文逐字。"
+     "⛔并记本批一处测量失误：初以正则数药味得「C卷二味方 31 首」，**该数错**"
+     "（桂枝汤 5 味被误计），**未报该数，改逐首人读**；全库二味方实数**至今未点**。"),
+]
 
 # ⛔ 手工件（无产出工具，故无法重跑、无从验证是否随语料更新）——本身即为一类风险，单列
 MANUAL = [("docs/RULE_SCHEMA_V0.md",
@@ -284,6 +304,12 @@ def fresh():
             print("  %-34s ✅" % name[:32])
     print("\n结果：%d/%d 新鲜｜⛔过期 %d｜⛔缺失 %d"
           % (len(PRODUCT) - bad - miss, len(PRODUCT), bad, miss))
+    if HANDCODED:
+        print("\n⛔⛔ 人录件（**有工具、能重跑，但工具里的数据是人手录的**——")
+        print("     故上表之「新鲜」**只证排版是新的，不证证据是新查的**）：")
+        for m, tool, why in HANDCODED:
+            print("   %-34s ←%s" % (os.path.basename(m)[:32], tool))
+            print("       %s" % why)
     if MANUAL:
         print("\n⚠ 手工件（无工具，不可重跑，其数须人读复核）：")
         for m, why in MANUAL:
