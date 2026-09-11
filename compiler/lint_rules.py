@@ -17,11 +17,29 @@ EXEC_THRESHOLD = {"scope_verified", "counterexample_audited"}
 
 
 def load_all():
-    out = []
+    """只收 Rule IR 形制之档（顶层为 list）。
+
+    ⛔⛔ 123批：`rules/pulse_cells_v0.json` 为**另一形制**（顶层 dict，schema=pulse_cell_v0），
+       原 loader 见 `.json` 即 `+=`，读到 dict 便把它的**键名**当规则，
+       于是 `r.get` 在字符串上崩。
+    ⛔ **不得静默跳过**——静默跳过就等于「有一批规则从来没被 lint 过而无人知道」。
+       故本函数**返回被跳过者之清单**，由 main 打印，并由各自之校验器负责。
+    """
+    return load_all_with_skipped()[0]
+
+
+def load_all_with_skipped():
+    out, skipped = [], []
     for f in sorted(os.listdir(RULES_DIR)):
-        if f.endswith(".json"):
-            out += json.load(open(os.path.join(RULES_DIR, f), encoding="utf-8"))
-    return out
+        if not f.endswith(".json"):
+            continue
+        d = json.load(open(os.path.join(RULES_DIR, f), encoding="utf-8"))
+        if isinstance(d, list):
+            out += d
+        else:
+            skipped.append((f, d.get("schema", "<未声明 schema>"),
+                            len(d.get("cells", d.get("rules", [])))))
+    return out, skipped
 
 
 def lint(rules):
@@ -78,10 +96,17 @@ def lint(rules):
 
 
 def main():
-    rules = load_all()
+    rules, skipped = load_all_with_skipped()
     errs, warns = lint(rules)
-    print("═══ Typed IR lint（120批）═══")
-    print("规则 %d 条\n" % len(rules))
+    print("═══ Typed IR lint（120批｜123批加 cell 档声明）═══")
+    print("规则 %d 条" % len(rules))
+    if skipped:
+        print("⚠ 非 Rule IR 形制之档（**本器不校，另有校验器**）：")
+        for f, sch, n in skipped:
+            print("   %-26s schema=%-16s 条目 %d" % (f, sch, n))
+        print("   ⛔ `rules/pulse_cells_v0.json` 之校验器为 "
+              "`tests/test_pulse_cells.py`（schema `schema/pulse_cell_v0.json`）")
+    print()
     for rid, m in warns:
         print("⚠ %-24s %s" % (rid, m))
     for rid, m in errs:

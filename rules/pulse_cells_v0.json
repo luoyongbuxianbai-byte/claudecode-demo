@@ -1,0 +1,199 @@
+{
+  "schema": "pulse_cell_v0",
+  "batch": "123",
+  "note": "⛔ 上级令一：肠痈反例只挂到它【实际证伪】的传播链上，不得越权用它否定所有「数—热」关系。⛔ 本批只审三格；L4055 之五格同型而未审，一律 candidate+fail_closed，不得当作已审。",
+  "cells": [
+    {
+      "cell_id": "PULSE-SHU-HEAT",
+      "origin": "V8 L4056#1 原文 `数=热`",
+      "observable": "脉数",
+      "candidate_effect": "support",
+      "object": "热",
+      "object_source_status": "verbatim",
+      "scope": {
+        "kind": "unbounded_ILLEGAL",
+        "note": "⛔ 原格无 scope。本批只能给出【已查得之例外域】，不能给出正作用域——故不晋升。"
+      },
+      "source_refs": [
+        "A·C卷·5122 §122「病人脉数，**数为热**，当消谷引食」",
+        "A·讲伤寒·146485 胡老「这个脉数，**数主热**，一般这个脉的证侯是如此的」",
+        "检索：「数主热」C卷 3｜讲伤寒 3｜解读 3｜传真系 3｜病位类方解 3 ⇒ 有源"
+      ],
+      "validation_status": "counterexample_audited",
+      "compile_status": "support_only",
+      "counterexamples": [
+        {
+          "anchor": "A·讲伤寒·146752",
+          "text": "胡老：「这个数脉，**也不光主热，也主虚**，所以脉乃数也。数呢是客热……**所以它不是胃里真有热**，并不是胃气强」",
+          "effect": "narrows_scope"
+        },
+        {
+          "anchor": "A·C卷·5156 §122",
+          "text": "「**数为热者，不能消谷，以胃中虚冷，故吐也**」——脉数而胃中虚冷",
+          "effect": "falsifies"
+        },
+        {
+          "anchor": "A·讲伤寒·146519",
+          "text": "同条讲伤寒作「**数为客热**」，C卷 作「数为热者」——**两本用字不同**",
+          "effect": "disputes"
+        }
+      ],
+      "cannot_decide": [
+        "⛔ 不能定【可攻下】——热与可攻是两件事（上级令一）",
+        "⛔ 不能排除【虚】——胡老明说数亦主虚",
+        "⛔ 不能定【热之部位】",
+        "⛔ 单见脉数不能 confirm 热；只可 support"
+      ],
+      "revision_status": "123批·由裸映射降为 support_only。⛔**未改为「数≠热」**——上级令一明禁。",
+      "audit_note": "source ✅有源｜object ✅逐字｜scope ⛔无｜counterexample ⭐胡老自陈「不光主热，也主虚」。⇒ 本格之病不在「数不主热」，在【无 scope 且被当作可直通治疗决策之硬映射】。"
+    },
+    {
+      "cell_id": "PULSE-HONGDA-YANGMING",
+      "origin": "V8 L4056#2 原文 `洪大=阳明气分`",
+      "observable": "脉洪大",
+      "candidate_effect": "support",
+      "object": "里热盛",
+      "object_source_status": "unsourced",
+      "scope": {
+        "kind": "unaudited",
+        "note": "⛔ 原格无 scope，且其对象术语根本不在语料中。"
+      },
+      "source_refs": [
+        "⛔⛔ **「阳明气分」全库零命中**：C卷 0｜讲伤寒 0｜讲金匮 0｜解读 0｜传真系 0（「气分」本身有 6/4/19/8/7 处，「阳明气分」连用 0 处）",
+        "胡老实际用语为【里热盛／热盛于里】：A·C卷·14884「**脉洪大为热盛于里**，如何可与桂枝汤？」",
+        "A·C卷·54218 解读同条：「若脉洪大**为里热盛**」"
+      ],
+      "validation_status": "unsourced_rejected",
+      "compile_status": "fail_closed",
+      "counterexamples": [
+        {
+          "anchor": "A·C卷·14824 §25「服桂枝汤，大汗出，**脉洪大者，与桂枝汤，如前法**」",
+          "text": "⛔⛔ **本条看似反例（洪大而仍与桂枝汤），但【不可用】**：胡老判其为传抄之误并径改字——「**脉洪大，当是脉浮**……必是传抄有误，宜改之」〔C卷·14884〕；另本更疑「**可能是白虎加人参汤的脉洪大错乱在此**」〔C卷·54218〕。⇒ 引其为反例，即是拿胡老已否定之文本当证据。",
+          "effect": "not_usable_emended_by_hu"
+        }
+      ],
+      "cannot_decide": [
+        "⛔ 不能定【阳明】——「阳明气分」为无源术语，本工程不得使用",
+        "⛔ 不能单独定位；胡老只说「热盛于里」，未说洪大即阳明",
+        "⚠ 本批未查得可用之反例（§25 已排除）⇒ **「未查得」不等于「不存在」**"
+      ],
+      "revision_status": "123批·⛔**以【无源】否决**，非以反例否决。二者不同：前者是这句话本工程根本没有权利说，后者是这句话被原文推翻。",
+      "audit_note": "⭐⭐ 本格是三格中问题最重者：**它断言的那个对象，在十二书里一次也没出现过。**「阳明气分」是温病学语，不是胡老语。⇒ 这不是「规则过宽」，是【术语走私】。"
+    },
+    {
+      "cell_id": "PULSE-JIEDAI-ZHIGANCAO",
+      "origin": "V8 L4056#3 原文 `结代=心血虚炙甘草`",
+      "observable": "脉结代",
+      "candidate_effect": "support",
+      "object": "津血枯燥（血不足以荣脉）",
+      "object_source_status": "hu_paraphrase",
+      "scope": {
+        "kind": "formula_pattern",
+        "note": "⛔ 须与【心动悸】并见方入炙甘草汤方证；单见结代不足。"
+      },
+      "source_refs": [
+        "A·C卷·145454「此治**津血枯燥而脉结代**……」",
+        "A·C卷·145461 §177「伤寒脉结代，**心动悸**，炙甘草汤主之」胡老注：「亡津液、亡血液，以至**血不足以养心，则心动悸**；**血不足以荣脉，则脉结代**」",
+        "A·C卷·145968【辨证要点】「**心动悸，脉结代**气阴两虚者」",
+        "⛔ **「心血虚」全库零命中**（九书逐本查皆 0）⇒ 原格之对象用语无源；胡老作【津血枯燥】"
+      ],
+      "validation_status": "falsified_overbroad",
+      "compile_status": "inactive",
+      "counterexamples": [
+        {
+          "anchor": "A·C卷·145807",
+          "text": "⭐⭐ 「**平人脉结并不足虑，即不服药亦可自愈**」——**无病之人见结脉，不须治。**",
+          "effect": "falsifies"
+        },
+        {
+          "anchor": "A·C卷·145507",
+          "text": "「若虚服的阴虚寒重证，**脉微欲绝，或无脉者，本方不中与之**」——同域禁忌",
+          "effect": "narrows_scope"
+        },
+        {
+          "anchor": "A·C卷·145968",
+          "text": "辨证要点须【心动悸】与【脉结代】并见，且「气阴两虚」——**单脉不成方证**",
+          "effect": "narrows_scope"
+        }
+      ],
+      "cannot_decide": [
+        "⛔⛔ 不能由脉直达方——原格一次跨三级（脉→病机→方），本批已拆",
+        "⛔ 不能定【心血虚】——该词无源",
+        "⛔ 不能在无【心动悸】时支持炙甘草汤方证"
+      ],
+      "revision_status": "123批·⛔**撤销 `结代→炙甘草汤` 直映**。理由有二且各自独立：①对象术语无源（心血虚 0 命中）；②直映被原文证伪（平人脉结不须服药）。",
+      "audit_note": "⭐ 本格之危险在【跨级】：它把一个观察项直接接到一张方子上，中间的状态层与并见条件全被吞掉。⇒ 正是上级所说「不得保留 结代→炙甘草汤 直映」。"
+    },
+
+    {
+      "cell_id": "PULSE-FU-BIAO",
+      "origin": "V8 L4055#0 原文 `浮=表/热浮`",
+      "observable": "脉浮",
+      "candidate_effect": "trigger",
+      "object": "表/热",
+      "scope": {"kind": "unaudited", "note": "⛔ 本批未审（上级令十只点名三格）"},
+      "source_refs": [],
+      "validation_status": "candidate",
+      "compile_status": "fail_closed",
+      "counterexamples": [],
+      "cannot_decide": ["⛔ 未审，不得据以判任何事"],
+      "revision_status": "123批·**发现但未审**。原为裸映射，暂置 fail_closed 以免静默生效。"
+    },
+    {
+      "cell_id": "PULSE-JIN-HANSHI",
+      "origin": "V8 L4055#2 原文 `紧=寒实/痛`",
+      "observable": "脉紧",
+      "candidate_effect": "trigger",
+      "object": "寒实/痛",
+      "scope": {"kind": "unaudited", "note": "⛔ 本批未审"},
+      "source_refs": [],
+      "validation_status": "candidate",
+      "compile_status": "fail_closed",
+      "counterexamples": [],
+      "cannot_decide": ["⛔ 未审，不得据以判任何事"],
+      "revision_status": "123批·发现但未审。⚠ 并注：121批 肠痈条之【脉迟紧→脓未成→可下】与本格之【紧=寒实】同用一个「紧」而所指不同，须待审。"
+    },
+    {
+      "cell_id": "PULSE-HUAN-ZHONGFENG",
+      "origin": "V8 L4055#3 原文 `缓=中风/胃气`",
+      "observable": "脉缓",
+      "candidate_effect": "trigger",
+      "object": "中风/胃气",
+      "scope": {"kind": "unaudited", "note": "⛔ 本批未审"},
+      "source_refs": [],
+      "validation_status": "candidate",
+      "compile_status": "fail_closed",
+      "counterexamples": [],
+      "cannot_decide": ["⛔ 未审，不得据以判任何事"],
+      "revision_status": "123批·发现但未审。"
+    },
+    {
+      "cell_id": "PULSE-XI-XUE",
+      "origin": "V8 L4055#5 原文 `细=虚/血少`",
+      "observable": "脉细",
+      "candidate_effect": "trigger",
+      "object": "虚/血少",
+      "scope": {"kind": "unaudited", "note": "⛔ 本批未审"},
+      "source_refs": [],
+      "validation_status": "candidate",
+      "compile_status": "fail_closed",
+      "counterexamples": [],
+      "cannot_decide": ["⛔ 未审，不得据以判任何事"],
+      "revision_status": "123批·发现但未审。"
+    },
+    {
+      "cell_id": "PULSE-WEI-YANGSHUAI",
+      "origin": "V8 L4055#6 原文 `微=阳衰少阴`",
+      "observable": "脉微",
+      "candidate_effect": "trigger",
+      "object": "阳衰少阴",
+      "scope": {"kind": "unaudited", "note": "⛔ 本批未审"},
+      "source_refs": [],
+      "validation_status": "candidate",
+      "compile_status": "fail_closed",
+      "counterexamples": [],
+      "cannot_decide": ["⛔ 未审，不得据以判任何事"],
+      "revision_status": "123批·发现但未审。⚠ 本格亦跨级（脉→六经），与 PULSE-JIEDAI 同型，优先待审。"
+    }
+  ]
+}

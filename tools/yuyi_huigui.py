@@ -50,6 +50,10 @@ TESTS = [
  ("A", "A5 弦不得独定少阳",
   "mustnot", r"弦=少阳",
   "「弦=少阳」之裸断言不得存在"),
+ ("A", "A6 ⭐脉象裸映射不得存在（格级）",
+  "mustnot", r"[|｜]\s*(数|洪大|结代|浮|紧|缓|细|微)\s*[=＝][^|｜]{1,20}(?=[|｜]|$)",
+  "⭐123批：`数=热｜洪大=阳明气分｜结代=心血虚炙甘草` 等裸映射须已原子化。"
+  "⛔ 本条在【行级】判法下永远为绿（同行有 ⛔ 即整行放过）——它正是为验证格级判法而设"),
 
  ("B", "B1 未提及不得推为阴性",
   "mustnot", r"未提及\s*[=＝]\s*阴性推定(?![^。\n]{0,30}(已撤|作废|勘误))",
@@ -86,6 +90,21 @@ TESTS = [
 ]
 
 
+def _cell_revoked(line, rex):
+    """⭐123批·格级撤销判定。
+
+    只看【命中所在之那一格】有无撤销记号；同行兄弟格之 ⛔ 不再传染。
+    ⛔ 与 `compiler/cell_parser.py` 同源；此处为避免 tools→compiler 反向依赖而各留一份，
+       二者之一致性由 `tests/test_cell_level_revocation.py` T7 以 V8 实文对证。
+    """
+    from compiler.cell_parser import split_cells
+    for c in split_cells(line):
+        if rex.search(c.text):
+            if not c.revoked:
+                return False          # 有一格命中且未撤 ⇒ 该模式仍活
+    return True
+
+
 def seg_of(L, i):
     for k in range(i, -1, -1):
         m = re.match(r"^# (\d\d_\S+)", L[k])
@@ -108,7 +127,11 @@ def main():
         rex = re.compile(pat)
         hits = [(i + 1, segs[i], L[i].strip()) for i in range(len(L)) if rex.search(L[i])]
         if kind == "mustnot":
-            live = [h for h in hits if not REVOKED.search(h[2])]
+            # ⛔⛔123批：撤销判定改为【格级】。
+            #   旧法按整行判：L4056 一行内 `脉滑…⛔…|数=热|洪大=…` ——
+            #   `数=热` 因同行别格有 ⛔ 而被当成已撤，**永远抓不到**（122批 查得之假绿第四例）。
+            #   现只看【命中所在之那一格】有无撤销记号，兄弟格不再传染。
+            live = [h for h in hits if not _cell_revoked(h[2], rex)]
             ok = not live
             shown = live
         else:

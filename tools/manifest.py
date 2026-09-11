@@ -177,6 +177,7 @@ PRODUCT = [
     ("evidence/最小翻转对证据集.md",              "tools/fanzhuandui.py"),       # 121批
     ("evidence/二味方低复杂度验证集.md",           "tools/fanzhuandui.py"),       # 121批
     ("evidence/翻转组_三组五栏重编码.md",          "tools/wuceng_chongbian.py"),  # 122批
+    ("evidence/翻转组_结构补齐_123批.md",          "tools/jiegou_buqi_123.py"),   # 123批
     ("term_layer/P0候选确认类型传播矩阵.md",       "tools/chuanbo_shenji.py"),    # 119批
     ("term_layer/unknown_false审计.md",          "tools/unknown_shenji.py"),    # 119批
     ("term_layer/资产索引_供上级审查.md",            "tools/zichan_suoyin.py"),     # 116批
@@ -194,6 +195,22 @@ HANDCODED = [
      "②**四模型计数 0/6、1/4、0/8、9/0 全部作废**（M2/M3 被我定成稻草人，M4 述得过宽）；"
      "③CE-02「胡老未给分野项」**事实相反，已撤**〔讲金匮·113444 明给呕逆／心下痞坚〕。"
      "⛔**研究层证据未经反例攻击不得进入 Typed IR runtime**（令十）——`rules/`、`runtime/` 一字未改。"),
+    ("evidence/翻转组_结构补齐_123批.md", "tools/jiegou_buqi_123.py",
+     "123批·11 组 ×14 栏。⭐Stage 已拆三栏（process_stage／treatment_history／state_transition）。"
+     "⛔**反例检索 11 组全部未做**——`falsifier` 栏写的是「什么能推翻本组」，不是「查过没有」。"
+     "⇒ 依令十不得入 Typed IR runtime。"
+     "⛔最小性：真「单项且无须施治」者只 FLIP-01／FLIP-05 两组；"
+     "带预设鉴别分支之诊断性干预只 FLIP-03／FLIP-08 两组。"),
+    ("evidence/residual_台账_123批修订.md", "（人录·无工具）",
+     "123批·**R4 更名 `SCHEMA-GAP-ORDINAL`**：是【工程表示缺口】不是【理论结构缺口】——"
+     "原文本有程度结构（热多/寒多、脓未成熟/将成/已成）。"
+     "⛔ ordinal 取值只七枚，`numeric_scale_forbidden` 恒 true，**不得编 0–10 数值**。"
+     "⚠ 已编码变量只 3 个，其中『疼痛程度』为**未取锚之占位**。"),
+    ("term_layer/脉象裸映射审计_123批.md", "（人录·无工具）",
+     "123批·三格逐条审。⭐`阳明气分` 与 `心血虚` **十二书全数检索，总命中 0** ⇒ 以【无源】否决，"
+     "非以反例否决。⛔`结代→炙甘草汤` 直映撤销（〔C卷·145807〕「平人脉结并不足虑，即不服药亦可自愈」）。"
+     "⛔`数=热` **未改为「数≠热」**——肠痈反例只证伪【数/洪→热实→可攻下】跨层直通。"
+     "⚠ 同表另有五格（浮/紧/缓/细/微）同型而**本批未审**，一律 fail_closed。"),
     ("evidence/翻转组_三组五栏重编码.md", "tools/wuceng_chongbian.py",
      "122批立·上级令 B 之重编码。⛔**未照「五层」写，改为【三组五栏】**——"
      "Observable／LatentState／Stage 是状态本体，Intervention 是测量手段，Decision 是决策输出，"
