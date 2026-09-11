@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "retrieval_gates_v0",
+  "version": "126批",
+  "title": "取证三闸：context-radius／lexical-semantic 双轨／proposition atomization",
+
+  "GATE_1_context_radius": {
+    "order": "126批·上级令二",
+    "applies_to": ["confirm", "falsify", "scope_split", "rejected", "source_verified"],
+    "required_fields": ["anchor_text", "preceding_context", "following_context",
+                        "same_clause_hu_comment", "text_status", "speaker_status"],
+    "boundary_rule": "⛔⛔ **不得机械规定「±400 字即充分」。** §214 已证：固定字符窗不等于语义完整（胡老之裁决在条文后约 400 字，恰在窗缘）。⇒ 边界以【同条／同段／同一解释单元结束】为最低边界。",
+    "unit_markers": {
+      "注解本（C卷／解读／传真系系）": ["《伤寒论》第N条", "《金匮要略…》第N条", "【栏目】", "注解：", "按："],
+      "讲课本（讲伤寒／讲金匮）": ["第N条", "N、", "页眉「胡希恕《…》讲义-龙门课栈N/732」"]
+    },
+    "unknown_rule": "⛔ 若解释单元边界无法确定 ⇒ `context_complete = unknown`，**不得进入决定性证据**。",
+    "implemented_by": "tools/retrieval_integrity_audit.py :: unit_bounds() / scan_anchor()"
+  },
+
+  "GATE_2_lexical_semantic": {
+    "order": "126批·上级令三",
+    "four_questions": ["exact_term_exists?", "variant_expression_exists?",
+                       "concept_exists?", "mapping_source_exists?"],
+    "hard_rule": "⛔⛔ **禁止由其中一个字段推另外三个。**（124批「胃气无源」即由 `mapping` 之薄推 `term` 之无，而 `term` 实有 740 处。）",
+    "query_family_required": true,
+    "query_family_min": {
+      "词序变化": "如 `脉缓` ↔ `缓脉` ↔ `脉逐渐缓`（124批 即因只用 `脉缓` 而漏掉「脉逐渐缓」）",
+      "修饰词插入": "如 `脉数` ↔ `脉浮数` ↔ `脉数而滑`",
+      "近义表达": "如 `阳衰` ↔ `亡阳` ↔ `阳气衰` ↔ `阳虚`",
+      "对象→观察 与 观察→对象 双向式": "如 `缓…胃气` 与 `胃气…缓` 须各查"
+    },
+    "record_required": "每个否定性检索须保存【实际使用之 query family】，不得只留结论。",
+    "implemented_by": "rules/pulse_cells_v0.json :: term_audit_125（五栏）；本批起为必填"
+  },
+
+  "GATE_3_proposition_atomization": {
+    "order": "126批·上级令四",
+    "rule": "一句规则中若含两个【可分别被反例推翻】之谓词，必须拆成独立 proposition。",
+    "regression_samples_125": [
+      {"id": "ATOM-1", "bundled": "缓 → 中风（证型＋病因）",
+       "must_split": ["中风证型成立", "中风由外来风邪导致"],
+       "why": "胡老否定后者而肯定前者为类型名；绑在一起即 125批 之误判"},
+      {"id": "ATOM-2", "bundled": "缓 = 胃气",
+       "must_split": ["「胃气」一词存在", "缓脉映射胃气恢复"],
+       "why": "词有 740 处而映射仅 1 处；混为一谈即 124批 之误判"},
+      {"id": "ATOM-3", "bundled": "脉数 → 热",
+       "must_split": ["脉数 support 热", "脉数 confirm 热", "脉数 locate 热",
+                      "脉数 exclude 虚", "脉数 → 治疗"],
+       "why": "前一成立，后四不成立；打包即 124批 之矫枉过正与其前之过宽"}
+    ],
+    "regression_requirement": "⛔⛔ **把上述命题绑回去时，测试必须变红。** 实装于 `tests/test_proposition_atomization.py --rebundle`。",
+    "implemented_by": "tests/test_proposition_atomization.py"
+  }
+}

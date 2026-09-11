@@ -1,6 +1,6 @@
 {
   "schema": "text_critical_v0",
-  "batch": "125",
+  "batch": "125批立｜126批增二条",
   "note": "⛔ 首批回归样本二条（上级令八指定）。⛔ 二条皆为【本工程曾误用】之实例，留档以防复用。",
   "passages": [
     {
@@ -10,7 +10,9 @@
       "text_status": "rejected_by_hu",
       "verdict_source": "「本条所述无论证或脉，均宜大承气汤主之，而谓小承气汤主之，**已属可疑**，而因与承气汤一升以下条文，**尤其不可理解，其中必有错乱，故不释**。」",
       "verdict_anchor": "A·C卷·70744–70800（另见 A·解读·178759–178810，同语）",
-      "allowed_roles": ["text_critical_evidence_only"],
+      "allowed_roles": [
+        "text_critical_evidence_only"
+      ],
       "misuse_history": [
         "⛔⛔ **124批 我以本条作 FLIP-03 之 `scope_split` 反例**，据以宣称「同一试治同一观察而 decision 不同」「多一支【里虚·为难治】」「把多选一写成二选一，第三次」。",
         "⇒ **该裁决全部撤销。** 我读了条文（C卷·70353 区）而**没有往下读约 400 字到胡老的注**——胡老在那里明说本条『必有错乱，故不释』。",
@@ -25,12 +27,46 @@
       "text_status": "emended_by_hu",
       "verdict_source": "「**脉洪大，当是脉浮**。脉洪大为热盛于里，如何可与桂枝汤？**必是传抄有误，宜改之**。」／另本：「**可能是白虎加人参汤的脉洪大错乱在此**。」",
       "verdict_anchor": "A·C卷·14884；A·C卷·54218",
-      "allowed_roles": ["text_critical_evidence_only"],
+      "allowed_roles": [
+        "text_critical_evidence_only"
+      ],
       "misuse_history": [
         "⚠ 123批 我曾把本条当作 `洪大=阳明气分` 之反例候选，**出稿前自查排除**，并标 `not_usable_emended_by_hu`。",
         "⇒ 本条是**排除成功**之例；SW-214 是**排除失败**之例。二者并列，正见此闸之必要。"
       ],
       "note": "胡老改字后方解，故其【原字】不可用作证据，【改后之读】则是胡老之说而非仲景之文。"
+    },
+    {
+      "passage_id": "SW-134-PULSE4",
+      "locus": "《伤寒论》第134条之脉法四句",
+      "quoted": "浮则为风，数则为热，动则为痛，数则为虚。",
+      "text_status": "suspected_corruption",
+      "verdict_source": "胡老：「本来就是这样的，中间搁这么一段，**注家有说是王叔和搞的，我认为也是**，解释这几句话**也没什么大意思**。」",
+      "verdict_anchor": "A·讲伤寒·156700 区（§134 讲解段内）",
+      "allowed_roles": [
+        "text_critical_evidence_only"
+      ],
+      "misuse_history": [
+        "⛔ **124批 我把本段列为 `数=热` 之 `state_support` 与 `mechanism_explanation` 两类证据**（〔讲伤寒·155445〕「所以数脉又主热，又主虚」；〔C卷·83817〕「脉数主热…热盛伤津」）。",
+        "⇒ 本段既经胡老疑为王叔和窜入且自道『没什么大意思』，**不得充作正面 support 之出处**。",
+        "⭐ 本条系 **126批 取证完整性审计之 A 类扫描**所得——扫描器在 `PULSE-SHU-HEAT` 之锚上报警而查得。"
+      ],
+      "note": "⚠ **C卷 同条（83817）并无此王叔和之疑** ⇒ 两本 text_status 不同。⛔ 但须分清：胡老【对该段之解说】（如「又主热，又主虚」）仍是胡老之言，只是它是**对一段可疑文本的解说**；故其作 `contextual_exception`（自限）用尚可，作 `generic_support` 用不可。"
+    },
+    {
+      "passage_id": "SW-176-BAIHU",
+      "locus": "《伤寒论》第176条（脉浮滑·白虎汤）",
+      "quoted": "伤寒脉浮滑，此表有热，里有寒，白虎汤主之。",
+      "text_status": "suspected_corruption",
+      "verdict_source": "胡老：「王叔和注语亦谓：『旧云白通汤，一云白虎汤，恐非』。**可见本条为文是有问题的**。」",
+      "verdict_anchor": "A·C卷·74704",
+      "allowed_roles": [
+        "text_critical_evidence_only"
+      ],
+      "misuse_history": [
+        "⚠ 本工程**尚未**引用本条；本批扫描顺带查得，**先行登记以防将来误用**。"
+      ],
+      "note": "⭐ 登记未被误用之条，是本闸之预防用法——不必等出事再补。"
     }
   ]
 }

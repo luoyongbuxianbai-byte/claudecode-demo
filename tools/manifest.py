@@ -178,6 +178,7 @@ PRODUCT = [
     ("evidence/二味方低复杂度验证集.md",           "tools/fanzhuandui.py"),       # 121批
     ("evidence/翻转组_三组五栏重编码.md",          "tools/wuceng_chongbian.py"),  # 122批
     ("evidence/翻转组_结构补齐_123批.md",          "tools/jiegou_buqi_123.py"),   # 123批
+    ("evidence/取证完整性审计_126批.md",           "tools/retrieval_integrity_audit.py"),  # 126批
     ("term_layer/P0候选确认类型传播矩阵.md",       "tools/chuanbo_shenji.py"),    # 119批
     ("term_layer/unknown_false审计.md",          "tools/unknown_shenji.py"),    # 119批
     ("term_layer/资产索引_供上级审查.md",            "tools/zichan_suoyin.py"),     # 116批
@@ -211,6 +212,28 @@ HANDCODED = [
      "非以反例否决。⛔`结代→炙甘草汤` 直映撤销（〔C卷·145807〕「平人脉结并不足虑，即不服药亦可自愈」）。"
      "⛔`数=热` **未改为「数≠热」**——肠痈反例只证伪【数/洪→热实→可攻下】跨层直通。"
      "⚠ 同表另有五格（浮/紧/缓/细/微）同型而**本批未审**，一律 fail_closed。"),
+    ("evidence/取证完整性审计_126批.md", "tools/retrieval_integrity_audit.py",
+     "126批·令一〜七。⭐**全量 N=43，不抽样**。A `context_truncation` 11/43（锚级 17，人读裁定 "
+     "**TP 1｜FP 1｜KNOWN 14｜PENDING/UNREAD 3**）｜B 9/43｜C 10/43｜**D 29/43**。"
+     "⇒ **A 类是个案（1 新），D 类是系统性（29/43，主因 C卷 speaker 未定）。**"
+     "⭐扫描器之验收：它在 `SW-214` 上**成功复现** 124批 那起漏检。"
+     "⭐并查得一起新案：§134 脉法四句经胡老疑为**王叔和窜入**（『我认为也是』『没什么大意思』），"
+     "而 124批 我把它列为 `数=热` 之两类证据。"),
+    ("evidence/旧裁决反向扫描_126批.md", "（人录·无工具）",
+     "126批·令六。⭐**机器等价状态全量 90 行／23 对象过四闸**："
+     "downgrades 78｜evidence_retracted 7（皆属同一对象 PULSE-SHU-HEAT）｜survives **5**。"
+     "⛔并如实报：全 repo 结论性措辞字面命中 **10,097 处／158 档**，"
+     "**本批未逐处审**——其绝大多数是【被引原文里的必须/不可】，非我方裁决；"
+     "⛔**不得因分母大就宣称已全面反扫**。"),
+    ("docs/C卷_provenance调查_126批.md", "（人录·无工具）",
+     "126批·令五 P0。⭐四路调查（卷首／目录／**栏目指纹**／逐句重叠）。"
+     "结论：**speaker 仍 `uncertain`**；但新得 `style_family=注解本·类方编次`——"
+     "C卷 独有 `【仲景对本方证的论述】`208／`【验案】`111／`注解：`429／`按：`249 四栏，**其余十一书皆 0**。"
+     "⇒ 与传真系**同族而非同版**。⛔依令五不得仅据文件名推作者，本册未引文件名为据。"),
+    ("schema/retrieval_gates_v0.json", "（人录·无工具）",
+     "126批·令二三四。三闸：context-radius（⛔**明禁「±400字即充分」**，以解释单元为界，"
+     "边界不可定即 `unknown` 且不得作决定性证据）｜lexical-semantic 四问双轨（⛔**禁由一字段推其余三**）｜"
+     "proposition atomization（三样本，`tests/test_proposition_atomization.py --rebundle` **绑回即红**）。"),
     ("evidence/组合判定元规则_125批.md", "（人录·无工具）",
      "125批·令九。⭐**答案是『是』，且胡老正是对脉说的**：〔讲伤寒·112879〕「**不能光凭脉，必须脉证结合起来看**」"
      "「**不问证候就给开调胃承气汤，那是不行的**」。十二书检得 14 段，其中 6 段为 `hu_lecture`。"
