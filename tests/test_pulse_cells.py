@@ -52,8 +52,49 @@ ck("⭐active 须已过 scope 或反例审计", not bad, str(bad))
 
 # ── 上级令十二·条件3：无源者须 fail_closed，不得静默生效 ──
 bad = [cid for cid, c in CELLS.items()
-       if c.get("object_source_status") == "unsourced" and c["compile_status"] != "fail_closed"]
-ck("⭐令十二③无源对象须 fail_closed", not bad, str(bad))
+       if c.get("object_source_status") == "unsourced"
+       and c["compile_status"] not in ("fail_closed", "inactive")]
+ck("⭐令十二③无源对象须 fail_closed/inactive", not bad, str(bad))
+
+# ── 125批·令四：object_term 与 mapping 须分开答 ─────────────
+AUD = {cid: c["term_audit_125"] for cid, c in CELLS.items() if "term_audit_125" in c}
+ck("⭐令四·四个原判「无源」之词皆已重算", len(AUD) == 4, str(sorted(AUD)))
+for cid, a in AUD.items():
+    ck("⭐令四·%s 五栏俱全" % cid,
+       all(k in a for k in ("1_exact_term_hit", "2_semantic_near_match",
+                            "3_mapping_hit", "4_speaker", "5_verdict")))
+ck("⭐⭐令四·「胃气」不得再被写成无源（实为 740 处）",
+   AUD["PULSE-HUAN-ZHONGFENG"]["1_exact_term_hit"] == 740)
+ck("⭐令四·「阳明气分」仍为 term_absent（0 处）",
+   AUD["PULSE-HONGDA-YANGMING"]["1_exact_term_hit"] == 0)
+ck("⭐令四·「心血虚」判为 term_absent 而 concept_present",
+   "concept_present" in AUD["PULSE-JIEDAI-ZHIGANCAO"]["5_verdict"])
+ck("⭐令四·「阳衰」判为 editor_only",
+   "editor_only" in AUD["PULSE-WEI-YANGSHUAI"]["5_verdict"])
+
+# ── 125批·令五：缓 已拆三命题 ───────────────────────────────
+for cid in ("PULSE-HUAN-ZHONGFENG-A", "PULSE-HUAN-WEIQI", "ZHONGFENG-WINDCAUSE-C"):
+    ck("⭐令五·%s 已立" % cid, cid in CELLS)
+ck("⭐⭐令五·中风【证型标签】未被连坐（A 为 source_verified）",
+   CELLS["PULSE-HUAN-ZHONGFENG-A"]["validation_status"] == "source_verified")
+ck("⭐令五·唯【风邪病因】被否决（C 为 rejected）",
+   CELLS["ZHONGFENG-WINDCAUSE-C"]["validation_status"] == "rejected")
+ck("⭐令五·原整格已作废", CELLS["PULSE-HUAN-ZHONGFENG"]["compile_status"] == "inactive")
+
+# ── 125批·令六：数→热 未被矫枉过正 ─────────────────────────
+ola = CELLS["PULSE-SHU-HEAT"]["object_level_audit"]
+ck("⭐⭐令六·「从未主张」一句已撤回",
+   not any("从未主张过" in str(v) and "撤回" not in str(v) for k, v in ola.items()
+           if k != "令六(125批)·收回一句"),
+   "过强表述仍在")
+ck("⭐令六·五类分类已立",
+   set(ola["分类(125批·令六重订)"]) >= {"generic_support", "contextual_exception",
+                                  "location_disambiguation", "mechanism_explanation",
+                                  "formula_context"})
+cd = CELLS["PULSE-SHU-HEAT"]["cannot_decide"]
+for k in ("confirm", "locate", "exclude"):
+    ck("⭐令六·明禁 %s" % k, any(k in x for x in cd))
+ck("⭐令六·明许 support", any("可**" in x and "support" in x for x in cd))
 
 bad = [cid for cid, c in CELLS.items()
        if not c["source_refs"] and c["compile_status"] not in ("fail_closed", "inactive")]

@@ -1,73 +1,165 @@
 {
   "schema": "state_value_v0",
-  "batch": "124",
-  "note": "⛔ 研究层实例。⛔ 每条 allowed_values 各属其变量，不得互填。⛔ 无原文锚者不得入本档（令三）——故『疼痛程度』已删。",
+  "batch": "124批立｜125批依令二、令三改",
+  "note": "⛔ 令二(125批)：**脓之【有无】与【成熟程度】不是同一变量，已拆**；在证明三者互斥且穷尽以前，**不得声明完整三值 partition**。⛔ 令三(125批)：`cold_heat_degree` **撤 ordinal**——「热多／寒多」不是 cold_more<heat_more 之序关系。⛔ 无原文锚者不得入本档。",
   "variables": [
     {
-      "state_variable": "pus_maturity",
-      "value_type": "ordinal",
-      "allowed_values": ["未成", "已成而未全化", "完全化脓"],
-      "ordering_relation": [
-        {"lower": "未成", "higher": "已成而未全化",
-         "source_ref": "A·讲金匮·261879 胡老「有一些**是已经是有脓了，但是没全化脓的时候**，吃大黄牡丹皮汤还是无害的」"},
-        {"lower": "已成而未全化", "higher": "完全化脓",
-         "source_ref": "A·讲金匮·261879 胡老「它这个是以脓已成，**完全化脓**的那么一个情形，那就是不可下了」"}
+      "state_variable": "pus_presence",
+      "value_type": "categorical",
+      "allowed_values": [
+        "absent",
+        "present",
+        "unknown"
       ],
       "observations": [
-        {"raw_value": "脓未成", "normalized_value": "未成",
-         "source_ref": "A·C卷·79117 §《金匮·疮痈肠痈》「其脉迟紧者，脓未成，可下之」", "speaker_status": "zhongjing"},
-        {"raw_value": "脓未成熟，不定是无脓", "normalized_value": "未成",
-         "source_ref": "A·胡老注「所谓脓未成，当指脓未成熟，**不定是无脓**」", "speaker_status": "hu_verbatim"},
-        {"raw_value": "脓已成", "normalized_value": "完全化脓",
-         "source_ref": "A·C卷·79129「脉洪数者，脓已成，不可下也」", "speaker_status": "zhongjing"},
-        {"raw_value": "脓要是将成的时候，振寒，这是脓成",
-         "source_ref": "A·讲金匮·85533", "speaker_status": "hu_verbatim"},
-        {"raw_value": "脓到火候了，脓已成了", "normalized_value": "完全化脓",
-         "source_ref": "A·讲金匮·35818（狐惑·赤小豆当归散）", "speaker_status": "hu_verbatim"}
+        {
+          "raw_value": "如无脓，当下血",
+          "normalized_value": "absent",
+          "source_ref": "A·讲金匮·261879 大黄牡丹汤方后语「有脓当下；**如无脓，当下血**」",
+          "speaker_status": "zhongjing"
+        },
+        {
+          "raw_value": "有脓当下",
+          "normalized_value": "present",
+          "source_ref": "A·讲金匮·261879",
+          "speaker_status": "zhongjing"
+        },
+        {
+          "raw_value": "所谓脓未成，当指脓未成熟，**不定是无脓**",
+          "source_ref": "A·C卷·79387（同 解读·190081／传真系·122294）",
+          "speaker_status": "hu_verbatim"
+        }
       ],
       "numeric_scale_forbidden": true,
-      "scope": "痈脓（肠痈／肺痈／狐惑 皆见此变量）",
-      "source_refs": ["C卷·79117", "讲金匮·85533", "讲金匮·101489", "讲金匮·261879", "讲金匮·35818"],
-      "note": "⭐⭐ **124批 由二值改为三值，是反例攻击逼出来的**：〔讲金匮·261879〕胡老明说「**他这个不可下，这个脓已成，要活看**……已经是有脓了，但是没全化脓的时候，吃大黄牡丹皮汤**还是无害的**」。⇒ **二值化会把中间那一档丢掉，从而发出错误禁令。** 这也是 `SCHEMA-GAP-ORDINAL` 之最硬用例。"
+      "scope": "痈脓（肠痈／肺痈／狐惑）",
+      "source_refs": [
+        "C卷·79387",
+        "讲金匮·261879",
+        "讲金匮·260023 区"
+      ],
+      "note": "⭐⭐ **本变量因上级令二自 `pus_maturity` 拆出。** 胡老那句「**不定是无脓**」正是在说：**「脓未成」这个话说的是【成熟程度】，不是【有无】。**⇒ 二者混为一个变量，必然把「有脓而未熟」这一档挤掉。⛔ `unknown` 一档是本工程加的（协议51：未采≠阴性），非原文分档。"
+    },
+    {
+      "state_variable": "pus_maturation",
+      "value_type": "graded_unscaled",
+      "allowed_values": [
+        "脓未成熟",
+        "已有脓但未全化脓",
+        "完全化脓"
+      ],
+      "observations": [
+        {
+          "raw_value": "脓未成",
+          "source_ref": "A·C卷·79117 §《金匮·疮痈肠痈》",
+          "speaker_status": "zhongjing"
+        },
+        {
+          "raw_value": "脓未成熟",
+          "source_ref": "A·C卷·79387 胡老注",
+          "speaker_status": "hu_verbatim"
+        },
+        {
+          "raw_value": "已经是有脓了，但是没全化脓的时候",
+          "source_ref": "A·讲金匮·261948",
+          "speaker_status": "hu_verbatim"
+        },
+        {
+          "raw_value": "完全化脓",
+          "source_ref": "A·讲金匮·261633／261900／261982",
+          "speaker_status": "hu_verbatim"
+        },
+        {
+          "raw_value": "脓已成",
+          "source_ref": "A·C卷·79129",
+          "speaker_status": "zhongjing"
+        },
+        {
+          "raw_value": "脓要是将成的时候，振寒，这是脓成",
+          "source_ref": "A·讲金匮·85533",
+          "speaker_status": "hu_verbatim"
+        }
+      ],
+      "numeric_scale_forbidden": true,
+      "scope": "痈脓（肠痈／肺痈／狐惑）",
+      "source_refs": [
+        "C卷·79117",
+        "C卷·79387",
+        "讲金匮·85533",
+        "讲金匮·261633",
+        "讲金匮·261948",
+        "讲金匮·261982"
+      ],
+      "note": "⛔⛔ **125批 由 `ordinal` 降为 `graded_unscaled`，且【不声明 partition】**（上级令二）。理由：三档之【互斥】与【穷尽】**本批未证**——①「脓未成」与「已有脓但未全化脓」在胡老口中**可以同指一事**（「所谓脓未成，当指脓未成熟，不定是无脓」）⇒ **二者未必互斥**；②「将成」〔讲金匮·85533〕是否为独立第四档，**未判**；③原文未给任何「此三者尽之」之语。⇒ 故 `ordering_relation` 一栏**留空**（graded_unscaled 者依 schema 不得填序），**只存原文三种表达，不声明它们构成一个完整有序划分。**⚠ 并撤 124批 之「已由二值改三值」一语——**那是把【三种说法】当成了【三个互斥档】。**⭐ 但 124批 之【实害论证】仍成立：二值化会丢掉「有脓而未全化，大黄牡丹汤仍可用」这一情形。"
     },
     {
       "state_variable": "cold_heat_degree",
-      "value_type": "ordinal",
-      "allowed_values": ["寒多", "热多"],
-      "ordering_relation": [
-        {"lower": "寒多", "higher": "热多",
-         "source_ref": "⚠ **本序关系为我方所设，原文只给并列对举，未给序**。⇒ 见 note，本条待判"}
+      "value_type": "graded_unscaled",
+      "allowed_values": [
+        "寒多",
+        "热多"
       ],
       "observations": [
-        {"raw_value": "热多欲饮水", "normalized_value": "热多",
-         "source_ref": "A·C卷·42288 §386「霍乱，头痛发热，身疼痛，热多欲饮水者，五苓散主之」", "speaker_status": "zhongjing"},
-        {"raw_value": "寒多不用水", "normalized_value": "寒多",
-         "source_ref": "A·C卷·42288「寒多不用水者，理中丸主之」", "speaker_status": "zhongjing"}
+        {
+          "raw_value": "热多欲饮水",
+          "normalized_value": "热多",
+          "source_ref": "A·C卷·42288 §386「霍乱，头痛发热，身疼痛，热多欲饮水者，五苓散主之」",
+          "speaker_status": "zhongjing"
+        },
+        {
+          "raw_value": "寒多不用水",
+          "normalized_value": "寒多",
+          "source_ref": "A·C卷·42288「寒多不用水者，理中丸主之」",
+          "speaker_status": "zhongjing"
+        }
       ],
       "numeric_scale_forbidden": true,
       "scope": "霍乱·头痛发热身疼痛",
-      "source_refs": ["C卷·42288"],
-      "note": "⛔⛔ **本条之 value_type 我判得不稳，须报**：原文只给【寒多／热多】之**对举**，未给「寒多 < 热多」之序，亦未给中间档。⇒ 严格说它更接近 `graded_unscaled`（已证有程度差异，量尺性质未定），而非 `ordinal`。**本批暂记 ordinal 并把该疑点写在此处，不静默择一。**"
+      "source_refs": [
+        "C卷·42288"
+      ],
+      "note": "⛔⛔ **125批 撤 `ordinal`**（上级令三）。「热多／寒多」**不是 `cold_more < heat_more` 之序关系**——二者是**极性对举**，不在同一根刻度上。⇒ 现记为 `graded_unscaled`：**已证有程度差异（『多』字），而量尺性质未定。**⚠ 更精确之拆法（上级所示）为 `thermal_polarity = cold|heat` ＋ `degree_raw = 多`，**本批不迳行采用**——因『寒多不用水』之『多』究竟修饰极性还是修饰程度，原文未明，迳拆即是我方补字。⇒ 记为待判，见 `open_question`。⛔ 恢复 `ordinal` 之条件（上级令三所定）：**取得同一极性内部之明确顺序原文链**（如「微热→大热」）。**本批未查。**",
+      "open_question": "『寒多/热多』之『多』修饰极性抑或程度？原文未明，不得迳拆为 polarity+degree。"
     },
     {
       "state_variable": "stool_hardness_settled",
       "value_type": "ordinal",
-      "allowed_values": ["未定成硬（初头硬后必溏）", "屎定硬"],
+      "allowed_values": [
+        "未定成硬（初头硬后必溏）",
+        "屎定硬"
+      ],
       "ordering_relation": [
-        {"lower": "未定成硬（初头硬后必溏）", "higher": "屎定硬",
-         "source_ref": "A·C卷·65980 §251「但初头硬，后必溏，**未定成硬**，攻之必溏；**须小便利，屎定硬，乃可攻之**」——⭐序由『须…乃可』之等待关系给出，非我方所设"}
+        {
+          "lower": "未定成硬（初头硬后必溏）",
+          "higher": "屎定硬",
+          "source_ref": "A·C卷·65980 §251「但初头硬，后必溏，**未定成硬**，攻之必溏；**须小便利，屎定硬，乃可攻之**」——⭐序由『须…乃可』之等待关系给出，非我方所设"
+        }
       ],
       "observations": [
-        {"raw_value": "未定成硬", "normalized_value": "未定成硬（初头硬后必溏）",
-         "source_ref": "A·C卷·65980 §251", "speaker_status": "zhongjing"},
-        {"raw_value": "必须小便利，则屎定成硬，乃可攻之", "normalized_value": "屎定硬",
-         "source_ref": "A·C卷·65980 胡老注", "speaker_status": "hu_verbatim"},
-        {"raw_value": "必须待其小便利屎定硬，乃可攻之",
-         "source_ref": "A·解读·179300", "speaker_status": "hu_paraphrase"}
+        {
+          "raw_value": "未定成硬",
+          "normalized_value": "未定成硬（初头硬后必溏）",
+          "source_ref": "A·C卷·65980 §251",
+          "speaker_status": "zhongjing"
+        },
+        {
+          "raw_value": "必须小便利，则屎定成硬，乃可攻之",
+          "normalized_value": "屎定硬",
+          "source_ref": "A·C卷·65980 胡老注",
+          "speaker_status": "hu_verbatim"
+        },
+        {
+          "raw_value": "必须待其小便利屎定硬，乃可攻之",
+          "source_ref": "A·解读·179300",
+          "speaker_status": "hu_paraphrase"
+        }
       ],
       "numeric_scale_forbidden": true,
       "scope": "阳明·不大便六七日·小便少",
-      "source_refs": ["C卷·65980", "解读·179300", "传真系·93652"],
+      "source_refs": [
+        "C卷·65980",
+        "解读·179300",
+        "传真系·93652"
+      ],
       "note": "⭐ **124批 令四之专项检索所得**。本变量**只有两档**，且其【推进机制】由原文给出（小便利 ⇒ 屎定成硬），【等待】亦由原文给出（须…乃可攻之）。⛔ 但这**不足以**支持我 123批 所写之『燥屎逐渐形成之病理阶段序列』——那是三档以上之渐变，原文未给。详见 `evidence/FLIP-03_FLIP-08_重编码_124批.md`。"
     }
   ]

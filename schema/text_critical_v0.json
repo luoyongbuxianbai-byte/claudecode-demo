@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "text_critical_v0",
+  "version": "125批",
+  "title": "text-critical gate（125批·上级令八）",
+  "description": "⛔ 任何候选证据进入反例审计【之前】，先过本闸。⛔ `suspected_corruption` 与 `rejected_by_hu` 默认不得参与 confirm / falsify / scope_split。",
+
+  "definitions": {
+    "text_status": {
+      "type": "string",
+      "enum": ["accepted", "variant", "emended_by_hu",
+               "suspected_corruption", "rejected_by_hu", "editorial_reconstruction"],
+      "description": "accepted=胡老照常解释｜variant=各本用字不同而皆可通｜emended_by_hu=胡老改字后方解｜suspected_corruption=胡老疑其错乱｜rejected_by_hu=胡老明言不释／拒绝解释｜editorial_reconstruction=整理者所补，非胡老本人"
+    },
+    "usage_role": {
+      "type": "string",
+      "enum": ["confirm", "falsify", "scope_split", "support", "text_critical_evidence_only"]
+    }
+  },
+
+  "GATE": {
+    "comment": "⛔ 本表即闸门规则本体，由 tests/test_text_critical_gate.py 实装。",
+    "accepted":                  ["confirm", "falsify", "scope_split", "support", "text_critical_evidence_only"],
+    "variant":                   ["support", "text_critical_evidence_only"],
+    "emended_by_hu":             ["text_critical_evidence_only"],
+    "suspected_corruption":      ["text_critical_evidence_only"],
+    "rejected_by_hu":            ["text_critical_evidence_only"],
+    "editorial_reconstruction":  ["support", "text_critical_evidence_only"]
+  },
+
+  "HARD_RULE": "⛔⛔【胡老明确判为错简、错乱、传抄误并拒绝解释之文本，不得作为胡老体系规则的正证或反例；只能作为 text-critical evidence 保存。】——125批·上级令一所立。",
+
+  "type": "object",
+  "required": ["passage_id", "locus", "text_status", "verdict_source", "allowed_roles"],
+  "additionalProperties": false,
+  "properties": {
+    "passage_id": {"type": "string"},
+    "locus": {"type": "string", "description": "条号／篇名"},
+    "quoted": {"type": "string", "description": "原文逐字"},
+    "text_status": {"$ref": "#/definitions/text_status"},
+    "verdict_source": {
+      "type": "string",
+      "description": "⛔ 判定之出处逐字。**不得由我方径判**——`suspected_corruption`／`rejected_by_hu` 须有胡老原话。"
+    },
+    "verdict_anchor": {"type": "string"},
+    "allowed_roles": {"type": "array", "items": {"$ref": "#/definitions/usage_role"}},
+    "misuse_history": {
+      "type": "array", "items": {"type": "string"},
+      "description": "本工程曾误用之记录——留档，防其复用"
+    },
+    "note": {"type": "string"}
+  }
+}

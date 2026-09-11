@@ -148,6 +148,10 @@
     "object_level_audit": {
       "type": "object",
       "description": "124批·令七：把该观察项之全部命中按【所断对象之层级】分类——state_support／mechanism_explanation／location／formula_pattern。⛔ 不得把不同用法之命中作同类计数。"
+    },
+    "term_audit_125": {
+      "type": "object",
+      "description": "125批·令四：**`object_term_exists?` 与 `mapping_source_exists?` 是两个问题，须分开答。**五栏：1_exact_term_hit／2_semantic_near_match／3_mapping_hit／4_speaker／5_verdict。⛔ 124批『四格对象词胡老从未说过』之统计已作废，未经本栏重算者不得再引用。"
     }
   }
 }

@@ -75,13 +75,34 @@ for name, v in V.items():
            if any(ch.isdigit() for ch in str(o.get("normalized_value") or ""))]
     ck("⛔无编造数值 %s" % name, not bad)
 
-# ── 三值 pus_maturity（反例攻击所得）───────────────────────
-pm = V.get("pus_maturity", {})
-ck("⭐`pus_maturity` 已由二值改三值（124批 反例攻击所得）",
-   len(pm.get("allowed_values", [])) == 3,
-   "仍为 %s" % pm.get("allowed_values"))
-ck("⭐其中间档有胡老逐字锚",
-   any("没全化脓" in r.get("source_ref", "") for r in pm.get("ordering_relation", [])))
+# ── 令二（125批）：脓之 presence 与 maturation 已拆 ──────────
+ck("⭐令二·`pus_maturity` 已拆，不再存在", "pus_maturity" not in V)
+ck("⭐令二·`pus_presence` 已立（categorical）",
+   V.get("pus_presence", {}).get("value_type") == "categorical")
+ck("⭐令二·`pus_maturation` 已立",  "pus_maturation" in V)
+pm = V.get("pus_maturation", {})
+ck("⭐令二·`pus_maturation` 不得为 ordinal（互斥穷尽未证）",
+   pm.get("value_type") == "graded_unscaled", "仍为 %s" % pm.get("value_type"))
+ck("⭐令二·未证 partition 前不得填序", not pm.get("ordering_relation"))
+ck("⭐令二·其 note 已写明【未证互斥穷尽】",
+   "互斥" in pm.get("note", "") and "穷尽" in pm.get("note", ""))
+ck("⭐令二·三种原文表达俱在", len(pm.get("allowed_values", [])) == 3)
+ck("⭐令二·「不定是无脓」已挂在 presence 上（而非 maturation）",
+   any("不定是无脓" in o.get("raw_value", "")
+       for o in V.get("pus_presence", {}).get("observations", [])))
+
+# ── 令三（125批）：cold_heat_degree 撤 ordinal ───────────────
+ch = V.get("cold_heat_degree", {})
+ck("⭐令三·`cold_heat_degree` 不再 ordinal",
+   ch.get("value_type") != "ordinal", "仍为 %s" % ch.get("value_type"))
+ck("⭐令三·其序关系已删", not ch.get("ordering_relation"))
+ck("⭐令三·已记 open_question（『多』修饰极性抑或程度）",
+   bool(ch.get("open_question")))
+
+# ⛔ graded_unscaled 者一律不得填序（全表）
+bad = [n for n, v in V.items()
+       if v["value_type"] == "graded_unscaled" and v.get("ordering_relation")]
+ck("⛔graded_unscaled 全表皆无序", not bad, str(bad))
 
 print("\n失败 %d 项%s" % (len(FAIL), ("：" + "｜".join(FAIL)) if FAIL else ""))
 sys.exit(1 if FAIL else 0)
