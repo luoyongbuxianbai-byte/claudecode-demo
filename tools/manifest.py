@@ -176,6 +176,7 @@ PRODUCT = [
     ("runtime/compiled_rules.json",             "compiler/compile_rules.py"),  # 120批
     ("evidence/最小翻转对证据集.md",              "tools/fanzhuandui.py"),       # 121批
     ("evidence/二味方低复杂度验证集.md",           "tools/fanzhuandui.py"),       # 121批
+    ("evidence/翻转组_三组五栏重编码.md",          "tools/wuceng_chongbian.py"),  # 122批
     ("term_layer/P0候选确认类型传播矩阵.md",       "tools/chuanbo_shenji.py"),    # 119批
     ("term_layer/unknown_false审计.md",          "tools/unknown_shenji.py"),    # 119批
     ("term_layer/资产索引_供上级审查.md",            "tools/zichan_suoyin.py"),     # 116批
@@ -187,11 +188,22 @@ PRODUCT = [
 #    ⇒ 故 `--fresh` 对本类之「新鲜」只证【排版是新的】，**不证【证据是新查的】**。
 HANDCODED = [
     ("evidence/最小翻转对证据集.md", "tools/fanzhuandui.py",
-     "121批立·⭐**研究层**·11 组最小翻转对（high 6｜mid 4｜low 1）＋四模型测试＋4 型反例＋5 条 residual。"
-     "⛔⛔**研究层证据未经反例攻击不得进入 Typed IR runtime**（用户令十）——"
-     "本批 `rules/` 与 `runtime/compiled_rules.json` **一字未改**。"
-     "⛔并记一处可证伪性自查：M4 得 9 支持 0 反驳，**此结果本身可疑**，"
-     "至少一半因该模型述得太宽而近乎不可证伪。"),
+     "121批立·⭐**研究层**·11 组翻转组＋4 型反例。"
+     "⛔⛔**122批 已改名并加勘误横幅，引用前必读该横幅**："
+     "①原名【最小翻转对】之『最小』未证，已撤——真正单观察项且无须施治者**只 FLIP-01／FLIP-05 两组**；"
+     "②**四模型计数 0/6、1/4、0/8、9/0 全部作废**（M2/M3 被我定成稻草人，M4 述得过宽）；"
+     "③CE-02「胡老未给分野项」**事实相反，已撤**〔讲金匮·113444 明给呕逆／心下痞坚〕。"
+     "⛔**研究层证据未经反例攻击不得进入 Typed IR runtime**（令十）——`rules/`、`runtime/` 一字未改。"),
+    ("evidence/翻转组_三组五栏重编码.md", "tools/wuceng_chongbian.py",
+     "122批立·上级令 B 之重编码。⛔**未照「五层」写，改为【三组五栏】**——"
+     "Observable／LatentState／Stage 是状态本体，Intervention 是测量手段，Decision 是决策输出，"
+     "三类不同的东西不得排成一列（即上级本批纠正 R1 时所指之同一种混层）。"
+     "⛔并载本批两处我方判错：FLIP-02 与 CE-02 之「原文未给入口」皆为**取证半径太小**所致，"
+     "已改判并立自约束。⛔121批 之四模型计数（0/6、1/4、0/8、9/0）**全部作废，不得引用**。"),
+    ("evidence/residual_台账_122批修订.md", "（人录·无工具）",
+     "122批·residual 由 5 条减至 **1 条（只余 R4 程度非二值）**。"
+     "⛔**该减法不是进展**：R1/R2/R3 只是换到正确的栏，R5 是发现本来就有归处"
+     "（`source_layer`，120批 已立而 121批 未用）。"),
     ("evidence/二味方低复杂度验证集.md", "tools/fanzhuandui.py",
      "121批立·5 首二味方逐首人读（桔梗汤｜芍药甘草汤｜甘草干姜汤｜桂枝甘草汤｜枳术汤）。"
      "⛔**本批不解释药性**（用户令七）；表中功能语皆原文逐字。"
