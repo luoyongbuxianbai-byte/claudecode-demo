@@ -1,27 +1,51 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "retrieval_gates_v0",
-  "version": "126批",
+  "version": "126B",
   "title": "取证三闸：context-radius／lexical-semantic 双轨／proposition atomization",
-
   "GATE_1_context_radius": {
     "order": "126批·上级令二",
-    "applies_to": ["confirm", "falsify", "scope_split", "rejected", "source_verified"],
-    "required_fields": ["anchor_text", "preceding_context", "following_context",
-                        "same_clause_hu_comment", "text_status", "speaker_status"],
+    "applies_to": [
+      "confirm",
+      "falsify",
+      "scope_split",
+      "rejected",
+      "source_verified"
+    ],
+    "required_fields": [
+      "anchor_text",
+      "preceding_context",
+      "following_context",
+      "same_clause_hu_comment",
+      "text_status",
+      "speaker_status"
+    ],
     "boundary_rule": "⛔⛔ **不得机械规定「±400 字即充分」。** §214 已证：固定字符窗不等于语义完整（胡老之裁决在条文后约 400 字，恰在窗缘）。⇒ 边界以【同条／同段／同一解释单元结束】为最低边界。",
     "unit_markers": {
-      "注解本（C卷／解读／传真系系）": ["《伤寒论》第N条", "《金匮要略…》第N条", "【栏目】", "注解：", "按："],
-      "讲课本（讲伤寒／讲金匮）": ["第N条", "N、", "页眉「胡希恕《…》讲义-龙门课栈N/732」"]
+      "注解本（C卷／解读／传真系系）": [
+        "《伤寒论》第N条",
+        "《金匮要略…》第N条",
+        "【栏目】",
+        "注解：",
+        "按："
+      ],
+      "讲课本（讲伤寒／讲金匮）": [
+        "第N条",
+        "N、",
+        "页眉「胡希恕《…》讲义-龙门课栈N/732」"
+      ]
     },
     "unknown_rule": "⛔ 若解释单元边界无法确定 ⇒ `context_complete = unknown`，**不得进入决定性证据**。",
     "implemented_by": "tools/retrieval_integrity_audit.py :: unit_bounds() / scan_anchor()"
   },
-
   "GATE_2_lexical_semantic": {
     "order": "126批·上级令三",
-    "four_questions": ["exact_term_exists?", "variant_expression_exists?",
-                       "concept_exists?", "mapping_source_exists?"],
+    "four_questions": [
+      "exact_term_exists?",
+      "variant_expression_exists?",
+      "concept_exists?",
+      "mapping_source_exists?"
+    ],
     "hard_rule": "⛔⛔ **禁止由其中一个字段推另外三个。**（124批「胃气无源」即由 `mapping` 之薄推 `term` 之无，而 `term` 实有 740 处。）",
     "query_family_required": true,
     "query_family_min": {
@@ -33,23 +57,72 @@
     "record_required": "每个否定性检索须保存【实际使用之 query family】，不得只留结论。",
     "implemented_by": "rules/pulse_cells_v0.json :: term_audit_125（五栏）；本批起为必填"
   },
-
   "GATE_3_proposition_atomization": {
     "order": "126批·上级令四",
     "rule": "一句规则中若含两个【可分别被反例推翻】之谓词，必须拆成独立 proposition。",
     "regression_samples_125": [
-      {"id": "ATOM-1", "bundled": "缓 → 中风（证型＋病因）",
-       "must_split": ["中风证型成立", "中风由外来风邪导致"],
-       "why": "胡老否定后者而肯定前者为类型名；绑在一起即 125批 之误判"},
-      {"id": "ATOM-2", "bundled": "缓 = 胃气",
-       "must_split": ["「胃气」一词存在", "缓脉映射胃气恢复"],
-       "why": "词有 740 处而映射仅 1 处；混为一谈即 124批 之误判"},
-      {"id": "ATOM-3", "bundled": "脉数 → 热",
-       "must_split": ["脉数 support 热", "脉数 confirm 热", "脉数 locate 热",
-                      "脉数 exclude 虚", "脉数 → 治疗"],
-       "why": "前一成立，后四不成立；打包即 124批 之矫枉过正与其前之过宽"}
+      {
+        "id": "ATOM-1",
+        "bundled": "缓 → 中风（证型＋病因）",
+        "must_split": [
+          "中风证型成立",
+          "中风由外来风邪导致"
+        ],
+        "why": "胡老否定后者而肯定前者为类型名；绑在一起即 125批 之误判"
+      },
+      {
+        "id": "ATOM-2",
+        "bundled": "缓 = 胃气",
+        "must_split": [
+          "「胃气」一词存在",
+          "缓脉映射胃气恢复"
+        ],
+        "why": "词有 740 处而映射仅 1 处；混为一谈即 124批 之误判"
+      },
+      {
+        "id": "ATOM-3",
+        "bundled": "脉数 → 热",
+        "must_split": [
+          "脉数 support 热",
+          "脉数 confirm 热",
+          "脉数 locate 热",
+          "脉数 exclude 虚",
+          "脉数 → 治疗"
+        ],
+        "why": "前一成立，后四不成立；打包即 124批 之矫枉过正与其前之过宽"
+      }
     ],
-    "regression_requirement": "⛔⛔ **把上述命题绑回去时，测试必须变红。** 实装于 `tests/test_proposition_atomization.py --rebundle`。",
+    "regression_requirement": "⛔⛔ **把上述命题绑回去时，测试必须变红。** 实装于 `tests/test_proposition_atomization.py --rebundle`。｜126B 补：本闸之 eligible 分母为【有 `object` 栏者】，⛔ 无该栏者记 `not_applicable`，不进分母。",
     "implemented_by": "tests/test_proposition_atomization.py"
+  },
+  "GATE_4_provenance_attribution": {
+    "order": "126B·上级令五",
+    "why": "126批 把 `speaker_unresolved` 一名塞进两件完全不同的事——「不知道谁说的」（C卷 uncertain）与「知道是整理本、但没资格说是胡老本人」（editor_compiled）。⛔ **二者修复方法完全不同**：前者须查书目，后者须改措辞。故必须拆。",
+    "checks": [
+      "source_identity_known?",
+      "speaker_identity_known?",
+      "passage_authorship_known?",
+      "source_version_known?",
+      "attribution_claim_level?",
+      "attribution_claim_allowed?"
+    ],
+    "subtypes": {
+      "D1_speaker_identity_unresolved": "该来源之说话主体**未知**（现仅 C卷）",
+      "D2_attribution_overreach": "以 `uncertain`／`editor_compiled` 之材料作**胡老本人**归因",
+      "D3_source_version_unresolved": "同一命题在两本异说而版本关系未定",
+      "D4_passage_authorship_unresolved": "整理本之**该段执笔人**未标（八本编纂本皆然）"
+    },
+    "hard_constraints": [
+      "speaker_status = uncertain        → ⛔ 禁 hu_direct attribution",
+      "speaker_status = editor_compiled  → ⛔ 禁自动升级为 hu_direct",
+      "publication_date ≠ text_composition_date（⛔ 不得据出版先后论「晚年改说」）",
+      "same_style_family ≠ same_book ≠ same_author（⛔ 栏目相似不等于同族、同书、同作者）"
+    ],
+    "attribution_levels": {
+      "hu_direct": "仅 `hu_lecture` 之书可用；⚠ 且须保留【讲课记录之整理媒介】这一属性",
+      "hu_via_editor": "`editor_compiled` 之书；表述须作「某整理本作……」",
+      "source_unattributed": "`uncertain`（C卷）；表述须作「C卷（体例为注解本，speaker 未定）作……」"
+    },
+    "implemented_by": "tools/audit_population_census.py :: gate_provenance()；回归 tests/test_provenance_gate.py"
   }
 }

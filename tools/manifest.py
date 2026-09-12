@@ -179,6 +179,7 @@ PRODUCT = [
     ("evidence/翻转组_三组五栏重编码.md",          "tools/wuceng_chongbian.py"),  # 122批
     ("evidence/翻转组_结构补齐_123批.md",          "tools/jiegou_buqi_123.py"),   # 123批
     ("evidence/取证完整性审计_126批.md",           "tools/retrieval_integrity_audit.py"),  # 126批
+    ("evidence/审计全集普查与分母修复_126B.md",     "tools/audit_population_census.py"),   # 126B
     ("term_layer/P0候选确认类型传播矩阵.md",       "tools/chuanbo_shenji.py"),    # 119批
     ("term_layer/unknown_false审计.md",          "tools/unknown_shenji.py"),    # 119批
     ("term_layer/资产索引_供上级审查.md",            "tools/zichan_suoyin.py"),     # 116批
@@ -212,8 +213,20 @@ HANDCODED = [
      "非以反例否决。⛔`结代→炙甘草汤` 直映撤销（〔C卷·145807〕「平人脉结并不足虑，即不服药亦可自愈」）。"
      "⛔`数=热` **未改为「数≠热」**——肠痈反例只证伪【数/洪→热实→可攻下】跨层直通。"
      "⚠ 同表另有五格（浮/紧/缓/细/微）同型而**本批未审**，一律 fail_closed。"),
+    ("evidence/审计全集普查与分母修复_126B.md", "tools/audit_population_census.py",
+     "126B·令一〜七、九。⭐**取代 126批 之三个数字**（A 11/43｜D 29/43｜四类皆未命中 8/43，皆因 0 锚被当阴性与四闸共分母而无效）。"
+     "⭐**N 由枚举产生 = 65**（126批 报 43，**漏 22**：residual 5＋meta 14＋新登 text_critical 3）。"
+     "⭐每闸各有 eligible 分母：context **2/52**｜lexical 9/13｜atomization 10/17｜provenance 41/52；"
+     "**无锚 13 项记 `not_auditable_missing_anchor`，不入分子亦不入分母**。"
+     "⭐对象级裁决：survives 9｜downgraded 43｜partially_retracted 2｜unknown_pending_audit 11。"
+     "⛔⛔并报一处 population_gap：**121批 所称之「63 组机器候选」全 repository 查无资产、工具无扫描代码 ⇒ 不存在为可审对象**。"),
+    ("evidence/下游引用链审计_126B.md", "（人录·无工具）",
+     "126B·令八。⭐**②层 10,097 处字面命中，无一产生我方裁决**——"
+     "57 档中间件中 54 档被现行资产引用，而**引用点全部止于 `tools/manifest.py` 之新鲜度登记**，登记不产生医学判断。"
+     "⛔但②层之真风险在别处：**把中间件之计数当证据**（114批 P0 计数／121批「31 首」／124批「四格无源」皆此型）。"),
     ("evidence/取证完整性审计_126批.md", "tools/retrieval_integrity_audit.py",
-     "126批·令一〜七。⭐**全量 N=43，不抽样**。A `context_truncation` 11/43（锚级 17，人读裁定 "
+     "⛔**126B 勘误：本册之三个数字已作废**（0 锚被当阴性＋四闸共分母；N=43 亦非全集，实为 65）。"
+     "现行件为 `evidence/审计全集普查与分母修复_126B.md`。｜原文：126批·令一〜七。全量 N=43，不抽样。A `context_truncation` 11/43（锚级 17，人读裁定 "
      "**TP 1｜FP 1｜KNOWN 14｜PENDING/UNREAD 3**）｜B 9/43｜C 10/43｜**D 29/43**。"
      "⇒ **A 类是个案（1 新），D 类是系统性（29/43，主因 C卷 speaker 未定）。**"
      "⭐扫描器之验收：它在 `SW-214` 上**成功复现** 124批 那起漏检。"
