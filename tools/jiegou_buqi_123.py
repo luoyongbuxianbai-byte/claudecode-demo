@@ -19,7 +19,7 @@ import os
 B = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(B, "evidence", "翻转组_结构补齐_123批.md")
 
-FIELDS = ["observable", "competitor_set", "latent_state",
+FIELDS = ["primary_anchor", "observable", "competitor_set", "latent_state",
           "process_stage", "treatment_history", "diagnostic_intervention",
           "state_transition", "decision", "source_layer", "source_scope",
           "minimality_status", "identifiability_status",
@@ -29,6 +29,7 @@ FIELDS = ["observable", "competitor_set", "latent_state",
 G = [
 {"id": "FLIP-01", "题": "肠痈·脉迟紧/洪数",
  "observable": "脉（迟紧／洪数）",
+ "primary_anchor": "A·C卷·79117",  # ⭐126C 补：本锚原在 `fanzhuandui.PAIRS`，123批 建 G 表时未传递
  "competitor_set": "⭐**124批 由二支改三支**（反例攻击所得）：同为【肠痈】另有**薏苡附子败酱散**一支〔A·讲金匮·260241〕「身甲错，腹皮急，**按之濡**，腹无积聚，**身无热，脉数**」，胡老并辨其与大黄牡丹汤之别「**这有痞块**」〔讲金匮·261650〕⇒ {大黄牡丹汤, 薏苡附子败酱散, 排脓}。⛔把三选一写成二选一，**第二次**",
  "latent_state": "痈脓成熟程度（`ordinal`，⭐**124批 由二值改三值**：未成 → **已成而未全化** → 完全化脓）。锚：〔A·讲金匮·261879〕胡老「**他这个不可下，这个脓已成，要活看**……已经是有脓了，但是**没全化脓的时候，吃大黄牡丹皮汤还是无害的，可以的**」",
  "process_stage": "⭐**有**：脓之成熟过程",
@@ -46,6 +47,7 @@ G = [
              "⛔不得写作「脉洪数＝热」，亦不得写作「脉洪数⇒不可下」之无 scope 规则"},
 
 {"id": "FLIP-02", "题": "肺痈·脓成未成",
+ "primary_anchor": "A·讲金匮·95264",  # ⭐126C 补：本锚原在 `fanzhuandui.PAIRS`，123批 建 G 表时未传递
  "observable": "⭐**时时振寒**／**吐如米粥**〔讲金匮·85483〕——"
                "⛔122批 我误填「脓之成否」（那是潜状态不是观察项），且误判为无入口，已改",
  "competitor_set": "{脓未成, 脓已成}｜竞争解释：痰饮壅盛之量",
@@ -67,6 +69,7 @@ G = [
 
 {"id": "FLIP-03", "题": "§209·转矢气",
  "observable": "矢气（转／不转）",
+ "primary_anchor": "A·C卷·63416",  # ⭐126C 补：本锚原在 `fanzhuandui.PAIRS`，123批 建 G 表时未传递
  "competitor_set": "{有燥屎, 但初头硬后必溏}｜⛔原文明说此时【大便硬否】无从证明。⛔⛔**125批 撤销 124批 之「由二支改三支」**：该改判所据之《伤寒论》第214条，**胡老明言「其中必有错乱，故不释」**〔A·C卷·70744–70800〕⇒ `text_status=rejected_by_hu`，依 text-critical gate **不得作正证或反例**。⇒ 本组仍为二支；124批「第三次把多选一写成二选一」之说**一并撤回**",
  "latent_state": "燥屎之有无与结成程度",
  "process_stage": "⭐**124批 改判**（上级令四）。⛔**撤销 123批 所写之「燥屎形成阶段」**——那是把【火候】读成了【病理阶段】：〔A·讲伤寒·262358〕胡老「**以燥屎，即大便硬作为用大承气汤的火候或标准，不为大便硬而设**」⇒ 火候＝用药时机，非病理阶段。⭐而专项检索另得一处**真的形成关系，锚在 §251 不在本条**：〔A·C卷·65980〕「初头硬，后必溏，**未定成硬**，攻之必溏；**须小便利，屎定硬，乃可攻之**」——两档＋推进机制（小便利）＋等待（须…乃可）三要素俱全。⇒ 现记为 `two_state_settled_hardness`，**并注明其锚在 §251 而非 §209**。",
@@ -87,6 +90,7 @@ G = [
 
 {"id": "FLIP-04", "题": "伤寒有停水·渴/呕",
  "observable": "渴／呕／小便利否（**三项纠缠**）",
+ "primary_anchor": "A·C卷·38019",  # ⭐126C 补：本锚原在 `fanzhuandui.PAIRS`，123批 建 G 表时未传递
  "competitor_set": "{里有停水·表不解, 停水而不渴而呕}",
  "latent_state": "停水之部位",
  "process_stage": "无",
@@ -105,6 +109,7 @@ G = [
 
 {"id": "FLIP-05", "题": "黄汗·渴/不渴",
  "observable": "渴（有／无）",
+ "primary_anchor": "A·C卷·22741",  # ⭐126C 补：本锚原在 `fanzhuandui.PAIRS`，123批 建 G 表时未传递
  "competitor_set": "{津液亡失已甚, 表虚气水外郁而津未大伤}",
  "latent_state": "津液亡失程度（`ordinal`）",
  "process_stage": "无",
@@ -125,6 +130,7 @@ G = [
 
 {"id": "FLIP-06", "题": "霍乱·欲饮水否",
  "observable": "欲饮水否",
+ "primary_anchor": "A·C卷·42288",  # ⭐126C 补：本锚原在 `fanzhuandui.PAIRS`，123批 建 G 表时未传递
  "competitor_set": "{热多, 寒多}",
  "latent_state": "寒热（`ordinal`：less/more——⭐原文以【多少】分方，非以有无分方）",
  "process_stage": "无",
@@ -144,6 +150,7 @@ G = [
 
 {"id": "FLIP-07", "题": "太阳下后·去芍药/加附子",
  "observable": "脉＋恶寒（**两项**）",
+ "primary_anchor": "A·C卷·29360",  # ⭐126C 补：本锚原在 `fanzhuandui.PAIRS`，123批 建 G 表时未传递
  "competitor_set": "{误下后表未罢·腹虚气冲, 已由阳转阴}",
  "latent_state": "是否陷于阴证",
  "process_stage": "无",
@@ -151,7 +158,10 @@ G = [
  "diagnostic_intervention": "无",
  "state_transition": "⭐**有**：阳→阴（胡老解为「病已由阳转阴」）",
  "decision": "`switch`（桂枝去芍药汤 → 加附子），形式上为**加一味**",
- "source_layer": "L1_fact＋L2_hu_behavior",
+ "source_layer": "⛔**126C 补 `text_status=emended_by_hu`**：本条底本经胡老补字——"
+                 "「若微恶寒者，**当是若脉微，恶寒者**……**明明漏去『脉』字，应补上**」〔A·C卷·29360〕。"
+                 "⇒ 其分野项【脉微＋恶寒并见】**是补字之后才成立的**。已登记 `SW-21-MAIWEI`。"
+                 "⚠ 与 FLIP-04 同型 ⇒ **11 组中已知底本经补字者 2 组**",
  "source_scope": "formula_pattern·太阳下后",
  "minimality_status": "⛔**非最小**：脉与恶寒两项同变",
  "identifiability_status": "⚠**弱**：原文未明示因果",
@@ -163,6 +173,7 @@ G = [
 
 {"id": "FLIP-08", "题": "§100·小建中→小柴胡",
  "observable": "服小建中汤后之差／不差",
+ "primary_anchor": "A·经方传真系·33354",  # ⭐126C 补：本锚原在 `fanzhuandui.PAIRS`，123批 建 G 表时未传递
  "competitor_set": "⭐**胡老明言二者共存**：「**根本这个脉呀既有建中证，也有柴胡证**」〔讲伤寒·123110〕"
                    "⇒ {中虚有寒, 柴胡证}",
  "latent_state": "中虚有寒 ／ 少阳",
@@ -186,6 +197,7 @@ G = [
 
 {"id": "FLIP-09", "题": "服柴胡汤已·渴者属阳明",
  "observable": "服小柴胡汤后之渴",
+ "primary_anchor": "A·传真系·135432",  # ⭐126C 补：本锚原在 `fanzhuandui.PAIRS`，123批 建 G 表时未传递
  "competitor_set": "{药后津伤, 转属阳明}",
  "latent_state": "阳明",
  "process_stage": "无",
@@ -205,6 +217,7 @@ G = [
 
 {"id": "FLIP-10", "题": "甘草干姜汤后·渴者属消渴",
  "observable": "服甘草干姜汤后之渴",
+ "primary_anchor": "A·C卷·93207",  # ⭐126C 补：本锚原在 `fanzhuandui.PAIRS`，123批 建 G 表时未传递
  "competitor_set": "{药后津伤, 转为消渴}",
  "latent_state": "消渴",
  "process_stage": "无",
@@ -224,6 +237,7 @@ G = [
 
 {"id": "FLIP-11", "题": "阳明误下后·白虎加人参/猪苓",
  "observable": "口舌干燥／小便不利／汗出（**须组合**）",
+ "primary_anchor": "A·C卷·76381",  # ⭐126C 补：本锚原在 `fanzhuandui.PAIRS`，123批 建 G 表时未传递
  "competitor_set": "⭐**三支非两支**：{热盛津枯（白虎加人参）, 水停不化（猪苓）, "
                    "烦而**不渴**之栀子豉汤证}",
  "latent_state": "热盛津枯 ／ 水停不化",

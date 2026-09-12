@@ -162,10 +162,25 @@ ST_OK = "audited_no_issue"
 ST_ISSUE = "issue_found"
 
 
+# ⛔⛔ 126C 自查：`not_auditable_missing_anchor` 一名，把两件不同的事又并成了一类——
+#    (a) **作了文本断言而锚丢了** ⇒ 真缺锚，须补
+#    (b) **根本不作文本断言**（否定性结果／分类裁决）⇒ 本闸 `not_applicable`
+#    这与上级两次纠正我的 D 类混义、词/映射混义**同形**。故本批再拆一次。
+NO_TEXTUAL_CLAIM = {
+    "CE-04": "**否定性结果**（「本型反例未查得」）——`not_found` 之记录**按定义无锚**，"
+             "其可审性属闸二（检索式是否单轨），不属闸一",
+    "RESIDUAL-R1": "**分类裁决**（某 residual 归入哪一栏）——其证据在被指向之对象上，本身不作文本断言",
+    "RESIDUAL-R2": "同上", "RESIDUAL-R3": "同上", "RESIDUAL-R4": "同上", "RESIDUAL-R5": "同上",
+}
+
+
 def gate_context(row):
     anc = anchors_in(row["payload"])
     if not anc:
-        return ST_NOANCHOR, ["⛔ 无可定位锚 ⇒ **本闸不可评价**（未采≠阴性）"]
+        why = NO_TEXTUAL_CLAIM.get(row["object_id"])
+        if why:
+            return ST_NA, ["⛔ 本对象**不作文本断言** ⇒ 本闸不适用：%s" % why]
+        return ST_NOANCHOR, ["⛔ 作了文本断言而**无可定位锚** ⇒ **本闸不可评价**（未采≠阴性），**须补锚**"]
     notes, unresolved, issue = [], False, False
     for bk, pos in anc:
         s = scan_anchor(bk, pos)
@@ -222,7 +237,9 @@ def gate_provenance(row):
     declared = row["payload"].get("speaker_declared") if isinstance(row["payload"], dict) else None
     books = sorted({b for b, _ in anc})
     if not books and not declared:
-        return ST_NOANCHOR, ["⛔ 无锚且未声明 speaker ⇒ **本闸不可评价**"], {}
+        if row["object_id"] in NO_TEXTUAL_CLAIM:
+            return ST_NA, ["⛔ 本对象不作文本断言，无来源可归 ⇒ 本闸不适用"], {}
+        return ST_NOANCHOR, ["⛔ 作了文本断言而无锚、且未声明 speaker ⇒ **本闸不可评价**"], {}
     spk = {b: SPEAKER.get(b, "unknown_book") for b in books}
     if declared:
         spk.setdefault("(declared)", declared)
@@ -287,9 +304,22 @@ def main():
     from collections import Counter
     L = []
     w = L.append
-    w("# 审计全集普查与分母修复（126B·上级令一〜七、九）\n")
+    w("# 审计全集普查与分母修复（126B·上级令一〜七、九；126C 重跑）\n")
     w("> ⛔ 本册**取代** 126批 之三个数字（A 11/43｜D 29/43｜四类皆未命中 8/43）。")
     w("> 三者皆因【0 锚被当成阴性】与【四闸共用分母】而无效。\n")
+    w("> ### ⭐ 126C 重跑之三处变动（本册数字已随之改写）\n")
+    w("> | 变动 | 前 | 后 |")
+    w("> |---|---|---|")
+    w("> | 13 项 `not_auditable_missing_anchor` 补锚／重分类 | 13 | **0** |")
+    w("> | N（因新登 `SW-21-MAIWEI` 而 +1） | 65 | **66** |")
+    w("> | `not_auditable` 一名**本身混两件事**，已拆出 `NO_TEXTUAL_CLAIM` 一档 | — | n/a 6 |")
+    w(">")
+    w("> ⛔ **补锚不是补新证据**：七项 FLIP 之锚原已在 `tools/fanzhuandui.py::PAIRS`，")
+    w("> 123批 建 14 栏表时**没有传过来**。⇒ 「无锚」这一诊断本身，有一半是我方资产未接线所致。")
+    w("> ⚠ 六项 FLIP 由 `unknown` 转为可评价、FLIP-01 补锚后暴露其依 C卷、新登 `SW-21-MAIWEI`")
+    w("> ⇒ 闸四 issue 由 41 升至 **50**；R1〜R5 落入四闸皆无 issue ⇒ `survives` 由 9 升至 **13**")
+    w("> （其中 FLIP-01 反向掉出）。**升降皆非病情变化，是可评价面扩大。**")
+    w("> ⛔ 并注：`survives` 之名对 R1〜R5 **误导**——四闸对不作文本断言者本就问不到什么。\n")
 
     # ── 令一 census ──
     w("## 一、population census（令一：N 由枚举产生，不得先写后审）\n")
