@@ -54,11 +54,117 @@
           "speaker": "hu_lecture",
           "text_status": "accepted（⚠ OCR 本，且正文两处标「音频缺失」）",
           "note": "读记见 evidence/顺序首读_讲伤寒_001_概论至第3条_126F.md"
+        },
+        {
+          "title": "第4条",
+          "start": 5844,
+          "end": 6535,
+          "chars": 691,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（OCR；本区间内无音频缺失标记）",
+          "note": "读记见 evidence/顺序首读_讲伤寒_002_第4条至第11条_126G.md"
+        },
+        {
+          "title": "第5条",
+          "start": 6535,
+          "end": 6820,
+          "chars": 285,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（OCR；本区间内无音频缺失标记）",
+          "note": "读记见 evidence/顺序首读_讲伤寒_002_第4条至第11条_126G.md"
+        },
+        {
+          "title": "第6条",
+          "start": 6820,
+          "end": 9813,
+          "chars": 2993,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（OCR；本区间内无音频缺失标记）",
+          "note": "读记见 evidence/顺序首读_讲伤寒_002_第4条至第11条_126G.md"
+        },
+        {
+          "title": "第7条",
+          "start": 9813,
+          "end": 10685,
+          "chars": 872,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（OCR；本区间内无音频缺失标记）",
+          "note": "读记见 evidence/顺序首读_讲伤寒_002_第4条至第11条_126G.md"
+        },
+        {
+          "title": "第8条",
+          "start": 10685,
+          "end": 11068,
+          "chars": 383,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（OCR；本区间内无音频缺失标记）",
+          "note": "读记见 evidence/顺序首读_讲伤寒_002_第4条至第11条_126G.md"
+        },
+        {
+          "title": "第9条",
+          "start": 11068,
+          "end": 11629,
+          "chars": 561,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（OCR；本区间内无音频缺失标记）",
+          "note": "读记见 evidence/顺序首读_讲伤寒_002_第4条至第11条_126G.md"
+        },
+        {
+          "title": "第10条",
+          "start": 11629,
+          "end": 11807,
+          "chars": 178,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（OCR；本区间内无音频缺失标记）",
+          "note": "读记见 evidence/顺序首读_讲伤寒_002_第4条至第11条_126G.md"
+        },
+        {
+          "title": "第11条",
+          "start": 11807,
+          "end": 12835,
+          "chars": 1028,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（OCR；本区间内无音频缺失标记）",
+          "note": "读记见 evidence/顺序首读_讲伤寒_002_第4条至第11条_126G.md"
         }
       ],
-      "next_offset": 5844,
-      "last_completed_unit": "第3条",
-      "next_unit_title": "第4条 伤寒一日，太阳受之…"
+      "next_offset": 12835,
+      "last_completed_unit": "第11条",
+      "next_unit_title": "第12条（太阳中风，阳浮而阴弱…桂枝汤），跨度约 5713 字，须分次读至语义终点",
+      "known_gaps": [
+        {
+          "offset": 4614,
+          "unit": "第2条",
+          "before": "…你出汗表就虚呀，可是表虚",
+          "after": "这个部位，所以古人叫中风",
+          "affects": "P12（邪在何部位）——缺口落在推理链中间",
+          "rule": "跨缺口之推断待核；两侧完整句仍可用"
+        },
+        {
+          "offset": 5510,
+          "unit": "第3条",
+          "before": "…恶寒比中风明显显著，所以他就叫伤寒了",
+          "after": "那么古人管这个有汗的叫做中风，没汗的叫做伤寒",
+          "affects": "P15（「伤」「中」二字训诂）",
+          "rule": "同上"
+        }
+      ],
+      "gap_discipline": "⛔ 单元起止可定位 ≠ 单元内部转写完整。前者成立不推出后者成立。",
+      "lecture_session_boundaries": [
+        {
+          "offset": 12245,
+          "marker": "今天咱们就讲到这了",
+          "note": "其后至 12835 为本讲次总结。⇒ 讲课本除「第N条」外另有「讲次」一层，此前单元标记表未收"
+        }
+      ]
     }
   }
 }
