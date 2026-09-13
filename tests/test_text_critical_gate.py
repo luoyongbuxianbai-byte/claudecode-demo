@@ -98,10 +98,31 @@ for t in targets:
 ck("⭐⭐G3 §214 不再被当作【活】反例／scope_split 依据", not bad,
    "仍在用：%s" % bad[:3])
 
-# ── G4 ⭐⭐ HARD_RULE_2 之**实执行**（126L·上级令一）────────────────
-#   ⛔ 126K 只把 HARD_RULE_2 写成 schema 里的说明字符串，**没有任何代码执行它**。
-#   本节做两件事：①用**一对正负控样本**证明检查器本身能判真伪；
-#                ②把检查器跑在**真实数据**上，机器判不出者**必须带 attribution_review 明报**。
+# ── G4 ⭐⭐ HARD_RULE_2 之检查（126M 重写）──────────────────────────
+#
+# ⛔⛔ 126M 撤回 126L 之表述与实现。上级线直接调用 126L 之函数，得两个反向样本：
+#        A·讲伤寒·389357（已知归属未定之末篇）→ 通过   ← 应不通过
+#        A·讲伤寒·不存在（无有效位置）        → 通过   ← 应不通过
+#      Code 复核并发现**比所报更宽**：裸书名「讲伤寒」（完全无偏移）亦通过。
+#      ⇒ 126L 之 G4 实际验证的是「**锚字符串里含某个书名**」，
+#        **既未验证锚可定位，也未验证段落归属**。
+#      ⚠ 而 389357 正是 Code 自己在 126E 立 G 类（file_level_attribution_masking_
+#        passage_level）时认定之末篇锚 —— **我写的闸门重犯了它要防的错**。
+#      ⇒ ⛔ **「机器可证成之胡老归因 N 条」这一表述，撤回。**
+#
+# ⭐⭐ 126M 之设计原则（依上级令一）：
+#      **本检查只能【排除】，永远不能【证成】。**
+#      因为「锚落在讲课分区」只是段落归属之**必要非充分**条件：
+#      同一分区内仍可有引录、转述、他人插话、整理者按语。
+#      ⇒ 故本检查之输出只有三种：not_applicable｜disqualified｜not_disqualified。
+#      ⛔ **没有 verified 这一档**，⛔ 任何调用方不得把 not_disqualified 读作已验证。
+#      ⇒ 凡 ASSERTS_HU 之条目，**无论检查结果如何，一律须人工核验**。
+#
+# 本检查实际做的三件事（⛔ 仅此三件）：
+#   ①锚是否可解析出「书名＋数值偏移」        ⇒ 否则 disqualified(anchor_unparseable)
+#   ②该偏移是否在该书语料长度之内            ⇒ 否则 disqualified(offset_out_of_range)
+#   ③该偏移落入之体裁分区 speaker 是否 hu_lecture
+#                                            ⇒ 否则 disqualified(non_lecture_zone)
 SPEAKER = {"讲伤寒": "hu_lecture", "讲金匮": "hu_lecture", "C卷": "uncertain",
            "解读": "editor_compiled", "传真系": "editor_compiled",
            "病位类方解": "editor_compiled", "汤液经方系": "editor_compiled",
@@ -111,56 +132,168 @@ SPEAKER = {"讲伤寒": "hu_lecture", "讲金匮": "hu_lecture", "C卷": "uncert
 # 这三个值**断言了「胡老本人」作过文本裁决**；disputed_cross_source 不作此断言。
 ASSERTS_HU = {"emended_by_hu", "rejected_by_hu", "suspected_corruption"}
 
+sys.path.insert(0, os.path.join(B, "tools"))
+from reading_ledger import GENRE_SPLITS          # noqa: E402  ⭐ 分区表之唯一来源
+try:
+    from corpus_guard import load_one            # noqa: E402  统一入口（闸门9 第六款）
+    _CORPUS_OK = True
+except Exception as _e:                          # ⛔ 取不到语料时不得假装查过
+    _CORPUS_OK = False
+    _CORPUS_WHY = str(_e)
 
-def anchor_books(anchor):
-    return [b for b in SPEAKER if b in (anchor or "")]
+_LEN_CACHE = {}
 
 
-def attribution_machine_verifiable(passage):
-    """HARD_RULE_2 之可执行形式。
-    返回 (ok, why)：ok=True 仅当【不作胡老归因】或【锚中至少一本为 hu_lecture】。
-    ⛔ 本函数**不判孰正**，只判「该归因能否由机器证成」。"""
+def book_len(book):
+    """该书 cleaned 语料之长度；⛔ 取不到则返回 None（⛔ 不得当作 0 或 ∞）。"""
+    if book not in _LEN_CACHE:
+        if not _CORPUS_OK:
+            _LEN_CACHE[book] = None
+        else:
+            try:
+                _LEN_CACHE[book] = len(load_one(book))
+            except Exception:
+                _LEN_CACHE[book] = None
+    return _LEN_CACHE[book]
+
+
+def zone_of(book, off):
+    """偏移所落之体裁分区。⛔ 该书未登记分区表者返回 None ⇒ 不得推定为讲课正文。"""
+    for z in GENRE_SPLITS.get(book, []):
+        if z["start"] <= off < z["end"]:
+            return z
+    return None
+
+
+# 锚之形态：`A·<书名>·<数字>`，可带 `–终点`、`区`、附注
+_ANCHOR_RE = re.compile(r"(?:^|[·|｜;；,，\s])([\u4e00-\u9fa5A-Za-z0-9]+)·(\d+)")
+
+
+def parse_anchors(anchor):
+    """从锚串析出全部 (书名, 偏移)。⛔ 只认已知书名；未知书名不入。"""
+    out = []
+    for bk, off in _ANCHOR_RE.findall(anchor or ""):
+        if bk in SPEAKER:
+            out.append((bk, int(off)))
+    return out
+
+
+def attribution_check(passage):
+    """HARD_RULE_2 之**可执行部分**。
+
+    返回 (verdict, why)，verdict ∈ {not_applicable, disqualified, not_disqualified}。
+    ⛔⛔ **永不返回 verified**——本检查不能证成段落归属，只能排除。
+    """
     st = passage.get("text_status")
     if st not in ASSERTS_HU:
-        return True, "本值不断言胡老本人之裁决"
-    bs = anchor_books(passage.get("verdict_anchor"))
-    if not bs:
-        return False, "锚中未识出任何已知书名"
-    if any(SPEAKER[b] == "hu_lecture" for b in bs):
-        return True, "锚含 hu_lecture：%s" % bs
-    return False, "锚所涉之书无一为 hu_lecture：%s" % {b: SPEAKER[b] for b in bs}
+        return "not_applicable", "本值不断言胡老本人之裁决"
+    anchor = passage.get("verdict_anchor") or ""
+    pairs = parse_anchors(anchor)
+    if not pairs:
+        return "disqualified", "anchor_unparseable：析不出『已知书名·数值偏移』 ← %r" % anchor
+    reasons, live = [], []
+    for bk, off in pairs:
+        n = book_len(bk)
+        if n is None:
+            reasons.append("%s·%d：语料长度取不到（%s）⇒ 无法核位置"
+                           % (bk, off, "corpus_guard 不可用" if not _CORPUS_OK else "载入失败"))
+            continue
+        if not (0 <= off < n):
+            reasons.append("%s·%d：offset_out_of_range（该书长 %d）" % (bk, off, n))
+            continue
+        z = zone_of(bk, off)
+        if z is None:
+            reasons.append("%s·%d：该书无体裁分区表 ⇒ ⛔ 不得推定为讲课正文" % (bk, off))
+            continue
+        if z["speaker"] != "hu_lecture":
+            reasons.append("%s·%d：落入 %s（speaker=%s）⇒ non_lecture_zone"
+                           % (bk, off, z["genre"], z["speaker"]))
+            continue
+        live.append("%s·%d(%s)" % (bk, off, z["genre"]))
+    if live:
+        return "not_disqualified", ("锚落在讲课分区：%s ⛔ 这是必要非充分条件，"
+                                    "⛔ 不证明段落归属" % live)
+    return "disqualified", "；".join(reasons)
 
 
-# ⭐ 正负控：同一份证据，只改 text_status，检查器必须给出相反结论
-_NEG = {"passage_id": "_CTRL_NEG", "text_status": "emended_by_hu",
-        "verdict_anchor": "A·C卷·29360"}          # 归属未定而仍标 emended_by_hu
-_POS = {"passage_id": "_CTRL_POS", "text_status": "disputed_cross_source",
-        "verdict_anchor": "A·C卷·29360"}          # 同一证据，撤下确定归因
-_HU  = {"passage_id": "_CTRL_HU", "text_status": "suspected_corruption",
-        "verdict_anchor": "A·讲伤寒·156700"}      # 锚在 hu_lecture
-ck("⭐⭐G4-负控 归属未定而标 emended_by_hu ⇒ 检查器必须判【不可证成】",
-   attribution_machine_verifiable(_NEG)[0] is False, attribution_machine_verifiable(_NEG)[1])
-ck("⭐⭐G4-正控 同一证据撤下确定归因后 ⇒ 检查器必须判【通过】",
-   attribution_machine_verifiable(_POS)[0] is True, attribution_machine_verifiable(_POS)[1])
-ck("⭐G4-正控2 锚在 hu_lecture 之胡老归因 ⇒ 通过",
-   attribution_machine_verifiable(_HU)[0] is True, attribution_machine_verifiable(_HU)[1])
+# ⭐⭐ 控样本：含上级线 126M 给出之**两个反向样本**（⛔ 必须判 disqualified）
+_CTRL = [
+    # (名称, passage, 期望 verdict)
+    ("负控1·归属未定之整理本而标 emended_by_hu",
+     {"text_status": "emended_by_hu", "verdict_anchor": "A·C卷·29360"}, "disqualified"),
+    ("⭐负控2·上级样本 A·讲伤寒·389357（末篇 appended_article，speaker=unresolved）",
+     {"text_status": "emended_by_hu", "verdict_anchor": "A·讲伤寒·389357"}, "disqualified"),
+    ("⭐负控3·上级样本 A·讲伤寒·不存在（无有效位置）",
+     {"text_status": "emended_by_hu", "verdict_anchor": "A·讲伤寒·不存在"}, "disqualified"),
+    ("负控4·Code 自查补：裸书名，完全无偏移",
+     {"text_status": "emended_by_hu", "verdict_anchor": "讲伤寒"}, "disqualified"),
+    ("负控5·Code 自查补：偏移超出语料长度",
+     {"text_status": "emended_by_hu", "verdict_anchor": "A·讲伤寒·99999999"}, "disqualified"),
+    ("负控6·Code 自查补：末篇起点前一字（387512）须【不】被排除，起点（387513）须被排除",
+     {"text_status": "emended_by_hu", "verdict_anchor": "A·讲伤寒·387513"}, "disqualified"),
+    ("正控1·同一证据撤下确定归因（disputed_cross_source）⇒ 不适用",
+     {"text_status": "disputed_cross_source", "verdict_anchor": "A·C卷·29360"}, "not_applicable"),
+    ("正控2·锚在讲课正文区 ⇒ 不被排除（⛔ 仍非已验证）",
+     {"text_status": "suspected_corruption", "verdict_anchor": "A·讲伤寒·156700"}, "not_disqualified"),
+    ("正控3·边界·末篇起点前一字 ⇒ 不被排除",
+     {"text_status": "suspected_corruption", "verdict_anchor": "A·讲伤寒·387512"}, "not_disqualified"),
+]
+if not _CORPUS_OK:
+    ck("⛔G4 语料不可用 ⇒ 位置类检查无法执行（⛔ 不得当作通过）", False, _CORPUS_WHY)
+for nm, smp, want in _CTRL:
+    got, why = attribution_check(smp)
+    ck("⭐G4-控 %s ⇒ 须判 %s" % (nm, want), got == want, "实得 %s：%s" % (got, why))
 
-# ⭐ 跑在真实数据上：机器判不出者，**必须**带 attribution_review 明报
-_pending = []
+# ⭐ 跑在真实数据上
+_disq, _live = [], []
 for pid, p in sorted(P.items()):
-    ok, why = attribution_machine_verifiable(p)
-    if ok:
+    v, why = attribution_check(p)
+    if v == "not_applicable":
         continue
-    _pending.append(pid)
-    ck("⭐G4 %s 机器判不出归因 ⇒ 须带 attribution_review 明报（⛔ 不得静默）" % pid,
+    (_disq if v == "disqualified" else _live).append((pid, why))
+    # ⛔ 无论 disqualified 还是 not_disqualified，皆须带 attribution_review 明报
+    ck("⭐G4 %s 之胡老归因未经证成 ⇒ 须带 attribution_review 明报（⛔ 不得静默）" % pid,
        isinstance(p.get("attribution_review"), dict)
-       and p["attribution_review"].get("status") == "pending_manual_review",
-       why)
-print("\n⚠ G4：机器可证成之胡老归因 %d 条；**待人工核验** %d 条 ⇒ %s"
-      % (len([1 for p in P.values() if attribution_machine_verifiable(p)[0]
-              and p["text_status"] in ASSERTS_HU]),
-         len(_pending), "｜".join(_pending) or "无"))
-print("⛔ 『待人工核验』**不是已验证**，也**不是已否证**——它是明报的缺口。")
+       and p["attribution_review"].get("status") == "pending_manual_review", why)
+
+print("\n⚠ G4 之能力边界（⛔ 照抄，勿改写）：")
+print("   本检查**只能排除，不能证成**。⛔ 无『机器可证成』一档。")
+print("   机器可**排除**者 %d 条：%s" % (len(_disq), "｜".join(p for p, _ in _disq) or "无"))
+print("   机器**未能排除**者 %d 条：%s" % (len(_live), "｜".join(p for p, _ in _live) or "无"))
+print("   ⛔ 『未能排除』≠ 已验证：锚落在讲课分区只是**必要非充分**条件，")
+print("      同一分区内仍可有引录、转述、他人插话、整理者按语。")
+print("   ⇒ ⭐ 上列 %d 条 **全部**须人工核验；attribution_review 只表示**缺口已显露**。"
+      % (len(_disq) + len(_live)))
+
+# ── G5 ⭐⭐ 阻止未验证归因被下游当作确定事实（126M·上级令一末句）──────
+#   上级令：「带 attribution_review 只能表示缺口已显露，
+#            不能让下游继续把旧确定性归因当已验证事实。」
+#   ⇒ 本节扫现役资产，凡引这些 passage_id 者，须同处带未验证标记。
+_UNVERIFIED = [pid for pid, _ in _disq + _live]
+_SCAN_DIRS = ["rules", "V8", "term_layer", "tools", "runtime", "compiler"]
+_MARKS = ("attribution_review", "未验证", "未经证成", "待人工核验", "pending_manual_review",
+          "归属未定", "disputed_cross_source", "text_status_history")
+_naked = []
+for _d in _SCAN_DIRS:
+    _root = os.path.join(B, _d)
+    for _dp, _, _fns in os.walk(_root) if os.path.isdir(_root) else []:
+        for _fn in _fns:
+            if not _fn.endswith((".md", ".json", ".py")):
+                continue
+            _fp = os.path.join(_dp, _fn)
+            if os.path.relpath(_fp, B) in ("rules/text_critical_v0.json",):
+                continue        # 登记档本身
+            try:
+                _raw = open(_fp, encoding="utf-8").read()
+            except Exception:
+                continue
+            for _pid in _UNVERIFIED:
+                for _m in re.finditer(re.escape(_pid), _raw):
+                    _w = _raw[max(0, _m.start() - 400): _m.start() + 400]
+                    if not any(k in _w for k in _MARKS):
+                        _naked.append((os.path.relpath(_fp, B), _pid))
+ck("⭐⭐G5 未验证之胡老归因，下游引用处皆带未验证标记（⛔ 不得裸引）",
+   not _naked, "裸引：%s" % _naked[:5])
 
 
 print("\n失败 %d 项%s" % (len(FAIL), ("：" + "｜".join(FAIL)) if FAIL else ""))

@@ -326,11 +326,71 @@
      "text_status": "accepted（⚠ OCR 本，且正文两处标「音频缺失」）",
      "note": "读记见 evidence/顺序首读_讲伤寒_007_第29条至第30条_126L.md　⭐ 作者判本条为 §29 之更佳解释（「比上一段说明得好」）",
      "unit_boundary_caveat": "46083 ＝「第二章辨太阳病脉证并治中／第31条」起"
+    },
+    {
+     "title": "第31条",
+     "start": 46083,
+     "end": 47160,
+     "chars": 1077,
+     "genre": "lecture_transcript",
+     "speaker": "hu_lecture",
+     "text_status": "accepted（⚠ OCR 本，且正文两处标「音频缺失」）",
+     "note": "读记见 evidence/顺序首读_讲伤寒_008_第31条至第36条_126M.md　⚠ 章界：第二章 辨太阳病脉证并治中 自 46083 起"
+    },
+    {
+     "title": "第32条",
+     "start": 47160,
+     "end": 48118,
+     "chars": 958,
+     "genre": "lecture_transcript",
+     "speaker": "hu_lecture",
+     "text_status": "accepted（⚠ OCR 本，且正文两处标「音频缺失」）",
+     "note": "读记见 evidence/顺序首读_讲伤寒_008_第31条至第36条_126M.md"
+    },
+    {
+     "title": "第33条",
+     "start": 48118,
+     "end": 48939,
+     "chars": 821,
+     "genre": "lecture_transcript",
+     "speaker": "hu_lecture",
+     "text_status": "accepted（⚠ OCR 本，且正文两处标「音频缺失」）",
+     "note": "读记见 evidence/顺序首读_讲伤寒_008_第31条至第36条_126M.md"
+    },
+    {
+     "title": "第34条",
+     "start": 48939,
+     "end": 50241,
+     "chars": 1302,
+     "genre": "lecture_transcript",
+     "speaker": "hu_lecture",
+     "text_status": "accepted（⚠ OCR 本，且正文两处标「音频缺失」）",
+     "note": "读记见 evidence/顺序首读_讲伤寒_008_第31条至第36条_126M.md"
+    },
+    {
+     "title": "第35条",
+     "start": 50241,
+     "end": 51036,
+     "chars": 795,
+     "genre": "lecture_transcript",
+     "speaker": "hu_lecture",
+     "text_status": "accepted（⚠ OCR 本，且正文两处标「音频缺失」）",
+     "note": "读记见 evidence/顺序首读_讲伤寒_008_第31条至第36条_126M.md"
+    },
+    {
+     "title": "第36条",
+     "start": 51036,
+     "end": 52215,
+     "chars": 1179,
+     "genre": "lecture_transcript",
+     "speaker": "hu_lecture",
+     "text_status": "accepted（⚠ OCR 本，且正文两处标「音频缺失」）",
+     "note": "读记见 evidence/顺序首读_讲伤寒_008_第31条至第36条_126M.md"
     }
    ],
-   "next_offset": 46083,
-   "last_completed_unit": "第30条",
-   "next_unit_title": "第31条（章界：第二章 辨太阳病脉证并治中）",
+   "next_offset": 52215,
+   "last_completed_unit": "第36条",
+   "next_unit_title": "第37条（至 54482）⚠ 内含文本裁决「这个『已』不是那个『以』，这个本子上是错的」，锚在 hu_lecture",
    "known_gaps": [
     {
      "offset": 4614,
@@ -402,6 +462,17 @@
      "affects": "作者否定《伤寒论》§30「夜半阳气还」一句之理由陈述中段 ⇒ ⛔ 其完整论证不可得",
      "rule": "已记之部分仍可引；⛔ 不得声称已掌握其完整论证",
      "gap_class": "audio_loss_marked_by_source ⛔ 与 126I 之裸「。。。。。。」（suspected_text_break，成因未定）不同"
+    },
+    {
+     "offset": 49800,
+     "unit": "第34条",
+     "marker_form": "。。。。。。。（音频缺失）",
+     "before": "那么这个由于里边的热，所以",
+     "after": "。这个是补胃的一个收敛药，它有治下利的作用",
+     "affects": "葛根芩连汤方解中段 ⇒ 缺失处所指之药不可确定",
+     "rule": "⛔ 不补，记 referent_unknown",
+     "gap_class": "audio_loss_marked_by_source",
+     "offset_precision": "⚠ 约值：由上下文定位，未逐字核准偏移"
     }
    ],
    "gap_discipline": "⛔ 单元起止可定位 ≠ 单元内部转写完整。前者成立不推出后者成立。",

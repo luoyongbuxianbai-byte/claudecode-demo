@@ -72,7 +72,13 @@ HAND_VERDICT = {
    "⇒ 该四句之 text_status 应为 `suspected_corruption`（疑王叔和窜入），"
    "而我 124批 把本锚列为 `数=热` 之 state_support／mechanism_explanation 两类证据。**须降格。**"
    "⚠ 并注：**C卷 同条（83817）并无此王叔和之疑** ⇒ 两本 text_status 不同 ⇒ disputed。"),
- "PULSE-HONGDA-YANGMING|C卷·14884": ("KNOWN", "§25 之 emended_by_hu，123批 已查出并已登记 `not_usable_emended_by_hu`"),
+# ⛔⛔ 126M 补标（上级令一末句）：以下数行涉 SW-214／SW-25-HONGDA／SW-134-PULSE4。
+ #    ⚠ 须分两类：
+ #    ①【只作扫描器验收样本】者（SW-214 两锚）——只用「该锚处曾漏检」这一事实，⛔ 不引其归因；
+ #    ②【据归因停用规则格】者（PULSE-HONGDA-* 之 not_usable_emended_by_hu）——
+ #       ⛔ **该停用建立在一个未验证之归因上**：「§25 洪大经胡老改」之锚在 C卷（speaker=uncertain），
+ #       其 attribution_review = pending_manual_review。方向虽 fail-closed，⛔ 不得读作已查明。
+ "PULSE-HONGDA-YANGMING|C卷·14884": ("KNOWN", "§25 之 emended_by_hu，123批 已查出并已登记 `not_usable_emended_by_hu`。⛔126M：该归因**未验证**"),
  "PULSE-HONGDA-LIRESHENG|C卷·14885": ("KNOWN", "同上，同一条"),
  "PULSE-HONGDA-LIRESHENG|C卷·54285": ("KNOWN", "同上，另本"),
  "SW-214|C卷·70744": ("KNOWN", "⭐本批扫描**成功复现** 124批 那起漏检——此即本扫描器之验收样本"),
@@ -240,6 +246,15 @@ def main():
 
     w("## 〇、分母与命中（令七）\n")
     w("**审计对象总数 N = %d**\n" % N)
+    # ⛔⛔ 126M 补：本表之 N **不是全集**。勘误此前只写在 tools/manifest.py 之登记描述里，
+    #    ⇒ **单独读这张表的人看不到它**。⭐ 现把限度写进表本身（生成器发出，重跑不会丢）。
+    w("> ⛔⛔ **本表之 N 不是全集，其比率不可作覆盖率引用。**\n")
+    w("> `evidence/审计全集普查与分母修复_126B.md` 已由枚举得 **N = 65**"
+      "（126批 原报 43，**漏 22**：residual 5＋meta 14＋新登 text_critical 3）。\n")
+    w("> ⇒ 本表之 N 只是**本扫描器在其扫描面内所见之对象数**，"
+      "会随资产增减与措辞变化而变；⛔ **不得**据以报「四类各占几成」。\n")
+    w("> ⚠ 并注（126M·上级令四）：产出通过新鲜度检查，只证明 `mtime(表) ≥ mtime(工具)`，"
+      "⛔ **不证明其内容正确**，也不证明它由当前工具与当前输入生成。\n\n")
     from collections import Counter
     kc = Counter(x["kind"] for x in res)
     w("| 类 | 数 |")
@@ -295,7 +310,10 @@ def main():
     w("")
     w("⛔ **机器命中数不等于真污染数**（114批 误检 67% 之教训）。")
     w("⭐ **TP 之唯一一条（`PULSE-SHU-HEAT|讲伤寒·155445`）即本批之实得**。")
-    w("⭐ **`SW-214` 两锚为验收样本**：本扫描器**成功复现** 124批 那起漏检 ⇒ 扫描器有效。\n")
+    w("⭐ **`SW-214` 两锚为验收样本**：本扫描器**成功复现** 124批 那起漏检 ⇒ 扫描器有效。")
+    w("⛔ **126M**：此处只用「该锚处曾漏检」，⛔ **不引其归因**——`SW-214` 之"
+      "「胡老判其错乱而不释」这一归因**未验证**（attribution_review = pending_manual_review，"
+      "锚在 C卷／解读，speaker 非 hu_lecture）。⛔ 扫描器有效与该归因成立是两件事。\n")
 
     w("---\n")
     w("## 三、B／C／D 类命中详情\n")

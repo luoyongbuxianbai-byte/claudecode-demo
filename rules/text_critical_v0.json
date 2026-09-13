@@ -1,172 +1,180 @@
 {
-  "schema": "text_critical_v0",
-  "batch": "125批立｜126批增二条｜126B增一条｜126C增一条",
-  "note": "⛔ 首批回归样本二条（上级令八指定）。⛔ 二条皆为【本工程曾误用】之实例，留档以防复用。",
-  "passages": [
-    {
-      "passage_id": "SW-214",
-      "locus": "《伤寒论》第214条",
-      "quoted": "阳明病，谵语、发潮热、脉滑而疾者，小承气汤主之。因与承气汤一升，腹中转气者，更服一升；若不转气者，勿更与之。明日又不大便，脉反微涩者，里虚也，为难治，不可更与承气汤也。",
-      "text_status": "rejected_by_hu",
-      "verdict_source": "「本条所述无论证或脉，均宜大承气汤主之，而谓小承气汤主之，**已属可疑**，而因与承气汤一升以下条文，**尤其不可理解，其中必有错乱，故不释**。」",
-      "verdict_anchor": "A·C卷·70744–70800（另见 A·解读·178759–178810，同语）",
-      "allowed_roles": [
-        "text_critical_evidence_only"
-      ],
-      "misuse_history": [
-        "⛔⛔ **124批 我以本条作 FLIP-03 之 `scope_split` 反例**，据以宣称「同一试治同一观察而 decision 不同」「多一支【里虚·为难治】」「把多选一写成二选一，第三次」。",
-        "⇒ **该裁决全部撤销。** 我读了条文（C卷·70353 区）而**没有往下读约 400 字到胡老的注**——胡老在那里明说本条『必有错乱，故不释』。",
-        "⇒ 这与 115批（检索式写错，几乎把上级引文报为伪造）、122批（FLIP-02／CE-02 两次判『原文未给入口』）**同族**：**取证半径太小**。第三次。"
-      ],
-      "note": "⛔ 本条现只可用作【text-critical evidence】：它能证明『仲景文本此处有异文/错乱之疑』，**不能证明任何医学规则之成立或不成立**。",
-      "attribution_review": {
-        "status": "pending_manual_review",
-        "why": "本条 text_status 断言【胡老本人】之文本裁决，而 verdict_anchor 所涉之书**无一为 hu_lecture** ⇒ 机器无法判定该归因成立。",
-        "anchor_books": {
-          "C卷": "uncertain",
-          "解读": "editor_compiled"
-        },
-        "⛔1": "**不得**被任何路径当作已验证归因读取。",
-        "⛔2": "**不得**因材料属整理本即自动升为 `hu_via_editor`——后者须**段落级转述依据**。",
-        "⛔3": "**不改** text_status、**不撤销**本条——**暂停使用未证归因**与**裁定孰正**是两件事。",
-        "raised_by": "126L·G4 机器检出"
-      }
+ "schema": "text_critical_v0",
+ "batch": "125批立｜126批增二条｜126B增一条｜126C增一条",
+ "note": "⛔ 首批回归样本二条（上级令八指定）。⛔ 二条皆为【本工程曾误用】之实例，留档以防复用。",
+ "passages": [
+  {
+   "passage_id": "SW-214",
+   "locus": "《伤寒论》第214条",
+   "quoted": "阳明病，谵语、发潮热、脉滑而疾者，小承气汤主之。因与承气汤一升，腹中转气者，更服一升；若不转气者，勿更与之。明日又不大便，脉反微涩者，里虚也，为难治，不可更与承气汤也。",
+   "text_status": "rejected_by_hu",
+   "verdict_source": "「本条所述无论证或脉，均宜大承气汤主之，而谓小承气汤主之，**已属可疑**，而因与承气汤一升以下条文，**尤其不可理解，其中必有错乱，故不释**。」",
+   "verdict_anchor": "A·C卷·70744–70800（另见 A·解读·178759–178810，同语）",
+   "allowed_roles": [
+    "text_critical_evidence_only"
+   ],
+   "misuse_history": [
+    "⛔⛔ **124批 我以本条作 FLIP-03 之 `scope_split` 反例**，据以宣称「同一试治同一观察而 decision 不同」「多一支【里虚·为难治】」「把多选一写成二选一，第三次」。",
+    "⇒ **该裁决全部撤销。** 我读了条文（C卷·70353 区）而**没有往下读约 400 字到胡老的注**——胡老在那里明说本条『必有错乱，故不释』。",
+    "⇒ 这与 115批（检索式写错，几乎把上级引文报为伪造）、122批（FLIP-02／CE-02 两次判『原文未给入口』）**同族**：**取证半径太小**。第三次。"
+   ],
+   "note": "⛔ 本条现只可用作【text-critical evidence】：它能证明『仲景文本此处有异文/错乱之疑』，**不能证明任何医学规则之成立或不成立**。",
+   "attribution_review": {
+    "status": "pending_manual_review",
+    "why": "本条 text_status 断言【胡老本人】之文本裁决，而 verdict_anchor 所涉之书**无一为 hu_lecture** ⇒ 机器无法判定该归因成立。",
+    "anchor_books": {
+     "C卷": "uncertain",
+     "解读": "editor_compiled"
     },
-    {
-      "passage_id": "SW-25-HONGDA",
-      "locus": "《伤寒论》第25条（脉洪大句）",
-      "quoted": "服桂枝汤，大汗出，脉洪大者，与桂枝汤，如前法。",
-      "text_status": "emended_by_hu",
-      "verdict_source": "「**脉洪大，当是脉浮**。脉洪大为热盛于里，如何可与桂枝汤？**必是传抄有误，宜改之**。」／另本：「**可能是白虎加人参汤的脉洪大错乱在此**。」",
-      "verdict_anchor": "A·C卷·14884；A·C卷·54218",
-      "allowed_roles": [
-        "text_critical_evidence_only"
-      ],
-      "misuse_history": [
-        "⚠ 123批 我曾把本条当作 `洪大=阳明气分` 之反例候选，**出稿前自查排除**，并标 `not_usable_emended_by_hu`。",
-        "⇒ 本条是**排除成功**之例；SW-214 是**排除失败**之例。二者并列，正见此闸之必要。"
-      ],
-      "note": "胡老改字后方解，故其【原字】不可用作证据，【改后之读】则是胡老之说而非仲景之文。",
-      "attribution_review": {
-        "status": "pending_manual_review",
-        "why": "本条 text_status 断言【胡老本人】之文本裁决，而 verdict_anchor 所涉之书**无一为 hu_lecture** ⇒ 机器无法判定该归因成立。",
-        "anchor_books": {
-          "C卷": "uncertain"
-        },
-        "⛔1": "**不得**被任何路径当作已验证归因读取。",
-        "⛔2": "**不得**因材料属整理本即自动升为 `hu_via_editor`——后者须**段落级转述依据**。",
-        "⛔3": "**不改** text_status、**不撤销**本条——**暂停使用未证归因**与**裁定孰正**是两件事。",
-        "raised_by": "126L·G4 机器检出"
-      }
+    "⛔1": "**不得**被任何路径当作已验证归因读取。",
+    "⛔2": "**不得**因材料属整理本即自动升为 `hu_via_editor`——后者须**段落级转述依据**。",
+    "⛔3": "**不改** text_status、**不撤销**本条——**暂停使用未证归因**与**裁定孰正**是两件事。",
+    "raised_by": "126L·G4 机器检出"
+   }
+  },
+  {
+   "passage_id": "SW-25-HONGDA",
+   "locus": "《伤寒论》第25条（脉洪大句）",
+   "quoted": "服桂枝汤，大汗出，脉洪大者，与桂枝汤，如前法。",
+   "text_status": "emended_by_hu",
+   "verdict_source": "「**脉洪大，当是脉浮**。脉洪大为热盛于里，如何可与桂枝汤？**必是传抄有误，宜改之**。」／另本：「**可能是白虎加人参汤的脉洪大错乱在此**。」",
+   "verdict_anchor": "A·C卷·14884；A·C卷·54218",
+   "allowed_roles": [
+    "text_critical_evidence_only"
+   ],
+   "misuse_history": [
+    "⚠ 123批 我曾把本条当作 `洪大=阳明气分` 之反例候选，**出稿前自查排除**，并标 `not_usable_emended_by_hu`。",
+    "⇒ 本条是**排除成功**之例；SW-214 是**排除失败**之例。二者并列，正见此闸之必要。"
+   ],
+   "note": "胡老改字后方解，故其【原字】不可用作证据，【改后之读】则是胡老之说而非仲景之文。",
+   "attribution_review": {
+    "status": "pending_manual_review",
+    "why": "本条 text_status 断言【胡老本人】之文本裁决，而 verdict_anchor 所涉之书**无一为 hu_lecture** ⇒ 机器无法判定该归因成立。",
+    "anchor_books": {
+     "C卷": "uncertain"
     },
-    {
-      "passage_id": "SW-134-PULSE4",
-      "locus": "《伤寒论》第134条之脉法四句",
-      "quoted": "浮则为风，数则为热，动则为痛，数则为虚。",
-      "text_status": "suspected_corruption",
-      "verdict_source": "胡老：「本来就是这样的，中间搁这么一段，**注家有说是王叔和搞的，我认为也是**，解释这几句话**也没什么大意思**。」",
-      "verdict_anchor": "A·讲伤寒·156700 区（§134 讲解段内）",
-      "allowed_roles": [
-        "text_critical_evidence_only"
-      ],
-      "misuse_history": [
-        "⛔ **124批 我把本段列为 `数=热` 之 `state_support` 与 `mechanism_explanation` 两类证据**（〔讲伤寒·155445〕「所以数脉又主热，又主虚」；〔C卷·83817〕「脉数主热…热盛伤津」）。",
-        "⇒ 本段既经胡老疑为王叔和窜入且自道『没什么大意思』，**不得充作正面 support 之出处**。",
-        "⭐ 本条系 **126批 取证完整性审计之 A 类扫描**所得——扫描器在 `PULSE-SHU-HEAT` 之锚上报警而查得。"
-      ],
-      "note": "⚠ **C卷 同条（83817）并无此王叔和之疑** ⇒ 两本 text_status 不同。⛔ 但须分清：胡老【对该段之解说】（如「又主热，又主虚」）仍是胡老之言，只是它是**对一段可疑文本的解说**；故其作 `contextual_exception`（自限）用尚可，作 `generic_support` 用不可。"
+    "⛔1": "**不得**被任何路径当作已验证归因读取。",
+    "⛔2": "**不得**因材料属整理本即自动升为 `hu_via_editor`——后者须**段落级转述依据**。",
+    "⛔3": "**不改** text_status、**不撤销**本条——**暂停使用未证归因**与**裁定孰正**是两件事。",
+    "raised_by": "126L·G4 机器检出"
+   }
+  },
+  {
+   "passage_id": "SW-134-PULSE4",
+   "locus": "《伤寒论》第134条之脉法四句",
+   "quoted": "浮则为风，数则为热，动则为痛，数则为虚。",
+   "text_status": "suspected_corruption",
+   "verdict_source": "胡老：「本来就是这样的，中间搁这么一段，**注家有说是王叔和搞的，我认为也是**，解释这几句话**也没什么大意思**。」",
+   "verdict_anchor": "A·讲伤寒·156700 区（§134 讲解段内）",
+   "allowed_roles": [
+    "text_critical_evidence_only"
+   ],
+   "misuse_history": [
+    "⛔ **124批 我把本段列为 `数=热` 之 `state_support` 与 `mechanism_explanation` 两类证据**（〔讲伤寒·155445〕「所以数脉又主热，又主虚」；〔C卷·83817〕「脉数主热…热盛伤津」）。",
+    "⇒ 本段既经胡老疑为王叔和窜入且自道『没什么大意思』，**不得充作正面 support 之出处**。",
+    "⭐ 本条系 **126批 取证完整性审计之 A 类扫描**所得——扫描器在 `PULSE-SHU-HEAT` 之锚上报警而查得。"
+   ],
+   "note": "⚠ **C卷 同条（83817）并无此王叔和之疑** ⇒ 两本 text_status 不同。⛔ 但须分清：胡老【对该段之解说】（如「又主热，又主虚」）仍是胡老之言，只是它是**对一段可疑文本的解说**；故其作 `contextual_exception`（自限）用尚可，作 `generic_support` 用不可。",
+   "attribution_review": {
+    "status": "pending_manual_review",
+    "why_126M": "⛔⛔ 126L 之 G4 曾把本条判为**唯一「机器可证成」者**，因而未加本字段。126M 上级线以两个反向样本证明该检查实际只验「锚串含书名」（A·讲伤寒·389357 末篇、A·讲伤寒·不存在 皆通过），Code 复核并发现裸书名亦通过。⇒ 该「证成」之判定**撤回**。",
+    "machine_check_126M": "not_disqualified：锚 讲伤寒·156700 落在 lecture_transcript 分区。⛔ 这是**必要非充分**条件——同一分区内仍可有引录、转述、他人插话、整理者按语。⛔ 不得读作已验证。",
+    "what_must_be_read": "§134 讲解段之**完整解释单元**，确认「王叔和窜入」「没什么大意思」二语确为讲者本人对该四句之判断，而非引述他人之说或整理者按语。",
+    "downstream_effect": "⚠ 本条现被 rules/pulse_cells_v0.json 用作**撤销** PULSE-SHU-HEAT 之 mechanism_explanation 一类之依据。⇒ 方向是 fail-closed（删而非增），但**依据仍是未验证之归因**；⛔ 不因方向保守而豁免核验。"
+   }
+  },
+  {
+   "passage_id": "SW-176-BAIHU",
+   "locus": "《伤寒论》第176条（脉浮滑·白虎汤）",
+   "quoted": "伤寒脉浮滑，此表有热，里有寒，白虎汤主之。",
+   "text_status": "suspected_corruption",
+   "verdict_source": "胡老：「王叔和注语亦谓：『旧云白通汤，一云白虎汤，恐非』。**可见本条为文是有问题的**。」",
+   "verdict_anchor": "A·C卷·74704",
+   "allowed_roles": [
+    "text_critical_evidence_only"
+   ],
+   "misuse_history": [
+    "⚠ 本工程**尚未**引用本条；本批扫描顺带查得，**先行登记以防将来误用**。"
+   ],
+   "note": "⭐ 登记未被误用之条，是本闸之预防用法——不必等出事再补。",
+   "attribution_review": {
+    "status": "pending_manual_review",
+    "why": "本条 text_status 断言【胡老本人】之文本裁决，而 verdict_anchor 所涉之书**无一为 hu_lecture** ⇒ 机器无法判定该归因成立。",
+    "anchor_books": {
+     "C卷": "uncertain"
     },
-    {
-      "passage_id": "SW-176-BAIHU",
-      "locus": "《伤寒论》第176条（脉浮滑·白虎汤）",
-      "quoted": "伤寒脉浮滑，此表有热，里有寒，白虎汤主之。",
-      "text_status": "suspected_corruption",
-      "verdict_source": "胡老：「王叔和注语亦谓：『旧云白通汤，一云白虎汤，恐非』。**可见本条为文是有问题的**。」",
-      "verdict_anchor": "A·C卷·74704",
-      "allowed_roles": [
-        "text_critical_evidence_only"
-      ],
-      "misuse_history": [
-        "⚠ 本工程**尚未**引用本条；本批扫描顺带查得，**先行登记以防将来误用**。"
-      ],
-      "note": "⭐ 登记未被误用之条，是本闸之预防用法——不必等出事再补。",
-      "attribution_review": {
-        "status": "pending_manual_review",
-        "why": "本条 text_status 断言【胡老本人】之文本裁决，而 verdict_anchor 所涉之书**无一为 hu_lecture** ⇒ 机器无法判定该归因成立。",
-        "anchor_books": {
-          "C卷": "uncertain"
-        },
-        "⛔1": "**不得**被任何路径当作已验证归因读取。",
-        "⛔2": "**不得**因材料属整理本即自动升为 `hu_via_editor`——后者须**段落级转述依据**。",
-        "⛔3": "**不改** text_status、**不撤销**本条——**暂停使用未证归因**与**裁定孰正**是两件事。",
-        "raised_by": "126L·G4 机器检出"
-      }
+    "⛔1": "**不得**被任何路径当作已验证归因读取。",
+    "⛔2": "**不得**因材料属整理本即自动升为 `hu_via_editor`——后者须**段落级转述依据**。",
+    "⛔3": "**不改** text_status、**不撤销**本条——**暂停使用未证归因**与**裁定孰正**是两件事。",
+    "raised_by": "126L·G4 机器检出"
+   }
+  },
+  {
+   "passage_id": "SW-NUE-CHAIHUGUIJIANG",
+   "locus": "《金匮·疟病》柴胡桂姜汤条（寒多热少）",
+   "quoted": "（疟）寒多微有热，或但寒不热者，柴胡桂姜汤主之。",
+   "text_status": "suspected_corruption",
+   "verdict_source": "胡老【按】：「不过只凭寒多热少而用本方，则与其后诸方的应用难以区别，**其中可能有错简**，用时仍宜参照上条所论为妥。」",
+   "verdict_anchor": "A·C卷·115389",
+   "allowed_roles": [
+    "text_critical_evidence_only"
+   ],
+   "misuse_history": [
+    "⚠ **125批 我把本处引作【组合判定元规则 M9】**（「只凭寒多热少…难以区别」）。",
+    "⇒ 其**方法论内容**仍可留（不得单凭一项定方），",
+    "⛔ 但**不得据本条论柴胡桂姜汤之 scope**——那正是被胡老疑有错简的部分。",
+    "⭐ 本条系 **126B 令九补读**所得——正是 126批 留下的三个未读锚之一。"
+   ],
+   "note": "⛔ 本条与 SW-134-PULSE4 同型：**我引的那句话，本身长在一段胡老存疑的文本上。**",
+   "attribution_review": {
+    "status": "pending_manual_review",
+    "why": "本条 text_status 断言【胡老本人】之文本裁决，而 verdict_anchor 所涉之书**无一为 hu_lecture** ⇒ 机器无法判定该归因成立。",
+    "anchor_books": {
+     "C卷": "uncertain"
     },
-    {
-      "passage_id": "SW-NUE-CHAIHUGUIJIANG",
-      "locus": "《金匮·疟病》柴胡桂姜汤条（寒多热少）",
-      "quoted": "（疟）寒多微有热，或但寒不热者，柴胡桂姜汤主之。",
-      "text_status": "suspected_corruption",
-      "verdict_source": "胡老【按】：「不过只凭寒多热少而用本方，则与其后诸方的应用难以区别，**其中可能有错简**，用时仍宜参照上条所论为妥。」",
-      "verdict_anchor": "A·C卷·115389",
-      "allowed_roles": [
-        "text_critical_evidence_only"
-      ],
-      "misuse_history": [
-        "⚠ **125批 我把本处引作【组合判定元规则 M9】**（「只凭寒多热少…难以区别」）。",
-        "⇒ 其**方法论内容**仍可留（不得单凭一项定方），",
-        "⛔ 但**不得据本条论柴胡桂姜汤之 scope**——那正是被胡老疑有错简的部分。",
-        "⭐ 本条系 **126B 令九补读**所得——正是 126批 留下的三个未读锚之一。"
-      ],
-      "note": "⛔ 本条与 SW-134-PULSE4 同型：**我引的那句话，本身长在一段胡老存疑的文本上。**",
-      "attribution_review": {
-        "status": "pending_manual_review",
-        "why": "本条 text_status 断言【胡老本人】之文本裁决，而 verdict_anchor 所涉之书**无一为 hu_lecture** ⇒ 机器无法判定该归因成立。",
-        "anchor_books": {
-          "C卷": "uncertain"
-        },
-        "⛔1": "**不得**被任何路径当作已验证归因读取。",
-        "⛔2": "**不得**因材料属整理本即自动升为 `hu_via_editor`——后者须**段落级转述依据**。",
-        "⛔3": "**不改** text_status、**不撤销**本条——**暂停使用未证归因**与**裁定孰正**是两件事。",
-        "raised_by": "126L·G4 机器检出"
-      }
+    "⛔1": "**不得**被任何路径当作已验证归因读取。",
+    "⛔2": "**不得**因材料属整理本即自动升为 `hu_via_editor`——后者须**段落级转述依据**。",
+    "⛔3": "**不改** text_status、**不撤销**本条——**暂停使用未证归因**与**裁定孰正**是两件事。",
+    "raised_by": "126L·G4 机器检出"
+   }
+  },
+  {
+   "passage_id": "SW-21-MAIWEI",
+   "locus": "《伤寒论》第21条（桂枝去芍药加附子汤）",
+   "quoted": "太阳病，下之后，脉促胸满者，桂枝去芍药汤主之；若微，恶寒者，桂枝去芍药加附子汤主之。",
+   "text_status": "disputed_cross_source",
+   "verdict_source": "⚠ **当前证据允许之表述（126K）**：**C卷 注解提出补「脉」字**（「若微恶寒者，当是若脉微，恶寒者……明明漏去『脉』字，应补上」）；**该段归属未定**（C卷 speaker_status=uncertain）。**讲课文本（讲伤寒 §22）采另一读法**（以「若微寒者」为正，斥成无己「微恶寒」为改，不补字）。⛔ **当前不能作为胡老本人补字的确定证据。** ⛔ 本条亦不裁定哪种读法正确。",
+   "verdict_anchor": "A·C卷·29360",
+   "allowed_roles": [
+    "text_critical_evidence_only"
+   ],
+   "misuse_history": [
+    "⚠ **FLIP-07 之底本即此条**，而 123–125批 之 FLIP-07 记 `source_layer=L1_fact＋L2_hu_behavior`，**未记其 `text_status`**。⇒ 其「脉微＋恶寒之并见」这一分野项，**是胡老补字之后才成立的**。",
+    "⭐ 本条系 **126C 补锚时顺带查得**——补锚这个动作本身就在查证据。",
+    "⛔⛔ **126J 交叉核证**：`hu_lecture`（讲伤寒 §22〔26528,26900)）对同一条给出**不同处理**——以赵开美本／《玉函经》之「若**微寒**者」为正，**斥成无己本之「微恶寒」为改**，**不补字**；读作「微寒＝微陷于阴寒证」。⇒ 本条目之「脉微＋恶寒」读法**只在 C卷 之处理下成立**。⚠ 二处之反对理由几乎逐字相同（「如何可加附子」／「加哪门子附子呀」），**解决方案不同**。⇒ 记 **D3 `source_version_unresolved`**；孰为胡老本人定见 **未定**。⛔ 本条目**不撤销、不修改裁决**；但**凡引本条者须同时标注此冲突**。详见 `evidence/交叉核证_C02_第21_22条_讲伤寒与C卷_126J.md`",
+    "⛔⛔ **126K**：126J 加了 `cross_source_conflict` 却**保留** `text_status=emended_by_hu` 与「本条底本经胡老补字」等断言 ⇒ **机器与后续读者仍可只读旧字段**。**加冲突说明而保留原确定性字段，等于没改。** 本批改当前状态、历史入 `text_status_history`。"
+   ],
+   "note": "⛔⛔ **126K**：原 note 称「**二组翻转对之底本皆经胡老补字**（FLIP-04、FLIP-07）」——**撤回**。\n① FLIP-07（本条）：见 verdict_source，归属未定且两本异读。\n② FLIP-04（§73「似脱漏」）：**本批实查，该语亦不见于 `hu_lecture`**——逐书命中 C卷 2〔38080／38101〕｜解读 2〔109336／109375〕｜传真系 1〔39503〕，**皆 `uncertain` 或 `editor_compiled`**。⇒ **「胡老补字」这一归因对两组皆未证**。\n⚠ 二者**程度不同**：FLIP-04 见于三书（含两部 editor_compiled，可达 hu_via_editor），且**本批未见与之冲突之 hu_lecture 读法**；FLIP-07 只见 C卷 且有冲突读法。⛔ **不因此判 FLIP-04 成立**，只记其证据面不同。",
+   "cross_source_conflict": {
+    "status": "unresolved",
+    "hu_lecture_reading": "若微寒者（赵开美本／《玉函经》）＝微陷于阴寒证；不补字；斥成无己「微恶寒」为改",
+    "cvol_reading": "若微恶寒者 ⇒ 补「脉」字 ⇒ 脉微＋恶寒",
+    "anchors": {
+     "讲伤寒": "[26528,26900)",
+     "C卷": "29404／29469"
     },
+    "⛔": "不得预先统一；不得据其一覆盖另一"
+   },
+   "text_status_history": [
     {
-      "passage_id": "SW-21-MAIWEI",
-      "locus": "《伤寒论》第21条（桂枝去芍药加附子汤）",
-      "quoted": "太阳病，下之后，脉促胸满者，桂枝去芍药汤主之；若微，恶寒者，桂枝去芍药加附子汤主之。",
-      "text_status": "disputed_cross_source",
-      "verdict_source": "⚠ **当前证据允许之表述（126K）**：**C卷 注解提出补「脉」字**（「若微恶寒者，当是若脉微，恶寒者……明明漏去『脉』字，应补上」）；**该段归属未定**（C卷 speaker_status=uncertain）。**讲课文本（讲伤寒 §22）采另一读法**（以「若微寒者」为正，斥成无己「微恶寒」为改，不补字）。⛔ **当前不能作为胡老本人补字的确定证据。** ⛔ 本条亦不裁定哪种读法正确。",
-      "verdict_anchor": "A·C卷·29360",
-      "allowed_roles": [
-        "text_critical_evidence_only"
-      ],
-      "misuse_history": [
-        "⚠ **FLIP-07 之底本即此条**，而 123–125批 之 FLIP-07 记 `source_layer=L1_fact＋L2_hu_behavior`，**未记其 `text_status`**。⇒ 其「脉微＋恶寒之并见」这一分野项，**是胡老补字之后才成立的**。",
-        "⭐ 本条系 **126C 补锚时顺带查得**——补锚这个动作本身就在查证据。",
-        "⛔⛔ **126J 交叉核证**：`hu_lecture`（讲伤寒 §22〔26528,26900)）对同一条给出**不同处理**——以赵开美本／《玉函经》之「若**微寒**者」为正，**斥成无己本之「微恶寒」为改**，**不补字**；读作「微寒＝微陷于阴寒证」。⇒ 本条目之「脉微＋恶寒」读法**只在 C卷 之处理下成立**。⚠ 二处之反对理由几乎逐字相同（「如何可加附子」／「加哪门子附子呀」），**解决方案不同**。⇒ 记 **D3 `source_version_unresolved`**；孰为胡老本人定见 **未定**。⛔ 本条目**不撤销、不修改裁决**；但**凡引本条者须同时标注此冲突**。详见 `evidence/交叉核证_C02_第21_22条_讲伤寒与C卷_126J.md`",
-        "⛔⛔ **126K**：126J 加了 `cross_source_conflict` 却**保留** `text_status=emended_by_hu` 与「本条底本经胡老补字」等断言 ⇒ **机器与后续读者仍可只读旧字段**。**加冲突说明而保留原确定性字段，等于没改。** 本批改当前状态、历史入 `text_status_history`。"
-      ],
-      "note": "⛔⛔ **126K**：原 note 称「**二组翻转对之底本皆经胡老补字**（FLIP-04、FLIP-07）」——**撤回**。\n① FLIP-07（本条）：见 verdict_source，归属未定且两本异读。\n② FLIP-04（§73「似脱漏」）：**本批实查，该语亦不见于 `hu_lecture`**——逐书命中 C卷 2〔38080／38101〕｜解读 2〔109336／109375〕｜传真系 1〔39503〕，**皆 `uncertain` 或 `editor_compiled`**。⇒ **「胡老补字」这一归因对两组皆未证**。\n⚠ 二者**程度不同**：FLIP-04 见于三书（含两部 editor_compiled，可达 hu_via_editor），且**本批未见与之冲突之 hu_lecture 读法**；FLIP-07 只见 C卷 且有冲突读法。⛔ **不因此判 FLIP-04 成立**，只记其证据面不同。",
-      "cross_source_conflict": {
-        "status": "unresolved",
-        "hu_lecture_reading": "若微寒者（赵开美本／《玉函经》）＝微陷于阴寒证；不补字；斥成无己「微恶寒」为改",
-        "cvol_reading": "若微恶寒者 ⇒ 补「脉」字 ⇒ 脉微＋恶寒",
-        "anchors": {
-          "讲伤寒": "[26528,26900)",
-          "C卷": "29404／29469"
-        },
-        "⛔": "不得预先统一；不得据其一覆盖另一"
-      },
-      "text_status_history": [
-        {
-          "batch": "126C",
-          "text_status": "emended_by_hu",
-          "verdict_source_then": "胡老注：「若微恶寒者，**当是若脉微，恶寒者**，否则下后微恶寒，仍太阳证未罢之候，如何可加附子，**明明漏去『脉』字，应补上**。」",
-          "note_then": "⛔ 与 FLIP-04（§73「似脱漏七字／二字」）同型：**二组翻转对之底本皆经胡老补字。**⇒ 现行 11 组中，**已知底本经补字者 2 组**（FLIP-04、FLIP-07）。",
-          "⛔": "**历史原判，非当前状态。** 126K 依上级令降格——其锚只在 C卷（speaker_status=uncertain），且 hu_lecture 对同一条采另一读法。"
-        }
-      ]
+     "batch": "126C",
+     "text_status": "emended_by_hu",
+     "verdict_source_then": "胡老注：「若微恶寒者，**当是若脉微，恶寒者**，否则下后微恶寒，仍太阳证未罢之候，如何可加附子，**明明漏去『脉』字，应补上**。」",
+     "note_then": "⛔ 与 FLIP-04（§73「似脱漏七字／二字」）同型：**二组翻转对之底本皆经胡老补字。**⇒ 现行 11 组中，**已知底本经补字者 2 组**（FLIP-04、FLIP-07）。",
+     "⛔": "**历史原判，非当前状态。** 126K 依上级令降格——其锚只在 C卷（speaker_status=uncertain），且 hu_lecture 对同一条采另一读法。"
     }
-  ]
+   ]
+  }
+ ],
+ "version": "126M"
 }

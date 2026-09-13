@@ -30,11 +30,17 @@ from tools.retrieval_integrity_audit import (  # noqa: E402
 OUT = os.path.join(B, "evidence", "审计全集普查与分母修复_126B.md")
 
 # ══ 令九补读：126批 未决之锚，本批逐一人读 ══
+# ⛔⛔ 126M 补标（上级令一末句：「带 attribution_review 只能表示缺口已显露，
+#    不能让下游继续把旧确定性归因当已验证事实」）：
+#    下表中凡涉 SW-134-PULSE4／SW-176-BAIHU／SW-214／SW-25-HONGDA／SW-NUE-CHAIHUGUIJIANG 之行，
+#    其「胡老本人作过此文本裁决」这一**归因未验证**（attribution_review = pending_manual_review）。
+#    ⚠ 本表之 REGISTERED 只记「该锚即某登记之 verdict_anchor」，
+#    ⛔ **不表示该登记之归因已成立**。
 HAND_126B = {
  "PULSE-SHU-HEAT|讲伤寒·156700": ("TP", "与 155445 同一单元（§134），即 `SW-134-PULSE4` 之王叔和之疑。已处理"),
- "SW-134-PULSE4|讲伤寒·155445": ("REGISTERED", "本条即该登记本身之 verdict_anchor，非污染"),
- "SW-134-PULSE4|讲伤寒·156700": ("REGISTERED", "同上"),
- "SW-176-BAIHU|C卷·74704": ("REGISTERED", "已人读全文：「此其中**必有错简，待考**」⇒ 登记无误"),
+ "SW-134-PULSE4|讲伤寒·155445": ("REGISTERED", "本条即该登记本身之 verdict_anchor，非污染。⛔ 126M：该登记之归因**未验证**（pending_manual_review）——机器只证锚落在讲课分区，不证段落归属。"),
+ "SW-134-PULSE4|讲伤寒·156700": ("REGISTERED", "同上；归因同样**未验证**。"),
+ "SW-176-BAIHU|C卷·74704": ("REGISTERED", "已人读全文：「此其中**必有错简，待考**」。⛔**126M 订正**：原作「⇒ 登记无误」**过强，撤回**——人读所证者是【C卷 该处有此语】，⛔ 不证【此语出自胡老本人】（C卷 speaker=uncertain）⇒ attribution_review = pending_manual_review，归因**未验证**。"),
  "FLIP-03|C卷·70744": ("KNOWN", "§214 之注，125批 已据以撤销 scope_split；本锚现只出现在撤销说明中"),
  "FLIP-03|讲伤寒·262358": ("FP", "⛔**假命中**：该处「只要是燥屎就可以用它，**是不对的**」——"
    "胡老所否者是【读者之误会】，**不是文本本身**。"
@@ -47,10 +53,10 @@ HAND_126B = {
  "META-M4|讲伤寒·44752": ("FP", "⛔假命中：单元为 §30 之长段，「这是错的」不在所引句之论域。"
    "⚠ 但须留一问：**§30 为问答体，其文本地位（是否王叔和所加）本批未审**，已记入待办。"),
  "META-M5|讲伤寒·45536": ("FP", "同上，同一 §30 单元。"),
- "SW-NUE-CHAIHUGUIJIANG|C卷·115389": ("REGISTERED", "本条即该登记本身之 verdict_anchor，非污染"),
+ "SW-NUE-CHAIHUGUIJIANG|C卷·115389": ("REGISTERED", "本条即该登记本身之 verdict_anchor，非污染。⛔ 126M：该登记之归因**未验证**（pending_manual_review），锚在 C卷（speaker=uncertain）。"),
  "META-M9|C卷·115389": ("TP", "⭐⭐**令九补读所得之第二起**：所引之句本身嵌在胡老之校勘疑问里——"
    "「不过只凭寒多热少而用本方，则与其后诸方的应用难以区别，**其中可能有错简**，"
-   "用时仍宜参照上条所论为妥」。⇒ 该条已登记 `SW-NUE-CHAIHUGUIJIANG` = `suspected_corruption`。"
+   "用时仍宜参照上条所论为妥」。⇒ 该条已登记 `SW-NUE-CHAIHUGUIJIANG` = `suspected_corruption`（⛔ 126M：该归因**未验证**，attribution_review = pending_manual_review）。"
    "⚠ M9 之**方法论内容**（只凭单项则难以区别）仍可留作元规则；"
    "但**不得用它论该方之 scope**——那正是被疑有错简的部分。"),
 }

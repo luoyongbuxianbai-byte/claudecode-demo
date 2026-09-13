@@ -31,6 +31,21 @@
     判定移交 `rules/q_status_v0.json`（**人工维护**），本工具**只做出现位置索引并读取该表**。
     ⛔ 本工具永不判定、永不改写该表。这是 GATE_2「四问不得互推」之正面执行。
 
+⛔⛔ 126M 再订（上级线令二驳回 126L 之单一 status 枚举）：
+  ①问题分三类，各有各的完成判据，**不共用一套**：
+     hypothesis            ⇒ 可检验预测 ＋ 反驳条件
+     attribution_definition⇒ 证据要求   ＋ 阶段性停止条件（⛔ 不是证伪条件）
+     survey_task           ⇒ 范围       ＋ 完成标准（⛔ 本就不该有证伪条件）
+  ②「条件已写出」「条件已审定」「问题已解决」是**三个独立维度**，⛔ 不得共用一格
+     ⇒ 现读 condition_written／ratified／resolved 三字段。
+  ③`ratified` 须有**具体裁决出处**，⛔ 不因 Code 当批写了条件便自动成为已审定。
+  ④⛔ **撤回 126L 之「无失败条件 ⇒ 不是研究项，是债务」**——
+     上级令二：**开放问题暂时没有证伪条件，不等于没有研究价值**。
+  ⑤`unassessed` 只说明**本登记册**尚未评估，⛔ 不能反推历史上从未评估。
+     ⚠ 实证：126L 把 Q-011／Q-011b/c/d 记为 unassessed，
+     而 126I:246-258 中 Q-011 明标「作废，拆为四」且四子项**各自写明失败条件**
+     ⇒ 那是**以新表重写历史**，不是发现缺口。
+
 用法：
   python3 tools/q_register.py            # 索引全部
   python3 tools/q_register.py --missing  # 只列**近处未见闭合语字样**者 ⇒ ⛔ 这是人工核验清单，不是结论
@@ -88,27 +103,37 @@ def main():
         occ = hits[q]
         first = occ[0]
         # ⛔ 此处只做**字样**匹配。⛔ 阳性不证明有失败条件，阴性不证明没有。
-        st = status.get(q, {}).get("status", "unregistered")
-        rows.append((q, len(occ), first[0], first[1], st))
+        it = status.get(q)
+        if it is None:
+            kind, cond, rat, res = "unregistered", "-", "-", "-"
+        else:
+            kind = it.get("kind", "?")
+            cond = it.get("condition_written") or "⛔未写"
+            rat = "✔" if it.get("ratified") else "⛔未审"
+            res = it.get("resolved", "?")
+        rows.append((q, len(occ), first[0], first[1], kind, cond, rat, res))
 
-    shown = [r for r in rows if (not only_missing) or (r[4] != "closure_ratified")]
-    print("⭐ 失败条件之有无，读自**人工维护**之 %s；⛔ 本工具不作此判定。" % STATUS_FILE)
-    print("%-10s %4s  %-18s  %s" % ("编号", "处数", "失败条件状态(人工)", "首见"))
-    print("-" * 78)
-    for q, n, rel, ln, state in shown:
-        print("%-10s %4d  %-18s  %s:%d" % (q, n, state, rel, ln))
+    shown = [r for r in rows if (not only_missing) or (r[5] == "⛔未写")]
+    print("⭐ 下列四栏全部读自**人工维护**之 %s；⛔ 本工具不作任何判定。" % STATUS_FILE)
+    print("⛔ 三栏正交：条件写出 ≠ 条件审定 ≠ 问题已解决。")
+    print("%-10s %4s  %-22s %-8s %-6s %-8s %s" % ("编号", "处数", "类", "条件写于", "已审", "状态", "首见"))
+    print("-" * 96)
+    for q, n, rel, ln, kind, cond, rat, res in shown:
+        print("%-10s %4d  %-22s %-8s %-6s %-8s %s:%d" % (q, n, kind, cond, rat, res, rel, ln))
 
     import collections as _c
-    tally = _c.Counter(r[4] for r in rows)
     print("\n索引到编号 %d 个（⛔ 此数不是待查问题总数，见报头）。" % len(rows))
-    print("人工状态分布：" + "｜".join("%s %d" % (k, v) for k, v in sorted(tally.items())))
-    bad = [r[0] for r in rows if r[4] in ("open_no_closure", "unregistered", "unassessed")]
-    if bad:
-        print("⛔ 下列 %d 个**无可判死之失败条件**（债务，非研究项）：" % len(bad) + "、".join(bad))
-    prop = [r[0] for r in rows if r[4] == "closure_proposed"]
-    if prop:
-        print("⛔ 下列 %d 个之失败条件为 **proposed·未经上级裁** ⇒ ⛔ 不得据以判死：" % len(prop) + "、".join(prop))
-    print("⛔ `closure_ratified` 只证明该条件**存在且可判**，⛔ 不证明其内容充分。")
+    print("类别分布：" + "｜".join("%s %d" % (k, v) for k, v in sorted(_c.Counter(r[4] for r in rows).items())))
+    print("状态分布：" + "｜".join("%s %d" % (k, v) for k, v in sorted(_c.Counter(r[7] for r in rows).items())))
+    nocond = [r[0] for r in rows if r[5] == "⛔未写"]
+    if nocond:
+        print("⚠ 下列 %d 个**尚未写出条件**：" % len(nocond) + "、".join(nocond))
+        print("  ⛔ 这**不表示它们不是研究项**（126M 上级令二）——开放问题暂无证伪条件，仍可有研究价值。")
+        print("  ⇒ 它们只是**还不能被判完成**；条件须按其 kind 分类拟定。")
+    unrat = [r[0] for r in rows if r[6] == "⛔未审"]
+    print("⛔ 条件**未经独立审定**者 %d 个 ⇒ ⛔ 不得以『Code 写过』充抵审定。" % len(unrat))
+    print("⛔ 本表之 unregistered／未写，只说明**本登记册**尚未覆盖，")
+    print("   ⛔ 不能反推历史读记中从未处理过——须回原读记实核。")
     return 0
 
 

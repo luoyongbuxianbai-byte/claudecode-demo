@@ -1,51 +1,259 @@
 {
  "$id": "q_status_v0",
- "version": "126L",
- "title": "Q／P0／T 系列之失败条件状态（⛔ 人工维护，⛔ 机器不得改写）",
- "why": "126L 两次尝试以【词面检测】判定「该问题是否有失败条件」，两次失败：①初版查『失败条件』四字 ⇒ Q-015/Q-016/Q-009 三例假阴性；②改用提案册排除法 ⇒ 本批报告亦在讨论提案，词面仍无法区分【陈述已裁条件】与【讨论提案】。⇒ 结论：这是语义判定，⛔ 词面永远做不到。故改为人工维护本表，工具只做出现位置索引并读取本表。这是 GATE_2『四问不得互推』之正面执行。",
- "status_enum": {
-  "closure_ratified": "已有失败条件，且经上级裁定或本工程既定纪律认可",
-  "closure_proposed": "已拟失败条件，⛔ 未裁 ⇒ ⛔ 不得据以判死",
-  "open_no_closure": "⛔ 确无失败条件 ⇒ 债务，非研究项",
-  "not_a_question": "⭐ 经核实不是是非问句而是普查任务 ⇒ 本不该有失败条件，属分类错误",
-  "merged": "已并入他编号，其闭合随之",
-  "unassessed": "本表未评估"
+ "version": "126M",
+ "title": "Q／P0／T 系列之状态（⛔ 人工维护，⛔ 机器只读不写）",
+ "why_126M_rewrite": "⛔⛔ 126L 初版把三件不同的事压成一个 `status` 枚举，并据以判「无失败条件＝不是研究项」。上级线 126M 驳回：①问题分三类，各有各的完成判据，不共用一套；②「条件已写出」「条件已审定」「问题已解决」是三个独立维度，不得共用一格；③closure_ratified 须有**具体裁决出处**，不因 Code 当批写了条件便自动成为已审定；④`unassessed` 只说明**本登记册**尚未评估，⛔ 不能反推历史上从未评估。⇒ 本版拆为 kind／condition／ratified／resolved 四个正交字段。",
+ "retracted_126M": [
+  "⛔ 撤回 126L 之判断「无失败条件 ⇒ 不是研究项，是债务」。上级令二：**开放问题暂时没有证伪条件，不等于没有研究价值**。",
+  "⛔ 撤回 126L 对 Q-011／Q-011b／Q-011c／Q-011d 之 `unassessed` 标记。实核 evidence/顺序首读_讲伤寒_004_第13条至第20条_126I.md:246-258：Q-011 明标「原版把机制、病位、用方资格、疗效混成一条——**作废**，现拆为四」，且 Q-011a–d **四条各自在表中写明失败条件（126J 写定）**。⇒ Code 之 `unassessed` 是**以新表重写历史**，不是发现缺口。"
+ ],
+ "fields": {
+  "kind": {
+   "hypothesis": "假说 ⇒ 须有【可检验预测】＋【反驳条件】",
+   "attribution_definition": "文献归属／定义澄清 ⇒ 须有【证据要求】＋【阶段性停止条件】（⛔ 不是证伪条件）",
+   "survey_task": "普查／索引任务 ⇒ 须有【范围】＋【完成标准】（⛔ 本就不该有证伪条件）",
+   "superseded": "已被拆分或取代，其状态随后继项"
+  },
+  "condition_written": "条件之文本写于何批（⛔ 只表示【写出来了】，⛔ 不表示已审定、更不表示已解决）",
+  "ratified": "⭐ 审定之**具体出处**（批次＋裁决人）。⛔ null ＝ 未审定。⛔ Code 不得自行填入。",
+  "resolved": "open｜partial｜closed ＋ 依据。⛔ 与上二者正交：条件已审定而问题仍 open，是常态。"
  },
- "ratifier_note": "⛔ 由 closure_proposed 改为 closure_ratified，须上级线明文裁定，并在 ratified_by 记明批次。⛔ Code 不得自行升级。",
  "items": {
-  "Q-001": {"status": "closure_ratified", "note": "六栏登记，判据明确", "source": "126I"},
-  "Q-002": {"status": "closure_proposed", "note": "126L §四提案", "source": "126F"},
-  "Q-003": {"status": "closure_ratified", "source": "126F"},
-  "Q-004": {"status": "closure_proposed", "note": "126L §四提案", "source": "126F"},
-  "Q-005": {"status": "not_a_question", "note": "⭐ 实为观察项普查任务；⛔ 且现覆盖 11.65%，不得作全集断言（A2）", "source": "126F"},
-  "Q-006": {"status": "not_a_question", "note": "⭐ 实为《内经》引用之普查任务；⚠ R1 闭卷：只统计作者引用行为，我方不据以推导", "source": "126H"},
-  "Q-007": {"status": "closure_ratified", "source": "126J"},
-  "Q-008": {"status": "closure_proposed", "note": "⚠ 原问句之前提已被 126I 上级订正动摇（『状词不是观察项』已撤）⇒ 126L 提案改写问句本身", "source": "126H"},
-  "Q-009": {"status": "merged", "merged_into": "Q-003", "note": "⭐ 工具假阴性之第三例：明写『⇒ 并入 Q-003』", "source": "126H"},
-  "Q-010": {"status": "closure_ratified", "source": "126H"},
-  "Q-011": {"status": "unassessed", "note": "⛔ Q-011 与 Q-011a–d 之层级关系（总问 vs 子问）未核", "source": "126I"},
-  "Q-011a": {"status": "closure_ratified", "source": "126I"},
-  "Q-011b": {"status": "unassessed", "source": "126I"},
-  "Q-011c": {"status": "unassessed", "source": "126I"},
-  "Q-011d": {"status": "unassessed", "source": "126I"},
-  "Q-012": {"status": "closure_ratified", "note": "126L 已厘清：只关闭『理由未读』一项，⛔ 不关闭校改是否成立；并设防循环", "source": "126J"},
-  "Q-013": {"status": "closure_ratified", "source": "126J"},
-  "Q-014": {"status": "closure_ratified", "note": "126L 措辞已订正", "source": "126J"},
-  "Q-015": {"status": "closure_ratified", "note": "条件写在 126K §四表格列内（工具假阴性之第一例）", "source": "126K"},
-  "Q-016": {"status": "closure_ratified", "note": "同上（第二例）；126L 第二问得部分进展，⛔ 未闭合", "source": "126K"},
-  "Q-017": {"status": "closure_ratified", "note": "126L 立，三候选前件，带失败与搁置条件", "source": "126L"},
-  "Q-018": {"status": "closure_ratified", "note": "126L 立，带失败与搁置条件", "source": "126L"},
-  "P0-001": {"status": "closure_proposed", "note": "126L §四提案", "source": "126E"},
-  "P0-002": {"status": "closure_proposed", "note": "126L §四提案", "source": "126E"},
-  "P0-003": {"status": "closure_proposed", "note": "126L §四提案", "source": "126E"},
-  "P0-004": {"status": "closure_ratified", "source": "126H"},
-  "P0-005": {"status": "closure_ratified", "source": "126H"},
-  "T-126L-1": {"status": "closure_ratified", "note": "本批自立自补，即时生效（闭合-阳/阴 + 搁置条件皆已写明）", "source": "126L"}
+  "P0-001": {
+   "kind": "attribution_definition",
+   "condition_written": null,
+   "ratified": null,
+   "resolved": "open",
+   "note": "⛔ 126L 提案已被上级 126M 退回：已有口语『五种』文本不能因无法与写本逐项对齐而整体降成归属未建立。⇒ 须**分开处理**：①原话 ②表项对应 ③逐经可达性"
+  },
+  "P0-002": {
+   "kind": "attribution_definition",
+   "condition_written": null,
+   "ratified": null,
+   "resolved": "open",
+   "note": "⛔ 126L 提案已被上级 126M 退回：不能把『归类随定义变化』设为唯一完成路径，否则重新预设本人理论演变。⇒ 继续保留各竞争解释"
+  },
+  "P0-003": {
+   "kind": "attribution_definition",
+   "condition_written": null,
+   "ratified": null,
+   "resolved": "open",
+   "note": "⛔ 126L 提案已被上级 126M 退回：『已审范围未见明确释义』不等于『作者未定义』；历史归属不明**也不禁止**我方提出明确标注、可检验的重构定义"
+  },
+  "P0-004": {
+   "kind": "hypothesis",
+   "condition_written": "126H",
+   "ratified": null,
+   "resolved": "open"
+  },
+  "P0-005": {
+   "kind": "attribution_definition",
+   "condition_written": "126H",
+   "ratified": null,
+   "resolved": "open"
+  },
+  "Q-001": {
+   "kind": "attribution_definition",
+   "condition_written": "126I",
+   "ratified": null,
+   "resolved": "open",
+   "note": "确定性标记六栏登记；126L 首得低确定性端样本"
+  },
+  "Q-002": {
+   "kind": "attribution_definition",
+   "condition_written": null,
+   "ratified": null,
+   "resolved": "open",
+   "note": "⛔ 126L 提案已被上级 126M 退回：203655 不在末篇；同单元互训是可能证据，不是唯一证明方式。⇒ 条件须重拟"
+  },
+  "Q-003": {
+   "kind": "attribution_definition",
+   "condition_written": "126F",
+   "ratified": null,
+   "resolved": "open"
+  },
+  "Q-004": {
+   "kind": "attribution_definition",
+   "condition_written": null,
+   "ratified": null,
+   "resolved": "open",
+   "note": "⛔ 126L 提案已被上级 126M 退回：GENRE_SPLITS 是我方记录，不能单独充当证明该记录正确之依据；同体裁亦不等于同文献层。⇒ 条件须重拟"
+  },
+  "Q-005": {
+   "kind": "survey_task",
+   "condition_written": "126M",
+   "ratified": "126M·上级线（令三：同意按普查任务管理）",
+   "resolved": "open",
+   "scope": "讲伤寒**已读区间**（现 [0,46083)）内之可观察项穷举",
+   "done_when": "该区间逐项列出并与 repository_known_population(N=66) 对照得差集；⭐ 上级令三：**可以先完成已读区间的明确范围核对，不必等待某个任意阅读比例**。⛔ 但结论之论域须写明为【已读区间】，不得写成全书。"
+  },
+  "Q-006": {
+   "kind": "survey_task",
+   "condition_written": "126M",
+   "ratified": "126M·上级线（令三：同意按普查任务管理）",
+   "resolved": "open",
+   "scope": "作者引《内经》之处；先做已读区间，再逐书扩",
+   "done_when": "逐书不合并地列出引用点并分类其场合（引作支持／转述／引而否定）；⛔ 不得带截断参数（A2）。⚠ 依 R1 闭卷：只统计作者之引用行为，⛔ 我方不据《内经》推导。"
+  },
+  "Q-007": {
+   "kind": "attribution_definition",
+   "condition_written": "126J",
+   "ratified": null,
+   "resolved": "open"
+  },
+  "Q-008": {
+   "kind": "attribution_definition",
+   "condition_written": "126M",
+   "ratified": "126M·上级线（令三：同意改查状词是否携带可区分的观察信息）",
+   "resolved": "open",
+   "note": "⭐ 上级令三并明：**未检得判据不等于作者从未给出**，亦**不禁止我方另立标明归属的研究性操作定义**。⇒ 停止条件＝已读区间内逐处列出状词出现处及其是否附带可区分信息；⛔ 阴性结论之论域限于已查范围。"
+  },
+  "Q-009": {
+   "kind": "superseded",
+   "superseded_by": "Q-003",
+   "condition_written": "126H",
+   "ratified": null,
+   "resolved": "open",
+   "note": "原文明写「⇒ 并入 Q-003」"
+  },
+  "Q-010": {
+   "kind": "attribution_definition",
+   "condition_written": "126H",
+   "ratified": null,
+   "resolved": "open"
+  },
+  "Q-011": {
+   "kind": "superseded",
+   "superseded_by": "Q-011a/b/c/d",
+   "condition_written": "126I",
+   "ratified": null,
+   "resolved": "closed",
+   "note": "⭐ 126M 实核 126I:248：原版「把机制、病位、用方资格、疗效混成一条」**已由 126J 明文作废并拆为四条**。⇒ 本项已闭（以拆分方式），⛔ 126L 之 `unassessed` 撤回"
+  },
+  "Q-011a": {
+   "kind": "hypothesis",
+   "condition_written": "126J",
+   "ratified": null,
+   "resolved": "open",
+   "prediction_and_refuter": "下之后有气上冲而由独立依据判为非表未解 ⇒ 不支持"
+  },
+  "Q-011b": {
+   "kind": "hypothesis",
+   "condition_written": "126J",
+   "ratified": null,
+   "resolved": "open",
+   "prediction_and_refuter": "下之后无气上冲而由独立依据判为仍在表 ⇒ 「必然」被推翻。⚠ 取证纪律：未记气上冲 ≠ 无气上冲，记 unrecorded"
+  },
+  "Q-011c": {
+   "kind": "hypothesis",
+   "condition_written": "126J",
+   "ratified": null,
+   "resolved": "open",
+   "prediction_and_refuter": "满足条件而明确不用桂枝汤、或用之而记录判为不当 ⇒ 不支持"
+  },
+  "Q-011d": {
+   "kind": "hypothesis",
+   "condition_written": "126J",
+   "ratified": null,
+   "resolved": "open",
+   "prediction_and_refuter": "结局与预期不符，且方药、剂量、合并干预、观察时点均可核 ⇒ 不符"
+  },
+  "Q-012": {
+   "kind": "attribution_definition",
+   "condition_written": "126J",
+   "ratified": "126L·上级线（令五：只关闭『理由未读』，不关闭校改是否成立；并设防循环）",
+   "resolved": "partial",
+   "note": "已闭者只有「理由尚未读到」一项"
+  },
+  "Q-013": {
+   "kind": "attribution_definition",
+   "condition_written": "126J",
+   "ratified": null,
+   "resolved": "open"
+  },
+  "Q-014": {
+   "kind": "hypothesis",
+   "condition_written": "126J",
+   "ratified": "126L·上级线（令四：措辞订正为『本段解释明确涉及R2，未明确交代R1所对应的腹部虚实状态』）",
+   "resolved": "open"
+  },
+  "Q-015": {
+   "kind": "attribution_definition",
+   "condition_written": "126K",
+   "ratified": null,
+   "resolved": "open",
+   "note": "作者两条全书性断言；条件写在 126K §四表格列内"
+  },
+  "Q-016": {
+   "kind": "attribution_definition",
+   "condition_written": "126K",
+   "ratified": "126L·上级线（令三：§27 量与配伍同变，不能单独识别效果变化全由配伍造成）",
+   "resolved": "partial",
+   "note": "126L 只确立『量是作者承认之独立自变量』这一前提；⛔ §27 之归因仍未分离"
+  },
+  "Q-017": {
+   "kind": "attribution_definition",
+   "condition_written": "126L",
+   "ratified": null,
+   "resolved": "open",
+   "note": "⛔⛔ 126M 上级订正：`小便数→禁汗` 与 `渴∧下利∧小便数→禁汗` 是**强弱不同而可同时为真**之命题，**本身不是逻辑冲突**。⇒ 真问题改为：①是否把较强命题当作较弱命题之**等价改写**？②二者**各自之证据是否充分**？"
+  },
+  "Q-018": {
+   "kind": "attribution_definition",
+   "condition_written": "126L",
+   "ratified": null,
+   "resolved": "open"
+  },
+  "Q-019": {
+   "kind": "survey_task",
+   "condition_written": "126M",
+   "ratified": "126M·上级线（令六）",
+   "resolved": "partial",
+   "scope": "§29–§30 之有条件治疗选择",
+   "done_when": "逐个记录：在什么治疗时点、哪些表现仍在或已变、作者据此选择继续／换方／兼治／减量；并保留条文明载、作者补充、我方解释三层之别",
+   "note": "⭐ 已执行：evidence/治疗选择登记_C01_第29_30条_126M.md"
+  },
+  "Q-020": {
+   "kind": "attribution_definition",
+   "condition_written": "126M",
+   "ratified": null,
+   "resolved": "open",
+   "note": "§30 为问答体，其文本地位（是否王叔和所加）未审。⚠ 非新债：tools/audit_population_census.py:44 已记同一待办，本册只承接并给编号",
+   "evidence_required": "出示各书对 §30 之明文处理（照录／存疑／判为后人所加），逐书不合并",
+   "stop_rule": "每读完一书结一次账，记「在已读之 N 书内如此」；⛔ 阴性只写「已查范围内未见」"
+  },
+  "Q-021": {
+   "kind": "attribution_definition",
+   "condition_written": "126M",
+   "ratified": null,
+   "resolved": "open",
+   "note": "作者何时由「文本未写 X」推「无 X」，何时推「X 仍在而未明说」？现有二例（§27＋§29 推无；§29〔38193〕推仍在）",
+   "evidence_required": "逐处收两类实例，各标位置、论域（证候／病机／方药）与作者所给理由",
+   "stop_rule": "每书结账；未见判别依据时写「已查范围内作者未给判别依据」，⛔ 不写成「作者随意」，⛔ 不代其设边界"
+  },
+  "Q-022": {
+   "kind": "attribution_definition",
+   "condition_written": "126M",
+   "ratified": null,
+   "resolved": "open",
+   "note": "⭐ 作者以「两项之主客／因果次序」为鉴别点（§36 喘／满），并另给可观察代理项（胸满 vs 腹满），⛔ 二者关系未交代。⚠ 关联用户线猜想⑥：若鉴别项是观察项之间的关系而非观察项本身，则「主证」之载体须重界定",
+   "evidence_required": "逐处收「以次序／主客为鉴别点」之实例，记①两项为何②作者之次序判断③有无可观察代理项④关系是否交代",
+   "stop_rule": "每书结账；⛔ 未见交代者写「已查范围内作者未交代」，⛔ 不得代设等价关系"
+  },
+  "T-126L-1": {
+   "kind": "survey_task",
+   "condition_written": "126L",
+   "ratified": null,
+   "resolved": "open",
+   "scope": "term_layer 现役必要条件资产",
+   "done_when": "查桂枝汤『脉必须弱＋津液丧失』是否已收、措辞是否一致；⛔ 阴性须列明所查文件名"
+  }
  },
  "limits": [
-  "⛔ 本表只覆盖已被人工评估之编号；工具索引到而本表未列者，一律报 unregistered。",
-  "⛔ 本表不判断问题是否【已解决】，只判断它【能否被判死】。",
-  "⛔ closure_ratified 不证明该条件之内容充分，只证明它存在且可判。",
-  "⛔ 18 个曾被工具报『见』者，其内容是否充分，本批未逐条核。"
+  "⛔ 本表只覆盖已被人工评估之编号；工具索引到而本表未列者报 unregistered。",
+  "⛔ `condition_written` 不表示条件充分，只表示条件之文本存在且可读。",
+  "⛔ `ratified` 为 null 者占多数——本工程此前从未把『条件审定』与『条件写出』分开记，故绝大多数历史条件**从未经过独立审定**。⚠ 这是一个真实缺口，⛔ 不得以『Code 写过』充抵。",
+  "⛔ `resolved` 只记本工程之当前判断，⛔ 不表示学理上已解决。",
+  "⛔ 本表 126M 由 Code 依上级 126M 裁决重建；其中 ratified 各项之出处皆为上级线明文，⛔ 无一由 Code 自升。"
  ]
 }
