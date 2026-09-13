@@ -1,0 +1,64 @@
+{
+  "schema": "reading_ledger_v0",
+  "created": "126F",
+  "caveat": "本账本只报**文本阅读覆盖**；⛔ 不得改名为理论理解率或构念覆盖率。「文字读过」不证明「构念没有漏掉」。",
+  "reader": "Code（本会话）。⛔ 不继承任何他方声称之已读状态——上级线 GPT 窗口自报读完 [0,3923)，本账本未计入，本次由 0 独立重读校准。",
+  "topical_reads": 0,
+  "books": {
+    "讲伤寒": {
+      "src": {
+        "book": "讲伤寒",
+        "cleaned_len": 395556,
+        "cleaned_sha12": "0e09993f1582",
+        "loader": "tools/corpus_guard.py::load_one",
+        "repo_commit": "e7042ff（126E）→ 本次读记记于 126F",
+        "raw_line_map": "unknown（尚未建立原始页/行映射）"
+      },
+      "sequential_units": [
+        {
+          "title": "概论",
+          "start": 0,
+          "end": 2146,
+          "chars": 2146,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本，且正文两处标「音频缺失」）",
+          "note": "读记见 evidence/顺序首读_讲伤寒_001_概论至第3条_126F.md"
+        },
+        {
+          "title": "第1条",
+          "start": 2146,
+          "end": 3923,
+          "chars": 1777,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本，且正文两处标「音频缺失」）",
+          "note": "读记见 evidence/顺序首读_讲伤寒_001_概论至第3条_126F.md"
+        },
+        {
+          "title": "第2条",
+          "start": 3923,
+          "end": 5011,
+          "chars": 1088,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本，且正文两处标「音频缺失」）",
+          "note": "读记见 evidence/顺序首读_讲伤寒_001_概论至第3条_126F.md"
+        },
+        {
+          "title": "第3条",
+          "start": 5011,
+          "end": 5844,
+          "chars": 833,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本，且正文两处标「音频缺失」）",
+          "note": "读记见 evidence/顺序首读_讲伤寒_001_概论至第3条_126F.md"
+        }
+      ],
+      "next_offset": 5844,
+      "last_completed_unit": "第3条",
+      "next_unit_title": "第4条 伤寒一日，太阳受之…"
+    }
+  }
+}

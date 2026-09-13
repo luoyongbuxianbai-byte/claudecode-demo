@@ -21,7 +21,10 @@ git fetch origin "$(git rev-parse --abbrev-ref HEAD)" && git status -sb | head -
 git log --oneline -1
 
 # ④ 可达性：冻结件 diff 必须为空
+#    ⚠ `git diff HEAD` 只证明**工作区相对 HEAD** 干净，
+#      ⛔ 不证明【自 126 冻结基线至当前 HEAD】无变化 —— 后者须对基线 commit 取 diff：
 git diff HEAD --stat -- V8/ runtime/ rules/core_v0.json
+git diff 39fa549..HEAD --stat -- V8/ runtime/ rules/core_v0.json   # 39fa549 = 126批 冻结基线
 
 # ⑤ 产出新鲜度：证据册是否落后于其生成器（闸门9⑮）
 python3 tools/audit_population_census.py   # 重跑后 git diff 若有改动 ⇒ 上一批的册是旧的

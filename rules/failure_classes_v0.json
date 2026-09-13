@@ -1,7 +1,7 @@
 {
   "$id": "failure_classes_v0",
-  "version": "126E",
-  "title": "取证故障类登记（126批立 A–D；126C 立 E；126E 拆 A1/A2、新立 A3）",
+  "version": "126F",
+  "title": "取证故障类登记（126批立 A–D；126C 立 E；126E 拆 A1/A2、新立 A3/F；126F 提 G）",
   "why": "126批 把四类失败命名之后，工程连续三批发现【类本身的划分有误】。⇒ 故障类须与裁决对象一样持久化、带出处、可被复核，不得只活在某一批报告的叙述里。",
   "classes": [
     {
@@ -99,13 +99,23 @@
       "rule": "凡报覆盖率／完备性，须同时声明其 population 之类型：`repository_known` 抑或 `theory_construct`；后者**至今未建立**。",
       "approved_by": "上级 126E 令四（采 GPT 线裁决）",
       "status": "active"
+    },
+    {
+      "id": "G",
+      "name": "file_level_attribution_masking_passage_level",
+      "def": "以**文件级** speaker／体裁标签覆盖**段落级**归因；同一文件内体裁改变处，附篇继承了正文的标签。",
+      "instance_126F": "⭐ 〔讲伤寒·389357〕之「五型写本」实落在末尾独立文章《胡希恕的六经辨证观》内（篇起 387513，长 8043 字）。126E 据文件级 hu_lecture 标签把它当作可归因于胡老之来源，并与〔C卷·6164〕**并列为两个独立来源**——而二者疑为同一篇文章之两个转录（60 字窗精确重合 8/40=20%，余差疑 OCR）。",
+      "kin": "与 D4 相邻但不同：D4 是整理本某段执笔人未标；G 是**我方**用文件级标签盖住了段落级问题",
+      "rule": "引任何锚之前，先确认它落在该书的哪个**体裁分区**；分区表见 tools/reading_ledger.py::GENRE_SPLITS。⛔ 并：同文转录不得计为独立来源。",
+      "proposed_by": "上级线 GPT 126F 复核指出边界；Code 实核并扩展至『虚增独立证据』",
+      "status": "proposed  ⛔ 待复核"
     }
   ],
   "populations": {
     "repository_known_population": {
       "n": 66,
       "source": "evidence/审计全集普查与分母修复_126B.md",
-      "frozen_at": "126E",
+      "frozen_at": "126E（126F 维持）",
       "⛔": "**≠ 理论构念全集。** 依上级 126E 令四，本集合冻结为仓库已知对象集，不得作为完备性分母。"
     },
     "theory_construct_population": {
@@ -118,6 +128,13 @@
     "current": "Phase 0 · Theory Reconstruction / Construct Discovery",
     "order": "上级 126E 令四：先 Phase 0，**不立即**对 66 对象逐个跑三重攻击",
     "method": "顺序人读（构念发现）→ 跨版本纵向追踪 → 竞争假说 → 再定可执行对象全集",
-    "retrieval_role": "⛔ 检索降为**验证工具**；通读升为**构念发现工具**。二者不得再颠倒。"
+    "retrieval_role": "检索与通读**分工不同，不是禁令关系**（126F 上级复核订正）：检索可定位、可探索、可验证；⛔ 限制只有一条——**不得把检索命中集冒充全文或构念全集**。通读提高覆盖并能生成尚未设问的问题；⚠ **但通读同样可能漏义，不是唯一能生成新问题的方法。**"
+  },
+  "reading": {
+    "ledger": "evidence/顺序首读账本.json",
+    "tool": "tools/reading_ledger.py",
+    "phase0_started": "126F",
+    "first_book": "讲伤寒",
+    "coverage_note": "⛔ 只报**文本阅读覆盖**；『文字读过』不证明『构念没有漏掉』。顺序首读 A 与主题跳读 B 分别记账。"
   }
 }
