@@ -144,11 +144,91 @@
           "speaker": "hu_lecture",
           "text_status": "accepted（OCR；含缺口 3 @13971）",
           "note": "读记见 evidence/顺序首读_讲伤寒_003_第12条桂枝汤_126H.md"
+        },
+        {
+          "title": "第13条",
+          "start": 18548,
+          "end": 18866,
+          "chars": 318,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（OCR）",
+          "note": "读记见 evidence/顺序首读_讲伤寒_004_第13条至第20条_126I.md"
+        },
+        {
+          "title": "第14条",
+          "start": 18866,
+          "end": 19952,
+          "chars": 1086,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（OCR）",
+          "note": "读记见 evidence/顺序首读_讲伤寒_004_第13条至第20条_126I.md"
+        },
+        {
+          "title": "第15条",
+          "start": 19952,
+          "end": 21019,
+          "chars": 1067,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（OCR）",
+          "note": "读记见 evidence/顺序首读_讲伤寒_004_第13条至第20条_126I.md"
+        },
+        {
+          "title": "第16条",
+          "start": 21019,
+          "end": 22872,
+          "chars": 1853,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（OCR）",
+          "note": "读记见 evidence/顺序首读_讲伤寒_004_第13条至第20条_126I.md"
+        },
+        {
+          "title": "第17条",
+          "start": 22872,
+          "end": 23573,
+          "chars": 701,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（OCR）",
+          "note": "读记见 evidence/顺序首读_讲伤寒_004_第13条至第20条_126I.md"
+        },
+        {
+          "title": "第18条",
+          "start": 23573,
+          "end": 23790,
+          "chars": 217,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（OCR）",
+          "note": "读记见 evidence/顺序首读_讲伤寒_004_第13条至第20条_126I.md"
+        },
+        {
+          "title": "第19条",
+          "start": 23790,
+          "end": 24173,
+          "chars": 383,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（OCR）",
+          "note": "读记见 evidence/顺序首读_讲伤寒_004_第13条至第20条_126I.md"
+        },
+        {
+          "title": "第20条",
+          "start": 24173,
+          "end": 25442,
+          "chars": 1269,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（OCR）",
+          "note": "读记见 evidence/顺序首读_讲伤寒_004_第13条至第20条_126I.md"
         }
       ],
-      "next_offset": 18548,
-      "last_completed_unit": "第12条",
-      "next_unit_title": "第13条",
+      "next_offset": 25442,
+      "last_completed_unit": "第20条",
+      "next_unit_title": "第21条（桂枝去芍药汤）⭐ 即 SW-21-MAIWEI 所在条，届时与 C卷注解本对读",
       "known_gaps": [
         {
           "offset": 4614,
@@ -174,6 +254,24 @@
           "after": "这就是十六两一斤的，它一两合这个三钱",
           "affects": "汉制→今制剂量换算之起点陈述可能不完整",
           "rule": "跨缺口之推断待核"
+        },
+        {
+          "offset": 23682,
+          "unit": "第18条",
+          "marker_form": "⋯⋯⋯(音频缺失)  ⭐半角括号，第三种形态",
+          "before": "…你还要加厚朴杏子才好呢",
+          "after": "。你方子还是得加减变化呀",
+          "affects": "§18 喘家之加味理由可能缺失",
+          "rule": "跨缺口之推断待核"
+        },
+        {
+          "offset": 25090,
+          "unit": "第20条",
+          "marker_form": "。。。。。。，  ⛔第四种：裸省略，无「音频缺失」字样",
+          "before": "那么这个可见也是少阴病范围，但是少阴病里头，",
+          "after": "，也就是桂枝汤证",
+          "affects": "§20 归少阴之限定语缺失",
+          "rule": "⛔ 最危险之一种——不自报缺失，机器与人读皆可能直接读过去"
         }
       ],
       "gap_discipline": "⛔ 单元起止可定位 ≠ 单元内部转写完整。前者成立不推出后者成立。",
@@ -183,6 +281,12 @@
           "marker": "今天咱们就讲到这了",
           "note": "其后至 12835 为本讲次总结。⇒ 讲课本除「第N条」外另有「讲次」一层，此前单元标记表未收"
         }
+      ],
+      "gap_marker_forms": [
+        "⋯⋯（音频缺失）",
+        "。。。。。。（音频缺失）",
+        "⋯⋯⋯(音频缺失)  半角括号",
+        "。。。。。。  裸省略·无标注 ⛔"
       ]
     }
   }
