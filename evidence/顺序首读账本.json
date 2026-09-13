@@ -224,11 +224,61 @@
           "speaker": "hu_lecture",
           "text_status": "accepted（OCR）",
           "note": "读记见 evidence/顺序首读_讲伤寒_004_第13条至第20条_126I.md"
+        },
+        {
+          "title": "第21条",
+          "start": 25442,
+          "end": 26528,
+          "chars": 1086,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（OCR）",
+          "note": "读记见 evidence/顺序首读_讲伤寒_005_第21条至第25条_126J.md"
+        },
+        {
+          "title": "第22条",
+          "start": 26528,
+          "end": 26900,
+          "chars": 372,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（OCR）",
+          "note": "读记见 evidence/顺序首读_讲伤寒_005_第21条至第25条_126J.md"
+        },
+        {
+          "title": "第23条",
+          "start": 26900,
+          "end": 29942,
+          "chars": 3042,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（OCR）",
+          "note": "读记见 evidence/顺序首读_讲伤寒_005_第21条至第25条_126J.md"
+        },
+        {
+          "title": "第24条",
+          "start": 29942,
+          "end": 30280,
+          "chars": 338,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（OCR）",
+          "note": "读记见 evidence/顺序首读_讲伤寒_005_第21条至第25条_126J.md"
+        },
+        {
+          "title": "第25条",
+          "start": 30280,
+          "end": 31932,
+          "chars": 1652,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（OCR）",
+          "note": "读记见 evidence/顺序首读_讲伤寒_005_第21条至第25条_126J.md"
         }
       ],
-      "next_offset": 25442,
-      "last_completed_unit": "第20条",
-      "next_unit_title": "第21条（桂枝去芍药汤）⭐ 即 SW-21-MAIWEI 所在条，届时与 C卷注解本对读",
+      "next_offset": 31932,
+      "last_completed_unit": "第25条",
+      "next_unit_title": "第26条",
       "known_gaps": [
         {
           "offset": 4614,
@@ -267,11 +317,20 @@
         {
           "offset": 25090,
           "unit": "第20条",
-          "marker_form": "。。。。。。，  ⛔第四种：裸省略，无「音频缺失」字样",
+          "marker_form": "。。。。。。，  ⚠ suspected_text_break，成因未定（126J 降格：无录音/他本依据，不判为音频缺失）",
           "before": "那么这个可见也是少阴病范围，但是少阴病里头，",
           "after": "，也就是桂枝汤证",
           "affects": "§20 归少阴之限定语缺失",
           "rule": "⛔ 最危险之一种——不自报缺失，机器与人读皆可能直接读过去"
+        },
+        {
+          "offset": 28280,
+          "unit": "第23条",
+          "marker_form": "⋯。。。（音频缺失）（第四讲）  ⚠ 混合形态，并标讲次",
+          "before": "…把他太阳病八九日",
+          "after": "（第四讲）。那么那个欲愈，他不会颜面赤红啊",
+          "affects": "§23 第三节起首之承接语可能缺失",
+          "rule": "跨缺口之推断待核"
         }
       ],
       "gap_discipline": "⛔ 单元起止可定位 ≠ 单元内部转写完整。前者成立不推出后者成立。",
@@ -280,13 +339,19 @@
           "offset": 12245,
           "marker": "今天咱们就讲到这了",
           "note": "其后至 12835 为本讲次总结。⇒ 讲课本除「第N条」外另有「讲次」一层，此前单元标记表未收"
+        },
+        {
+          "offset": 28280,
+          "marker": "（第四讲）",
+          "note": "缺口标记内嵌讲次号 ⇒ 讲次边界亦可出现在缺口处"
         }
       ],
       "gap_marker_forms": [
         "⋯⋯（音频缺失）",
         "。。。。。。（音频缺失）",
-        "⋯⋯⋯(音频缺失)  半角括号",
-        "。。。。。。  裸省略·无标注 ⛔"
+        "⋯⋯⋯(音频缺失) 半角括号",
+        "⋯。。。（音频缺失）（第四讲） 混合并标讲次",
+        "⚠ 另有未标注之疑似中断 1 处 @25090，成因未定"
       ]
     }
   }
