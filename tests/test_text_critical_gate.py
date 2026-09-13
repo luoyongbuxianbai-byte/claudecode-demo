@@ -33,10 +33,10 @@ def ck(name, cond, why=""):
 
 
 # ── G1 闸门表自洽 ─────────────────────────────────────────
-for st in ("suspected_corruption", "rejected_by_hu", "emended_by_hu"):
+for st in ("suspected_corruption", "rejected_by_hu", "emended_by_hu", "disputed_cross_source", "disputed_cross_source"):
     ck("G1 闸门·%s 只许 evidence_only" % st,
        GATE[st] == ["text_critical_evidence_only"], str(GATE[st]))
-for st in ("suspected_corruption", "rejected_by_hu", "emended_by_hu",
+for st in ("suspected_corruption", "rejected_by_hu", "emended_by_hu", "disputed_cross_source",
            "variant", "editorial_reconstruction"):
     ck("G1 闸门·%s 不得 confirm/falsify/scope_split" % st,
        not ({"confirm", "falsify", "scope_split"} & set(GATE[st])), str(GATE[st]))

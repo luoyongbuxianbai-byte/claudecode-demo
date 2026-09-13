@@ -274,11 +274,41 @@
           "speaker": "hu_lecture",
           "text_status": "accepted（OCR）",
           "note": "读记见 evidence/顺序首读_讲伤寒_005_第21条至第25条_126J.md"
+        },
+        {
+          "title": "第26条",
+          "start": 31932,
+          "end": 33824,
+          "chars": 1892,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（OCR）",
+          "note": "读记见 evidence/顺序首读_讲伤寒_006_第26条至第28条_126K.md"
+        },
+        {
+          "title": "第27条",
+          "start": 33824,
+          "end": 36150,
+          "chars": 2326,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（OCR）",
+          "note": "读记见 evidence/顺序首读_讲伤寒_006_第26条至第28条_126K.md"
+        },
+        {
+          "title": "第28条",
+          "start": 36150,
+          "end": 37858,
+          "chars": 1708,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（OCR）",
+          "note": "读记见 evidence/顺序首读_讲伤寒_006_第26条至第28条_126K.md"
         }
       ],
-      "next_offset": 31932,
-      "last_completed_unit": "第25条",
-      "next_unit_title": "第26条",
+      "next_offset": 37858,
+      "last_completed_unit": "第28条",
+      "next_unit_title": "第29条（跨度较大，至 42903）",
       "known_gaps": [
         {
           "offset": 4614,
@@ -330,6 +360,15 @@
           "before": "…把他太阳病八九日",
           "after": "（第四讲）。那么那个欲愈，他不会颜面赤红啊",
           "affects": "§23 第三节起首之承接语可能缺失",
+          "rule": "跨缺口之推断待核"
+        },
+        {
+          "offset": 33179,
+          "unit": "第26条",
+          "marker_form": "。。。。。。。（音频缺失）",
+          "before": "知母、石膏、甘草、粳米",
+          "after": "。但是这个药确实还得有，烦躁",
+          "affects": "白虎加人参汤方药列举之完整性（人参是否在此列出）",
           "rule": "跨缺口之推断待核"
         }
       ],
