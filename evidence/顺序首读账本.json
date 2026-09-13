@@ -1,397 +1,430 @@
 {
-  "schema": "reading_ledger_v0",
-  "created": "126F",
-  "caveat": "本账本只报**文本阅读覆盖**；⛔ 不得改名为理论理解率或构念覆盖率。「文字读过」不证明「构念没有漏掉」。",
-  "reader": "Code（本会话）。⛔ 不继承任何他方声称之已读状态——上级线 GPT 窗口自报读完 [0,3923)，本账本未计入，本次由 0 独立重读校准。",
-  "topical_reads": 0,
-  "books": {
-    "讲伤寒": {
-      "src": {
-        "book": "讲伤寒",
-        "cleaned_len": 395556,
-        "cleaned_sha12": "0e09993f1582",
-        "loader": "tools/corpus_guard.py::load_one",
-        "repo_commit": "e7042ff（126E）→ 本次读记记于 126F",
-        "raw_line_map": "unknown（尚未建立原始页/行映射）"
-      },
-      "sequential_units": [
-        {
-          "title": "概论",
-          "start": 0,
-          "end": 2146,
-          "chars": 2146,
-          "genre": "lecture_transcript",
-          "speaker": "hu_lecture",
-          "text_status": "accepted（⚠ OCR 本，且正文两处标「音频缺失」）",
-          "note": "读记见 evidence/顺序首读_讲伤寒_001_概论至第3条_126F.md"
-        },
-        {
-          "title": "第1条",
-          "start": 2146,
-          "end": 3923,
-          "chars": 1777,
-          "genre": "lecture_transcript",
-          "speaker": "hu_lecture",
-          "text_status": "accepted（⚠ OCR 本，且正文两处标「音频缺失」）",
-          "note": "读记见 evidence/顺序首读_讲伤寒_001_概论至第3条_126F.md"
-        },
-        {
-          "title": "第2条",
-          "start": 3923,
-          "end": 5011,
-          "chars": 1088,
-          "genre": "lecture_transcript",
-          "speaker": "hu_lecture",
-          "text_status": "accepted（⚠ OCR 本，且正文两处标「音频缺失」）",
-          "note": "读记见 evidence/顺序首读_讲伤寒_001_概论至第3条_126F.md"
-        },
-        {
-          "title": "第3条",
-          "start": 5011,
-          "end": 5844,
-          "chars": 833,
-          "genre": "lecture_transcript",
-          "speaker": "hu_lecture",
-          "text_status": "accepted（⚠ OCR 本，且正文两处标「音频缺失」）",
-          "note": "读记见 evidence/顺序首读_讲伤寒_001_概论至第3条_126F.md"
-        },
-        {
-          "title": "第4条",
-          "start": 5844,
-          "end": 6535,
-          "chars": 691,
-          "genre": "lecture_transcript",
-          "speaker": "hu_lecture",
-          "text_status": "accepted（OCR；本区间内无音频缺失标记）",
-          "note": "读记见 evidence/顺序首读_讲伤寒_002_第4条至第11条_126G.md"
-        },
-        {
-          "title": "第5条",
-          "start": 6535,
-          "end": 6820,
-          "chars": 285,
-          "genre": "lecture_transcript",
-          "speaker": "hu_lecture",
-          "text_status": "accepted（OCR；本区间内无音频缺失标记）",
-          "note": "读记见 evidence/顺序首读_讲伤寒_002_第4条至第11条_126G.md"
-        },
-        {
-          "title": "第6条",
-          "start": 6820,
-          "end": 9813,
-          "chars": 2993,
-          "genre": "lecture_transcript",
-          "speaker": "hu_lecture",
-          "text_status": "accepted（OCR；本区间内无音频缺失标记）",
-          "note": "读记见 evidence/顺序首读_讲伤寒_002_第4条至第11条_126G.md"
-        },
-        {
-          "title": "第7条",
-          "start": 9813,
-          "end": 10685,
-          "chars": 872,
-          "genre": "lecture_transcript",
-          "speaker": "hu_lecture",
-          "text_status": "accepted（OCR；本区间内无音频缺失标记）",
-          "note": "读记见 evidence/顺序首读_讲伤寒_002_第4条至第11条_126G.md"
-        },
-        {
-          "title": "第8条",
-          "start": 10685,
-          "end": 11068,
-          "chars": 383,
-          "genre": "lecture_transcript",
-          "speaker": "hu_lecture",
-          "text_status": "accepted（OCR；本区间内无音频缺失标记）",
-          "note": "读记见 evidence/顺序首读_讲伤寒_002_第4条至第11条_126G.md"
-        },
-        {
-          "title": "第9条",
-          "start": 11068,
-          "end": 11629,
-          "chars": 561,
-          "genre": "lecture_transcript",
-          "speaker": "hu_lecture",
-          "text_status": "accepted（OCR；本区间内无音频缺失标记）",
-          "note": "读记见 evidence/顺序首读_讲伤寒_002_第4条至第11条_126G.md"
-        },
-        {
-          "title": "第10条",
-          "start": 11629,
-          "end": 11807,
-          "chars": 178,
-          "genre": "lecture_transcript",
-          "speaker": "hu_lecture",
-          "text_status": "accepted（OCR；本区间内无音频缺失标记）",
-          "note": "读记见 evidence/顺序首读_讲伤寒_002_第4条至第11条_126G.md"
-        },
-        {
-          "title": "第11条",
-          "start": 11807,
-          "end": 12835,
-          "chars": 1028,
-          "genre": "lecture_transcript",
-          "speaker": "hu_lecture",
-          "text_status": "accepted（OCR；本区间内无音频缺失标记）",
-          "note": "读记见 evidence/顺序首读_讲伤寒_002_第4条至第11条_126G.md"
-        },
-        {
-          "title": "第12条（太阳中风·桂枝汤）",
-          "start": 12835,
-          "end": 18548,
-          "chars": 5713,
-          "genre": "lecture_transcript",
-          "speaker": "hu_lecture",
-          "text_status": "accepted（OCR；含缺口 3 @13971）",
-          "note": "读记见 evidence/顺序首读_讲伤寒_003_第12条桂枝汤_126H.md"
-        },
-        {
-          "title": "第13条",
-          "start": 18548,
-          "end": 18866,
-          "chars": 318,
-          "genre": "lecture_transcript",
-          "speaker": "hu_lecture",
-          "text_status": "accepted（OCR）",
-          "note": "读记见 evidence/顺序首读_讲伤寒_004_第13条至第20条_126I.md"
-        },
-        {
-          "title": "第14条",
-          "start": 18866,
-          "end": 19952,
-          "chars": 1086,
-          "genre": "lecture_transcript",
-          "speaker": "hu_lecture",
-          "text_status": "accepted（OCR）",
-          "note": "读记见 evidence/顺序首读_讲伤寒_004_第13条至第20条_126I.md"
-        },
-        {
-          "title": "第15条",
-          "start": 19952,
-          "end": 21019,
-          "chars": 1067,
-          "genre": "lecture_transcript",
-          "speaker": "hu_lecture",
-          "text_status": "accepted（OCR）",
-          "note": "读记见 evidence/顺序首读_讲伤寒_004_第13条至第20条_126I.md"
-        },
-        {
-          "title": "第16条",
-          "start": 21019,
-          "end": 22872,
-          "chars": 1853,
-          "genre": "lecture_transcript",
-          "speaker": "hu_lecture",
-          "text_status": "accepted（OCR）",
-          "note": "读记见 evidence/顺序首读_讲伤寒_004_第13条至第20条_126I.md"
-        },
-        {
-          "title": "第17条",
-          "start": 22872,
-          "end": 23573,
-          "chars": 701,
-          "genre": "lecture_transcript",
-          "speaker": "hu_lecture",
-          "text_status": "accepted（OCR）",
-          "note": "读记见 evidence/顺序首读_讲伤寒_004_第13条至第20条_126I.md"
-        },
-        {
-          "title": "第18条",
-          "start": 23573,
-          "end": 23790,
-          "chars": 217,
-          "genre": "lecture_transcript",
-          "speaker": "hu_lecture",
-          "text_status": "accepted（OCR）",
-          "note": "读记见 evidence/顺序首读_讲伤寒_004_第13条至第20条_126I.md"
-        },
-        {
-          "title": "第19条",
-          "start": 23790,
-          "end": 24173,
-          "chars": 383,
-          "genre": "lecture_transcript",
-          "speaker": "hu_lecture",
-          "text_status": "accepted（OCR）",
-          "note": "读记见 evidence/顺序首读_讲伤寒_004_第13条至第20条_126I.md"
-        },
-        {
-          "title": "第20条",
-          "start": 24173,
-          "end": 25442,
-          "chars": 1269,
-          "genre": "lecture_transcript",
-          "speaker": "hu_lecture",
-          "text_status": "accepted（OCR）",
-          "note": "读记见 evidence/顺序首读_讲伤寒_004_第13条至第20条_126I.md"
-        },
-        {
-          "title": "第21条",
-          "start": 25442,
-          "end": 26528,
-          "chars": 1086,
-          "genre": "lecture_transcript",
-          "speaker": "hu_lecture",
-          "text_status": "accepted（OCR）",
-          "note": "读记见 evidence/顺序首读_讲伤寒_005_第21条至第25条_126J.md"
-        },
-        {
-          "title": "第22条",
-          "start": 26528,
-          "end": 26900,
-          "chars": 372,
-          "genre": "lecture_transcript",
-          "speaker": "hu_lecture",
-          "text_status": "accepted（OCR）",
-          "note": "读记见 evidence/顺序首读_讲伤寒_005_第21条至第25条_126J.md"
-        },
-        {
-          "title": "第23条",
-          "start": 26900,
-          "end": 29942,
-          "chars": 3042,
-          "genre": "lecture_transcript",
-          "speaker": "hu_lecture",
-          "text_status": "accepted（OCR）",
-          "note": "读记见 evidence/顺序首读_讲伤寒_005_第21条至第25条_126J.md"
-        },
-        {
-          "title": "第24条",
-          "start": 29942,
-          "end": 30280,
-          "chars": 338,
-          "genre": "lecture_transcript",
-          "speaker": "hu_lecture",
-          "text_status": "accepted（OCR）",
-          "note": "读记见 evidence/顺序首读_讲伤寒_005_第21条至第25条_126J.md"
-        },
-        {
-          "title": "第25条",
-          "start": 30280,
-          "end": 31932,
-          "chars": 1652,
-          "genre": "lecture_transcript",
-          "speaker": "hu_lecture",
-          "text_status": "accepted（OCR）",
-          "note": "读记见 evidence/顺序首读_讲伤寒_005_第21条至第25条_126J.md"
-        },
-        {
-          "title": "第26条",
-          "start": 31932,
-          "end": 33824,
-          "chars": 1892,
-          "genre": "lecture_transcript",
-          "speaker": "hu_lecture",
-          "text_status": "accepted（OCR）",
-          "note": "读记见 evidence/顺序首读_讲伤寒_006_第26条至第28条_126K.md"
-        },
-        {
-          "title": "第27条",
-          "start": 33824,
-          "end": 36150,
-          "chars": 2326,
-          "genre": "lecture_transcript",
-          "speaker": "hu_lecture",
-          "text_status": "accepted（OCR）",
-          "note": "读记见 evidence/顺序首读_讲伤寒_006_第26条至第28条_126K.md"
-        },
-        {
-          "title": "第28条",
-          "start": 36150,
-          "end": 37858,
-          "chars": 1708,
-          "genre": "lecture_transcript",
-          "speaker": "hu_lecture",
-          "text_status": "accepted（OCR）",
-          "note": "读记见 evidence/顺序首读_讲伤寒_006_第26条至第28条_126K.md"
-        }
-      ],
-      "next_offset": 37858,
-      "last_completed_unit": "第28条",
-      "next_unit_title": "第29条（跨度较大，至 42903）",
-      "known_gaps": [
-        {
-          "offset": 4614,
-          "unit": "第2条",
-          "before": "…你出汗表就虚呀，可是表虚",
-          "after": "这个部位，所以古人叫中风",
-          "affects": "P12（邪在何部位）——缺口落在推理链中间",
-          "rule": "跨缺口之推断待核；两侧完整句仍可用"
-        },
-        {
-          "offset": 5510,
-          "unit": "第3条",
-          "before": "…恶寒比中风明显显著，所以他就叫伤寒了",
-          "after": "那么古人管这个有汗的叫做中风，没汗的叫做伤寒",
-          "affects": "P15（「伤」「中」二字训诂）",
-          "rule": "同上"
-        },
-        {
-          "offset": 13971,
-          "unit": "第12条",
-          "marker_form": "。。。。。。（音频缺失）  ⚠ 与 001 册之 ⋯⋯（音频缺失）形态不同，机器检出须兼收",
-          "before": "…这层皮有一种挥发油这种成分",
-          "after": "这就是十六两一斤的，它一两合这个三钱",
-          "affects": "汉制→今制剂量换算之起点陈述可能不完整",
-          "rule": "跨缺口之推断待核"
-        },
-        {
-          "offset": 23682,
-          "unit": "第18条",
-          "marker_form": "⋯⋯⋯(音频缺失)  ⭐半角括号，第三种形态",
-          "before": "…你还要加厚朴杏子才好呢",
-          "after": "。你方子还是得加减变化呀",
-          "affects": "§18 喘家之加味理由可能缺失",
-          "rule": "跨缺口之推断待核"
-        },
-        {
-          "offset": 25090,
-          "unit": "第20条",
-          "marker_form": "。。。。。。，  ⚠ suspected_text_break，成因未定（126J 降格：无录音/他本依据，不判为音频缺失）",
-          "before": "那么这个可见也是少阴病范围，但是少阴病里头，",
-          "after": "，也就是桂枝汤证",
-          "affects": "§20 归少阴之限定语缺失",
-          "rule": "⛔ 最危险之一种——不自报缺失，机器与人读皆可能直接读过去"
-        },
-        {
-          "offset": 28280,
-          "unit": "第23条",
-          "marker_form": "⋯。。。（音频缺失）（第四讲）  ⚠ 混合形态，并标讲次",
-          "before": "…把他太阳病八九日",
-          "after": "（第四讲）。那么那个欲愈，他不会颜面赤红啊",
-          "affects": "§23 第三节起首之承接语可能缺失",
-          "rule": "跨缺口之推断待核"
-        },
-        {
-          "offset": 33179,
-          "unit": "第26条",
-          "marker_form": "。。。。。。。（音频缺失）",
-          "before": "知母、石膏、甘草、粳米",
-          "after": "。但是这个药确实还得有，烦躁",
-          "affects": "白虎加人参汤方药列举之完整性（人参是否在此列出）",
-          "rule": "跨缺口之推断待核"
-        }
-      ],
-      "gap_discipline": "⛔ 单元起止可定位 ≠ 单元内部转写完整。前者成立不推出后者成立。",
-      "lecture_session_boundaries": [
-        {
-          "offset": 12245,
-          "marker": "今天咱们就讲到这了",
-          "note": "其后至 12835 为本讲次总结。⇒ 讲课本除「第N条」外另有「讲次」一层，此前单元标记表未收"
-        },
-        {
-          "offset": 28280,
-          "marker": "（第四讲）",
-          "note": "缺口标记内嵌讲次号 ⇒ 讲次边界亦可出现在缺口处"
-        }
-      ],
-      "gap_marker_forms": [
-        "⋯⋯（音频缺失）",
-        "。。。。。。（音频缺失）",
-        "⋯⋯⋯(音频缺失) 半角括号",
-        "⋯。。。（音频缺失）（第四讲） 混合并标讲次",
-        "⚠ 另有未标注之疑似中断 1 处 @25090，成因未定"
-      ]
+ "schema": "reading_ledger_v0",
+ "created": "126F",
+ "caveat": "本账本只报**文本阅读覆盖**；⛔ 不得改名为理论理解率或构念覆盖率。「文字读过」不证明「构念没有漏掉」。",
+ "reader": "Code（本会话）。⛔ 不继承任何他方声称之已读状态——上级线 GPT 窗口自报读完 [0,3923)，本账本未计入，本次由 0 独立重读校准。",
+ "topical_reads": 0,
+ "books": {
+  "讲伤寒": {
+   "src": {
+    "book": "讲伤寒",
+    "cleaned_len": 395556,
+    "cleaned_sha12": "0e09993f1582",
+    "loader": "tools/corpus_guard.py::load_one",
+    "repo_commit": "e7042ff（126E）→ 本次读记记于 126F",
+    "raw_line_map": "unknown（尚未建立原始页/行映射）"
+   },
+   "sequential_units": [
+    {
+     "title": "概论",
+     "start": 0,
+     "end": 2146,
+     "chars": 2146,
+     "genre": "lecture_transcript",
+     "speaker": "hu_lecture",
+     "text_status": "accepted（⚠ OCR 本，且正文两处标「音频缺失」）",
+     "note": "读记见 evidence/顺序首读_讲伤寒_001_概论至第3条_126F.md"
+    },
+    {
+     "title": "第1条",
+     "start": 2146,
+     "end": 3923,
+     "chars": 1777,
+     "genre": "lecture_transcript",
+     "speaker": "hu_lecture",
+     "text_status": "accepted（⚠ OCR 本，且正文两处标「音频缺失」）",
+     "note": "读记见 evidence/顺序首读_讲伤寒_001_概论至第3条_126F.md"
+    },
+    {
+     "title": "第2条",
+     "start": 3923,
+     "end": 5011,
+     "chars": 1088,
+     "genre": "lecture_transcript",
+     "speaker": "hu_lecture",
+     "text_status": "accepted（⚠ OCR 本，且正文两处标「音频缺失」）",
+     "note": "读记见 evidence/顺序首读_讲伤寒_001_概论至第3条_126F.md"
+    },
+    {
+     "title": "第3条",
+     "start": 5011,
+     "end": 5844,
+     "chars": 833,
+     "genre": "lecture_transcript",
+     "speaker": "hu_lecture",
+     "text_status": "accepted（⚠ OCR 本，且正文两处标「音频缺失」）",
+     "note": "读记见 evidence/顺序首读_讲伤寒_001_概论至第3条_126F.md"
+    },
+    {
+     "title": "第4条",
+     "start": 5844,
+     "end": 6535,
+     "chars": 691,
+     "genre": "lecture_transcript",
+     "speaker": "hu_lecture",
+     "text_status": "accepted（OCR；本区间内无音频缺失标记）",
+     "note": "读记见 evidence/顺序首读_讲伤寒_002_第4条至第11条_126G.md"
+    },
+    {
+     "title": "第5条",
+     "start": 6535,
+     "end": 6820,
+     "chars": 285,
+     "genre": "lecture_transcript",
+     "speaker": "hu_lecture",
+     "text_status": "accepted（OCR；本区间内无音频缺失标记）",
+     "note": "读记见 evidence/顺序首读_讲伤寒_002_第4条至第11条_126G.md"
+    },
+    {
+     "title": "第6条",
+     "start": 6820,
+     "end": 9813,
+     "chars": 2993,
+     "genre": "lecture_transcript",
+     "speaker": "hu_lecture",
+     "text_status": "accepted（OCR；本区间内无音频缺失标记）",
+     "note": "读记见 evidence/顺序首读_讲伤寒_002_第4条至第11条_126G.md"
+    },
+    {
+     "title": "第7条",
+     "start": 9813,
+     "end": 10685,
+     "chars": 872,
+     "genre": "lecture_transcript",
+     "speaker": "hu_lecture",
+     "text_status": "accepted（OCR；本区间内无音频缺失标记）",
+     "note": "读记见 evidence/顺序首读_讲伤寒_002_第4条至第11条_126G.md"
+    },
+    {
+     "title": "第8条",
+     "start": 10685,
+     "end": 11068,
+     "chars": 383,
+     "genre": "lecture_transcript",
+     "speaker": "hu_lecture",
+     "text_status": "accepted（OCR；本区间内无音频缺失标记）",
+     "note": "读记见 evidence/顺序首读_讲伤寒_002_第4条至第11条_126G.md"
+    },
+    {
+     "title": "第9条",
+     "start": 11068,
+     "end": 11629,
+     "chars": 561,
+     "genre": "lecture_transcript",
+     "speaker": "hu_lecture",
+     "text_status": "accepted（OCR；本区间内无音频缺失标记）",
+     "note": "读记见 evidence/顺序首读_讲伤寒_002_第4条至第11条_126G.md"
+    },
+    {
+     "title": "第10条",
+     "start": 11629,
+     "end": 11807,
+     "chars": 178,
+     "genre": "lecture_transcript",
+     "speaker": "hu_lecture",
+     "text_status": "accepted（OCR；本区间内无音频缺失标记）",
+     "note": "读记见 evidence/顺序首读_讲伤寒_002_第4条至第11条_126G.md"
+    },
+    {
+     "title": "第11条",
+     "start": 11807,
+     "end": 12835,
+     "chars": 1028,
+     "genre": "lecture_transcript",
+     "speaker": "hu_lecture",
+     "text_status": "accepted（OCR；本区间内无音频缺失标记）",
+     "note": "读记见 evidence/顺序首读_讲伤寒_002_第4条至第11条_126G.md"
+    },
+    {
+     "title": "第12条（太阳中风·桂枝汤）",
+     "start": 12835,
+     "end": 18548,
+     "chars": 5713,
+     "genre": "lecture_transcript",
+     "speaker": "hu_lecture",
+     "text_status": "accepted（OCR；含缺口 3 @13971）",
+     "note": "读记见 evidence/顺序首读_讲伤寒_003_第12条桂枝汤_126H.md"
+    },
+    {
+     "title": "第13条",
+     "start": 18548,
+     "end": 18866,
+     "chars": 318,
+     "genre": "lecture_transcript",
+     "speaker": "hu_lecture",
+     "text_status": "accepted（OCR）",
+     "note": "读记见 evidence/顺序首读_讲伤寒_004_第13条至第20条_126I.md"
+    },
+    {
+     "title": "第14条",
+     "start": 18866,
+     "end": 19952,
+     "chars": 1086,
+     "genre": "lecture_transcript",
+     "speaker": "hu_lecture",
+     "text_status": "accepted（OCR）",
+     "note": "读记见 evidence/顺序首读_讲伤寒_004_第13条至第20条_126I.md"
+    },
+    {
+     "title": "第15条",
+     "start": 19952,
+     "end": 21019,
+     "chars": 1067,
+     "genre": "lecture_transcript",
+     "speaker": "hu_lecture",
+     "text_status": "accepted（OCR）",
+     "note": "读记见 evidence/顺序首读_讲伤寒_004_第13条至第20条_126I.md"
+    },
+    {
+     "title": "第16条",
+     "start": 21019,
+     "end": 22872,
+     "chars": 1853,
+     "genre": "lecture_transcript",
+     "speaker": "hu_lecture",
+     "text_status": "accepted（OCR）",
+     "note": "读记见 evidence/顺序首读_讲伤寒_004_第13条至第20条_126I.md"
+    },
+    {
+     "title": "第17条",
+     "start": 22872,
+     "end": 23573,
+     "chars": 701,
+     "genre": "lecture_transcript",
+     "speaker": "hu_lecture",
+     "text_status": "accepted（OCR）",
+     "note": "读记见 evidence/顺序首读_讲伤寒_004_第13条至第20条_126I.md"
+    },
+    {
+     "title": "第18条",
+     "start": 23573,
+     "end": 23790,
+     "chars": 217,
+     "genre": "lecture_transcript",
+     "speaker": "hu_lecture",
+     "text_status": "accepted（OCR）",
+     "note": "读记见 evidence/顺序首读_讲伤寒_004_第13条至第20条_126I.md"
+    },
+    {
+     "title": "第19条",
+     "start": 23790,
+     "end": 24173,
+     "chars": 383,
+     "genre": "lecture_transcript",
+     "speaker": "hu_lecture",
+     "text_status": "accepted（OCR）",
+     "note": "读记见 evidence/顺序首读_讲伤寒_004_第13条至第20条_126I.md"
+    },
+    {
+     "title": "第20条",
+     "start": 24173,
+     "end": 25442,
+     "chars": 1269,
+     "genre": "lecture_transcript",
+     "speaker": "hu_lecture",
+     "text_status": "accepted（OCR）",
+     "note": "读记见 evidence/顺序首读_讲伤寒_004_第13条至第20条_126I.md"
+    },
+    {
+     "title": "第21条",
+     "start": 25442,
+     "end": 26528,
+     "chars": 1086,
+     "genre": "lecture_transcript",
+     "speaker": "hu_lecture",
+     "text_status": "accepted（OCR）",
+     "note": "读记见 evidence/顺序首读_讲伤寒_005_第21条至第25条_126J.md"
+    },
+    {
+     "title": "第22条",
+     "start": 26528,
+     "end": 26900,
+     "chars": 372,
+     "genre": "lecture_transcript",
+     "speaker": "hu_lecture",
+     "text_status": "accepted（OCR）",
+     "note": "读记见 evidence/顺序首读_讲伤寒_005_第21条至第25条_126J.md"
+    },
+    {
+     "title": "第23条",
+     "start": 26900,
+     "end": 29942,
+     "chars": 3042,
+     "genre": "lecture_transcript",
+     "speaker": "hu_lecture",
+     "text_status": "accepted（OCR）",
+     "note": "读记见 evidence/顺序首读_讲伤寒_005_第21条至第25条_126J.md"
+    },
+    {
+     "title": "第24条",
+     "start": 29942,
+     "end": 30280,
+     "chars": 338,
+     "genre": "lecture_transcript",
+     "speaker": "hu_lecture",
+     "text_status": "accepted（OCR）",
+     "note": "读记见 evidence/顺序首读_讲伤寒_005_第21条至第25条_126J.md"
+    },
+    {
+     "title": "第25条",
+     "start": 30280,
+     "end": 31932,
+     "chars": 1652,
+     "genre": "lecture_transcript",
+     "speaker": "hu_lecture",
+     "text_status": "accepted（OCR）",
+     "note": "读记见 evidence/顺序首读_讲伤寒_005_第21条至第25条_126J.md"
+    },
+    {
+     "title": "第26条",
+     "start": 31932,
+     "end": 33824,
+     "chars": 1892,
+     "genre": "lecture_transcript",
+     "speaker": "hu_lecture",
+     "text_status": "accepted（OCR）",
+     "note": "读记见 evidence/顺序首读_讲伤寒_006_第26条至第28条_126K.md"
+    },
+    {
+     "title": "第27条",
+     "start": 33824,
+     "end": 36150,
+     "chars": 2326,
+     "genre": "lecture_transcript",
+     "speaker": "hu_lecture",
+     "text_status": "accepted（OCR）",
+     "note": "读记见 evidence/顺序首读_讲伤寒_006_第26条至第28条_126K.md"
+    },
+    {
+     "title": "第28条",
+     "start": 36150,
+     "end": 37858,
+     "chars": 1708,
+     "genre": "lecture_transcript",
+     "speaker": "hu_lecture",
+     "text_status": "accepted（OCR）",
+     "note": "读记见 evidence/顺序首读_讲伤寒_006_第26条至第28条_126K.md"
+    },
+    {
+     "title": "第29条",
+     "start": 37858,
+     "end": 42903,
+     "chars": 5045,
+     "genre": "lecture_transcript",
+     "speaker": "hu_lecture",
+     "text_status": "accepted（⚠ OCR 本，且正文两处标「音频缺失」）",
+     "note": "读记见 evidence/顺序首读_讲伤寒_007_第29条至第30条_126L.md　⚠ §29 之解释单元并未止于 42903——作者明言「后边的我认为解释得好」，故与 §30 合读",
+     "unit_boundary_caveat": "⛔ 条文边界 ≠ 解释单元边界。GATE_1 实例。"
+    },
+    {
+     "title": "第30条",
+     "start": 42903,
+     "end": 46083,
+     "chars": 3180,
+     "genre": "lecture_transcript",
+     "speaker": "hu_lecture",
+     "text_status": "accepted（⚠ OCR 本，且正文两处标「音频缺失」）",
+     "note": "读记见 evidence/顺序首读_讲伤寒_007_第29条至第30条_126L.md　⭐ 作者判本条为 §29 之更佳解释（「比上一段说明得好」）",
+     "unit_boundary_caveat": "46083 ＝「第二章辨太阳病脉证并治中／第31条」起"
     }
+   ],
+   "next_offset": 46083,
+   "last_completed_unit": "第30条",
+   "next_unit_title": "第31条（章界：第二章 辨太阳病脉证并治中）",
+   "known_gaps": [
+    {
+     "offset": 4614,
+     "unit": "第2条",
+     "before": "…你出汗表就虚呀，可是表虚",
+     "after": "这个部位，所以古人叫中风",
+     "affects": "P12（邪在何部位）——缺口落在推理链中间",
+     "rule": "跨缺口之推断待核；两侧完整句仍可用"
+    },
+    {
+     "offset": 5510,
+     "unit": "第3条",
+     "before": "…恶寒比中风明显显著，所以他就叫伤寒了",
+     "after": "那么古人管这个有汗的叫做中风，没汗的叫做伤寒",
+     "affects": "P15（「伤」「中」二字训诂）",
+     "rule": "同上"
+    },
+    {
+     "offset": 13971,
+     "unit": "第12条",
+     "marker_form": "。。。。。。（音频缺失）  ⚠ 与 001 册之 ⋯⋯（音频缺失）形态不同，机器检出须兼收",
+     "before": "…这层皮有一种挥发油这种成分",
+     "after": "这就是十六两一斤的，它一两合这个三钱",
+     "affects": "汉制→今制剂量换算之起点陈述可能不完整",
+     "rule": "跨缺口之推断待核"
+    },
+    {
+     "offset": 23682,
+     "unit": "第18条",
+     "marker_form": "⋯⋯⋯(音频缺失)  ⭐半角括号，第三种形态",
+     "before": "…你还要加厚朴杏子才好呢",
+     "after": "。你方子还是得加减变化呀",
+     "affects": "§18 喘家之加味理由可能缺失",
+     "rule": "跨缺口之推断待核"
+    },
+    {
+     "offset": 25090,
+     "unit": "第20条",
+     "marker_form": "。。。。。。，  ⚠ suspected_text_break，成因未定（126J 降格：无录音/他本依据，不判为音频缺失）",
+     "before": "那么这个可见也是少阴病范围，但是少阴病里头，",
+     "after": "，也就是桂枝汤证",
+     "affects": "§20 归少阴之限定语缺失",
+     "rule": "⛔ 最危险之一种——不自报缺失，机器与人读皆可能直接读过去"
+    },
+    {
+     "offset": 28280,
+     "unit": "第23条",
+     "marker_form": "⋯。。。（音频缺失）（第四讲）  ⚠ 混合形态，并标讲次",
+     "before": "…把他太阳病八九日",
+     "after": "（第四讲）。那么那个欲愈，他不会颜面赤红啊",
+     "affects": "§23 第三节起首之承接语可能缺失",
+     "rule": "跨缺口之推断待核"
+    },
+    {
+     "offset": 33179,
+     "unit": "第26条",
+     "marker_form": "。。。。。。。（音频缺失）",
+     "before": "知母、石膏、甘草、粳米",
+     "after": "。但是这个药确实还得有，烦躁",
+     "affects": "白虎加人参汤方药列举之完整性（人参是否在此列出）",
+     "rule": "跨缺口之推断待核"
+    },
+    {
+     "offset": 44279,
+     "unit": "第30条",
+     "marker_form": "。。。。。。。。。。（音频丢失）  ⚠ 第五种形态：作者自标「音频丢失」（前四种作「音频缺失」）",
+     "before": "古人认为呀，一过了这个",
+     "after": "。不到夜半，你白天吃了这个药也一样好病",
+     "affects": "作者否定《伤寒论》§30「夜半阳气还」一句之理由陈述中段 ⇒ ⛔ 其完整论证不可得",
+     "rule": "已记之部分仍可引；⛔ 不得声称已掌握其完整论证",
+     "gap_class": "audio_loss_marked_by_source ⛔ 与 126I 之裸「。。。。。。」（suspected_text_break，成因未定）不同"
+    }
+   ],
+   "gap_discipline": "⛔ 单元起止可定位 ≠ 单元内部转写完整。前者成立不推出后者成立。",
+   "lecture_session_boundaries": [
+    {
+     "offset": 12245,
+     "marker": "今天咱们就讲到这了",
+     "note": "其后至 12835 为本讲次总结。⇒ 讲课本除「第N条」外另有「讲次」一层，此前单元标记表未收"
+    },
+    {
+     "offset": 28280,
+     "marker": "（第四讲）",
+     "note": "缺口标记内嵌讲次号 ⇒ 讲次边界亦可出现在缺口处"
+    }
+   ],
+   "gap_marker_forms": [
+    "⋯⋯（音频缺失）",
+    "。。。。。。（音频缺失）",
+    "⋯⋯⋯(音频缺失) 半角括号",
+    "⋯。。。（音频缺失）（第四讲） 混合并标讲次",
+    "⚠ 另有未标注之疑似中断 1 处 @25090，成因未定",
+    "。。。。。。。。。。（音频丢失）  ⚠ 第五种形态：「丢失」非「缺失」，机器检出须兼收"
+   ]
   }
+ }
 }

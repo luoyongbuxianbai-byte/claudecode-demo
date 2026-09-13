@@ -1,140 +1,153 @@
 {
-  "$id": "failure_classes_v0",
-  "version": "126F",
-  "title": "取证故障类登记（126批立 A–D；126C 立 E；126E 拆 A1/A2、新立 A3/F；126F 提 G）",
-  "why": "126批 把四类失败命名之后，工程连续三批发现【类本身的划分有误】。⇒ 故障类须与裁决对象一样持久化、带出处、可被复核，不得只活在某一批报告的叙述里。",
-  "classes": [
-    {
-      "id": "A1",
-      "name": "context_truncation__source_text",
-      "was": "126批 原 A 类",
-      "def": "读原文时取证半径不足：只读到被评议之对象，未读到同一解释单元内之评议。",
-      "instance": "§214 胡老「其中必有错乱，故不释」在条文后约 400 字（125批 第三次同型）",
-      "gate": "GATE_1",
-      "status": "active"
-    },
-    {
-      "id": "A2",
-      "name": "tool_output_truncation",
-      "def_126D": "凡将据检索结果作否定性断言，该次检索不得带任何截断参数（head／--max／limit／head_limit）。",
-      "def_current": "⭐ 126E 按上级令扩展：**任何关于全集、存在性、缺失性、唯一性、数量、覆盖率之断言，其证据生成链不得经过未经证明完备之截断输出。**",
-      "why_extended": "截断不只制造「没有」，也制造「只有这些」「主要是这些」「全部类型如下」。",
-      "instance": "126D：`grep … | head -10` 截断后得出「STEP 0–11 不在本仓库」，实在 `指令/115批…md` L1830",
-      "gate": "GATE_1（原不盖；126E 起明列）",
-      "approved_by": "上级 126E 令四（采 GPT 线扩展定义）",
-      "status": "active"
-    },
-    {
-      "id": "A3",
-      "name": "capability_scope_conflation",
-      "def": "不得由某一工具之限制推断另一工具之能力，须逐工具实测。",
-      "instance": "上级线以 bash 沙箱无网络推断对话层不能抓网页，未试一次即下全称否定；而 web_fetch 一直可用、仓库为 public。⚠ 交接包〇节已写明「请先试一次」，未被读到。",
-      "kin": "与 A2 同族：皆为【从局部证据得全称否定】",
-      "proposed_by": "上级线 126E（自承）",
-      "status": "active"
-    },
-    {
-      "id": "B",
-      "name": "lexical_false_negative",
-      "def": "词在而检索式不中：词序、修饰词插入、近义、单双向未覆盖。",
-      "instance": "「胃气」实有 740 处而判无源；`脉缓` 漏「脉逐渐缓」",
-      "gate": "GATE_2",
-      "status": "active"
-    },
-    {
-      "id": "C",
-      "name": "proposition_entanglement",
-      "def": "一句规则含两个可分别被反例推翻之谓词而未拆。",
-      "instance": "缓→中风（证型＋病因）；数→热（support/confirm/locate/exclude/治疗 五谓词）",
-      "gate": "GATE_3",
-      "status": "active"
-    },
-    {
-      "id": "D1",
-      "name": "speaker_identity_unresolved",
-      "def": "该来源之说话主体未知。",
-      "instance": "C卷（P0）",
-      "gate": "GATE_4",
-      "status": "active"
-    },
-    {
-      "id": "D2",
-      "name": "attribution_overreach",
-      "def": "以 uncertain／editor_compiled 之材料作胡老本人归因。",
-      "gate": "GATE_4",
-      "status": "active"
-    },
-    {
-      "id": "D3",
-      "name": "source_version_unresolved",
-      "def": "同一命题在两本异说而版本关系未定。",
-      "instance_126E": "⭐ 半夏泻心汤：`临床家` 作「少阳太阴并病·上热下寒」〔94205〕，`伤寒论传真` 列为厥阴方证〔164098〕——同一方、同一描述、两个六经标签。",
-      "gate": "GATE_4",
-      "status": "active"
-    },
-    {
-      "id": "D4",
-      "name": "passage_authorship_unresolved",
-      "def": "整理本之该段执笔人未标。",
-      "instance_126E": "⭐ 伤寒论传真·164098：承载改判之「**逐渐悟到**它们属厥阴病证」一句**无主语**，而其后「**胡老指出**」一句有主语 ⇒ 最吃重之句恰恰未署名。",
-      "gate": "GATE_4",
-      "status": "active"
-    },
-    {
-      "id": "E",
-      "name": "asset_fork_unlinked",
-      "def": "同一对象在工程内存在两份以上表示，其证据栏未同步；审计扫到无证据那份，遂把【我方未接线】误报为【证据不存在】。",
-      "instance": "126C：锚在 `tools/fanzhuandui.py::PAIRS`，而 `jiegou_buqi_123.G` 无 ⇒ 7 组误报「无锚」",
-      "rule": "「查不到 X」在报出之前，须先证明本工程内没有第二份该对象的表。",
-      "proposed_by": "Code 126C",
-      "status": "active"
-    },
-    {
-      "id": "F",
-      "name": "construct_population_conflation",
-      "def": "⭐ 126E 新立：把 **repository-known population**（仓库里已被构造出来的对象集合）当作 **theory-construct population**（理论实际拥有的构念集合）。",
-      "why": "66 个对象即便全部通过三重攻击，也只证明这 66 个经得起攻击；不能证明没有第 67 个我们根本没构造出来的重要构念。",
-      "instance": "⭐ 阳五型／阴五型——胡老明列而工程 126 批未发现；66 对象中无任何对象承载「经内五型」这一层（见 `evidence/构念发现_P0-001_阳五型阴五型_126E.md`）",
-      "kin": "㊵ 代理指标须覆盖构念全集",
-      "rule": "凡报覆盖率／完备性，须同时声明其 population 之类型：`repository_known` 抑或 `theory_construct`；后者**至今未建立**。",
-      "approved_by": "上级 126E 令四（采 GPT 线裁决）",
-      "status": "active"
-    },
-    {
-      "id": "G",
-      "name": "file_level_attribution_masking_passage_level",
-      "def": "以**文件级** speaker／体裁标签覆盖**段落级**归因；同一文件内体裁改变处，附篇继承了正文的标签。",
-      "instance_126F": "⭐ 〔讲伤寒·389357〕之「五型写本」实落在末尾独立文章《胡希恕的六经辨证观》内（篇起 387513，长 8043 字）。126E 据文件级 hu_lecture 标签把它当作可归因于胡老之来源，并与〔C卷·6164〕**并列为两个独立来源**——而二者疑为同一篇文章之两个转录（60 字窗精确重合 8/40=20%，余差疑 OCR）。",
-      "kin": "与 D4 相邻但不同：D4 是整理本某段执笔人未标；G 是**我方**用文件级标签盖住了段落级问题",
-      "rule": "引任何锚之前，先确认它落在该书的哪个**体裁分区**；分区表见 tools/reading_ledger.py::GENRE_SPLITS。⛔ 并：同文转录不得计为独立来源。",
-      "proposed_by": "上级线 GPT 126F 复核指出边界；Code 实核并扩展至『虚增独立证据』",
-      "status": "proposed  ⛔ 待复核"
-    }
-  ],
-  "populations": {
-    "repository_known_population": {
-      "n": 66,
-      "source": "evidence/审计全集普查与分母修复_126B.md",
-      "frozen_at": "126E（126F 维持）",
-      "⛔": "**≠ 理论构念全集。** 依上级 126E 令四，本集合冻结为仓库已知对象集，不得作为完备性分母。"
-    },
-    "theory_construct_population": {
-      "n": null,
-      "status": "not_established",
-      "⛔": "尚未建立。Phase 0 之任务即是建立它。在建立之前，任何『覆盖率』『完备』之断言皆无分母。"
-    }
+ "$id": "failure_classes_v0",
+ "version": "126L",
+ "title": "取证故障类登记（126批立 A–D；126C 立 E；126E 拆 A1/A2、新立 A3/F；126F 提 G）；126L 提 B-ENG-01（B 类工程侧实例）",
+ "why": "126批 把四类失败命名之后，工程连续三批发现【类本身的划分有误】。⇒ 故障类须与裁决对象一样持久化、带出处、可被复核，不得只活在某一批报告的叙述里。",
+ "classes": [
+  {
+   "id": "A1",
+   "name": "context_truncation__source_text",
+   "was": "126批 原 A 类",
+   "def": "读原文时取证半径不足：只读到被评议之对象，未读到同一解释单元内之评议。",
+   "instance": "§214 胡老「其中必有错乱，故不释」在条文后约 400 字（125批 第三次同型）",
+   "gate": "GATE_1",
+   "status": "active"
   },
-  "phase": {
-    "current": "Phase 0 · Theory Reconstruction / Construct Discovery",
-    "order": "上级 126E 令四：先 Phase 0，**不立即**对 66 对象逐个跑三重攻击",
-    "method": "顺序人读（构念发现）→ 跨版本纵向追踪 → 竞争假说 → 再定可执行对象全集",
-    "retrieval_role": "检索与通读**分工不同，不是禁令关系**（126F 上级复核订正）：检索可定位、可探索、可验证；⛔ 限制只有一条——**不得把检索命中集冒充全文或构念全集**。通读提高覆盖并能生成尚未设问的问题；⚠ **但通读同样可能漏义，不是唯一能生成新问题的方法。**"
+  {
+   "id": "A2",
+   "name": "tool_output_truncation",
+   "def_126D": "凡将据检索结果作否定性断言，该次检索不得带任何截断参数（head／--max／limit／head_limit）。",
+   "def_current": "⭐ 126E 按上级令扩展：**任何关于全集、存在性、缺失性、唯一性、数量、覆盖率之断言，其证据生成链不得经过未经证明完备之截断输出。**",
+   "why_extended": "截断不只制造「没有」，也制造「只有这些」「主要是这些」「全部类型如下」。",
+   "instance": "126D：`grep … | head -10` 截断后得出「STEP 0–11 不在本仓库」，实在 `指令/115批…md` L1830",
+   "gate": "GATE_1（原不盖；126E 起明列）",
+   "approved_by": "上级 126E 令四（采 GPT 线扩展定义）",
+   "status": "active"
   },
-  "reading": {
-    "ledger": "evidence/顺序首读账本.json",
-    "tool": "tools/reading_ledger.py",
-    "phase0_started": "126F",
-    "first_book": "讲伤寒",
-    "coverage_note": "⛔ 只报**文本阅读覆盖**；『文字读过』不证明『构念没有漏掉』。顺序首读 A 与主题跳读 B 分别记账。"
+  {
+   "id": "A3",
+   "name": "capability_scope_conflation",
+   "def": "不得由某一工具之限制推断另一工具之能力，须逐工具实测。",
+   "instance": "上级线以 bash 沙箱无网络推断对话层不能抓网页，未试一次即下全称否定；而 web_fetch 一直可用、仓库为 public。⚠ 交接包〇节已写明「请先试一次」，未被读到。",
+   "kin": "与 A2 同族：皆为【从局部证据得全称否定】",
+   "proposed_by": "上级线 126E（自承）",
+   "status": "active"
+  },
+  {
+   "id": "B",
+   "name": "lexical_false_negative",
+   "def": "词在而检索式不中：词序、修饰词插入、近义、单双向未覆盖。",
+   "instance": "「胃气」实有 740 处而判无源；`脉缓` 漏「脉逐渐缓」",
+   "gate": "GATE_2",
+   "status": "active"
+  },
+  {
+   "id": "C",
+   "name": "proposition_entanglement",
+   "def": "一句规则含两个可分别被反例推翻之谓词而未拆。",
+   "instance": "缓→中风（证型＋病因）；数→热（support/confirm/locate/exclude/治疗 五谓词）",
+   "gate": "GATE_3",
+   "status": "active"
+  },
+  {
+   "id": "D1",
+   "name": "speaker_identity_unresolved",
+   "def": "该来源之说话主体未知。",
+   "instance": "C卷（P0）",
+   "gate": "GATE_4",
+   "status": "active"
+  },
+  {
+   "id": "D2",
+   "name": "attribution_overreach",
+   "def": "以 uncertain／editor_compiled 之材料作胡老本人归因。",
+   "gate": "GATE_4",
+   "status": "active"
+  },
+  {
+   "id": "D3",
+   "name": "source_version_unresolved",
+   "def": "同一命题在两本异说而版本关系未定。",
+   "instance_126E": "⭐ 半夏泻心汤：`临床家` 作「少阳太阴并病·上热下寒」〔94205〕，`伤寒论传真` 列为厥阴方证〔164098〕——同一方、同一描述、两个六经标签。",
+   "gate": "GATE_4",
+   "status": "active"
+  },
+  {
+   "id": "D4",
+   "name": "passage_authorship_unresolved",
+   "def": "整理本之该段执笔人未标。",
+   "instance_126E": "⭐ 伤寒论传真·164098：承载改判之「**逐渐悟到**它们属厥阴病证」一句**无主语**，而其后「**胡老指出**」一句有主语 ⇒ 最吃重之句恰恰未署名。",
+   "gate": "GATE_4",
+   "status": "active"
+  },
+  {
+   "id": "E",
+   "name": "asset_fork_unlinked",
+   "def": "同一对象在工程内存在两份以上表示，其证据栏未同步；审计扫到无证据那份，遂把【我方未接线】误报为【证据不存在】。",
+   "instance": "126C：锚在 `tools/fanzhuandui.py::PAIRS`，而 `jiegou_buqi_123.G` 无 ⇒ 7 组误报「无锚」",
+   "rule": "「查不到 X」在报出之前，须先证明本工程内没有第二份该对象的表。",
+   "proposed_by": "Code 126C",
+   "status": "active"
+  },
+  {
+   "id": "F",
+   "name": "construct_population_conflation",
+   "def": "⭐ 126E 新立：把 **repository-known population**（仓库里已被构造出来的对象集合）当作 **theory-construct population**（理论实际拥有的构念集合）。",
+   "why": "66 个对象即便全部通过三重攻击，也只证明这 66 个经得起攻击；不能证明没有第 67 个我们根本没构造出来的重要构念。",
+   "instance": "⭐ 阳五型／阴五型——胡老明列而工程 126 批未发现；66 对象中无任何对象承载「经内五型」这一层（见 `evidence/构念发现_P0-001_阳五型阴五型_126E.md`）",
+   "kin": "㊵ 代理指标须覆盖构念全集",
+   "rule": "凡报覆盖率／完备性，须同时声明其 population 之类型：`repository_known` 抑或 `theory_construct`；后者**至今未建立**。",
+   "approved_by": "上级 126E 令四（采 GPT 线裁决）",
+   "status": "active"
+  },
+  {
+   "id": "G",
+   "name": "file_level_attribution_masking_passage_level",
+   "def": "以**文件级** speaker／体裁标签覆盖**段落级**归因；同一文件内体裁改变处，附篇继承了正文的标签。",
+   "instance_126F": "⭐ 〔讲伤寒·389357〕之「五型写本」实落在末尾独立文章《胡希恕的六经辨证观》内（篇起 387513，长 8043 字）。126E 据文件级 hu_lecture 标签把它当作可归因于胡老之来源，并与〔C卷·6164〕**并列为两个独立来源**——而二者疑为同一篇文章之两个转录（60 字窗精确重合 8/40=20%，余差疑 OCR）。",
+   "kin": "与 D4 相邻但不同：D4 是整理本某段执笔人未标；G 是**我方**用文件级标签盖住了段落级问题",
+   "rule": "引任何锚之前，先确认它落在该书的哪个**体裁分区**；分区表见 tools/reading_ledger.py::GENRE_SPLITS。⛔ 并：同文转录不得计为独立来源。",
+   "proposed_by": "上级线 GPT 126F 复核指出边界；Code 实核并扩展至『虚增独立证据』",
+   "status": "proposed  ⛔ 待复核"
+  },
+  {
+   "id": "B-ENG-01",
+   "name": "dependency_graph_false_negative",
+   "parent": "B",
+   "def": "以**一种**耦合通道之阴性，断言**不存在**因果链。与 B 类同构：B 是检索面不足而断词不在，本例是依赖面不足而断因果不在。",
+   "instance_126L": "⛔ 126K 报告 L166 写「我没有找到因果链（**该测试不 import jiegou_buqi_123**）」——括号中之理由不成立：`tests/test_p0_propagation.py` 之 A15 经 `os.system` 调 `tools/manifest.py --fresh`，后者比较**文件 mtime**。⇒ 耦合通道是**文件系统**，在 import 图上本就不可见。126L 受控实验（四步含反向控制，只 `touch` 不改内容即复现）已证成该链。",
+   "kin": "与 A2 tool_output_truncation 同母型：证据链经**未证完备**之面；与 B 同构于「以窄面之阴性断全域之阴性」",
+   "rule": "⛔ 断言「无因果链」之前，须列明**已查哪些耦合通道**及**未查哪些**。import 图之外至少另有：子进程调用（os.system/subprocess）｜文件系统 mtime/内容｜环境变量｜全局状态｜网络。⛔ 未列全者只能写 `unknown`，不得写「无」。",
+   "secondary_finding_126L": "⭐ **重复测量 ≠ 独立样本**：126K 以「各跑 3 次皆绿」支持「无法复现」，而那 6 次全在同一状态点上（表已重新生成后）。对**状态依赖**之失败，跑 N 次绿不具证伪力。⇒ 遇测试异常，第一步读失败断言文本，不是重跑。",
+   "evidence": "evidence/工程异常_E01_test_p0瞬时失败_126L.md",
+   "gate": "GATE_2",
+   "status": "proposed  ⛔ 待上级裁；⛔ 未裁定前不得在他处引作已立之故障类"
   }
+ ],
+ "populations": {
+  "repository_known_population": {
+   "n": 66,
+   "source": "evidence/审计全集普查与分母修复_126B.md",
+   "frozen_at": "126E（126F 维持）",
+   "⛔": "**≠ 理论构念全集。** 依上级 126E 令四，本集合冻结为仓库已知对象集，不得作为完备性分母。"
+  },
+  "theory_construct_population": {
+   "n": null,
+   "status": "not_established",
+   "⛔": "尚未建立。Phase 0 之任务即是建立它。在建立之前，任何『覆盖率』『完备』之断言皆无分母。"
+  }
+ },
+ "phase": {
+  "current": "Phase 0 · Theory Reconstruction / Construct Discovery",
+  "order": "上级 126E 令四：先 Phase 0，**不立即**对 66 对象逐个跑三重攻击",
+  "method": "顺序人读（构念发现）→ 跨版本纵向追踪 → 竞争假说 → 再定可执行对象全集",
+  "retrieval_role": "检索与通读**分工不同，不是禁令关系**（126F 上级复核订正）：检索可定位、可探索、可验证；⛔ 限制只有一条——**不得把检索命中集冒充全文或构念全集**。通读提高覆盖并能生成尚未设问的问题；⚠ **但通读同样可能漏义，不是唯一能生成新问题的方法。**"
+ },
+ "reading": {
+  "ledger": "evidence/顺序首读账本.json",
+  "tool": "tools/reading_ledger.py",
+  "phase0_started": "126F",
+  "first_book": "讲伤寒",
+  "coverage_note": "⛔ 只报**文本阅读覆盖**；『文字读过』不证明『构念没有漏掉』。顺序首读 A 与主题跳读 B 分别记账。"
+ }
 }

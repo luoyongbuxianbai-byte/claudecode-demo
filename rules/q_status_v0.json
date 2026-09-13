@@ -1,0 +1,51 @@
+{
+ "$id": "q_status_v0",
+ "version": "126L",
+ "title": "Q／P0／T 系列之失败条件状态（⛔ 人工维护，⛔ 机器不得改写）",
+ "why": "126L 两次尝试以【词面检测】判定「该问题是否有失败条件」，两次失败：①初版查『失败条件』四字 ⇒ Q-015/Q-016/Q-009 三例假阴性；②改用提案册排除法 ⇒ 本批报告亦在讨论提案，词面仍无法区分【陈述已裁条件】与【讨论提案】。⇒ 结论：这是语义判定，⛔ 词面永远做不到。故改为人工维护本表，工具只做出现位置索引并读取本表。这是 GATE_2『四问不得互推』之正面执行。",
+ "status_enum": {
+  "closure_ratified": "已有失败条件，且经上级裁定或本工程既定纪律认可",
+  "closure_proposed": "已拟失败条件，⛔ 未裁 ⇒ ⛔ 不得据以判死",
+  "open_no_closure": "⛔ 确无失败条件 ⇒ 债务，非研究项",
+  "not_a_question": "⭐ 经核实不是是非问句而是普查任务 ⇒ 本不该有失败条件，属分类错误",
+  "merged": "已并入他编号，其闭合随之",
+  "unassessed": "本表未评估"
+ },
+ "ratifier_note": "⛔ 由 closure_proposed 改为 closure_ratified，须上级线明文裁定，并在 ratified_by 记明批次。⛔ Code 不得自行升级。",
+ "items": {
+  "Q-001": {"status": "closure_ratified", "note": "六栏登记，判据明确", "source": "126I"},
+  "Q-002": {"status": "closure_proposed", "note": "126L §四提案", "source": "126F"},
+  "Q-003": {"status": "closure_ratified", "source": "126F"},
+  "Q-004": {"status": "closure_proposed", "note": "126L §四提案", "source": "126F"},
+  "Q-005": {"status": "not_a_question", "note": "⭐ 实为观察项普查任务；⛔ 且现覆盖 11.65%，不得作全集断言（A2）", "source": "126F"},
+  "Q-006": {"status": "not_a_question", "note": "⭐ 实为《内经》引用之普查任务；⚠ R1 闭卷：只统计作者引用行为，我方不据以推导", "source": "126H"},
+  "Q-007": {"status": "closure_ratified", "source": "126J"},
+  "Q-008": {"status": "closure_proposed", "note": "⚠ 原问句之前提已被 126I 上级订正动摇（『状词不是观察项』已撤）⇒ 126L 提案改写问句本身", "source": "126H"},
+  "Q-009": {"status": "merged", "merged_into": "Q-003", "note": "⭐ 工具假阴性之第三例：明写『⇒ 并入 Q-003』", "source": "126H"},
+  "Q-010": {"status": "closure_ratified", "source": "126H"},
+  "Q-011": {"status": "unassessed", "note": "⛔ Q-011 与 Q-011a–d 之层级关系（总问 vs 子问）未核", "source": "126I"},
+  "Q-011a": {"status": "closure_ratified", "source": "126I"},
+  "Q-011b": {"status": "unassessed", "source": "126I"},
+  "Q-011c": {"status": "unassessed", "source": "126I"},
+  "Q-011d": {"status": "unassessed", "source": "126I"},
+  "Q-012": {"status": "closure_ratified", "note": "126L 已厘清：只关闭『理由未读』一项，⛔ 不关闭校改是否成立；并设防循环", "source": "126J"},
+  "Q-013": {"status": "closure_ratified", "source": "126J"},
+  "Q-014": {"status": "closure_ratified", "note": "126L 措辞已订正", "source": "126J"},
+  "Q-015": {"status": "closure_ratified", "note": "条件写在 126K §四表格列内（工具假阴性之第一例）", "source": "126K"},
+  "Q-016": {"status": "closure_ratified", "note": "同上（第二例）；126L 第二问得部分进展，⛔ 未闭合", "source": "126K"},
+  "Q-017": {"status": "closure_ratified", "note": "126L 立，三候选前件，带失败与搁置条件", "source": "126L"},
+  "Q-018": {"status": "closure_ratified", "note": "126L 立，带失败与搁置条件", "source": "126L"},
+  "P0-001": {"status": "closure_proposed", "note": "126L §四提案", "source": "126E"},
+  "P0-002": {"status": "closure_proposed", "note": "126L §四提案", "source": "126E"},
+  "P0-003": {"status": "closure_proposed", "note": "126L §四提案", "source": "126E"},
+  "P0-004": {"status": "closure_ratified", "source": "126H"},
+  "P0-005": {"status": "closure_ratified", "source": "126H"},
+  "T-126L-1": {"status": "closure_ratified", "note": "本批自立自补，即时生效（闭合-阳/阴 + 搁置条件皆已写明）", "source": "126L"}
+ },
+ "limits": [
+  "⛔ 本表只覆盖已被人工评估之编号；工具索引到而本表未列者，一律报 unregistered。",
+  "⛔ 本表不判断问题是否【已解决】，只判断它【能否被判死】。",
+  "⛔ closure_ratified 不证明该条件之内容充分，只证明它存在且可判。",
+  "⛔ 18 个曾被工具报『见』者，其内容是否充分，本批未逐条核。"
+ ]
+}

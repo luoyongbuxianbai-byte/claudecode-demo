@@ -33,7 +33,7 @@ def ck(name, cond, why=""):
 
 
 # ── G1 闸门表自洽 ─────────────────────────────────────────
-for st in ("suspected_corruption", "rejected_by_hu", "emended_by_hu", "disputed_cross_source", "disputed_cross_source"):
+for st in ("suspected_corruption", "rejected_by_hu", "emended_by_hu", "disputed_cross_source"):
     ck("G1 闸门·%s 只许 evidence_only" % st,
        GATE[st] == ["text_critical_evidence_only"], str(GATE[st]))
 for st in ("suspected_corruption", "rejected_by_hu", "emended_by_hu", "disputed_cross_source",
@@ -52,7 +52,8 @@ for pid, p in P.items():
     ck("G2 %s 之 allowed_roles 合闸" % pid,
        set(p["allowed_roles"]) <= set(GATE[st]),
        "%s ⊄ %s" % (p["allowed_roles"], GATE[st]))
-    ck("⭐G2 %s 之判定须有胡老原话（不得我方径判）" % pid,
+    # ⚠ 126L 订正命名：本项**只证字段存在**，⛔ 不证归属。归属由 G4 查。
+    ck("G2 %s 之 verdict_source／verdict_anchor 字段非空（⛔ 只证字段存在，不证归属）" % pid,
        bool(p.get("verdict_source")) and bool(p.get("verdict_anchor")))
 
 ck("⭐§214 已登记为 rejected_by_hu", P["SW-214"]["text_status"] == "rejected_by_hu")
@@ -96,6 +97,71 @@ for t in targets:
             bad.append((os.path.basename(t), m.start(), w[:100].replace("\n", " ")))
 ck("⭐⭐G3 §214 不再被当作【活】反例／scope_split 依据", not bad,
    "仍在用：%s" % bad[:3])
+
+# ── G4 ⭐⭐ HARD_RULE_2 之**实执行**（126L·上级令一）────────────────
+#   ⛔ 126K 只把 HARD_RULE_2 写成 schema 里的说明字符串，**没有任何代码执行它**。
+#   本节做两件事：①用**一对正负控样本**证明检查器本身能判真伪；
+#                ②把检查器跑在**真实数据**上，机器判不出者**必须带 attribution_review 明报**。
+SPEAKER = {"讲伤寒": "hu_lecture", "讲金匮": "hu_lecture", "C卷": "uncertain",
+           "解读": "editor_compiled", "传真系": "editor_compiled",
+           "病位类方解": "editor_compiled", "汤液经方系": "editor_compiled",
+           "中国汤液方证": "editor_compiled", "伤寒论传真": "editor_compiled",
+           "金匮要略传真": "editor_compiled", "临床家": "editor_compiled",
+           "带教": "editor_compiled_feng"}
+# 这三个值**断言了「胡老本人」作过文本裁决**；disputed_cross_source 不作此断言。
+ASSERTS_HU = {"emended_by_hu", "rejected_by_hu", "suspected_corruption"}
+
+
+def anchor_books(anchor):
+    return [b for b in SPEAKER if b in (anchor or "")]
+
+
+def attribution_machine_verifiable(passage):
+    """HARD_RULE_2 之可执行形式。
+    返回 (ok, why)：ok=True 仅当【不作胡老归因】或【锚中至少一本为 hu_lecture】。
+    ⛔ 本函数**不判孰正**，只判「该归因能否由机器证成」。"""
+    st = passage.get("text_status")
+    if st not in ASSERTS_HU:
+        return True, "本值不断言胡老本人之裁决"
+    bs = anchor_books(passage.get("verdict_anchor"))
+    if not bs:
+        return False, "锚中未识出任何已知书名"
+    if any(SPEAKER[b] == "hu_lecture" for b in bs):
+        return True, "锚含 hu_lecture：%s" % bs
+    return False, "锚所涉之书无一为 hu_lecture：%s" % {b: SPEAKER[b] for b in bs}
+
+
+# ⭐ 正负控：同一份证据，只改 text_status，检查器必须给出相反结论
+_NEG = {"passage_id": "_CTRL_NEG", "text_status": "emended_by_hu",
+        "verdict_anchor": "A·C卷·29360"}          # 归属未定而仍标 emended_by_hu
+_POS = {"passage_id": "_CTRL_POS", "text_status": "disputed_cross_source",
+        "verdict_anchor": "A·C卷·29360"}          # 同一证据，撤下确定归因
+_HU  = {"passage_id": "_CTRL_HU", "text_status": "suspected_corruption",
+        "verdict_anchor": "A·讲伤寒·156700"}      # 锚在 hu_lecture
+ck("⭐⭐G4-负控 归属未定而标 emended_by_hu ⇒ 检查器必须判【不可证成】",
+   attribution_machine_verifiable(_NEG)[0] is False, attribution_machine_verifiable(_NEG)[1])
+ck("⭐⭐G4-正控 同一证据撤下确定归因后 ⇒ 检查器必须判【通过】",
+   attribution_machine_verifiable(_POS)[0] is True, attribution_machine_verifiable(_POS)[1])
+ck("⭐G4-正控2 锚在 hu_lecture 之胡老归因 ⇒ 通过",
+   attribution_machine_verifiable(_HU)[0] is True, attribution_machine_verifiable(_HU)[1])
+
+# ⭐ 跑在真实数据上：机器判不出者，**必须**带 attribution_review 明报
+_pending = []
+for pid, p in sorted(P.items()):
+    ok, why = attribution_machine_verifiable(p)
+    if ok:
+        continue
+    _pending.append(pid)
+    ck("⭐G4 %s 机器判不出归因 ⇒ 须带 attribution_review 明报（⛔ 不得静默）" % pid,
+       isinstance(p.get("attribution_review"), dict)
+       and p["attribution_review"].get("status") == "pending_manual_review",
+       why)
+print("\n⚠ G4：机器可证成之胡老归因 %d 条；**待人工核验** %d 条 ⇒ %s"
+      % (len([1 for p in P.values() if attribution_machine_verifiable(p)[0]
+              and p["text_status"] in ASSERTS_HU]),
+         len(_pending), "｜".join(_pending) or "无"))
+print("⛔ 『待人工核验』**不是已验证**，也**不是已否证**——它是明报的缺口。")
+
 
 print("\n失败 %d 项%s" % (len(FAIL), ("：" + "｜".join(FAIL)) if FAIL else ""))
 sys.exit(1 if FAIL else 0)

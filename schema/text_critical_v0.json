@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "text_critical_v0",
-  "version": "126K",
+  "version": "126L",
   "title": "text-critical gate（125批·上级令八）",
   "description": "⛔ 任何候选证据进入反例审计【之前】，先过本闸。⛔ `suspected_corruption` 与 `rejected_by_hu` 默认不得参与 confirm / falsify / scope_split。",
   "definitions": {
@@ -16,7 +16,7 @@
         "editorial_reconstruction",
         "disputed_cross_source"
       ],
-      "description": "accepted=胡老照常解释｜variant=各本用字不同而皆可通｜emended_by_hu=胡老改字后方解｜suspected_corruption=胡老疑其错乱｜rejected_by_hu=胡老明言不释／拒绝解释｜editorial_reconstruction=整理者所补，非胡老本人｜⭐126K 新增 disputed_cross_source=两来源对同一条给出不同文本处理，孰正未定（⛔ 本值不断言任何人改过字）"
+      "description": "accepted=胡老照常解释｜variant=各本用字不同而皆可通｜emended_by_hu=胡老改字后方解｜suspected_corruption=胡老疑其错乱｜rejected_by_hu=胡老明言不释／拒绝解释｜editorial_reconstruction=整理者所补，非胡老本人｜⭐disputed_cross_source=**两来源对同一条给出不同文本处理**，孰正未定（⛔ 本值不断言任何人改过字）。⛔⛔ **126L 厘清边界：归属未定 ≠ 跨来源冲突。** 本值**只用于确有跨来源异读者**；仅仅『归因不足』**不得**改判为本值——那应记 `attribution_review`，text_status 另行处置。"
     },
     "usage_role": {
       "type": "string",
@@ -117,7 +117,11 @@
     "cross_source_conflict": {
       "type": "object",
       "description": "⭐126K：跨来源文本处理冲突之登记。存在本字段时，text_status 必为 disputed_cross_source。"
+    },
+    "attribution_review": {
+      "type": "object",
+      "description": "⭐126L：本条之归因**未能由机器判定**时之明报栏。⛔ 有本栏即表示【待人工核验】，**不得**被任何路径当作已验证归因读取。须含 anchor_books／其 speaker_status／pending 说明。"
     }
   },
-  "HARD_RULE_2": "⛔⛔【126K 立】凡归因于「胡老本人」之文本裁决（emended_by_hu 等），其 verdict_anchor 若只落在 speaker_status=uncertain 或 editor_compiled 之来源，**不得以该值作为当前状态**；须降为 disputed_cross_source 或另立不作归因之值，并把原判移入 text_status_history。**加冲突说明而保留原确定性字段，等于没改。**"
+  "HARD_RULE_2": "⛔⛔【126K 立】凡归因于「胡老本人」之文本裁决（emended_by_hu 等），其 verdict_anchor 若只落在 speaker_status=uncertain 或 editor_compiled 之来源，**不得以该值作为当前状态**；须降为 disputed_cross_source 或另立不作归因之值，并把原判移入 text_status_history。**加冲突说明而保留原确定性字段，等于没改。** ⭐126L 补：本规则已由 `tests/test_text_critical_gate.py` 之 **G4** 实执行，并以**一对正负控样本**证明检查器本身可判真伪；⛔ 机器判不出者**不得静默**，须带 `attribution_review` 明报待人工核验。⛔⛔ 并申：**整理本之材料不自动成为 `hu_via_editor`**——后者仍需**段落级转述依据**。"
 }

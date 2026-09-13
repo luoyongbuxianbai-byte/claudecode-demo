@@ -102,7 +102,7 @@ G = [
                  "『不渴』后**似脱漏『而呕』二字**，不然则无法理解」。"
                  "⛔⛔ **126K 订正归因**（原写「胡老注」并记 `emended_by_hu`）：本批逐书实查，"
                  "该语**不见于 `hu_lecture`**——C卷 2〔38080／38101〕｜解读 2〔109336／109375〕｜传真系 1〔39503〕，"
-                 "**皆 `uncertain` 或 `editor_compiled`** ⇒ 至多 `hu_via_editor`，"
+                 "**皆 `uncertain` 或 `editor_compiled`**。⛔⛔ **126L**：⚠ 原写「⇒ 至多 `hu_via_editor`」——**撤回**，**材料属整理本不自动成为 `hu_via_editor`**，后者仍须**段落级转述依据**。⇒ 现记 `attribution_pending`。⛔ 并申：**归属未定 ≠ 跨来源冲突**，本组**不因归因不足而改判 `disputed_cross_source`**（本组未见冲突读法）。"
                  "**当前不能作为胡老本人补字之确定证据**。⚠ 与 FLIP-07 不同：本组见于三书且本批未见冲突读法，"
                  "⛔ 但**不因此判其成立**",
  "source_scope": "formula_pattern·伤寒有停水",
