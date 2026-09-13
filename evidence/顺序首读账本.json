@@ -134,11 +134,21 @@
           "speaker": "hu_lecture",
           "text_status": "accepted（OCR；本区间内无音频缺失标记）",
           "note": "读记见 evidence/顺序首读_讲伤寒_002_第4条至第11条_126G.md"
+        },
+        {
+          "title": "第12条（太阳中风·桂枝汤）",
+          "start": 12835,
+          "end": 18548,
+          "chars": 5713,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（OCR；含缺口 3 @13971）",
+          "note": "读记见 evidence/顺序首读_讲伤寒_003_第12条桂枝汤_126H.md"
         }
       ],
-      "next_offset": 12835,
-      "last_completed_unit": "第11条",
-      "next_unit_title": "第12条（太阳中风，阳浮而阴弱…桂枝汤），跨度约 5713 字，须分次读至语义终点",
+      "next_offset": 18548,
+      "last_completed_unit": "第12条",
+      "next_unit_title": "第13条",
       "known_gaps": [
         {
           "offset": 4614,
@@ -155,6 +165,15 @@
           "after": "那么古人管这个有汗的叫做中风，没汗的叫做伤寒",
           "affects": "P15（「伤」「中」二字训诂）",
           "rule": "同上"
+        },
+        {
+          "offset": 13971,
+          "unit": "第12条",
+          "marker_form": "。。。。。。（音频缺失）  ⚠ 与 001 册之 ⋯⋯（音频缺失）形态不同，机器检出须兼收",
+          "before": "…这层皮有一种挥发油这种成分",
+          "after": "这就是十六两一斤的，它一两合这个三钱",
+          "affects": "汉制→今制剂量换算之起点陈述可能不完整",
+          "rule": "跨缺口之推断待核"
         }
       ],
       "gap_discipline": "⛔ 单元起止可定位 ≠ 单元内部转写完整。前者成立不推出后者成立。",
