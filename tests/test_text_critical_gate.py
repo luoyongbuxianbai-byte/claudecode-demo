@@ -110,12 +110,23 @@ ck("⭐⭐G3 §214 不再被当作【活】反例／scope_split 依据", not bad
 #        passage_level）时认定之末篇锚 —— **我写的闸门重犯了它要防的错**。
 #      ⇒ ⛔ **「机器可证成之胡老归因 N 条」这一表述，撤回。**
 #
-# ⭐⭐ 126M 之设计原则（依上级令一）：
-#      **本检查只能【排除】，永远不能【证成】。**
+# ⛔⛔ 126N 上级订正（三条，改的是**语义**，不是算法）：
+#   ①`disqualified` 只能解释为「**当前证据不满足直接归因准入条件**」，
+#     ⛔ **不能**解释成「已证明不是胡老说的」。
+#   ②无分区、载入失败、归属未定，**分别保留原因**，⛔ 不得合称「归因被证伪」。
+#   ③「落在讲课分区」**不是胡老归属之一般必要条件**——
+#     ⭐ **整理本也可能保存有充分归属依据之引文**。
+#     它只是**当前检查所采用之有限准入路径**。
+#   ⇒ 故下文一切措辞以「准入」为准，⛔ 不用「排除／证伪」作结论词。
+#
+# ⭐⭐ 126M 之设计原则（依上级令一，126N 保留）：
+#      **本检查只能【不予准入】，永远不能【证成】。**
 #      因为「锚落在讲课分区」只是段落归属之**必要非充分**条件：
 #      同一分区内仍可有引录、转述、他人插话、整理者按语。
 #      ⇒ 故本检查之输出只有三种：not_applicable｜disqualified｜not_disqualified。
 #      ⛔ **没有 verified 这一档**，⛔ 任何调用方不得把 not_disqualified 读作已验证。
+#      ⛔ 126N：**亦不得把 disqualified 读作「已证明非胡老所说」**——
+#        它只说「**经本检查之有限准入路径，当前证据不足以直接归因**」。
 #      ⇒ 凡 ASSERTS_HU 之条目，**无论检查结果如何，一律须人工核验**。
 #
 # 本检查实际做的三件事（⛔ 仅此三件）：
@@ -182,7 +193,11 @@ def attribution_check(passage):
     """HARD_RULE_2 之**可执行部分**。
 
     返回 (verdict, why)，verdict ∈ {not_applicable, disqualified, not_disqualified}。
-    ⛔⛔ **永不返回 verified**——本检查不能证成段落归属，只能排除。
+    ⛔⛔ **永不返回 verified**——本检查不能证成段落归属。
+    ⛔⛔ 126N：`disqualified` ＝「**当前证据不满足本检查之直接归因准入条件**」，
+        ⛔ **不是**「已证明不是胡老说的」。其 why 逐项保留**各自原因**
+        （anchor_unparseable／offset_out_of_range／无分区表／non_lecture_zone／语料取不到），
+        ⛔ **不得合并称为「归因被证伪」**。
     """
     st = passage.get("text_status")
     if st not in ASSERTS_HU:
@@ -211,9 +226,11 @@ def attribution_check(passage):
             continue
         live.append("%s·%d(%s)" % (bk, off, z["genre"]))
     if live:
-        return "not_disqualified", ("锚落在讲课分区：%s ⛔ 这是必要非充分条件，"
+        return "not_disqualified", ("锚落在讲课分区：%s ⛔ 这是本检查之准入路径，"
                                     "⛔ 不证明段落归属" % live)
-    return "disqualified", "；".join(reasons)
+    # ⛔ 126N：逐项原因**分列保留**，⛔ 不合并为单一结论
+    return "disqualified", ("当前证据不满足本检查之直接归因准入条件（⛔ 非「已证明非胡老所说」）；"
+                            "逐项原因：" + "；".join(reasons))
 
 
 # ⭐⭐ 控样本：含上级线 126M 给出之**两个反向样本**（⛔ 必须判 disqualified）
@@ -265,7 +282,17 @@ print("      同一分区内仍可有引录、转述、他人插话、整理者�
 print("   ⇒ ⭐ 上列 %d 条 **全部**须人工核验；attribution_review 只表示**缺口已显露**。"
       % (len(_disq) + len(_live)))
 
-# ── G5 ⭐⭐ 阻止未验证归因被下游当作确定事实（126M·上级令一末句）──────
+# ── G5 ⭐ **引用附近标记筛查**（126N 依上级令一改名；⛔ 原名「阻断下游」作废）──────
+#
+# ⛔⛔ 126N 上级驳「已阻断下游」之结论，两条理由**皆成立**：
+#   ①本检查在引用 ID **附近 ±400 字**找到「未验证」等词便通过 ⇒
+#     ⭐ **可能由相邻对象之说明替当前对象免责**（窗口内的标记未必指向本 ID）。
+#   ②**标记存在也不能证明消费者据此停止使用** ⇒ 标记是文本，不是约束。
+#   ⇒ 故本项**只是一道筛查**，⛔ **不得**报为「下游已阻断」。
+#   ⇒ 126N **不**扩关键词、**不**加大窗口（上级明令：不再以此宣称完成阻断）。
+#
+# ⭐ 本批改做的是**另一件事**：对已发现之引用**逐项分类**，并单独查
+#   「**当前裁决是否仍依赖未核归因**」——这才是有实质后果的那一类。
 #   上级令：「带 attribution_review 只能表示缺口已显露，
 #            不能让下游继续把旧确定性归因当已验证事实。」
 #   ⇒ 本节扫现役资产，凡引这些 passage_id 者，须同处带未验证标记。
@@ -281,8 +308,9 @@ for _d in _SCAN_DIRS:
             if not _fn.endswith((".md", ".json", ".py")):
                 continue
             _fp = os.path.join(_dp, _fn)
-            if os.path.relpath(_fp, B) in ("rules/text_critical_v0.json",):
-                continue        # 登记档本身
+            if os.path.relpath(_fp, B) in ("rules/text_critical_v0.json",
+                                           "rules/attribution_usage_v0.json"):
+                continue        # ⛔ 登记档本身（text_critical＝裁决档；attribution_usage＝用途分类档）
             try:
                 _raw = open(_fp, encoding="utf-8").read()
             except Exception:
@@ -292,8 +320,49 @@ for _d in _SCAN_DIRS:
                     _w = _raw[max(0, _m.start() - 400): _m.start() + 400]
                     if not any(k in _w for k in _MARKS):
                         _naked.append((os.path.relpath(_fp, B), _pid))
-ck("⭐⭐G5 未验证之胡老归因，下游引用处皆带未验证标记（⛔ 不得裸引）",
-   not _naked, "裸引：%s" % _naked[:5])
+ck("⭐G5 引用附近标记筛查：未验证归因之引用处皆有标记（⛔ 这只是筛查，⛔ 不证明下游已停止使用）",
+   not _naked, "无标记：%s" % _naked[:5])
+
+# ── G6 ⭐⭐ **当前裁决是否仍依赖未核归因**（126N·上级令一）────────────────
+#   ⛔ G5 只看「附近有没有标记」；G6 问的是**有实质后果的那一问**：
+#      这条未核归因，现在是否仍在**支撑一条当前有效的裁决**？
+#   ⇒ 逐项分类由人工维护于 rules/attribution_usage_v0.json，本节只断言
+#     ①该档存在且覆盖全部未验证 ID；②凡标 current_verdict 者须写明其后果与复核路径。
+_USAGE = os.path.join(B, "rules", "attribution_usage_v0.json")
+ck("⭐⭐G6 未验证归因之**引用用途分类档**存在", os.path.exists(_USAGE))
+if os.path.exists(_USAGE):
+    _U = json.load(open(_USAGE, encoding="utf-8"))
+    _items = _U["items"]
+    ck("⭐⭐G6 分类档覆盖全部未验证 ID",
+       set(_UNVERIFIED) <= set(_items), "缺：%s" % (set(_UNVERIFIED) - set(_items)))
+    _CATS = {"test_sample", "historical_note", "current_verdict"}
+    for _pid in sorted(set(_UNVERIFIED) & set(_items)):
+        _uses = _items[_pid].get("uses", [])
+        ck("⭐G6 %s 之每处引用皆已归类（%s）" % (_pid, "／".join(sorted(_CATS))),
+           bool(_uses) and all(u.get("category") in _CATS for u in _uses),
+           str([u.get("category") for u in _uses]))
+        for _u in _uses:
+            if _u.get("category") != "current_verdict":
+                continue
+            ck("⭐⭐G6 %s@%s 为**当前裁决依据** ⇒ 须写明 consequence 与 recheck_path"
+               % (_pid, _u.get("where")),
+               bool(_u.get("consequence")) and bool(_u.get("recheck_path")))
+    _cv = [(p, u) for p, v in _items.items() for u in v.get("uses", [])
+           if u.get("category") == "current_verdict"]
+    # ⭐⭐ 126N：另收 cross_ref_current_verdict —— 那是**不含 ID 字符串**之依赖，
+    #   G5 之字符串筛查看不见它。⛔ 若只数 uses，本表自己就会漏报。
+    _cv += [(p, v["cross_ref_current_verdict"]) for p, v in _items.items()
+            if v.get("cross_ref_current_verdict")]
+    for _p, _v in _items.items():
+        _x = _v.get("cross_ref_current_verdict")
+        if _x:
+            ck("⭐⭐G6 %s 之**无 ID 字符串依赖**亦须写明 consequence 与 recheck_path" % _p,
+               bool(_x.get("consequence")) and bool(_x.get("recheck_path")))
+    print("\n⚠ G6：⭐ **仍在支撑当前裁决**之未核归因 %d 处：" % len(_cv))
+    for _p, _u in _cv:
+        print("   · %-22s @ %s ⇒ %s" % (_p, _u.get("where"), _u.get("consequence")))
+    print("⛔ 这 %d 处是**有实质后果**的；其余引用只是测试样本或历史说明。" % len(_cv))
+    print("⛔ 本节**不**声称下游已停止使用——它只登记「谁在用、用作什么、后果是什么」。")
 
 
 print("\n失败 %d 项%s" % (len(FAIL), ("：" + "｜".join(FAIL)) if FAIL else ""))

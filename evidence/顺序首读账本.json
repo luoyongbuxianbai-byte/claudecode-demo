@@ -386,11 +386,21 @@
      "speaker": "hu_lecture",
      "text_status": "accepted（⚠ OCR 本，且正文两处标「音频缺失」）",
      "note": "读记见 evidence/顺序首读_讲伤寒_008_第31条至第36条_126M.md"
+    },
+    {
+     "title": "第37条",
+     "start": 52215,
+     "end": 54482,
+     "chars": 2267,
+     "genre": "lecture_transcript",
+     "speaker": "hu_lecture",
+     "text_status": "accepted（⚠ OCR 本，且正文两处标「音频缺失」）",
+     "note": "读记见 evidence/顺序首读_讲伤寒_009_第37条_126N.md　⭐ 含作者之字级校改（「已」非「以」，本子上是错的）——本工程首次在讲课正文内直读到；⭐ 并得 P0-003「半表半里」之直接材料"
     }
    ],
-   "next_offset": 52215,
-   "last_completed_unit": "第36条",
-   "next_unit_title": "第37条（至 54482）⚠ 内含文本裁决「这个『已』不是那个『以』，这个本子上是错的」，锚在 hu_lecture",
+   "next_offset": 54482,
+   "last_completed_unit": "第37条",
+   "next_unit_title": "第38条（至 56854）",
    "known_gaps": [
     {
      "offset": 4614,

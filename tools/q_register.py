@@ -123,8 +123,21 @@ def main():
 
     import collections as _c
     print("\n索引到编号 %d 个（⛔ 此数不是待查问题总数，见报头）。" % len(rows))
-    print("类别分布：" + "｜".join("%s %d" % (k, v) for k, v in sorted(_c.Counter(r[4] for r in rows).items())))
-    print("状态分布：" + "｜".join("%s %d" % (k, v) for k, v in sorted(_c.Counter(r[7] for r in rows).items())))
+    # ⛔⛔ 126N 订正：126M 报告把**本工具之分布**当作**登记表之分布**抄走，
+    #    把 survey_task 报成 3（实为 4——Q-019 只在 rules/ 里，本工具不扫该目录故未索引到）。
+    #    ⇒ 分布须以**登记表**为准；本工具之索引结果另行分列，⛔ 二者不得互代。
+    print("\n── 类别分布（⭐ 以**登记表** %s 为准，共 %d 项）──" % (STATUS_FILE, len(status)))
+    print("   " + "｜".join("%s %d" % (k, v) for k, v in
+                           sorted(_c.Counter(v.get("kind", "?") for v in status.values()).items())))
+    print("── 状态分布（同上，以登记表为准）──")
+    print("   " + "｜".join("%s %d" % (k, v) for k, v in
+                           sorted(_c.Counter(v.get("resolved", "?") for v in status.values()).items())))
+    _unindexed = sorted(set(status) - {r[0] for r in rows})
+    if _unindexed:
+        print("⚠ 登记表中有 %d 项**本工具未索引到**（只扫 evidence/、reports/ 之 .md）：%s"
+              % (len(_unindexed), "、".join(_unindexed)))
+        print("   ⛔ 故上面『索引到 %d 个』**小于**登记表实数 %d ⇒ ⛔ 不得以索引数替代表内实数。"
+              % (len(rows), len(status)))
     nocond = [r[0] for r in rows if r[5] == "⛔未写"]
     if nocond:
         print("⚠ 下列 %d 个**尚未写出条件**：" % len(nocond) + "、".join(nocond))

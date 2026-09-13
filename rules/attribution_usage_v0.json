@@ -1,0 +1,97 @@
+{
+ "$id": "attribution_usage_v0",
+ "version": "126N",
+ "title": "未核归因之【引用用途】逐项分类（⛔ 人工维护，⛔ 机器只读不写）",
+
+ "why": "126N 上级令一：G5 在引用 ID 附近 ±400 字找到「未验证」等词便通过，仍可能由**相邻对象之说明**替当前对象免责；且**标记存在也不能证明消费者据此停止使用**。⇒ G5 已改名为「引用附近标记筛查」，⛔ 不再宣称阻断完成。本档改做有实质后果的那一件事：对已发现之引用**逐项区分**测试样本／历史说明／当前裁决依据，并单独查「**当前裁决是否仍依赖未核归因**」。",
+
+ "categories": {
+  "test_sample": "只用「该锚处曾发生某事」这一事实作检测器验收，⛔ 不引其归因内容 ⇒ 归因真伪不影响该用途",
+  "historical_note": "审计台账／历史记录，陈述「某批曾如此登记」⇒ 归因真伪不改变该记录之真值",
+  "current_verdict": "⭐⭐ **当前仍有效之裁决以该归因为依据** ⇒ 归因若不成立，该裁决须重判"
+ },
+
+ "scope_limits": [
+  "⛔ 本档只覆盖 tests/test_text_critical_gate.py::G5 之扫描面（rules/ V8/ term_layer/ tools/ runtime/ compiler/ 之 .md/.json/.py），⛔ 不含 evidence/ reports/ docs/ 指令/。",
+  "⛔ 分类由 Code 人读各引用点后填写；⛔ 未经上级复核。",
+  "⛔ 本档**不**声称下游已停止使用——它只登记「谁在用、用作什么、后果是什么」。"
+ ],
+
+ "items": {
+  "SW-134-PULSE4": {
+   "text_status": "suspected_corruption",
+   "attribution_state": "pending_manual_review（G4：not_disqualified——锚 讲伤寒·156700 落在 lecture_transcript；⛔ 这是准入路径，不证段落归属）",
+   "uses": [
+    {"where": "rules/pulse_cells_v0.json:93", "category": "current_verdict",
+     "what": "以「§134 脉法四句经胡老疑为王叔和窜入」为据，判该段不得作正证 ⇒ PULSE-SHU-HEAT 之 mechanism_explanation 一类**现为空**",
+     "consequence": "⭐ 若该归因不成立，则本类之清空缺乏依据，须重新评估〔C卷·83817 §134〕能否回到 mechanism_explanation。⚠ 方向是 fail-closed（删而非增），⛔ 但删错同样是错——它删掉的可能是一条有效正证。",
+     "recheck_path": "人读 讲伤寒 §134 讲解段之完整解释单元，确认「王叔和窜入」「没什么大意思」二语是讲者本人对该四句之判断，而非引述他人之说或整理者按语"},
+    {"where": "tools/audit_population_census.py:35,40-42", "category": "historical_note",
+     "what": "审计台账记「本条即该登记本身之 verdict_anchor，非污染」"},
+    {"where": "tools/retrieval_integrity_audit.py:75", "category": "historical_note",
+     "what": "126M 所加之补标注释，列举涉及哪些 ID"}
+   ]
+  },
+  "SW-176-BAIHU": {
+   "text_status": "suspected_corruption",
+   "attribution_state": "pending_manual_review（G4：disqualified——锚 C卷·74704，speaker=uncertain。⛔ 只表示不满足本检查之准入条件，⛔ 非「已证明非胡老所说」）",
+   "uses": [
+    {"where": "tools/audit_population_census.py:35,43", "category": "historical_note",
+     "what": "台账记人读所得之原文「此其中必有错简，待考」。⚠ 126M 已订正原「⇒ 登记无误」之过强措辞"}
+   ],
+   "note": "⭐ 在本档扫描面内**未见 current_verdict 用途**；⛔ 但 evidence/ reports/ 不在扫描面内，故⛔ 不得写成「全仓无实质用途」"
+  },
+  "SW-214": {
+   "text_status": "rejected_by_hu",
+   "attribution_state": "pending_manual_review（G4：disqualified——锚在 C卷／解读，speaker 非 hu_lecture）",
+   "uses": [
+    {"where": "tools/retrieval_integrity_audit.py:84-85", "category": "test_sample",
+     "what": "HAND 表两行，作扫描器验收样本：只用「该锚处 124批 曾漏检」这一事实"},
+    {"where": "tools/retrieval_integrity_audit.py:313-314", "category": "test_sample",
+     "what": "报文中声明「两锚为验收样本，扫描器成功复现漏检」"},
+    {"where": "tools/manifest.py:232", "category": "test_sample",
+     "what": "登记描述中同一句验收陈述"},
+    {"where": "tools/audit_population_census.py:35", "category": "historical_note",
+     "what": "126M 补标注释之 ID 列举"},
+    {"where": "tools/retrieval_integrity_audit.py:75,77", "category": "historical_note",
+     "what": "126M 补标注释"}
+   ],
+   "note": "⭐ 其**归因**（「胡老判其错乱而不释」）在本档扫描面内**未被任何当前裁决引用**；⚠ 但 tests/test_text_critical_gate.py::G3 之反向回归仍以 §214 为对象——⛔ G3 断言的是「§214 不再被当活反例」，⛔ 不断言其归因成立，故不入 current_verdict"
+  },
+  "SW-25-HONGDA": {
+   "text_status": "emended_by_hu",
+   "attribution_state": "pending_manual_review（G4：disqualified——锚 C卷·14884／54218，speaker=uncertain）",
+   "uses": [
+    {"where": "tools/retrieval_integrity_audit.py:86", "category": "historical_note",
+     "what": "台账记「已登记」"},
+    {"where": "tools/retrieval_integrity_audit.py:75", "category": "historical_note",
+     "what": "126M 补标注释"},
+    {"where": "tools/audit_population_census.py:35", "category": "historical_note",
+     "what": "同上"}
+   ],
+   "cross_ref_current_verdict": {
+    "where": "tools/retrieval_integrity_audit.py:78-80（PULSE-HONGDA-YANGMING／-LIRESHENG 三行）",
+    "category": "current_verdict",
+    "what": "⭐ 三格以「§25 洪大经胡老改」为据，登记为 `not_usable_emended_by_hu` ⇒ **规则格被停用**",
+    "consequence": "⭐ 若该归因不成立，三格之停用缺乏依据，须重判其可用性。⚠ 方向 fail-closed，⛔ 不因此豁免",
+    "recheck_path": "查 §25 洪大之校改在 hu_lecture 内是否有对应表述；若只见于 C卷／解读，则该停用之依据须改写为「整理本之校改」而非「胡老本人之校改」",
+    "why_not_in_uses": "⚠ 该三行之 ID 是 PULSE-HONGDA-*，**不含字符串 SW-25-HONGDA** ⇒ ⭐ **G5 之字符串筛查看不见它**。⛔⛔ 这正是上级所指之「标记存在不等于消费者停止使用」——**依赖可以不经 ID 字符串而存在**。故本条单列于此。"
+   }
+  },
+  "SW-NUE-CHAIHUGUIJIANG": {
+   "text_status": "suspected_corruption",
+   "attribution_state": "pending_manual_review（G4：disqualified——锚 C卷·115389，speaker=uncertain）",
+   "uses": [
+    {"where": "tools/audit_population_census.py:35,56,59", "category": "historical_note",
+     "what": "台账记该锚即登记本身之 verdict_anchor；并记 META-M9 之方法论内容可留而 scope 不可用"}
+   ]
+  }
+ },
+
+ "findings_126N": [
+  "⭐ 在本档扫描面内，**明确以未核归因支撑当前裁决**者 **2 处**：①rules/pulse_cells_v0.json:93（SW-134-PULSE4）②tools/retrieval_integrity_audit.py:78-80（依 SW-25-HONGDA 之归因停用三个脉象格）。",
+  "⭐⭐ 其中第 ② 处**不含 `SW-25-HONGDA` 这个字符串** ⇒ G5 之筛查**看不见它**。⛔ 这是上级所指之缺陷的一个实例：**依赖可以不经 ID 字符串而存在**，字符串筛查因此不能作为阻断证明。",
+  "⚠ 其余引用皆为 test_sample 或 historical_note ⇒ 归因真伪**不改变其真值**。",
+  "⛔ 两处 current_verdict 之方向皆为 fail-closed（停用／清空）。⛔ 但删错同样是错——它删掉的可能是有效条目，故⛔ 不因方向保守而豁免复核。"
+ ]
+}
