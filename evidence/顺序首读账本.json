@@ -406,11 +406,21 @@
      "speaker": "hu_lecture",
      "text_status": "accepted（⚠ OCR 本；⛔ 本条另有一处疑似转写误：「恶寒特别轻」与上下文相反，见 010 册 §5.2b）",
      "note": "读记见 evidence/顺序首读_讲伤寒_010_第38条_126P.md　⭐⭐ 顺序首读**首次读到医案**，一次三个（传闻死案／作者自身病案／学生治小儿肺炎），完整度差别极大；⭐ 并得剂量翻转配伍效果方向之直接材料"
+    },
+    {
+     "title": "第39条",
+     "start": 56854,
+     "end": 58285,
+     "chars": 1431,
+     "genre": "lecture_transcript",
+     "speaker": "hu_lecture",
+     "text_status": "accepted（⚠ OCR 本）",
+     "note": "读记见 evidence/顺序首读_讲伤寒_011_第39条_126Q.md　⭐ 「伤寒」二字不指伤寒（标签与所指不符之第二例）；⭐ 「无少阴证」之排除性条件六项解剖；⭐ 并直接检验了 S-01 之一条 ⇒ 定点核证 D-02"
     }
    ],
-   "next_offset": 56854,
-   "last_completed_unit": "第38条",
-   "next_unit_title": "第39条（至 58285）",
+   "next_offset": 58285,
+   "last_completed_unit": "第39条",
+   "next_unit_title": "第40条（小青龙汤）",
    "known_gaps": [
     {
      "offset": 4614,
