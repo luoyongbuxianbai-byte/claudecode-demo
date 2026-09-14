@@ -396,11 +396,21 @@
      "speaker": "hu_lecture",
      "text_status": "accepted（⚠ OCR 本，且正文两处标「音频缺失」）",
      "note": "读记见 evidence/顺序首读_讲伤寒_009_第37条_126N.md　⭐ 含作者之字级校改（「已」非「以」，本子上是错的）——本工程首次在讲课正文内直读到；⭐ 并得 P0-003「半表半里」之直接材料"
+    },
+    {
+     "title": "第38条",
+     "start": 54482,
+     "end": 56854,
+     "chars": 2372,
+     "genre": "lecture_transcript",
+     "speaker": "hu_lecture",
+     "text_status": "accepted（⚠ OCR 本；⛔ 本条另有一处疑似转写误：「恶寒特别轻」与上下文相反，见 010 册 §5.2b）",
+     "note": "读记见 evidence/顺序首读_讲伤寒_010_第38条_126P.md　⭐⭐ 顺序首读**首次读到医案**，一次三个（传闻死案／作者自身病案／学生治小儿肺炎），完整度差别极大；⭐ 并得剂量翻转配伍效果方向之直接材料"
     }
    ],
-   "next_offset": 54482,
-   "last_completed_unit": "第37条",
-   "next_unit_title": "第38条（至 56854）",
+   "next_offset": 56854,
+   "last_completed_unit": "第38条",
+   "next_unit_title": "第39条（至 58285）",
    "known_gaps": [
     {
      "offset": 4614,
@@ -481,6 +491,17 @@
      "after": "。这个是补胃的一个收敛药，它有治下利的作用",
      "affects": "葛根芩连汤方解中段 ⇒ 缺失处所指之药不可确定",
      "rule": "⛔ 不补，记 referent_unknown",
+     "gap_class": "audio_loss_marked_by_source",
+     "offset_precision": "⚠ 约值：由上下文定位，未逐字核准偏移"
+    },
+    {
+     "offset": 54700,
+     "unit": "第38条",
+     "marker_form": "。。。。。。。。。。（音频缺失）",
+     "before": "就文字上来分析了，实际他这个",
+     "after": "。生姜、大枣，这不是桂枝汤没芍药吗",
+     "affects": "「文字分析」转向「拆方」之接缝 ⇒ 作者由文字分析所得之结论可能有一段不可得",
+     "rule": "⛔ 不补",
      "gap_class": "audio_loss_marked_by_source",
      "offset_precision": "⚠ 约值：由上下文定位，未逐字核准偏移"
     }
