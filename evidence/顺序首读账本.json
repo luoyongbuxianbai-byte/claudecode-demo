@@ -456,11 +456,51 @@
      "speaker": "hu_lecture",
      "text_status": "accepted（⚠ OCR 本）",
      "note": "读记同上　⭐⭐⭐ 「你就用桂枝汤行不行，这个也对，也不能坏，但是他喘未必然就好」——已读区间内唯一一处作者明答「不加味会怎样」⇒ 成为 Ⅲ(a) 解阻型／Ⅲ(b) 增效型判别准则之经验基础（S-01·v2 §1.1）"
+    },
+    {
+     "title": "第44条",
+     "start": 61827,
+     "end": 62057,
+     "chars": 230,
+     "genre": "lecture_transcript",
+     "speaker": "hu_lecture",
+     "text_status": "accepted（⚠ OCR 本；本区间内无缺失标记）",
+     "note": "读记见 evidence/顺序首读_讲伤寒_013_第44条至第47条_126S.md　⭐ 「外证就指桂枝汤证说的」——承 §42 之外/表分层"
+    },
+    {
+     "title": "第45条",
+     "start": 62057,
+     "end": 63414,
+     "chars": 1357,
+     "genre": "lecture_transcript",
+     "speaker": "hu_lecture",
+     "text_status": "accepted（⚠ OCR 本；本区间内无缺失标记）",
+     "note": "读记同上　⭐⭐⭐ 「定法」：发汗后、下之后表不解，不能再用麻黄汤，都要用桂枝汤 ⇒ **本工程顺序首读中第一条以【既往干预】为前件之规则**；⭐ 并推及方名之外（银翘散亦不行，因薄荷发汗）⇒ 论域是治法属性而非本书方名表；⭐ 并使 T-126R-7（外/表判别程序）前进一半：已发汗透表者其后之不解称「外不解」"
+    },
+    {
+     "title": "第46条",
+     "start": 63414,
+     "end": 65186,
+     "chars": 1772,
+     "genre": "lecture_transcript",
+     "speaker": "hu_lecture",
+     "text_status": "accepted（⚠ OCR 本；本区间内无缺失标记）",
+     "note": "读记同上　⭐⭐⭐ 瞑眩：「若药不瞑眩，厥疾不瘳」——服麻黄汤后发烦目瞑、衄为有效之验；⛔ 并由此立一未决难题：瞑眩与坏证之判别程序作者未给，其所给之「吃药中病」是循环条件；⭐⭐⭐ 「阳气」训释：「古人这个阳气不一定就指的有热，后世都搁上热了，不对的……阳气就指的精气，就是血液、津液」⇒ **T-126R-8 得答**；⭐ 含一则作者自身医案（服治利药后下利无度而令续服）"
+    },
+    {
+     "title": "第47条",
+     "start": 65186,
+     "end": 65845,
+     "chars": 659,
+     "genre": "lecture_transcript",
+     "speaker": "hu_lecture",
+     "text_status": "accepted（⚠ OCR 本；本区间内无缺失标记）",
+     "note": "读记同上　⭐ 自衄者愈；作者否定「红汗」之说为似是而非；⭐⭐ 「病邪比较深、实，阻碍药力」⇒ 表之充实过度亦构成独立阻断，且**解除手段是针刺（风池风府）而非加味** ⇒ H-S01-d 扩为 d′；⚠ 工程资产表不含针刺一栏，登记为分类缺口"
     }
    ],
-   "next_offset": 61827,
-   "last_completed_unit": "第43条",
-   "next_unit_title": "第44条（外证未解不可下）",
+   "next_offset": 65845,
+   "last_completed_unit": "第47条",
+   "next_unit_title": "第48条（二阳并病）",
    "known_gaps": [
     {
      "offset": 4614,
