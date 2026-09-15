@@ -149,7 +149,11 @@ def main():
         # ⛔⛔ 上级 126X 令一·1：**断点须从阅读账本生成**，⛔ 不得在台账里另抄一份
         #    ——「交接包不能同时提供两个现行状态」。126W 之 ST-1 即因手抄而落后一批。
         led = os.path.join(B, "evidence", "顺序首读账本.json")
-        if os.path.exists(led):
+        # ⛔⛔ 上级 126Y 令四：**缺失账本应明确报错**，⛔ 不得静默跳过而留下一份
+        #    看起来完整、实则没有持续状态的交接包。
+        if not os.path.exists(led):
+            raise SystemExit("⛔ 阅读账本缺失（%s）——交接包之持续状态无从生成，已停。" % led)
+        if True:
             # ⛔ 变量名不得用 `L`——本文件之输出缓冲即 `L`。
             #    126X 初稿曾写 `L = json.load(...)`，把输出缓冲替换成了账本 dict，
             #    结果 `"\n".join(L)` 迭代出 dict 的键，生成了一份**只有 7 行、
@@ -163,10 +167,19 @@ def main():
             import corpus_guard as _CG
             allbooks = sum(_CG.BASELINE.values())
             allread = sum(b.get("next_offset", 0) for b in LED["books"].values())
-            live = ("讲伤寒 `[0,%d)` ＝ **%.3f%%**（%d 单元）；十二书合计 %.4f%%；"
-                    "其余十一书 0%%。B 档定向 %d 次。⭐ **本行由账本生成**"
-                    % (off, 100.0 * off / tot, len(bk["sequential_units"]),
-                       100.0 * allread / allbooks, LED.get("topical_reads", 0)))
+            # ⛔⛔ 上级 126Y 令四：**逐书状态同样由账本生成**。
+            #    原文硬编码「其余十一书 0%」——现虽合账本，⛔ 第二本开读后就会**静默失真**。
+            per = []
+            for name, base in _CG.BASELINE.items():
+                o = LED["books"].get(name, {}).get("next_offset", 0)
+                if o:
+                    per.append("%s `[0,%d)` ＝ **%.3f%%**" % (name, o, 100.0 * o / base))
+            unread = [n for n in _CG.BASELINE if not LED["books"].get(n, {}).get("next_offset", 0)]
+            tail = ("；**未开读 %d 本**（%s）" % (len(unread), "、".join(unread))
+                    if unread else "；**十二书皆已开读**")
+            live = ("%s；十二书合计 %.4f%%%s。B 档定向 %d 次。⭐ **本行由账本生成**"
+                    % ("｜".join(per), 100.0 * allread / allbooks, tail,
+                       LED.get("topical_reads", 0)))
             nxt = "从 **%d、%s** 续读。⭐ **本行由账本生成**" % (off, bk.get("next_unit_title", "?"))
             for t in sd["tasks"]:
                 if t["id"] == "ST-1":
@@ -270,8 +283,35 @@ def main():
     #    ⇒ **静默产出错误**。此闸只挡最粗的一类，⛔ 不保证内容正确。
     if not isinstance(L, list):
         raise SystemExit("⛔ 输出缓冲被覆盖（类型 %s）——检查是否有变量名冲突" % type(L).__name__)
+    # ⛔⛔ 上级 126Y 令四：**行数检查只能辅助**；核心须查
+    #    「必要任务、断点及来源是否存在且一致」。
+    body = "\n".join(L)
+    must = {
+        "持续任务台账": "持续任务及状态",
+        "最终交付": "最终交付",
+        "断点": "由账本生成",
+        "冻结件": "冻结件",
+    }
+    missing = [k for k, v in must.items() if v not in body]
+    if missing:
+        raise SystemExit("⛔ 交接包缺必要节：%s——已停" % "、".join(missing))
+    # 断点一致性：正文所报之偏移须与账本一致
+    _led = json.load(open(os.path.join(B, "evidence", "顺序首读账本.json"), encoding="utf-8"))
+    _off = _led["books"]["讲伤寒"]["next_offset"]
+    if ("[0,%d)" % _off) not in body:
+        raise SystemExit("⛔ 交接包所报断点与账本不一致（账本 next_offset=%d）——已停" % _off)
+    # 来源存在性：台账所指之文件须真的在仓库里
+    _st = json.load(open(os.path.join(B, "rules", "standing_tasks_v0.json"), encoding="utf-8"))
+    import glob as _g
+    _bad = []
+    for t in _st["tasks"]:
+        for f in t.get("files", []):
+            if not _g.glob(os.path.join(B, f)):
+                _bad.append("%s → %s" % (t["id"], f))
+    if _bad:
+        raise SystemExit("⛔ 台账所指之来源不存在：%s——已停" % "；".join(_bad))
     if len(L) < 60:
-        raise SystemExit("⛔ 交接包只有 %d 行，远少于常态（≥60）——疑产出被截断或缓冲被覆盖，已停" % len(L))
+        raise SystemExit("⛔ 交接包只有 %d 行，远少于常态（≥60）——⚠ 此为**辅助**检查" % len(L))
     txt = "\n".join(L) + "\n"
     if "--stdout" in sys.argv:
         print(txt)

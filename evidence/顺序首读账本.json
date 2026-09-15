@@ -566,11 +566,41 @@
      "speaker": "hu_lecture",
      "text_status": "accepted（⚠ OCR 本；本区间内无缺失标记）",
      "note": "读记同上　⭐⭐⭐ 「**先其时发汗则愈**」⇒ **服药【时点】进入治疗安排**，本工程顺序首读首例（⚠ 与「先治什么后治什么」之次序**不同类**）；⭐ 两则极简医案；⭐ 「**要是只汗出不发热，桂枝汤还不行**」⇒ Ⅰb 材料"
+    },
+    {
+     "title": "第55条",
+     "start": 73929,
+     "end": 74355,
+     "chars": 426,
+     "genre": "lecture_transcript",
+     "speaker": "hu_lecture",
+     "text_status": "accepted（⚠ OCR 本；本区间内无缺失标记）",
+     "note": "读记见 evidence/顺序首读_讲伤寒_017_第55条至第57条_126Y.md　⭐ 补 §47「自衄者愈」之不足：「**也有不愈的**」「**这不是个决对的**」「它**不是固定的**」⇒ C-05（作者自标确定性）第三例"
+    },
+    {
+     "title": "第56条",
+     "start": 74355,
+     "end": 75555,
+     "chars": 1200,
+     "genre": "lecture_transcript",
+     "speaker": "hu_lecture",
+     "text_status": "accepted（⚠ OCR 本；本区间内无缺失标记）",
+     "note": "读记同上　⭐⭐⭐ **来源判别实例**：头痛有热为「**表里共有的病**」，而以「其**小便清**者，**知不在里，仍在表**也」判其来源 ⇒ **表现位置相同、来源不同、判据在第三处** ⇒ 并入 L-01；⭐ 作者称之为「辨证的法子」「最容易辨的莫过于小便」「要问，不问不行」；⚠ 「小便绝对变色」为强措辞，反例未查"
+    },
+    {
+     "title": "第57条",
+     "start": 75555,
+     "end": 76478,
+     "chars": 923,
+     "genre": "lecture_transcript",
+     "speaker": "hu_lecture",
+     "text_status": "accepted（⚠ OCR 本；本区间内无缺失标记）",
+     "note": "读记同上　⭐⭐ 驳「桂枝下咽，**阳盛则毙**」：「这个**阳盛指着阳气盛于表**那个阳盛，**不是有热**」⇒ 承 §46 之「阳气＝精气」，**被泛读之词还原到具体层级** ⇒ L-01 同型第三例；⭐⭐ 「定法」再得两例（「凡服过麻黄汤而表不解……这是定法」）"
     }
    ],
-   "next_offset": 73929,
-   "last_completed_unit": "第54条",
-   "next_unit_title": "第55条",
+   "next_offset": 76478,
+   "last_completed_unit": "第57条",
+   "next_unit_title": "第58条",
    "known_gaps": [
     {
      "offset": 4614,
