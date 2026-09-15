@@ -146,6 +146,32 @@ def main():
     st = os.path.join(B, "rules", "standing_tasks_v0.json")
     if os.path.exists(st):
         sd = json.load(open(st, encoding="utf-8"))
+        # ⛔⛔ 上级 126X 令一·1：**断点须从阅读账本生成**，⛔ 不得在台账里另抄一份
+        #    ——「交接包不能同时提供两个现行状态」。126W 之 ST-1 即因手抄而落后一批。
+        led = os.path.join(B, "evidence", "顺序首读账本.json")
+        if os.path.exists(led):
+            # ⛔ 变量名不得用 `L`——本文件之输出缓冲即 `L`。
+            #    126X 初稿曾写 `L = json.load(...)`，把输出缓冲替换成了账本 dict，
+            #    结果 `"\n".join(L)` 迭代出 dict 的键，生成了一份**只有 7 行、
+            #    内容是 JSON 键名**的交接包——⭐ 而脚本仍打印「已写」。
+            #    ⇒ 这是一次**静默产出错误**：无异常、无红项、文件存在。
+            LED = json.load(open(led, encoding="utf-8"))
+            bk = LED["books"]["讲伤寒"]
+            tot = bk["src"]["cleaned_len"]
+            off = bk["next_offset"]
+            # ⚠ 账本之 books 只含已开读之书；十二书总字数取自 corpus_guard 之冻结基线
+            import corpus_guard as _CG
+            allbooks = sum(_CG.BASELINE.values())
+            allread = sum(b.get("next_offset", 0) for b in LED["books"].values())
+            live = ("讲伤寒 `[0,%d)` ＝ **%.3f%%**（%d 单元）；十二书合计 %.4f%%；"
+                    "其余十一书 0%%。B 档定向 %d 次。⭐ **本行由账本生成**"
+                    % (off, 100.0 * off / tot, len(bk["sequential_units"]),
+                       100.0 * allread / allbooks, LED.get("topical_reads", 0)))
+            nxt = "从 **%d、%s** 续读。⭐ **本行由账本生成**" % (off, bk.get("next_unit_title", "?"))
+            for t in sd["tasks"]:
+                if t["id"] == "ST-1":
+                    t["current_result"] = live
+                    t["next_action"] = nxt
         w("## ⭐⭐ 持续任务及状态（版本 `%s`）\n" % sd["version"])
         w("⛔⛔ **最新批次指令不是全部任务清单。**")
         w("**最新指令只改变其中的优先级或内容；没有明确撤销的任务继续有效。**")
@@ -239,6 +265,13 @@ def main():
     w("⛔ **常设**：凡报告中称引之对象集合，须能在 repository 中被枚举出来；")
     w("枚举不出者记 `population_gap`，**不得作为待办计数**——不制造不存在的债务。\n")
 
+    # ⛔⛔ 126X 产出健全性闸：本册正常在 100 行以上。
+    #    ⚠ 126X 曾因变量名冲突产出一份 7 行之废件而脚本仍打印「已写」
+    #    ⇒ **静默产出错误**。此闸只挡最粗的一类，⛔ 不保证内容正确。
+    if not isinstance(L, list):
+        raise SystemExit("⛔ 输出缓冲被覆盖（类型 %s）——检查是否有变量名冲突" % type(L).__name__)
+    if len(L) < 60:
+        raise SystemExit("⛔ 交接包只有 %d 行，远少于常态（≥60）——疑产出被截断或缓冲被覆盖，已停" % len(L))
     txt = "\n".join(L) + "\n"
     if "--stdout" in sys.argv:
         print(txt)
