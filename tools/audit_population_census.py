@@ -40,6 +40,15 @@ HAND_126B = {
  "PULSE-SHU-HEAT|讲伤寒·156700": ("TP", "与 155445 同一单元（§134），即 `SW-134-PULSE4` 之王叔和之疑。已处理"),
  "SW-134-PULSE4|讲伤寒·155445": ("REGISTERED", "本条即该登记本身之 verdict_anchor，非污染。⛔ 126M：该登记之归因**未验证**（pending_manual_review）——机器只证锚落在讲课分区，不证段落归属。"),
  "SW-134-PULSE4|讲伤寒·156700": ("REGISTERED", "同上；归因同样**未验证**。"),
+ # ⛔⛔ 126T 追因补入（上级 126S/126T 令）：126P 把本对象之 verdict_anchor
+ #    由「讲伤寒·156700 区」订正为「讲伤寒·155717」并写入 payload，
+ #    ⛔ **而本表未同步** ⇒ anchors_in 扫出 155717、触发「王叔和」报警、
+ #    本表无此 key ⇒ v=UNREAD ⇒ 闸一 unresolved ⇒ 本对象由 downgraded 变
+ #    unknown_pending_audit（126S 开工五检⑤ 抓到，126T 追出成因）。
+ #    ⭐ 补入之依据：126P **已实核该锚并在 payload 留下逐字原文**
+ #    （`verdict_source_hu_lecture_126P`）⇒ 人读确已发生，缺的只是本表之登记。
+ #    ⛔ 补入只恢复「已人读」这一事实，⛔ **不改变该条归因仍 pending_manual_review**。
+ "SW-134-PULSE4|讲伤寒·155717": ("REGISTERED", "⭐ 126P 实核之 verdict_anchor 本身，非污染。⛔ 126T 补登：该登记之归因**仍未验证**（pending_manual_review）——机器只证锚落在讲课分区，不证段落归属；且 126P 已指出此处是【作者认同注家之说】而非【作者独立判定】。"),
  "SW-176-BAIHU|C卷·74704": ("REGISTERED", "已人读全文：「此其中**必有错简，待考**」。⛔**126M 订正**：原作「⇒ 登记无误」**过强，撤回**——人读所证者是【C卷 该处有此语】，⛔ 不证【此语出自胡老本人】（C卷 speaker=uncertain）⇒ attribution_review = pending_manual_review，归因**未验证**。"),
  "FLIP-03|C卷·70744": ("KNOWN", "§214 之注，125批 已据以撤销 scope_split；本锚现只出现在撤销说明中"),
  "FLIP-03|讲伤寒·262358": ("FP", "⛔**假命中**：该处「只要是燥屎就可以用它，**是不对的**」——"

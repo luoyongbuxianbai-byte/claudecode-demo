@@ -33,9 +33,47 @@ STATUS_MARK = {
 }
 
 
-def anchor_path(a):
-    """把 `path::locator` 之 locator 去掉，返回仓库相对路径。"""
-    return a.split("::", 1)[0]
+def anchor_split(a):
+    """`path::locator` ⇒ (path, locator or None)。"""
+    if "::" in a:
+        p, loc = a.split("::", 1)
+        return p, loc
+    return a, None
+
+
+# ⛔ 上级 126T：定位符**逐步补检**，⛔ 不为此造大型工具。
+#    现只认两种可机械判定的形态；其余一律记 not_checkable，⛔ 不冒充已检。
+def locator_status(path, loc):
+    """返回 'ok' | 'missing' | 'not_checkable'。"""
+    if loc is None:
+        return "not_checkable"          # 无定位符 ⇒ 本就只到文件级
+    try:
+        txt = open(os.path.join(B, path), encoding="utf-8").read()
+    except Exception:
+        return "missing"
+    # 形态一：JSON 之顶层 key 或 items 之 key，写作 `::KEY` 或 `::a::b`
+    if path.endswith(".json"):
+        for part in loc.split("::"):
+            for k in re.split(r"[,，]", part):
+                k = k.strip()
+                if not k:
+                    continue
+                if ('"%s"' % k) not in txt:
+                    return "missing"
+        return "ok"
+    # 形态二：Markdown 之 §编号，写作 `::§8.7` / `::§二` / `::§3.1,§七` / `::§2.1-2.2`
+    # ⚠⚠ 本册之标题行形如「## ⭐⭐ 七、…」「#### ⭐⭐⭐ 5.2b‴ …」「> ## ⛔⛔⛔ §〇 …」——
+    #    编号前有标记、有时整行在引用块内。故**取出全部标题行，再看编号是否出现在某一标题行内**。
+    # ⛔ 这是**包含**匹配，不是精确节号匹配：标题行里别处出现同一串亦算命中。
+    #    ⇒ 报账时须照实说是「出现在某条标题行内」，⛔ 不得说成「该节存在且支持命题」。
+    if loc.startswith("§"):
+        heads = re.findall(r"^(?:>\s*)?#{1,6}\s+.*$", txt, re.M)
+        parts = [x.strip() for x in re.split(r"[,，\-]", loc.replace("§", "")) if x.strip()]
+        for k in parts:
+            if not any(k in h for h in heads):
+                return "missing"
+        return "ok"
+    return "not_checkable"
 
 
 def check(d):
@@ -43,6 +81,8 @@ def check(d):
     red = []
     seen = set()
     n_anchor = 0
+    n_file_missing = 0
+    n_loc = {}
     for ch in d["chapters"]:
         for e in ch["entries"]:
             if e["id"] in seen:
@@ -50,9 +90,15 @@ def check(d):
             seen.add(e["id"])
             for a in e["anchors"]:
                 n_anchor += 1
-                p = anchor_path(a)
+                p, loc = anchor_split(a)
                 if not os.path.exists(os.path.join(B, p)):
-                    red.append("锚不可达：%s（条目 %s）" % (a, e["id"]))
+                    red.append("锚之**文件**不存在：%s（条目 %s）" % (a, e["id"]))
+                    n_file_missing += 1
+                    continue
+                st = locator_status(p, loc)
+                n_loc[st] = n_loc.get(st, 0) + 1
+                if st == "missing":
+                    red.append("锚之**定位符**在该文件内未找到：%s（条目 %s）" % (a, e["id"]))
             if e["status"] not in STATUS_MARK:
                 red.append("status 非法：%s（条目 %s）" % (e["status"], e["id"]))
             # ⛔ 凡附注里写了「撤回」，须注明**哪一批**撤的 —— 无批次之撤回说明
@@ -64,7 +110,8 @@ def check(d):
     if not any(e["status"] == "retracted_registry"
                for ch in d["chapters"] for e in ch["entries"]):
         red.append("全表无 retracted_registry 条目：撤回历史无处保留")
-    return red, dict(entries=len(seen), anchors=n_anchor)
+    return red, dict(entries=len(seen), anchors=n_anchor,
+                     file_missing=n_file_missing, loc=n_loc)
 
 
 def render(d):
@@ -134,8 +181,21 @@ def main():
         for r in red:
             print("   · %s" % r)
         sys.exit(1)
-    print("自检：✅ 锚全部可达，编号无重复，status 合法")
-    print("⛔ 本自检**只查可机械查者**——它不证明命题为真，不证明证据充分。")
+    loc = stat["loc"]
+    # ⛔⛔ 上级 126T 令一：报账措辞须与实际所查者一致。
+    #     旧版印「锚全部可达」——实际只查了**文件是否存在**。
+    print("自检通过（⛔ 只及于下列三项，⛔ 不及其余）：")
+    print("   ① 编号无重复；② status 合法；③ 撤回附注已注明批次")
+    print("   ④ 锚之**文件路径**全部存在：%d/%d" % (stat["anchors"] - stat["file_missing"],
+                                            stat["anchors"]))
+    print("   ⑤ 锚之**定位符**：已核 %d 条（§编号／JSON 键），"
+          "⛔ 无定位符或形态未支持而**未核** %d 条"
+          % (loc.get("ok", 0), loc.get("not_checkable", 0)))
+    print("")
+    print("⛔⛔ **本自检不做、也不能做的三件事**：")
+    print("   ⛔ 不验证该定位符所指之段落**支持**该命题；")
+    print("   ⛔ 不验证命题为真、证据充分、范围正确；")
+    print("   ⛔ 不验证被撤回之判断是否仍被别处当作现行结论引用。")
 
 
 if __name__ == "__main__":

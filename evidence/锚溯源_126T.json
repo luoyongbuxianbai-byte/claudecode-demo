@@ -1,0 +1,441 @@
+{
+ "$id": "anchor_provenance_126T",
+ "title": "锚溯源（清洗字位 → 原始 OCR 行段）·126T 关键引用",
+ "scope": "⭐ 上级 126T 令六**第二步**：只对**本批关键引用**建立对应。⛔ 非全书映射。",
+ "layers": {
+  "①已有": "清洗文本版本与现有字位锚（`tools/corpus_guard.py` 之冻结基线）——保留不动",
+  "②本批做": "清洗字位 → **原始 OCR 行段**（raw 字符下标 ＋ 1-based 行号）",
+  "③未做": "⛔ **纸本页码与图像核验** —— 须取得版面后方可做；⛔ **严禁由 OCR 行号猜页码**",
+  "④纪律": "⛔ 多处同文或无法唯一对应者，**显式保留歧义**（见每条之 `ambiguous`）"
+ },
+ "caveats": [
+  "⛔ `page_marks_nearby_in_raw` 只是**原始文件中确实存在的残迹串**，⛔ 未与版面核验，⛔ 不是页码断言。",
+  "⛔ 本表**不验证**该段落支持任何命题。",
+  "⭐ 工具自带一致性闸：重放之清洗结果须与 `corpus_guard.load_one` **逐字相同**，否则停。"
+ ],
+ "anchors": [
+  {
+   "book": "讲伤寒",
+   "cleaned_start": 20750,
+   "cleaned_end": 20960,
+   "label": "§15 汗吐下亡津液 ⇒ 必须用桂枝汤（P-01 §一之关键句）"
+  },
+  {
+   "book": "讲伤寒",
+   "cleaned_start": 20846,
+   "cleaned_end": 20930,
+   "label": "§15「凡是津液有所损伤之后，有表证，用桂枝汤，不能用麻黄汤，不管他有汗没汗」"
+  },
+  {
+   "book": "讲伤寒",
+   "cleaned_start": 21048,
+   "cleaned_end": 21130,
+   "label": "§16「此为坏病，桂枝不中与之也」——定法之原文限制"
+  },
+  {
+   "book": "讲伤寒",
+   "cleaned_start": 62703,
+   "cleaned_end": 62800,
+   "label": "§45「这是定法」"
+  },
+  {
+   "book": "讲伤寒",
+   "cleaned_start": 62900,
+   "cleaned_end": 62990,
+   "label": "§45 同一单元后段「原则上应该辛温发汗……要辨方证」"
+  },
+  {
+   "book": "讲伤寒",
+   "cleaned_start": 64457,
+   "cleaned_end": 64640,
+   "label": "§46 半夜砸门案·全案（F-01 §甲.2 时间线 T1–T6）"
+  },
+  {
+   "book": "讲伤寒",
+   "cleaned_start": 64536,
+   "cleaned_end": 64580,
+   "label": "§46「这个药治下利的，它不会更下利」——N5 不循环之个案推理"
+  },
+  {
+   "book": "讲伤寒",
+   "cleaned_start": 64591,
+   "cleaned_end": 64625,
+   "label": "§46「去了这个小孩子就好多了」——⭐ 好转出现在第二次给药之前"
+  },
+  {
+   "book": "讲伤寒",
+   "cleaned_start": 65117,
+   "cleaned_end": 65190,
+   "label": "§46「阳气就指的精气……就是血液、津液」"
+  },
+  {
+   "book": "讲伤寒",
+   "cleaned_start": 65205,
+   "cleaned_end": 65240,
+   "label": "§47「自衄者愈」"
+  },
+  {
+   "book": "讲伤寒",
+   "cleaned_start": 65507,
+   "cleaned_end": 65580,
+   "label": "§47「病邪啊，比较深、实，阻碍药力」"
+  },
+  {
+   "book": "讲伤寒",
+   "cleaned_start": 59079,
+   "cleaned_end": 59130,
+   "label": "§40 (a)「或有或无，不必管他，都要用小青龙汤」"
+  },
+  {
+   "book": "讲伤寒",
+   "cleaned_start": 59357,
+   "cleaned_end": 59400,
+   "label": "§40 (b)「无论小便利不利他都能治」"
+  },
+  {
+   "book": "讲伤寒",
+   "cleaned_start": 59835,
+   "cleaned_end": 59920,
+   "label": "§40 (c)「起码这个病它不渴……是由于误治啊」"
+  },
+  {
+   "book": "讲伤寒",
+   "cleaned_start": 54444,
+   "cleaned_end": 54500,
+   "label": "§37「不渴没有阳明病，阳明病准渴」——R-01 待攻击命题之出处"
+  },
+  {
+   "book": "讲伤寒",
+   "cleaned_start": 208172,
+   "cleaned_end": 208230,
+   "label": "§180「阳明之为病，胃家实是也」"
+  },
+  {
+   "book": "讲伤寒",
+   "cleaned_start": 208556,
+   "cleaned_end": 208620,
+   "label": "§182「身热，汗自出，不恶寒，反恶热也」"
+  },
+  {
+   "book": "讲金匮",
+   "cleaned_start": 166519,
+   "cleaned_end": 166600,
+   "label": "讲金匮「大青龙汤，咱讲过的是麻黄汤和越婢汤合方」"
+  },
+  {
+   "book": "讲金匮",
+   "cleaned_start": 166662,
+   "cleaned_end": 166790,
+   "label": "讲金匮「越婢汤得有汗」——二方适用状态互斥"
+  },
+  {
+   "book": "讲金匮",
+   "cleaned_start": 58718,
+   "cleaned_end": 58800,
+   "label": "讲金匮「栝蒌根的渴，有两种……」"
+  }
+ ],
+ "resolved": [
+  {
+   "book": "讲伤寒",
+   "cleaned_start": 20750,
+   "cleaned_end": 20960,
+   "raw_start": 23072,
+   "raw_end": 23309,
+   "raw_line_start": 1460,
+   "raw_line_end": 1476,
+   "snippet": "汗吐下这种治疗，这都是攻啊，都是治实证的办法呀，全足以亡津液、亡血液，所以经过这一种治疗而有表证，决不能再发汗了，不能用麻黄汤了，必须用桂枝汤。为什么？桂枝汤，它是安中养液而来解除疾病的。所以凡是津液有所损伤之后，有表证，用桂枝汤，不能用麻黄汤，不管他有汗没汗。这个凡是太阳病，下之后而表不解，这还得使桂枝汤。表不解，有什么证候呢？这是一个，一种，他气上冲，那说明表没解。那么可以与桂枝汤，根据前边，还得喝稀粥的方法。“",
+   "occurrences_in_cleaned": 1,
+   "ambiguous": false,
+   "page_marks_nearby_in_raw": [],
+   "page_marks_caveat": "⛔ 仅为 OCR 残迹所载之串，⛔ 未与版面核验，⛔ 不得据以断定纸本页码",
+   "label": "§15 汗吐下亡津液 ⇒ 必须用桂枝汤（P-01 §一之关键句）"
+  },
+  {
+   "book": "讲伤寒",
+   "cleaned_start": 20846,
+   "cleaned_end": 20930,
+   "raw_start": 23189,
+   "raw_end": 23277,
+   "raw_line_start": 1469,
+   "raw_line_end": 1474,
+   "snippet": "凡是津液有所损伤之后，有表证，用桂枝汤，不能用麻黄汤，不管他有汗没汗。这个凡是太阳病，下之后而表不解，这还得使桂枝汤。表不解，有什么证候呢？这是一个，一种，他气上冲，那",
+   "occurrences_in_cleaned": 1,
+   "ambiguous": false,
+   "page_marks_nearby_in_raw": [],
+   "page_marks_caveat": "⛔ 仅为 OCR 残迹所载之串，⛔ 未与版面核验，⛔ 不得据以断定纸本页码",
+   "label": "§15「凡是津液有所损伤之后，有表证，用桂枝汤，不能用麻黄汤，不管他有汗没汗」"
+  },
+  {
+   "book": "讲伤寒",
+   "cleaned_start": 21048,
+   "cleaned_end": 21130,
+   "raw_start": 23408,
+   "raw_end": 23494,
+   "raw_line_start": 1482,
+   "raw_line_end": 1486,
+   "snippet": "此为坏病，桂枝不中与之也。观其脉证，知犯何逆，随证治之。桂枝本为解肌，若其人脉浮紧，发热汗不出者，不可与之也。常须识此，勿令误也。“太阳病三日，已发汗，若吐、若下、",
+   "occurrences_in_cleaned": 1,
+   "ambiguous": false,
+   "page_marks_nearby_in_raw": [],
+   "page_marks_caveat": "⛔ 仅为 OCR 残迹所载之串，⛔ 未与版面核验，⛔ 不得据以断定纸本页码",
+   "label": "§16「此为坏病，桂枝不中与之也」——定法之原文限制"
+  },
+  {
+   "book": "讲伤寒",
+   "cleaned_start": 62703,
+   "cleaned_end": 62800,
+   "raw_start": 69641,
+   "raw_end": 69742,
+   "raw_line_start": 4349,
+   "raw_line_end": 4354,
+   "snippet": "这是定法，这个在临床上挺重要。就是我们给人家发过汗了，用麻黄汤，然后你再用银翘散也不行，这个薄荷还是发汗的，所以必须用桂枝汤。这是外不解，不是表不解了，已经发汗了，透表出汗了，所以这个地方挺重要",
+   "occurrences_in_cleaned": 1,
+   "ambiguous": false,
+   "page_marks_nearby_in_raw": [],
+   "page_marks_caveat": "⛔ 仅为 OCR 残迹所载之串，⛔ 未与版面核验，⛔ 不得据以断定纸本页码",
+   "label": "§45「这是定法」"
+  },
+  {
+   "book": "讲伤寒",
+   "cleaned_start": 62900,
+   "cleaned_end": 62990,
+   "raw_start": 69849,
+   "raw_end": 69960,
+   "raw_line_start": 4360,
+   "raw_line_end": 4369,
+   "snippet": "该用辛温发汗，它是太阳表证嘛，所以是各个不同。我们还没讲完，这太阳篇还早呢，因发汗就是这么样子复杂。应该用葛根汤的，你要用了桂枝汤是绝对不行的，用麻黄汤也绝对不行，不但无效，而反有",
+   "occurrences_in_cleaned": 1,
+   "ambiguous": false,
+   "page_marks_nearby_in_raw": [],
+   "page_marks_caveat": "⛔ 仅为 OCR 残迹所载之串，⛔ 未与版面核验，⛔ 不得据以断定纸本页码",
+   "label": "§45 同一单元后段「原则上应该辛温发汗……要辨方证」"
+  },
+  {
+   "book": "讲伤寒",
+   "cleaned_start": 64457,
+   "cleaned_end": 64640,
+   "raw_start": 71587,
+   "raw_end": 71779,
+   "raw_line_start": 4469,
+   "raw_line_end": 4479,
+   "snippet": "半夜让人去砸门去，也就是这么个事，我给他吃本来是治下利的一种药，他吃完了是下利无度。半夜砸我门去一问，这种情况，我说不要紧，我说你回去吧，我说再连下吃就好了，这个药治下利的，它不会更下利，不过来这个人他说不行，您非看看去不可，这个人厉害得很。后来我就去了嘛，正是半夜，去了这个小孩子就好多了，是个小孩。后来我说把二煎再吃了吧，他妈还不敢（让）吃，我说不要紧，吃了吧，",
+   "occurrences_in_cleaned": 1,
+   "ambiguous": false,
+   "page_marks_nearby_in_raw": [],
+   "page_marks_caveat": "⛔ 仅为 OCR 残迹所载之串，⛔ 未与版面核验，⛔ 不得据以断定纸本页码",
+   "label": "§46 半夜砸门案·全案（F-01 §甲.2 时间线 T1–T6）"
+  },
+  {
+   "book": "讲伤寒",
+   "cleaned_start": 64536,
+   "cleaned_end": 64580,
+   "raw_start": 71671,
+   "raw_end": 71716,
+   "raw_line_start": 4474,
+   "raw_line_end": 4476,
+   "snippet": "这个药治下利的，它不会更下利，不过来这个人他说不行，您非看看去不可，这个人厉害得很。后来",
+   "occurrences_in_cleaned": 1,
+   "ambiguous": false,
+   "page_marks_nearby_in_raw": [],
+   "page_marks_caveat": "⛔ 仅为 OCR 残迹所载之串，⛔ 未与版面核验，⛔ 不得据以断定纸本页码",
+   "label": "§46「这个药治下利的，它不会更下利」——N5 不循环之个案推理"
+  },
+  {
+   "book": "讲伤寒",
+   "cleaned_start": 64591,
+   "cleaned_end": 64625,
+   "raw_start": 71729,
+   "raw_end": 71763,
+   "raw_line_start": 4477,
+   "raw_line_end": 4478,
+   "snippet": "去了这个小孩子就好多了，是个小孩。后来我说把二煎再吃了吧，他妈还不敢",
+   "occurrences_in_cleaned": 1,
+   "ambiguous": false,
+   "page_marks_nearby_in_raw": [],
+   "page_marks_caveat": "⛔ 仅为 OCR 残迹所载之串，⛔ 未与版面核验，⛔ 不得据以断定纸本页码",
+   "label": "§46「去了这个小孩子就好多了」——⭐ 好转出现在第二次给药之前"
+  },
+  {
+   "book": "讲伤寒",
+   "cleaned_start": 65117,
+   "cleaned_end": 65190,
+   "raw_start": 72301,
+   "raw_end": 72397,
+   "raw_line_start": 4510,
+   "raw_line_end": 4518,
+   "snippet": "阳气就指的精气，精气指的什么呢？就是血液、津液，脉外的津液，脉内的血液，都叫做精气，就是养人的精气啊，以前咱们讲过了，至于这种他叫做阳气。第47条",
+   "occurrences_in_cleaned": 1,
+   "ambiguous": false,
+   "page_marks_nearby_in_raw": [],
+   "page_marks_caveat": "⛔ 仅为 OCR 残迹所载之串，⛔ 未与版面核验，⛔ 不得据以断定纸本页码",
+   "label": "§46「阳气就指的精气……就是血液、津液」"
+  },
+  {
+   "book": "讲伤寒",
+   "cleaned_start": 65205,
+   "cleaned_end": 65240,
+   "raw_start": 72415,
+   "raw_end": 72453,
+   "raw_line_start": 4519,
+   "raw_line_end": 4522,
+   "snippet": "自衄者愈。他说也有这个情形，这个太阳伤寒啊，太阳伤寒根本就是体表充实津",
+   "occurrences_in_cleaned": 1,
+   "ambiguous": false,
+   "page_marks_nearby_in_raw": [],
+   "page_marks_caveat": "⛔ 仅为 OCR 残迹所载之串，⛔ 未与版面核验，⛔ 不得据以断定纸本页码",
+   "label": "§47「自衄者愈」"
+  },
+  {
+   "book": "讲伤寒",
+   "cleaned_start": 65507,
+   "cleaned_end": 65580,
+   "raw_start": 72736,
+   "raw_end": 72829,
+   "raw_line_start": 4537,
+   "raw_line_end": 4545,
+   "snippet": "病邪啊，比较深、实，阻碍药力呀反倒达不到出汗，你要刺刺风池、风府呢，也像这个似的，同自衄一样的，使的血液舒通，这个药力反倒发挥了。那么这个呢也有这",
+   "occurrences_in_cleaned": 1,
+   "ambiguous": false,
+   "page_marks_nearby_in_raw": [],
+   "page_marks_caveat": "⛔ 仅为 OCR 残迹所载之串，⛔ 未与版面核验，⛔ 不得据以断定纸本页码",
+   "label": "§47「病邪啊，比较深、实，阻碍药力」"
+  },
+  {
+   "book": "讲伤寒",
+   "cleaned_start": 59079,
+   "cleaned_end": 59130,
+   "raw_start": 65602,
+   "raw_end": 65654,
+   "raw_line_start": 4095,
+   "raw_line_end": 4097,
+   "snippet": "或有或无，不必管他，都要用小青龙汤。咱们这个书呀，每个方剂后面要有这个“或或”呀，他都给弄个加减方，这",
+   "occurrences_in_cleaned": 1,
+   "ambiguous": false,
+   "page_marks_nearby_in_raw": [],
+   "page_marks_caveat": "⛔ 仅为 OCR 残迹所载之串，⛔ 未与版面核验，⛔ 不得据以断定纸本页码",
+   "label": "§40 (a)「或有或无，不必管他，都要用小青龙汤」"
+  },
+  {
+   "book": "讲伤寒",
+   "cleaned_start": 59357,
+   "cleaned_end": 59400,
+   "raw_start": 65895,
+   "raw_end": 65956,
+   "raw_line_start": 4110,
+   "raw_line_end": 4116,
+   "snippet": "无论小便利不利他都能治。所以他后头这个加减呀，不要信，也不要这么用，他根本是一个表不解",
+   "occurrences_in_cleaned": 1,
+   "ambiguous": false,
+   "page_marks_nearby_in_raw": [],
+   "page_marks_caveat": "⛔ 仅为 OCR 残迹所载之串，⛔ 未与版面核验，⛔ 不得据以断定纸本页码",
+   "label": "§40 (b)「无论小便利不利他都能治」"
+  },
+  {
+   "book": "讲伤寒",
+   "cleaned_start": 59835,
+   "cleaned_end": 59920,
+   "raw_start": 66437,
+   "raw_end": 66526,
+   "raw_line_start": 4146,
+   "raw_line_end": 4151,
+   "snippet": "起码这个病它不渴，这个“或渴”呀，是由于误治啊，我们给吃了麻黄汤了，他激动里饮，有这些特殊（情况）。一般不渴，因为里有水饮它不渴，同时呢口舌也不会干的，要不然干姜、细辛、",
+   "occurrences_in_cleaned": 1,
+   "ambiguous": false,
+   "page_marks_nearby_in_raw": [],
+   "page_marks_caveat": "⛔ 仅为 OCR 残迹所载之串，⛔ 未与版面核验，⛔ 不得据以断定纸本页码",
+   "label": "§40 (c)「起码这个病它不渴……是由于误治啊」"
+  },
+  {
+   "book": "讲伤寒",
+   "cleaned_start": 54444,
+   "cleaned_end": 54500,
+   "raw_start": 60448,
+   "raw_end": 60511,
+   "raw_line_start": 3773,
+   "raw_line_end": 3777,
+   "snippet": "不渴没有阳明病，阳明病准渴，少阳病准呕，后头再详细讲啊，这个咱们先撂到这块。第38条太阳中风，脉浮紧，发热恶寒，",
+   "occurrences_in_cleaned": 1,
+   "ambiguous": false,
+   "page_marks_nearby_in_raw": [],
+   "page_marks_caveat": "⛔ 仅为 OCR 残迹所载之串，⛔ 未与版面核验，⛔ 不得据以断定纸本页码",
+   "label": "§37「不渴没有阳明病，阳明病准渴」——R-01 待攻击命题之出处"
+  },
+  {
+   "book": "讲伤寒",
+   "cleaned_start": 208172,
+   "cleaned_end": 208230,
+   "raw_start": 233407,
+   "raw_end": 233468,
+   "raw_line_start": 14826,
+   "raw_line_end": 14829,
+   "snippet": "阳明之为病，胃家实是也。研究阳明病就是里阳证了，就是病邪充斥于胃的这么一种病，实与热都为阳，所以叫阳明病。阳明病就是",
+   "occurrences_in_cleaned": 1,
+   "ambiguous": false,
+   "page_marks_nearby_in_raw": [],
+   "page_marks_caveat": "⛔ 仅为 OCR 残迹所载之串，⛔ 未与版面核验，⛔ 不得据以断定纸本页码",
+   "label": "§180「阳明之为病，胃家实是也」"
+  },
+  {
+   "book": "讲伤寒",
+   "cleaned_start": 208556,
+   "cleaned_end": 208620,
+   "raw_start": 233842,
+   "raw_end": 233927,
+   "raw_line_start": 14854,
+   "raw_line_end": 14862,
+   "snippet": "身热，汗自出，不恶寒，反恶热也。阳明病但热不实也有，如白虎汤，也是热结于里，但不实，刚才说的心下满硬，按之痛，这都是胃家实的主证",
+   "occurrences_in_cleaned": 1,
+   "ambiguous": false,
+   "page_marks_nearby_in_raw": [],
+   "page_marks_caveat": "⛔ 仅为 OCR 残迹所载之串，⛔ 未与版面核验，⛔ 不得据以断定纸本页码",
+   "label": "§182「身热，汗自出，不恶寒，反恶热也」"
+  },
+  {
+   "book": "讲金匮",
+   "cleaned_start": 166519,
+   "cleaned_end": 166600,
+   "raw_start": 187128,
+   "raw_end": 187212,
+   "raw_line_start": 9118,
+   "raw_line_end": 9122,
+   "snippet": "是麻黄汤和越婢汤合方，什么是越婢汤?越婢汤就是麻黄、生姜、大枣、甘草、石膏，这就是越婢汤。麻黄汤是麻黄、桂枝、甘草、杏仁，这就是麻黄汤。所以这个方子在《伤寒论》里",
+   "occurrences_in_cleaned": 1,
+   "ambiguous": false,
+   "page_marks_nearby_in_raw": [],
+   "page_marks_caveat": "⛔ 仅为 OCR 残迹所载之串，⛔ 未与版面核验，⛔ 不得据以断定纸本页码",
+   "label": "讲金匮「大青龙汤，咱讲过的是麻黄汤和越婢汤合方」"
+  },
+  {
+   "book": "讲金匮",
+   "cleaned_start": 166662,
+   "cleaned_end": 166790,
+   "raw_start": 187279,
+   "raw_end": 187412,
+   "raw_line_start": 9126,
+   "raw_line_end": 9132,
+   "snippet": "越婢汤来的，越婢汤这个药，它是治汗出的，“续自汗出”嘛。越婢汤治什么的?咱后面有的，它治水气，风水，发水气的。那么本来应该吃越婢汤，尤其是治水气，但是他没汗，越婢汤得有汗，没汗这能不能用，他没汗，所以搁麻黄汤一起。这也就是越婢汤应该出汗而不汗出，这个人发烦",
+   "occurrences_in_cleaned": 1,
+   "ambiguous": false,
+   "page_marks_nearby_in_raw": [],
+   "page_marks_caveat": "⛔ 仅为 OCR 残迹所载之串，⛔ 未与版面核验，⛔ 不得据以断定纸本页码",
+   "label": "讲金匮「越婢汤得有汗」——二方适用状态互斥"
+  },
+  {
+   "book": "讲金匮",
+   "cleaned_start": 58718,
+   "cleaned_end": 58800,
+   "raw_start": 66051,
+   "raw_end": 66136,
+   "raw_line_start": 3231,
+   "raw_line_end": 3235,
+   "snippet": "非加石膏不可，加栝蒌根也不对，所以加味也不是随便写在这个地方。“先有寒，加附子一枚”加附子治百节疼痛，这还行的，这没有什么大问题。这是三黄汤，三黄汤这名字起的，就是",
+   "occurrences_in_cleaned": 1,
+   "ambiguous": false,
+   "page_marks_nearby_in_raw": [],
+   "page_marks_caveat": "⛔ 仅为 OCR 残迹所载之串，⛔ 未与版面核验，⛔ 不得据以断定纸本页码",
+   "label": "讲金匮「栝蒌根的渴，有两种……」"
+  }
+ ],
+ "tool": "tools/anchor_provenance.py"
+}
