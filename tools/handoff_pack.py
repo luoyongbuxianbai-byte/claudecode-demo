@@ -141,6 +141,24 @@ def main():
         w("⛔ **已撤回之判断保留于索引 `R-02`，不得继续作为现行结论被引用。**")
         w("⛔ `report_position` 只是**拟入位置**，⛔ 正文结论**未冻结**。\n")
 
+    # ⛔ 上级 126W 令一：交接包须含「持续任务及状态」。
+    #    ⭐ 放在最终交付之后、取原文之前——因为它决定**每批该做什么**。
+    st = os.path.join(B, "rules", "standing_tasks_v0.json")
+    if os.path.exists(st):
+        sd = json.load(open(st, encoding="utf-8"))
+        w("## ⭐⭐ 持续任务及状态（版本 `%s`）\n" % sd["version"])
+        w("⛔⛔ **最新批次指令不是全部任务清单。**")
+        w("**最新指令只改变其中的优先级或内容；没有明确撤销的任务继续有效。**")
+        w("⛔ **本批未安排不等于取消，研究取舍也不叫阻塞。**\n")
+        w("| # | 任务 | 当前结果 | 下一动作 | 真实阻塞 | 优先级 |")
+        w("|---|---|---|---|---|---|")
+        for t in sd["tasks"]:
+            w("| `%s` | **%s** | %s | %s | %s | %s |"
+              % (t["id"], t["name"], t["current_result"], t["next_action"],
+                 t["real_blocker"], t["priority"]))
+        w("")
+        w("⇒ 对应文件见 `rules/standing_tasks_v0.json`。\n")
+
     w("## 〇、怎么直接取原文（不必再复制粘贴）\n")
     w("本仓库为 **public**（实测 `private=false`）。以下两条路任一可通：\n")
     w("1. **网页抓取**：下列 raw 链接是**纯文本**，任何能联网抓取的对话都可直接取。")
