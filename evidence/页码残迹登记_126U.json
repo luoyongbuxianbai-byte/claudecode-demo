@@ -1,0 +1,389 @@
+{
+ "$id": "page_residue_registry_126U",
+ "title": "页码残迹登记（小范围）——报告拟用关键引文附近",
+ "mandate": "⭐ 上级 126U 令六：先处理**报告拟用关键引文附近**之残迹，记录**原串、原始位置、候选含义及版面核验状态**。⛔ **不能把附近某个数字直接赋给引文作为页码。**",
+ "scope": "⭐ 只覆盖 `evidence/锚溯源_126T.json` 之 20 条关键引用；⛔ **非全书**。",
+ "method_note": "⛔⛔ **126U 方法订正**：残迹在**原始文件中被空白隔断**（OCR 换行），故**须在清洗空间检索，再经字位映射回 raw**。⚠ 我方初版直接在 raw 上正则，得 0 条——**那是假阴性**。⭐ 本表为订正后之结果。",
+ "corpus_version": {
+  "讲伤寒": {
+   "cleaned_len": 395556,
+   "cleaned_sha12": "0e09993f1582"
+  },
+  "讲金匮": {
+   "cleaned_len": 282577
+  }
+ },
+ "interval_convention": "[start, end) 左闭右开（126U 统一）",
+ "per_book_total": {
+  "讲伤寒": {
+   "total_residues": 0,
+   "cleaned_len": 395556
+  },
+  "讲金匮": {
+   "total_residues": 731,
+   "cleaned_len": 282577
+  }
+ },
+ "candidate_meanings": {
+  "……课栈N/732": "⚠ **候选含义**：讲义电子本之页眉，`N/732` 疑为「第 N 页／共 732 页」。⛔ **未与版面核验**。",
+  "---第N页---": "⚠ **候选含义**：PDF 页序标记。⛔ 本批两书**均未出现**。",
+  "·N·": "⚠ **候选含义**：中缝页码。⛔ 本批两书**均未出现**。"
+ },
+ "verification_status": "⛔⛔ 全部 `unverified_against_layout` —— 本批**无一条**与版面或图像核对过。",
+ "prohibitions": [
+  "⛔⛔ **不得把引文附近之任一残迹数字赋给该引文作为页码** —— 邻近不是归属。",
+  "⛔ 不得由 OCR 行号推算页码。",
+  "⛔ 不得因某引文附近无残迹便推断该处无页码。",
+  "⭐ 可用者只有一件：**该串确实出现在语料之该位置** —— 这是一条可复核的事实。"
+ ],
+ "entries": [
+  {
+   "label": "§15 汗吐下亡津液 ⇒ 必须用桂枝汤（P-01 §一之关键句）",
+   "book": "讲伤寒",
+   "cleaned_start": 20750,
+   "cleaned_end": 20960,
+   "raw_line_start": 1460,
+   "raw_line_end": 1476,
+   "residue_count": 0,
+   "residues": []
+  },
+  {
+   "label": "§15「凡是津液有所损伤之后，有表证，用桂枝汤，不能用麻黄汤，不管他有汗没汗」",
+   "book": "讲伤寒",
+   "cleaned_start": 20846,
+   "cleaned_end": 20930,
+   "raw_line_start": 1469,
+   "raw_line_end": 1474,
+   "residue_count": 0,
+   "residues": []
+  },
+  {
+   "label": "§16「此为坏病，桂枝不中与之也」——定法之原文限制",
+   "book": "讲伤寒",
+   "cleaned_start": 21048,
+   "cleaned_end": 21130,
+   "raw_line_start": 1482,
+   "raw_line_end": 1486,
+   "residue_count": 0,
+   "residues": []
+  },
+  {
+   "label": "§45「这是定法」",
+   "book": "讲伤寒",
+   "cleaned_start": 62703,
+   "cleaned_end": 62800,
+   "raw_line_start": 4349,
+   "raw_line_end": 4354,
+   "residue_count": 0,
+   "residues": []
+  },
+  {
+   "label": "§45 同一单元后段「原则上应该辛温发汗……要辨方证」",
+   "book": "讲伤寒",
+   "cleaned_start": 62900,
+   "cleaned_end": 62990,
+   "raw_line_start": 4360,
+   "raw_line_end": 4369,
+   "residue_count": 0,
+   "residues": []
+  },
+  {
+   "label": "§46 半夜砸门案·全案（F-01 §甲.2 时间线 T1–T6）",
+   "book": "讲伤寒",
+   "cleaned_start": 64457,
+   "cleaned_end": 64640,
+   "raw_line_start": 4469,
+   "raw_line_end": 4479,
+   "residue_count": 0,
+   "residues": []
+  },
+  {
+   "label": "§46「这个药治下利的，它不会更下利」——N5 不循环之个案推理",
+   "book": "讲伤寒",
+   "cleaned_start": 64536,
+   "cleaned_end": 64580,
+   "raw_line_start": 4474,
+   "raw_line_end": 4476,
+   "residue_count": 0,
+   "residues": []
+  },
+  {
+   "label": "§46「去了这个小孩子就好多了」——⭐ 好转出现在第二次给药之前",
+   "book": "讲伤寒",
+   "cleaned_start": 64591,
+   "cleaned_end": 64625,
+   "raw_line_start": 4477,
+   "raw_line_end": 4478,
+   "residue_count": 0,
+   "residues": []
+  },
+  {
+   "label": "§46「阳气就指的精气……就是血液、津液」",
+   "book": "讲伤寒",
+   "cleaned_start": 65117,
+   "cleaned_end": 65190,
+   "raw_line_start": 4510,
+   "raw_line_end": 4518,
+   "residue_count": 0,
+   "residues": []
+  },
+  {
+   "label": "§47「自衄者愈」",
+   "book": "讲伤寒",
+   "cleaned_start": 65205,
+   "cleaned_end": 65240,
+   "raw_line_start": 4519,
+   "raw_line_end": 4522,
+   "residue_count": 0,
+   "residues": []
+  },
+  {
+   "label": "§47「病邪啊，比较深、实，阻碍药力」",
+   "book": "讲伤寒",
+   "cleaned_start": 65507,
+   "cleaned_end": 65580,
+   "raw_line_start": 4537,
+   "raw_line_end": 4545,
+   "residue_count": 0,
+   "residues": []
+  },
+  {
+   "label": "§40 (a)「或有或无，不必管他，都要用小青龙汤」",
+   "book": "讲伤寒",
+   "cleaned_start": 59079,
+   "cleaned_end": 59130,
+   "raw_line_start": 4095,
+   "raw_line_end": 4097,
+   "residue_count": 0,
+   "residues": []
+  },
+  {
+   "label": "§40 (b)「无论小便利不利他都能治」",
+   "book": "讲伤寒",
+   "cleaned_start": 59357,
+   "cleaned_end": 59400,
+   "raw_line_start": 4110,
+   "raw_line_end": 4116,
+   "residue_count": 0,
+   "residues": []
+  },
+  {
+   "label": "§40 (c)「起码这个病它不渴……是由于误治啊」",
+   "book": "讲伤寒",
+   "cleaned_start": 59835,
+   "cleaned_end": 59920,
+   "raw_line_start": 4146,
+   "raw_line_end": 4151,
+   "residue_count": 0,
+   "residues": []
+  },
+  {
+   "label": "§37「不渴没有阳明病，阳明病准渴」——R-01 待攻击命题之出处",
+   "book": "讲伤寒",
+   "cleaned_start": 54444,
+   "cleaned_end": 54500,
+   "raw_line_start": 3773,
+   "raw_line_end": 3777,
+   "residue_count": 0,
+   "residues": []
+  },
+  {
+   "label": "§180「阳明之为病，胃家实是也」",
+   "book": "讲伤寒",
+   "cleaned_start": 208172,
+   "cleaned_end": 208230,
+   "raw_line_start": 14826,
+   "raw_line_end": 14829,
+   "residue_count": 0,
+   "residues": []
+  },
+  {
+   "label": "§182「身热，汗自出，不恶寒，反恶热也」",
+   "book": "讲伤寒",
+   "cleaned_start": 208556,
+   "cleaned_end": 208620,
+   "raw_line_start": 14854,
+   "raw_line_end": 14862,
+   "residue_count": 0,
+   "residues": []
+  },
+  {
+   "label": "讲金匮「大青龙汤，咱讲过的是麻黄汤和越婢汤合方」",
+   "book": "讲金匮",
+   "cleaned_start": 166519,
+   "cleaned_end": 166600,
+   "raw_line_start": 9118,
+   "raw_line_end": 9122,
+   "residue_count": 6,
+   "residues": [
+    {
+     "cleaned_string": "龙门课栈430/732",
+     "cleaned_start": 165668,
+     "raw_start": 186149,
+     "raw_line": 9071,
+     "chars_from_quote": -851,
+     "side": "before"
+    },
+    {
+     "cleaned_string": "龙门课栈431/732",
+     "cleaned_start": 166053,
+     "raw_start": 186581,
+     "raw_line": 9092,
+     "chars_from_quote": -466,
+     "side": "before"
+    },
+    {
+     "cleaned_string": "龙门课栈432/732",
+     "cleaned_start": 166439,
+     "raw_start": 187018,
+     "raw_line": 9113,
+     "chars_from_quote": -80,
+     "side": "before"
+    },
+    {
+     "cleaned_string": "龙门课栈433/732",
+     "cleaned_start": 166826,
+     "raw_start": 187452,
+     "raw_line": 9134,
+     "chars_from_quote": 307,
+     "side": "after"
+    },
+    {
+     "cleaned_string": "龙门课栈434/732",
+     "cleaned_start": 167204,
+     "raw_start": 187878,
+     "raw_line": 9155,
+     "chars_from_quote": 685,
+     "side": "after"
+    },
+    {
+     "cleaned_string": "龙门课栈435/732",
+     "cleaned_start": 167591,
+     "raw_start": 188312,
+     "raw_line": 9176,
+     "chars_from_quote": 1072,
+     "side": "after"
+    }
+   ]
+  },
+  {
+   "label": "讲金匮「越婢汤得有汗」——二方适用状态互斥",
+   "book": "讲金匮",
+   "cleaned_start": 166662,
+   "cleaned_end": 166790,
+   "raw_line_start": 9126,
+   "raw_line_end": 9132,
+   "residue_count": 6,
+   "residues": [
+    {
+     "cleaned_string": "龙门课栈430/732",
+     "cleaned_start": 165668,
+     "raw_start": 186149,
+     "raw_line": 9071,
+     "chars_from_quote": -994,
+     "side": "before"
+    },
+    {
+     "cleaned_string": "龙门课栈431/732",
+     "cleaned_start": 166053,
+     "raw_start": 186581,
+     "raw_line": 9092,
+     "chars_from_quote": -609,
+     "side": "before"
+    },
+    {
+     "cleaned_string": "龙门课栈432/732",
+     "cleaned_start": 166439,
+     "raw_start": 187018,
+     "raw_line": 9113,
+     "chars_from_quote": -223,
+     "side": "before"
+    },
+    {
+     "cleaned_string": "龙门课栈433/732",
+     "cleaned_start": 166826,
+     "raw_start": 187452,
+     "raw_line": 9134,
+     "chars_from_quote": 164,
+     "side": "after"
+    },
+    {
+     "cleaned_string": "龙门课栈434/732",
+     "cleaned_start": 167204,
+     "raw_start": 187878,
+     "raw_line": 9155,
+     "chars_from_quote": 542,
+     "side": "after"
+    },
+    {
+     "cleaned_string": "龙门课栈435/732",
+     "cleaned_start": 167591,
+     "raw_start": 188312,
+     "raw_line": 9176,
+     "chars_from_quote": 929,
+     "side": "after"
+    }
+   ]
+  },
+  {
+   "label": "讲金匮「栝蒌根的渴，有两种……」",
+   "book": "讲金匮",
+   "cleaned_start": 58718,
+   "cleaned_end": 58800,
+   "raw_line_start": 3231,
+   "raw_line_end": 3235,
+   "residue_count": 6,
+   "residues": [
+    {
+     "cleaned_string": "龙门课栈151/732",
+     "cleaned_start": 57828,
+     "raw_start": 65033,
+     "raw_line": 3182,
+     "chars_from_quote": -890,
+     "side": "before"
+    },
+    {
+     "cleaned_string": "龙门课栈152/732",
+     "cleaned_start": 58213,
+     "raw_start": 65466,
+     "raw_line": 3203,
+     "chars_from_quote": -505,
+     "side": "before"
+    },
+    {
+     "cleaned_string": "龙门课栈153/73234",
+     "cleaned_start": 58595,
+     "raw_start": 65896,
+     "raw_line": 3224,
+     "chars_from_quote": -123,
+     "side": "before"
+    },
+    {
+     "cleaned_string": "龙门课栈154/732",
+     "cleaned_start": 58990,
+     "raw_start": 66338,
+     "raw_line": 3245,
+     "chars_from_quote": 272,
+     "side": "after"
+    },
+    {
+     "cleaned_string": "龙门课栈155/732",
+     "cleaned_start": 59376,
+     "raw_start": 66771,
+     "raw_line": 3266,
+     "chars_from_quote": 658,
+     "side": "after"
+    },
+    {
+     "cleaned_string": "龙门课栈156/732",
+     "cleaned_start": 59766,
+     "raw_start": 67208,
+     "raw_line": 3287,
+     "chars_from_quote": 1048,
+     "side": "after"
+    }
+   ]
+  }
+ ],
+ "key_finding_126U": "⭐⭐⭐ **讲伤寒全书之页码残迹总数 ＝ 0**（清洗空间全量检索，三种形态皆 0）。⇒ ⛔⛔ **本工程引用最多的一本书，其 OCR 文本中【不存在任何页码线索】** ——故上级令六第三步（补页码与图像核验）对讲伤寒**不能由现有文件完成**，**必须取得版面（PDF／纸本）方可**。⭐ 讲金匮则有 731 处「…课栈N/732」，⚠ 其可用性仍须版面核验。⇒ ⭐ 这一条改变了 T-126S-6 之性质：**不是「还没做」，是「对讲伤寒缺少可做之输入」**。"
+}

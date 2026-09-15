@@ -94,10 +94,19 @@ def resolve(book, start, end=None, quote_len=60):
     raw, cleaned, m, line_starts = build_map(book)
     end = end if end is not None else start + quote_len
     end = min(end, len(cleaned))
+    # ⛔⛔ 上级 126U 令六：端点口径须**统一并显式标注**，且须检查 start < end。
+    #    126T 初版之病：`cleaned_end` 是**右开**，而 `raw_end` 取最后一字符之位置（**闭端**）
+    #    ⇒ 同一条记录里两个端点口径不同，读者无从知道该不该 +1。
+    #    ⇒ 126U 统一为 **[start, end) 左闭右开**：raw_end_exclusive ＝ 末字符下标 ＋ 1。
+    #    ⚠ 原始文本中**被删去的空白／JUNK 不连续**，故 raw 区间是「覆盖该片段之最小闭包」，
+    #      ⛔ 不表示该区间内每个字符都属于该片段。
     if not (0 <= start < len(cleaned)):
         raise SystemExit("⛔ 偏移越界：%s·%d（清洗长度 %d）" % (book, start, len(cleaned)))
-    r0, r1 = m[start], m[end - 1]
-    l0, l1 = line_of(line_starts, r0), line_of(line_starts, r1)
+    if not start < end:
+        raise SystemExit("⛔ 端点非法：start(%d) 须 < end(%d)——%s" % (start, end, book))
+    r0, r_last = m[start], m[end - 1]
+    r1 = r_last + 1                      # ⭐ 右开
+    l0, l1 = line_of(line_starts, r0), line_of(line_starts, r_last)
     snippet = cleaned[start:end]
 
     # ④ 歧义：该片段在清洗文本中出现几次
@@ -107,8 +116,17 @@ def resolve(book, start, end=None, quote_len=60):
     win = raw[max(0, r0 - 1500):min(len(raw), r1 + 1500)]
     marks = sorted(set(PAGE_MARK.findall(win)))
 
-    return dict(book=book, cleaned_start=start, cleaned_end=end,
-                raw_start=r0, raw_end=r1, raw_line_start=l0, raw_line_end=l1,
+    import hashlib
+    fp = hashlib.sha256(cleaned.encode("utf-8")).hexdigest()[:12]
+    return dict(book=book,
+                source_file=dict(CG.BOOKS)[book],
+                cleaned_len=len(cleaned),
+                cleaned_sha12=fp,          # ⭐ 清洗版本指纹：换了语料/清洗式即变，旧映射立即可辨
+                interval_convention="[start, end) 左闭右开（cleaned 与 raw 两侧口径一致，126U 统一）",
+                cleaned_start=start, cleaned_end=end,
+                raw_start=r0, raw_end_exclusive=r1, raw_last_char=r_last,
+                raw_span_caveat="⚠ raw 区间是覆盖该片段之**最小闭包**；⛔ 其中含已被删去之空白／JUNK，⛔ 不表示区间内每字符皆属该片段",
+                raw_line_start=l0, raw_line_end=l1,
                 snippet=snippet, occurrences_in_cleaned=occ,
                 ambiguous=(occ != 1),
                 page_marks_nearby_in_raw=marks,
