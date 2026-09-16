@@ -26,7 +26,9 @@ SCAN_DIRS = ['evidence', 'reports', 'rules', 'docs', '.claude']
 SCAN_EXT = ('.md', '.json', '.txt')
 
 # ⛔ 撤回登记自身与历史批次报告：命中属【历史记录】，正常，单独分档
-HISTORICAL = re.compile(r'(reports/报告_第\w+批\.md|rules/report_index_v0\.json)$')
+# ⭐ 126AB 加 `docs/研究执行示范_*.md`：上级原样交付之指令文本，其中引述被撤表述属正常。
+HISTORICAL = re.compile(r'(reports/报告_第\w+批\.md|rules/report_index_v0\.json'
+                        r'|docs/研究执行示范_v[\d.]+\.md)$')
 
 
 def load_retractions():
@@ -106,6 +108,11 @@ def main():
     print('     ⭐ 126AA 实例：RET-13／RET-15 在仓库资产内零命中，')
     print('        而它们确曾作为结论发出 ⇒ ⛔ 零命中恰恰不等于没发生。')
     print('  ④ **分母未建**——probes 之覆盖率未经枚举 ⇒ ⛔ 不得报比率。')
+    print('  ⑤ ⭐⭐ **失忆型**（126AB 立）——本登记只存【已撤回者】，')
+    print('     ⛔ 查不到【本工程立过而我不知道的现行纪律】。')
+    print('     ⭐ 126AB 实例：126J 早已明禁「主之／宜／与」之系统化归纳，')
+    print('        而 126AA 重犯 ⇒ ⛔ 这不是撤回未传播，是**现行纪律未被检索**。')
+    print('     ⇒ ⭐ 开工前须检索**本次主题在既往批次内之现行结论**（v0.2 §3.1）。')
     print()
     print('⇒ 机器反查负责【定位】，语义复核负责【裁决】。（上级 126AA 裁决）')
     return 0
