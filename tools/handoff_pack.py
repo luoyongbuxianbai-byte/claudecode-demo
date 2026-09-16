@@ -104,7 +104,12 @@ def jcount(rel, key=None):
 def main():
     head = sh("git rev-parse --short HEAD")
     branch = sh("git rev-parse --abbrev-ref HEAD")
-    dirty = sh("git status --porcelain")
+    # ⛔⛔ 126AI 再修：`dirty` 原样取 porcelain，会把**交接包自己**算进去 ——
+    #     于是两次提交流程下，包刚生成就把自己判成「尚未提交」，横幅措辞反而错了。
+    #     ⇒ 排除本包自身之路径，只看**其余**是否有未提交改动。
+    _self = "docs/交接包_给上级线.md"
+    dirty = "\n".join(ln for ln in sh("git status --porcelain").splitlines()
+                      if _self not in ln).strip()
     raw = "https://raw.githubusercontent.com/%s/%s" % (REPO, branch)
 
     L = []
@@ -227,7 +232,7 @@ def main():
         head,
         "　⛔⛔ **上一批之 HEAD；本包所述内容尚未提交**" if dirty else "　⭐ 本包内容已在此提交内"))
     w("| 分支 | `%s` |" % branch)
-    w("| 工作区 | %s |" % ("⚠ 有未提交改动" if dirty else "干净"))
+    w("| 工作区 | %s |" % ("⚠ 有未提交改动（⛔ 已排除本包自身）" if dirty else "干净（⛔ 本包自身之改动不计）"))
     w("| 冻结件 | `V8/`／`rules/core_v0.json`／`runtime/`——126批起冻结，diff 须为 0 |")
     w("")
 

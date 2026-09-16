@@ -167,8 +167,8 @@
   {
    "id": "ST-13",
    "name": "⭐⭐ 交接生成时机（**状态源**，⛔ 非显示文字）",
-   "current_result": "⭐ **126AI 修**：`handoff_pack.py` 此前**在 commit 之前生成**，于是「HEAD」记的是【上一批】而内容是【本批】，**且看不出来**。现在：脏工作区时在**最前面**打横幅，并把 HEAD 一行改写为「⛔⛔ **上一批之 HEAD；本包所述内容尚未提交**」。",
-   "next_action": "⭐ **收工顺序已固定**：`git commit` → **重跑 `handoff_pack.py`** → `git commit --amend --no-edit` → `git push`。⚠ **本批起执行**；⛔ 若下批交接包仍带该横幅，即说明顺序未执行。",
+   "current_result": "⭐ **126AI 修，且修了三轮**：<br>**轮一** `handoff_pack.py` 此前**在 commit 之前生成** ⇒ HEAD 记上一批而内容是本批，**且看不出来**。改为脏工作区时**打横幅**并改写 HEAD 行。<br>**轮二** ⛔ **实测 `--amend` 不收敛** —— amend **会改哈希**，交接包**永远追不上自己所在的提交**，改一次差一次。⇒ ⭐ **改为两次提交**：交接包之 `HEAD` 指向【内容提交】，交接包本身在**下一个**提交里。<br>**轮三** ⛔ `dirty` 原样取 `git status --porcelain`，**会把交接包自己算进去** ⇒ 包刚生成就把自己判成「尚未提交」。⇒ **排除本包自身之路径**后再判。",
+   "next_action": "⭐ **收工顺序（已写进 `hxs-batch`）**：`git commit`〔内容〕→ 重跑 `handoff_pack.py` → `git commit -m '交接包'`〔第二次〕→ `git push`。<br>⚠ **验收判据（可机器跑）**：`grep '| HEAD |' docs/交接包_给上级线.md` 之值 **须等于** `git rev-parse --short HEAD~1`。⛔ 若不等，即说明顺序未执行。<br>⚠ **本批三轮修，每一轮都是【上一轮的修复本身产生的新问题】** ⇒ ⛔ 不宣称已稳定，下批复验。",
    "real_blocker": "⛔ 无",
    "files": [
     "tools/handoff_pack.py",
