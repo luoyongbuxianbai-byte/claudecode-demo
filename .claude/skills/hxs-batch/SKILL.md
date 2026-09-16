@@ -64,6 +64,28 @@ python3 -c "import json;d=json.load(open('rules/failure_classes_v0.json'));print
 
 ### ② commit
 
+⛔⛔ **收工提交顺序（126AI 立，⛔ 实测过 `--amend` 不收敛）**
+
+```bash
+# ① 内容提交
+git add -A && git commit -F - <<'EOF'
+…（本批内容）
+EOF
+# ② 重跑交接包（此时 HEAD 已是内容提交）
+python3 tools/handoff_pack.py
+# ③ 第二次提交：交接包本身
+git add -A && git commit -m "126xx：交接包（由 handoff_pack.py 生成）"
+# ④ push
+git push -u origin <branch>
+```
+
+⭐ **为什么不是 `--amend`**：amend 会**改哈希** ⇒ 交接包里写的 HEAD
+**永远追不上它自己所在的那个提交**，改一次差一次。
+⇒ ⭐ **两次提交才收敛**：交接包之 `HEAD` 指向**内容提交**，而交接包本身在**下一个**提交里。
+⚠ **验收**：`grep '| HEAD |' docs/交接包_给上级线.md` 之值，须等于 `git rev-parse --short HEAD~1`。
+
+---
+
 ```bash
 git add -A && git commit -F - <<'EOF'
 <N批>·<一句话说清本批实得>
