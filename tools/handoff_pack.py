@@ -14,6 +14,7 @@
 """
 import json
 import os
+import re
 import subprocess
 import sys
 
@@ -101,15 +102,70 @@ def jcount(rel, key=None):
     return len(d)
 
 
+
+def draft_status():
+    """⭐ 126AJ 立：**工作稿之章节／小节由扫描产出**，⛔ 不手写。
+
+    上级 126AJ 实查：`ST-6` 手写「七节」「第 1／6 章仍未成段」，
+    而 126AI 已增 §1.7 ⇒ **与 ST-12 及工作稿本身矛盾**。
+    ⇒ 根因是**同一事实写在两处**。本函数把它收到**一处生成**。
+    """
+    f = os.path.join(B, "reports", "学术报告_工作稿.md")
+    if not os.path.isfile(f):
+        return None
+    t = open(f, encoding="utf-8").read()
+    chaps = sorted({int(m.group(1)) for m in re.finditer(r'^# 第 (\d+) 章', t, re.M)})
+    secs = sorted({m.group(1) for m in re.finditer(r'^## (\d+\.\d+)', t, re.M)},
+                  key=lambda x: [int(y) for y in x.split(".")])
+    all6 = [1, 2, 3, 4, 5, 6]
+    return {"chapters": chaps, "missing": [c for c in all6 if c not in chaps],
+            "sections": secs}
+
+
+SELF_PATH = "docs/交接包_给上级线.md"
+
+
+def _worktree_changes():
+    """⭐⭐ 126AJ 改（上级指出之**静默失败**）：按 `-z` 记录解析，⛔ 不再用字符串包含过滤。
+
+    ⛔⛔ **原实现之缺陷**（上级原话）：
+      「当前用**中文路径字符串**过滤 `git status --porcelain`，但 **Git 可能将中文路径转义**，
+       导致**排除自身失败**。应使用 `--porcelain -z` 按记录解析并**精确匹配路径**。」
+
+    ⭐ 实证：`git status --porcelain`（无 `-z`）对非 ASCII 路径会输出
+      `"docs/\\344\\272\\244\\346\\216\\245..."` 形态（带引号与八进制转义），
+      于是 `"docs/交接包_给上级线.md" in ln` **恒为假** ⇒ 本包**永远排不掉自己**
+      ⇒ 横幅**恒亮**，而**无任何报错** —— 这正是**静默失败**。
+    ⇒ `-z` 输出**原始字节、NUL 分隔、不转义不加引号**，故可**精确等值比较**。
+
+    ⛔ 返回 `(其余改动之列表文本, 条数)`；⛔ **不判断 HEAD 是哪一批**（见 main 之注）。
+    """
+    raw = subprocess.run(["git", "status", "--porcelain", "-z"],
+                         cwd=B, capture_output=True).stdout.decode("utf-8", "surrogateescape")
+    recs, i = [], 0
+    parts = raw.split("\0")
+    while i < len(parts):
+        rec = parts[i]
+        if not rec:
+            i += 1
+            continue
+        xy, path = rec[:2], rec[3:]
+        # ⚠ 重命名／复制之记录后**紧跟一个额外 NUL 段**（原路径）⇒ 须一并吃掉，
+        #   否则原路径会被当成下一条记录之状态位，解析整体错位。
+        if xy[0] in "RC" or xy[1] in "RC":
+            i += 1
+        recs.append((xy, path))
+        i += 1
+    other = [(xy, p) for xy, p in recs if p != SELF_PATH]   # ⭐ 精确等值，⛔ 非包含
+    return "\n".join("%s %s" % (xy, p) for xy, p in other), len(other)
+
+
 def main():
     head = sh("git rev-parse --short HEAD")
     branch = sh("git rev-parse --abbrev-ref HEAD")
-    # ⛔⛔ 126AI 再修：`dirty` 原样取 porcelain，会把**交接包自己**算进去 ——
-    #     于是两次提交流程下，包刚生成就把自己判成「尚未提交」，横幅措辞反而错了。
-    #     ⇒ 排除本包自身之路径，只看**其余**是否有未提交改动。
-    _self = "docs/交接包_给上级线.md"
-    dirty = "\n".join(ln for ln in sh("git status --porcelain").splitlines()
-                      if _self not in ln).strip()
+    # ⛔⛔ 126AI 曾在此「排除本包自身之路径」—— ⭐ **126AJ 实测：那个排除从未生效**
+    #     （中文路径被 porcelain 转义，`in` 恒假）⇒ 见 `_worktree_changes` 之说明。
+    dirty, dirty_n = _worktree_changes()
     raw = "https://raw.githubusercontent.com/%s/%s" % (REPO, branch)
 
     L = []
@@ -119,12 +175,24 @@ def main():
     #     于是「HEAD」记的是【上一批】，而包里的内容是【本批】——
     #     前后不一致，且**看不出来**。⇒ 不是显示问题，是**生成时机**问题。
     #     现在：脏工作区时在**最前面**打横幅，并把 HEAD 一行改写成明确的「不含本包内容」。
+    # ⛔⛔ 126AJ 改（上级指出）：「**工作区有改动**」⛔ **不等于**「**HEAD 是上一批**」——
+    #     前者是本工具能观测的事实，后者是**推论**，且在「先提交内容再重跑」的流程下**为假**。
+    #     ⇒ 本工具只报**两件可观测的事**，⛔ 不再宣称 HEAD 属于哪一批：
+    #       ① 本包所描述之内容，落在 `HEAD`（= 已提交的那一份）；
+    #       ② 生成时工作区另有 N 项未提交改动（逐项列出）——**它们不在 ① 内**。
+    # ⛔ 并依上级：**不必要求交接包记载自己的最终哈希** ⇒ 126AI 之「两次提交」判据**撤销**。
+    w("> ⭐ **本包所描述之仓库状态 ＝ 下表之 `HEAD`**（即**已提交的那一份**）。")
     if dirty:
-        w("> ⛔⛔ **本包生成于【提交之前】** —— 下表之 `HEAD` 是**上一批**的提交，")
-        w("> **⛔ 它不包含本包所述内容**。⇒ **须在 commit 之后重跑本工具**，否则交接包自相矛盾。")
-        w("> （收工顺序：`git commit`〔**内容提交**〕→ **重跑本工具** → `git commit -m '交接包'`〔**第二次提交**〕→ `git push`）")
-        w("> ⛔⛔ **126AI 实测：`--amend` 不收敛** —— amend 会改哈希，本包永远追不上自己所在的提交。")
-        w("> ⇒ ⭐ **必须两次提交**：本包之 `HEAD` 指向【内容提交】，本包本身在**下一个**提交里。\n")
+        w("> ⚠⚠ **生成时工作区另有 %d 项未提交改动，⛔ 它们【不】包含在上述 `HEAD` 内**：\n" % dirty_n)
+        w("> ```")
+        for ln in dirty.splitlines():
+            w("> " + ln)
+        w("> ```")
+        w("> ⇒ ⭐ **若这些改动属于本批**，须 `git commit` 后**重跑本工具**，使 ① 与 ② 合一。")
+        w("> ⛔⛔ **本工具⛔ 不判断 `HEAD` 属于哪一批** —— 「工作区有改动」⛔ 不蕴含「HEAD 是上一批」"
+          "（⭐ **上级 126AJ 指出**：126AI 之横幅把这两件事混为一谈）。\n")
+    else:
+        w("> ✅ **生成时工作区无其他未提交改动** ⇒ 本包内容与 `HEAD` 一致。\n")
     w("> ⛔ 本册由 `python3 tools/handoff_pack.py` 从仓库**确定性生成**。")
     w("> 手工转述会丢限定词——「C卷同族」硬化成断言、「63组」变成幽灵，都是这么来的。")
     w("> **凡本册与任何报告叙述冲突，以本册与其所指向之原文为准。**\n")
@@ -232,6 +300,19 @@ def main():
         head,
         "　⛔⛔ **上一批之 HEAD；本包所述内容尚未提交**" if dirty else "　⭐ 本包内容已在此提交内"))
     w("| 分支 | `%s` |" % branch)
+    ds = draft_status()
+    if ds:
+        w("")
+        w("## ⭐ 学术报告工作稿之现状（**扫描产出，⛔ 非手写**）\n")
+        w("| 项 | 值 |")
+        w("|---|---|")
+        w("| 已成段之章 | %s |" % "、".join("第%d章" % c for c in ds["chapters"]))
+        w("| ⛔ 尚未成段 | %s |" % ("、".join("第%d章" % c for c in ds["missing"]) or "无"))
+        w("| 小节数 | **%d** |" % len(ds["sections"]))
+        w("| 小节 | %s |" % "｜".join("§" + x for x in ds["sections"]))
+        w("")
+        w("⛔ **此表由 `handoff_pack.draft_status()` 扫描 `reports/学术报告_工作稿.md` 生成**——")
+        w("⛔ 凡 `standing_tasks` 内再手写章节数者，**以本表为准**（126AJ 上级令二）。\n")
     w("| 工作区 | %s |" % ("⚠ 有未提交改动（⛔ 已排除本包自身）" if dirty else "干净（⛔ 本包自身之改动不计）"))
     w("| 冻结件 | `V8/`／`rules/core_v0.json`／`runtime/`——126批起冻结，diff 须为 0 |")
     w("")

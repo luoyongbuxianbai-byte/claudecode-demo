@@ -34,6 +34,7 @@
   python3 tools/prior_work.py 91 80 81
   python3 tools/prior_work.py --range 95 103
   python3 tools/prior_work.py --range 95 103 --terms 小柴胡汤 小建中汤
+  python3 tools/prior_work.py --terms 倒装 主之 --full-terms   # 命题关键词路径，不省略
   python3 tools/prior_work.py --full 91          # 某条之【完整】命中，不省略
 
 ⛔ **限度（⛔ 不得据其输出宣称「此条无旧账」）**
@@ -152,19 +153,47 @@ def report(n, probes, full=False):
     return 'HIT', len(cur)
 
 
-def terms(ts, probes):
-    print('\n══ 术语／方名反查 ══　⚠ 术语族由调用者给出，⛔ 本工具不自动展开异写')
+def terms(ts, probes, full=False):
+    """⭐ 126AJ 补齐（上级令四）：**术语路径此前只报命中数** ——
+    ⛔ 不显示**撤回候选**、⛔ 不显示**截断状态**，而条号路径两者都有。
+    ⇒ 于是「按命题关键词查旧结论与撤回」这一步，**在术语路径上是空的**。现补齐。
+    """
+    print('\n══ 术语／方名／命题关键词反查 ══')
+    print('　⚠ 词族由**调用者**给出，⛔ 本工具不自动展开异写（⇒ `hxs-crossbook`）')
+    print('　⭐ **上级 126AJ 令四**：形成命题后，**除条号检索，再按命题关键词查旧结论与撤回**。')
     for q in ts:
         h = collect([q], fixed=True)
         cur = {p: v for p, v in h.items() if not HISTORICAL.search(p)}
-        if not cur:
-            print('  · 「%s」**EMPTY**（跑通零命中）' % q)
+        old = {p: v for p, v in h.items() if HISTORICAL.search(p)}
+        if not cur and not old:
+            print('\n  · 「%s」**EMPTY**（跑通且零命中）' % q)
+            print('    ⛔ 零命中⛔ 不代表没有旧判断 —— 该判断可能以**别的措辞**写着（限度①）。')
             continue
-        print('  · 「%s」命中 %d 个非报告类文件：' % (q, len(cur)))
+        print('\n  · 「%s」命中 %d 个非报告类文件%s：'
+              % (q, len(cur), ('｜历史报告快照 %d 份' % len(old)) if old else ''))
         for p in sorted(cur):
-            bans = [t for _, t in sorted(cur[p]) if BANS.search(t)]
-            mark = '　⛔ 含 %d 条限制句' % len(bans) if bans else ''
-            print('      %s（%d 处）%s' % (p, len(cur[p]), mark))
+            lines = sorted(cur[p])
+            bans = [t for _, t in lines if BANS.search(t)]
+            # ⭐ 126AJ 补①：撤回登记 probe 反查（与条号路径同）
+            try:
+                body = open(os.path.join(ROOT, p), encoding='utf-8').read()
+            except Exception:
+                body = ''
+            hitp = [x for x in probes if x in body]
+            tag = '　⚠ **含撤回登记之 probe 字串 %d 个**' % len(hitp) if hitp else ''
+            print('      · %s（%d 处）%s' % (p, len(lines), tag))
+            # ⭐ 126AJ 补②：截断显式化（与条号路径同）
+            show = bans if full else bans[:MAXBAN]
+            for t in show:
+                body_s = t if full else t[:SNIP]
+                print('        ⛔ %s%s' % (body_s,
+                      '' if (full or len(t) <= SNIP) else ' …⚠【截断】'))
+            if not full and len(bans) > MAXBAN:
+                print('        ⚠⚠ **已省略 %d 条限制句** ⇒ 完整结果：'
+                      '`python3 tools/prior_work.py --terms %s --full-terms`'
+                      % (len(bans) - MAXBAN, q))
+    print('\n  ⛔⛔ **机器只做召回** —— 命中**必须去读原册**；'
+          '⛔ 零命中⛔ 不代表没有旧判断（上级 126AJ 令四）。')
 
 
 def main():
@@ -174,7 +203,7 @@ def main():
     ts = []
     if '--terms' in args:
         i = args.index('--terms')
-        ts = args[i + 1:]
+        ts = [x for x in args[i + 1:] if not x.startswith('--')]
         args = args[:i]
     probes = retraction_probes()
     print('⭐ 撤回登记 probe 字串：%d 个（用于标记命中文件是否含已撤回内容）' % len(probes))
@@ -196,7 +225,7 @@ def main():
             if c:
                 withprior.append(n)
         if ts:
-            terms(ts, probes)
+            terms(ts, probes, full=('--full-terms' in sys.argv))
         print('\n── 小结 ──')
         print('  查 %d 条｜**HIT %d**（其中有非报告类文件者 %d 条：%s）｜**EMPTY %d**'
               % (len(nums), sum(1 for v in states.values() if v == 'HIT'),

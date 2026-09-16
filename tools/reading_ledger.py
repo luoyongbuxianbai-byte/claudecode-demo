@@ -140,9 +140,33 @@ def nxt(d, book, budget=6000):
     print(t[off:off + budget])
 
 
+def digest(d, book, first, last):
+    """⭐ 126AJ 立：由账本**生成**读记之逐单元简记表，⛔ 不再手抄。
+
+    126AI 上级实查之三处不一致，根因皆为「**同一事实写在两处、各改各的**」。
+    ⇒ 读记表既然与 `sequential_units` 同源，就**只能有一个源**。
+    ⛔ 本函数只搬运账本字段，⛔ 不做任何加工、不补写、不润色。
+    """
+    U = d["books"][book]["sequential_units"]
+    ti = [u["title"] for u in U]
+    a, b = ti.index(first), ti.index(last)
+    sel = U[a:b + 1]
+    print("| 条 | 区间 | 字 | 简记 |")
+    print("|---|---|---:|---|")
+    for u in sel:
+        print("| **%s** | `[%d,%d)` | %d | %s |"
+              % (u["title"], u["start"], u["end"], u["chars"], u["note"]))
+    print("\n合计 **%d 条**｜**%s 字**｜区间 `[%d,%d)`"
+          % (len(sel), format(sum(u["chars"] for u in sel), ","),
+             sel[0]["start"], sel[-1]["end"]))
+
+
 def main():
     d = load()
-    if "--next" in sys.argv:
+    if "--digest" in sys.argv:
+        i = sys.argv.index("--digest")
+        digest(d, sys.argv[i + 1], sys.argv[i + 2], sys.argv[i + 3])
+    elif "--next" in sys.argv:
         i = sys.argv.index("--next")
         nxt(d, sys.argv[i + 1],
             int(sys.argv[i + 2]) if len(sys.argv) > i + 2 and sys.argv[i + 2].isdigit() else 6000)

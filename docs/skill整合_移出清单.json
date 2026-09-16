@@ -1,0 +1,23 @@
+[
+ {
+  "id": "H-01",
+  "batch": "126AC",
+  "src": "`hxs-reading` §研究执行示范 v0.2",
+  "title": "「原样入库」不成立之订正",
+  "sha": "113613ac0f754089bceb20e51965bef3e56af22e8ff678dcec67b5f544df3d53"
+ },
+ {
+  "id": "H-02",
+  "batch": "126AA",
+  "src": "`hxs-reading` §v0.2 §3.1",
+  "title": "把 126H 已有发现命名为「126AA 首次」并重犯 126J 明禁",
+  "sha": "028b22eedd3c7fd2ec47e1377a596ea9ea581d459f339586896eb39f816bc8f3"
+ },
+ {
+  "id": "H-03",
+  "batch": "126AA",
+  "src": "`hxs-reading` §v0.2 §3.3",
+  "title": "把越进下一条 482 字之窗口称作「§100 讲解全段」",
+  "sha": "58ef835d487203a08daa623ad159bb1e5d4247a1d64433909324eb14406c0799"
+ }
+]
