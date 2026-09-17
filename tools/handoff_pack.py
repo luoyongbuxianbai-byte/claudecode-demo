@@ -138,10 +138,25 @@ def _worktree_changes():
       ⇒ 横幅**恒亮**，而**无任何报错** —— 这正是**静默失败**。
     ⇒ `-z` 输出**原始字节、NUL 分隔、不转义不加引号**，故可**精确等值比较**。
 
+    ⛔⛔ **126AK 再修（上级故障注入所证）**：
+      上级实测「**Git 返回 128、输出为空**」时，本函数**同样返回 `('', 0)`** ——
+      ⭐ **与「工作区干净」完全不可分辨** ⇒ **失败被静默改写成成功**。
+      ⇒ ⭐ **现行：检查 `returncode`，非 0 即【抛出并使生成器非零退出】**，
+        ⛔ **禁止在 git 失败时产出任何「干净」判断**。
+      ⚠ 并及：`returncode == 0` 而 stdout 为空，**才**是真正的「干净」。
+
     ⛔ 返回 `(其余改动之列表文本, 条数)`；⛔ **不判断 HEAD 是哪一批**（见 main 之注）。
     """
-    raw = subprocess.run(["git", "status", "--porcelain", "-z"],
-                         cwd=B, capture_output=True).stdout.decode("utf-8", "surrogateescape")
+    pr = subprocess.run(["git", "status", "--porcelain", "-z"],
+                        cwd=B, capture_output=True)
+    if pr.returncode != 0:
+        # ⛔⛔ 不得降级为「干净」，不得 return ('', 0)，不得吞掉。
+        raise SystemExit(
+            "⛔⛔ `git status --porcelain -z` 失败（退出码 %d）——**已停，⛔ 不生成交接包**。\n"
+            "   ⛔ **失败⛔ 不得表现为「工作区干净」**（126AK 上级故障注入所证）。\n"
+            "   stderr: %s"
+            % (pr.returncode, pr.stderr.decode("utf-8", "replace").strip()[:400]))
+    raw = pr.stdout.decode("utf-8", "surrogateescape")
     recs, i = [], 0
     parts = raw.split("\0")
     while i < len(parts):
@@ -158,6 +173,55 @@ def _worktree_changes():
         i += 1
     other = [(xy, p) for xy, p in recs if p != SELF_PATH]   # ⭐ 精确等值，⛔ 非包含
     return "\n".join("%s %s" % (xy, p) for xy, p in other), len(other)
+
+
+def selftest():
+    """⭐⭐ 126AK 立（上级令二末句之纪律）：
+    **「声称能检查什么」须由【实际注入代表性故障】来证**，⛔ 不得只凭「代码写了」。
+
+    ⛔⛔ **本自测只覆盖 `_worktree_changes()` 之【输入侧】**——
+      ⭐ 它**能**验：git 非零退出是否被静默改写成「干净」｜本包自身是否被正确排除｜
+        `R`/`C` 记录之额外原路径段是否被吃掉。
+      ⛔ 它**不能**验：横幅措辞是否恰当｜正文数字是否正确｜账本内容是否为真
+        ｜git 本身是否报了正确的状态。⇒ **未覆盖之失效如实保留。**
+    """
+    real = subprocess.run
+
+    def mk(rc, out=b"", err=b""):
+        class R:
+            returncode, stdout, stderr = rc, out, err
+        return R()
+
+    cases = [
+        # (名, 假 git 结果, 期望)　期望为 "raise" 或 (文本, 条数)
+        ("git 退出 128、stdout 空", mk(128, b"", b"fatal: not a git repository"), "raise"),
+        ("git 退出 1、stdout 空", mk(1, b"", b"error"), "raise"),
+        ("git 退出 0、stdout 空（真·干净）", mk(0, b"", b""), ("", 0)),
+        ("只有本包自身", mk(0, (" M %s\0" % SELF_PATH).encode()), ("", 0)),
+        ("本包 ＋ 另一件", mk(0, (" M %s\0 M tools/x.py\0" % SELF_PATH).encode()), (" M tools/x.py", 1)),
+        ("重命名记录（R 带额外原路径段）",
+         mk(0, "R  docs/新.md\0docs/旧.md\0 M tools/y.py\0".encode()),
+         ("R  docs/新.md\n M tools/y.py", 2)),
+    ]
+    bad = 0
+    print("═══ `_worktree_changes()` 故障注入自测 ═══")
+    for name, r, want in cases:
+        subprocess.run = (lambda R: (lambda *a, **k: R if (
+            a and isinstance(a[0], list) and a[0][:2] == ["git", "status"]) else real(*a, **k)))(r)
+        try:
+            got = _worktree_changes()
+            ok = (want != "raise" and got == want)
+            print("  %s %-30s ⇒ %r" % ("✅" if ok else "⛔", name, got))
+        except SystemExit:
+            ok = (want == "raise")
+            print("  %s %-30s ⇒ 抛出 SystemExit（⛔ 未产出「干净」）" % ("✅" if ok else "⛔", name))
+        finally:
+            subprocess.run = real
+        if not ok:
+            bad += 1
+    print("\n%s" % ("✅ 全部符合预期。" if not bad else "⛔⛔ %d 项不符 ⇒ 修复未生效。" % bad))
+    print("⛔⛔ **本自测只覆盖输入侧**（见 docstring）——⛔ 横幅措辞、正文数字、账本内容**皆不在覆盖内**。")
+    return 1 if bad else 0
 
 
 def main():
@@ -181,18 +245,26 @@ def main():
     #       ① 本包所描述之内容，落在 `HEAD`（= 已提交的那一份）；
     #       ② 生成时工作区另有 N 项未提交改动（逐项列出）——**它们不在 ① 内**。
     # ⛔ 并依上级：**不必要求交接包记载自己的最终哈希** ⇒ 126AI 之「两次提交」判据**撤销**。
-    w("> ⭐ **本包所描述之仓库状态 ＝ 下表之 `HEAD`**（即**已提交的那一份**）。")
+    # ⛔⛔ 126AK 改（上级指出）：本工具之正文（账本、索引、工作稿、standing_tasks）
+    #     **全部读自【工作区文件】**，⛔ 不是从 HEAD 检出的 —— 故工作区一有改动，
+    #     「本包所述 ＝ HEAD 快照」**即为假**。⇒ 只在确证干净时才可这么说。
     if dirty:
-        w("> ⚠⚠ **生成时工作区另有 %d 项未提交改动，⛔ 它们【不】包含在上述 `HEAD` 内**：\n" % dirty_n)
+        w("> ⛔⛔ **本包之正文读自【工作区文件】，⛔ 非 `HEAD` 之检出** ——")
+        w("> 而**生成时工作区有 %d 项未提交改动**，⇒ ⛔ **本包所述⛔ 不是 `HEAD` 之快照**，" % dirty_n)
+        w("> 而是**「`HEAD` ＋ 下列未提交改动」之混合**。⛔ 引用本包任何数字前须先看这一条。")
+    else:
+        w("> ⭐ **生成时工作区干净**（⛔ 本包自身之改动不计）⇒ **本包正文所述 ＝ 下表之 `HEAD`**。")
+    if dirty:
+        w("> ⚠⚠ **未提交改动逐项**（⛔ 已在 `HEAD` 之外，⭐ 但已被本包正文读入）：\n")
         w("> ```")
         for ln in dirty.splitlines():
             w("> " + ln)
         w("> ```")
-        w("> ⇒ ⭐ **若这些改动属于本批**，须 `git commit` 后**重跑本工具**，使 ① 与 ② 合一。")
+        w("> ⇒ ⭐ **须 `git commit` 后重跑本工具**，使「正文所读」与「`HEAD`」合一。")
         w("> ⛔⛔ **本工具⛔ 不判断 `HEAD` 属于哪一批** —— 「工作区有改动」⛔ 不蕴含「HEAD 是上一批」"
           "（⭐ **上级 126AJ 指出**：126AI 之横幅把这两件事混为一谈）。\n")
     else:
-        w("> ✅ **生成时工作区无其他未提交改动** ⇒ 本包内容与 `HEAD` 一致。\n")
+        w("> ✅ **生成时工作区无其他未提交改动。**\n")
     w("> ⛔ 本册由 `python3 tools/handoff_pack.py` 从仓库**确定性生成**。")
     w("> 手工转述会丢限定词——「C卷同族」硬化成断言、「63组」变成幽灵，都是这么来的。")
     w("> **凡本册与任何报告叙述冲突，以本册与其所指向之原文为准。**\n")
@@ -296,24 +368,37 @@ def main():
     w("## 一、开工报账\n")
     w("| 项 | 值 |")
     w("|---|---|")
-    w("| HEAD | `%s`%s |" % (
-        head,
-        "　⛔⛔ **上一批之 HEAD；本包所述内容尚未提交**" if dirty else "　⭐ 本包内容已在此提交内"))
+    # ⛔⛔ 126AK 删（上级指出）：此处仍留着「**上一批之 HEAD**」这一**已撤销之推断**
+    #     —— 126AJ 只改了上方横幅而**漏改了本行** ⇒ 同一份包内两种口径并存。
+    #     ⭐ 现行：本行**只报 HEAD 本身**，是否与正文一致由上方横幅说。
+    w("| HEAD | `%s` |" % head)
     w("| 分支 | `%s` |" % branch)
     ds = draft_status()
     if ds:
         w("")
-        w("## ⭐ 学术报告工作稿之现状（**扫描产出，⛔ 非手写**）\n")
+        w("## ⭐ 学术报告工作稿之**标题扫描**（⛔ 只报检出，⛔ 非验收）\n")
+        # ⛔⛔ 126AK 改（上级指出）：扫到标题**只能报「检出章节标题」** ——
+        #     ⭐ **正文存在／论证完成／学术验收是三种不同状态**，⛔ 本扫描只及第一种。
         w("| 项 | 值 |")
         w("|---|---|")
-        w("| 已成段之章 | %s |" % "、".join("第%d章" % c for c in ds["chapters"]))
-        w("| ⛔ 尚未成段 | %s |" % ("、".join("第%d章" % c for c in ds["missing"]) or "无"))
+        w("| **检出章节标题** | %s |" % "、".join("第%d章" % c for c in ds["chapters"]))
+        w("| **未检出章节标题** | %s |" % ("、".join("第%d章" % c for c in ds["missing"]) or "无"))
         w("| 小节数 | **%d** |" % len(ds["sections"]))
         w("| 小节 | %s |" % "｜".join("§" + x for x in ds["sections"]))
         w("")
-        w("⛔ **此表由 `handoff_pack.draft_status()` 扫描 `reports/学术报告_工作稿.md` 生成**——")
-        w("⛔ 凡 `standing_tasks` 内再手写章节数者，**以本表为准**（126AJ 上级令二）。\n")
-    w("| 工作区 | %s |" % ("⚠ 有未提交改动（⛔ 已排除本包自身）" if dirty else "干净（⛔ 本包自身之改动不计）"))
+        w("⛔ **此表由 `handoff_pack.draft_status()` 扫描 `reports/学术报告_工作稿.md` 之标题行生成**——")
+        w("⛔ 凡 `standing_tasks` 内再手写章节数者，**以本表为准**（126AJ 上级令二）。")
+        w("")
+        w("⛔⛔ **本表能说与不能说**（126AK 上级令二）：")
+        w("| 状态 | 本表 |")
+        w("|---|---|")
+        w("| **标题行存在** | ✅ **本表所报者即此** |")
+        w("| **正文存在／有实质内容** | ⛔ **本表不报** |")
+        w("| **论证完成** | ⛔ **本表不报** |")
+        w("| **学术验收通过** | ⛔ **本表不报** |")
+        w("⇒ ⛔ **「检出章节标题」⛔ 不得改写为「已成段」「已完成」「已交付」。**\n")
+    w("| 工作区 | %s |" % ("⚠ **有 %d 项未提交改动**（⛔ 已排除本包自身；⭐ 已被本包正文读入）" % dirty_n
+                          if dirty else "干净（⛔ 本包自身之改动不计）"))
     w("| 冻结件 | `V8/`／`rules/core_v0.json`／`runtime/`——126批起冻结，diff 须为 0 |")
     w("")
 
@@ -422,4 +507,6 @@ def main():
 
 
 if __name__ == "__main__":
+    if "--selftest" in sys.argv:
+        sys.exit(selftest())
     main()
