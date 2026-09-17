@@ -134,6 +134,28 @@ EOF
 ### ③ 送件
 
 `SendUserFile` 送报告与本批主要产出。
+
+#### ⛔⛔ ③-0　**回复里必须给出报告之【链接】**（126AL·上级令〇）
+
+> **上级原话**：「工作报告没有停。我已核实远端 fe516a5，完整报告仍在 `reports/报告_第126AK批.md`。
+> **只是聊天改成了摘要。以后应固定附报告链接，不能让你猜有没有交付。**」
+
+⇒ ⭐ **聊天回复无论多短，末尾必须有这一行**（⛔ 不是可选，⛔ 不因「这批改动小」而省）：
+
+```
+报告：https://github.com/luoyongbuxianbai-byte/claudecode-demo/blob/<分支>/reports/报告_第N批.md
+```
+
+⭐ 取链接（⛔ 不手拼，避免分支名写错）：
+
+```bash
+printf 'https://github.com/luoyongbuxianbai-byte/claudecode-demo/blob/%s/reports/报告_第%s批.md\n' \
+  "$(git rev-parse --abbrev-ref HEAD)" "<N>"
+```
+
+⛔⛔ **失效点**：⭐ **本步在【push 之后】才成立** —— 未推送之路径链接会 404。
+⇒ **故 ③-0 之位置在 `git push` 之后**，⛔ 不得提前。
+
 ⚠ 同时更新 `docs/交接包_给上级线.md`：
 
 ```bash
