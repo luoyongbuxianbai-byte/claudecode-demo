@@ -2906,11 +2906,301 @@
           "speaker": "hu_lecture",
           "text_status": "accepted（⚠ OCR 本）",
           "note": "少阴病脉紧至七八日自下利，脉暴微，手足反温者为欲解——与太阴篇\"腐秽当去\"可互参。⭐⭐⭐ 后紧接大段方法论总结（与§272/§262高度重复）：正邪交争理论、\"六经不是经络\"之再次强调、\"六个基本类型\"（表里半表半里各分阴阳）。⛔ 本条系此前已记录之方法论内容的重复申说，非新材料，仅记位置备查，不另立任务队列项。"
+        },
+        {
+          "title": "第288条",
+          "start": 290479,
+          "end": 290792,
+          "chars": 313,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "少阴病下利若利自止恶寒而蜷卧手足温者可治——卫气存亡辨生死。"
+        },
+        {
+          "title": "第289条",
+          "start": 290792,
+          "end": 291204,
+          "chars": 412,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "少阴病恶寒而蜷时自烦欲去衣被者可治——少阴太阴并病之可治候，正邪相持而烦为好现象。"
+        },
+        {
+          "title": "第290条",
+          "start": 291204,
+          "end": 291305,
+          "chars": 101,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "少阴中风脉阳微阴浮者为欲愈。"
+        },
+        {
+          "title": "第291条",
+          "start": 291305,
+          "end": 291323,
+          "chars": 18,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "少阴病欲解时从子至寅上（极短，仅条文）。"
+        },
+        {
+          "title": "第292条",
+          "start": 291323,
+          "end": 291661,
+          "chars": 338,
+          "genre": "未定（⚠ genre_anomaly 触发）",
+          "speaker": "未定",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "少阴病吐利手足不逆冷反发热者不死，脉不至者灸少阴七壮。含【释】【按】【注】，genre_anomaly区间内，归属未定。"
+        },
+        {
+          "title": "第293条",
+          "start": 291661,
+          "end": 291938,
+          "chars": 277,
+          "genre": "未定（⚠ genre_anomaly 触发）",
+          "speaker": "未定",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "少阴病八九日一身手足尽热者以热在膀胱必便血也。含【释】【按】【注】，genre_anomaly触发；【按】引《金匮妇人产后》第7条／150/151条对举，非讲伤寒本条条号。"
+        },
+        {
+          "title": "第294条",
+          "start": 291938,
+          "end": 292299,
+          "chars": 361,
+          "genre": "未定（⚠ genre_anomaly 触发）",
+          "speaker": "未定",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "少阴病但厥无汗而强发之必动其血，下厥上竭为难治。含【释】【按】【注】，genre_anomaly触发。"
+        },
+        {
+          "title": "第295条",
+          "start": 292299,
+          "end": 292526,
+          "chars": 227,
+          "genre": "未定（⚠ genre_anomaly 触发）",
+          "speaker": "未定",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "少阴病恶寒身蜷而利手足逆冷者不治。含【释】【按】，genre_anomaly触发；【按】明说\"少阴病维持在表的时间甚短……这也是在太阴篇不论死证而放在少阴来讲的原因\"，与本工程已记录之同类方法论表态一致。"
+        },
+        {
+          "title": "第296条",
+          "start": 292526,
+          "end": 292710,
+          "chars": 184,
+          "genre": "未定（⚠ genre_anomaly 触发）",
+          "speaker": "未定",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "少阴病吐利躁烦四逆者死。含【释】【注】【按】，genre_anomaly触发。"
+        },
+        {
+          "title": "第297条",
+          "start": 292710,
+          "end": 292970,
+          "chars": 260,
+          "genre": "未定（⚠ genre_anomaly 触发）",
+          "speaker": "未定",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "少阴病下利止而头眩时时自冒者死。含【释】【按】【注】，genre_anomaly触发。"
+        },
+        {
+          "title": "第298条",
+          "start": 292970,
+          "end": 293234,
+          "chars": 264,
+          "genre": "未定（⚠ genre_anomaly 触发）",
+          "speaker": "未定",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "少阴病四逆恶寒而身蜷脉不至不烦而躁者死。含【释】【注】【按】，genre_anomaly触发。"
+        },
+        {
+          "title": "第299条",
+          "start": 293234,
+          "end": 293419,
+          "chars": 185,
+          "genre": "未定（⚠ genre_anomaly 触发）",
+          "speaker": "未定",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "少阴病六七日息高者死。含【释】【注】【按】，genre_anomaly触发。"
+        },
+        {
+          "title": "第300条",
+          "start": 293419,
+          "end": 294293,
+          "chars": 874,
+          "genre": "未定（⚠ genre_anomaly 触发）",
+          "speaker": "未定",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "少阴病脉微细沉但欲卧汗出不烦自欲吐至五六日自利复烦躁不得卧寐者死。含【释】【按】【注】，genre_anomaly触发；末段为少阴病篇总论式小结（少阴病传太阴/厥阴之分、少阴病亦属表位之申说）。"
+        },
+        {
+          "title": "第301条",
+          "start": 294293,
+          "end": 294919,
+          "chars": 626,
+          "genre": "未定（⚠ genre_anomaly 触发）",
+          "speaker": "未定",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "少阴病始得之反发热脉沉者麻黄附子细辛汤主之——此前M-01-G3任务队列#14标注\"§301未读\"，本批已读，含【释】【按】【注】，genre_anomaly触发；核实此条讨论表证兼里有水饮之两解法，与M-01-G3（§67/§82阳虚阴虚术语辨析）无直接关系，不解该问。"
+        },
+        {
+          "title": "第302条",
+          "start": 294919,
+          "end": 295426,
+          "chars": 507,
+          "genre": "未定（⚠ genre_anomaly 触发）",
+          "speaker": "未定",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "少阴病得之二三日麻黄附子甘草汤发微汗——少阴病发汗基础方，与麻黄附子细辛汤对举（有无里饮）。含【释】【按】【注】，genre_anomaly触发。"
+        },
+        {
+          "title": "第303条",
+          "start": 295426,
+          "end": 295901,
+          "chars": 475,
+          "genre": "未定（⚠ genre_anomaly 触发）",
+          "speaker": "未定",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "少阴病得之二三日以上心中烦不得卧黄连阿胶汤主之——少阴传少阳之虚烦，与栀子豉汤证鉴别。含【释】【按】【注】，genre_anomaly触发。"
+        },
+        {
+          "title": "第304条",
+          "start": 295901,
+          "end": 296401,
+          "chars": 500,
+          "genre": "未定（⚠ genre_anomaly 触发）",
+          "speaker": "未定",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "⭐⭐⭐ 少阴病得之一二日口中和其背恶寒者当灸之附子汤主之。【按】明说\"本方术附合用，共走皮中以逐水气，为治湿痹的要药……若去人参，留芍药以缓挛急，可治关节痹痛\"，并明确对比真武汤（\"本方较真武汤增加了附子的用量，以无吐，去生姜，加人参健胃补虚\"）——⭐⭐⭐ 附子汤系与真武汤药味高度重叠（茯苓/白术/芍药/附子）之近亲方，且被本条明确记为治\"湿痹\"\"关节痹痛\"之要方，与此前§5.2陈某案比较中被撤销的\"真武汤治湿痹\"药对推断形成直接对照，本条系附子汤本方条文级依据，⛔ 非推断迁移。genre_anomaly区间内，归属未定，须谨慎。"
+        },
+        {
+          "title": "第305条",
+          "start": 296401,
+          "end": 296827,
+          "chars": 426,
+          "genre": "未定（⚠ genre_anomaly 触发）",
+          "speaker": "未定",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "⭐⭐⭐ 少阴病身体痛手足寒骨节痛脉沉者附子汤主之。【释】【注】明说\"身体疼、关节痛，知为湿痹而无关外邪……寒湿在里而有身痛、骨节疼痛……当属太阴虚寒证\"；【按】\"寒湿痹痛而脉沉者多属本方证，尤以下肢拘急、屈伸不利者更验\"——⭐⭐⭐ \"下肢拘急\"一词与陈某案\"左手拘急痛\"高度贴近，是附子汤（非真武汤）条文级之直接依据。genre_anomaly区间内，归属未定。"
+        },
+        {
+          "title": "第306条",
+          "start": 296827,
+          "end": 297140,
+          "chars": 313,
+          "genre": "未定（⚠ genre_anomaly 触发）",
+          "speaker": "未定",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "少阴病下利便脓血者桃花汤主之——虚寒下利便脓血，温中固脱。含【释】【按】【注】，genre_anomaly触发（区间末尾297470前）。"
+        },
+        {
+          "title": "第307条",
+          "start": 297140,
+          "end": 297396,
+          "chars": 256,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "少阴病二三日至四五日腹痛小便不利下利不止便脓血者桃花汤主之——承上条详申其证，已脱离genre_anomaly区间（>297470）。"
+        },
+        {
+          "title": "第308条",
+          "start": 297396,
+          "end": 297525,
+          "chars": 129,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "少阴病下利便脓血者桃花汤主之，亦可针刺辅助。"
+        },
+        {
+          "title": "第309条",
+          "start": 297525,
+          "end": 298385,
+          "chars": 860,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "少阴病吐利手足逆冷烦躁欲死者吴茱萸汤主之——作者自述临床医案（邻居吴茱萸汤治验，头晕呕吐手足逆冷案）；与阳明篇食谷欲呕吴茱萸汤条互参（§243已读）。"
+        },
+        {
+          "title": "第310条",
+          "start": 298385,
+          "end": 298771,
+          "chars": 386,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "少阴病下利咽痛胸满心烦猪肤汤主之——少阴传少阳之热利，猪肤汤润燥解热非温药。"
+        },
+        {
+          "title": "第311条",
+          "start": 298771,
+          "end": 299681,
+          "chars": 910,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "少阴病二三日咽痛者可与甘草汤不差与桔梗汤——轻症咽痛，作者临床扩展（小柴胡汤加石膏桔梗治扁桃体炎）。"
+        },
+        {
+          "title": "第312条",
+          "start": 299681,
+          "end": 300373,
+          "chars": 692,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "少阴病咽中伤生疮不能语言声不出者苦酒汤主之——重症咽痛/失音，作者自述曾用有效。"
+        },
+        {
+          "title": "第313条",
+          "start": 300373,
+          "end": 300981,
+          "chars": 608,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "少阴病咽中痛半夏散及汤主之——外有风邪之咽痛，桂枝甘草汤基础加半夏。"
+        },
+        {
+          "title": "第314条",
+          "start": 300981,
+          "end": 301872,
+          "chars": 891,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "少阴病下利白通汤主之——与太阳阳明合病葛根汤必下利同一句法结构（\"必\"字冲方剂说，非绝对发生率）之再次印证，与本工程既有相关讨论一致。"
+        },
+        {
+          "title": "第315条",
+          "start": 301872,
+          "end": 303403,
+          "chars": 1531,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "⭐⭐ 少阴病下利脉微者与白通汤，利不止厥逆无脉干呕烦者白通加猪胆汗汤主之，服汤脉暴出者死微续者生。作者明确文本考据：\"白通加猪胆汁汤\"应为\"通脉四逆加猪胆汁汤\"之传抄错误——展开详细论证（方剂药量、通脉四逆更峻烈方合厥逆无脉之重证）。方法论/文本校勘类表态，与§236/§256/§270等同类。"
+        },
+        {
+          "title": "第316条",
+          "start": 303403,
+          "end": 304766,
+          "chars": 1363,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "⚠ 126BB 补登：本条已于126AG以B档主题跳读读毕（少阴篇真武汤本条，作者明指之出处），分析见`evidence/两种虚证_V06_第67条与第82条_126AF.md`；此前未登记为A档sequential_unit。现顺读推进至此offset，补记为A档单元，⛔ 非重复阅读，内容归属126AG。"
         }
       ],
-      "next_offset": 290479,
-      "last_completed_unit": "第287条",
-      "next_unit_title": "第288条",
+      "next_offset": 304766,
+      "last_completed_unit": "第316条",
+      "next_unit_title": "第317条",
       "known_gaps": [
         {
           "offset": 4614,
