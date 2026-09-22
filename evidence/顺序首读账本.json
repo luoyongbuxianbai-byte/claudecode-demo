@@ -2686,11 +2686,131 @@
           "speaker": "hu_lecture",
           "text_status": "accepted（⚠ OCR 本）",
           "note": "伤寒脉弦细头痛发热属少阳（非太阳）。⭐ 与本工程§3.1/§3.3方向直接相关的候选材料：同一症状（头痛发热）因脉象不同（浮紧太阳 vs 弦细少阳）而归类不同，且明说\"不可发汗，发汗则谵语\"——误治后果因归类而异。⛔ 本批仅记录位置，未正式并入§3.1/§3.3证据链，留待后续核实是否构成新证据或既有证据之复述。"
+        },
+        {
+          "title": "第266条",
+          "start": 265494,
+          "end": 266397,
+          "chars": 903,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "太阳转少阳，小柴胡汤证（胁下硬满、干呕不能食、往来寒热）。作者明说小柴胡可与葛根汤、麻杏石甘汤等合方，\"这个我常用\"。"
+        },
+        {
+          "title": "第267条",
+          "start": 266397,
+          "end": 266792,
+          "chars": 395,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "误治后坏病，\"知犯何逆，以法治之\"——作者明说辨证须依现状，\"昨天的病情与今天没关系的，但是可作为病证的参考，但不足以为凭\"。"
+        },
+        {
+          "title": "第268条",
+          "start": 266792,
+          "end": 267327,
+          "chars": 535,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "三阳合病，脉浮大上关上，但欲眠睡目合则汗——引《金匮》\"上关上以候心下之积\"说明少阳邪之脉位。"
+        },
+        {
+          "title": "第269条",
+          "start": 267327,
+          "end": 267701,
+          "chars": 374,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "伤寒六七日无大热，阳去入阴。作者明说\"这段按理说不应当放在这里\"，属文本编次批评。"
+        },
+        {
+          "title": "第270条",
+          "start": 267701,
+          "end": 268797,
+          "chars": 1096,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "三阳为尽三阴当受邪，作者明确判为\"王叔和搞的\"，并展开一段考据（王叔和/皇甫谧/伤寒例真伪/序言年代），属方法论文本批评之延伸。"
+        },
+        {
+          "title": "第271条",
+          "start": 268797,
+          "end": 268929,
+          "chars": 132,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "伤寒三日少阳脉小者欲已，参照§37。"
+        },
+        {
+          "title": "第272条",
+          "start": 268929,
+          "end": 274161,
+          "chars": 5232,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "少阳病欲解时（作者标\"没考验\"）后紧接【三阳篇总结】（占本单元绝大部分）。⭐⭐⭐ 核心方法论段：阴阳＝机能太过/不及之两方向；表里半表半里三病位由\"正邪分争\"（引《内经》\"邪气交争于骨肉\"）解释，⛔ 非经络学说（作者明说\"这东西讲不通的东西，古人没办法\"）；并有王叔和/张仲景/《汤液经》关系之历史考据（\"仲景本论广《汤液》为数十卷\"，⛔ 非独立创作）。本批仅记录位置与摘要，未展开分析或并入既有章节，已列入任务队列。"
+        },
+        {
+          "title": "第273条",
+          "start": 274161,
+          "end": 274827,
+          "chars": 666,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "太阴病提纲：腹满而吐，食不下，自利益甚，时腹自痛，若下之必胸下结硬。作者明说病机\"胃虚停饮\"，与阳明\"正是一个对立\"（虚寒 vs 实热）。"
+        },
+        {
+          "title": "第274条",
+          "start": 274827,
+          "end": 275357,
+          "chars": 530,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "太阴中风，四肢烦疼，阳微阴涩而长者为欲愈——脉法辨愈候（脉长提示胃气有恢复之兆）。"
+        },
+        {
+          "title": "第275条",
+          "start": 275357,
+          "end": 275520,
+          "chars": 163,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "太阴病欲解时（亥至丑），作者明说\"这都是信不得的……这个不可靠\"，五行推算旺时说之批评，与§272之方法论表态同类。"
+        },
+        {
+          "title": "第276条",
+          "start": 275520,
+          "end": 276532,
+          "chars": 1012,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "太阴病脉浮者可发汗宜桂枝汤——作者明说\"其实不是太阴病，他冲着下利说的\"，与葛根汤条对举（表证下利，虚证用桂枝汤，实证用葛根汤），提示此条归类易生误解。"
+        },
+        {
+          "title": "第277条",
+          "start": 276532,
+          "end": 277066,
+          "chars": 534,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "自利不渴者属太阴，以脏有寒故也，当温之，宜服四逆辈。⭐⭐⭐ 作者明说\"宜服四逆辈\"概括理中汤、四逆汤、通脉四逆、附子汤、真武汤——\"因证而施\"，⭐ 与§5.2陈某案\"少阴太阴合病\"诊断中\"太阴\"一层直接相关（真武汤被作者本人列入太阴病治法范围内的候选之一），本批仅记录位置，未并入§5.2，留待后续核实是否可补强该案病位诊断之依据。"
         }
       ],
-      "next_offset": 265494,
-      "last_completed_unit": "第265条",
-      "next_unit_title": "第266条",
+      "next_offset": 277066,
+      "last_completed_unit": "第277条",
+      "next_unit_title": "第278条",
       "known_gaps": [
         {
           "offset": 4614,
