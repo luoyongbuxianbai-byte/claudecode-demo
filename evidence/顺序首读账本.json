@@ -3516,11 +3516,331 @@
           "speaker": "hu_lecture",
           "text_status": "accepted（⚠ OCR 本）",
           "note": "发热而厥七日下利者为难治——病势渐重之预后判断。"
+        },
+        {
+          "title": "第350条",
+          "start": 329985,
+          "end": 330162,
+          "chars": 177,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "伤寒脉滑而厥者里有热也白虎汤主之——脉滑主里热，厥深热深之热厥。"
+        },
+        {
+          "title": "第351条",
+          "start": 330162,
+          "end": 330953,
+          "chars": 791,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "⭐⭐⭐ 手足厥寒脉细欲绝者当归四逆汤主之。作者明确\"这一段肯定说的是厥阴病……脉细欲绝呀，这是血少啊\"。与既有`evidence/纵向探针_P0-002_柴胡桂枝干姜汤归类_126E.md`、`evidence/读法迁移_RD03_柴胡桂枝干姜汤之归属_126AJ.md`、`evidence/首位药物_F01_五种地位之分列与不一致_126AL.md`（明标\"当归四逆汤首先是血少/血虚，⛔不得因同带血字即归成瘀血或血毒\"）直接相关——本条即F-01所缺之完整单元，已读毕，回接旧论证：组方以桂枝汤去生姜易细辛加当归通草，\"内补血气，外和营卫\"，作者示范\"厥阴病提纲有问题\"（乌梅丸/当归四逆皆治厥而不合提纲之消渴/气上撞心）。"
+        },
+        {
+          "title": "第352条",
+          "start": 330953,
+          "end": 331312,
+          "chars": 359,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "若其人内有久寒者宜当归四逆加吴茱萸生姜汤主之——加味治胃寒兼呕吐腹痛，作者示范辨药理路（吴萸生姜利胃）而非死记加减。"
+        },
+        {
+          "title": "第353条",
+          "start": 331312,
+          "end": 331992,
+          "chars": 680,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "大汗出热不去内拘急四肢疼又下利厥逆而恶寒者四逆汤主之——津液虚竭之阴证，明辨\"津液虚而有热\"（可滋阴）与\"一片虚寒\"（滋阴则死）之别。"
+        },
+        {
+          "title": "第354条",
+          "start": 331992,
+          "end": 332068,
+          "chars": 76,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "大汗若大下利而厥冷者四逆汤主之。"
+        },
+        {
+          "title": "第355条",
+          "start": 332068,
+          "end": 332596,
+          "chars": 528,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "病人手足厥冷脉乍紧者邪结在胸中心下满而烦饥不能食者病在胸中当须吐之宜瓜蒂散——作者明说\"此章是泛论厥，不只是论厥阴病之厥。把瓜蒂散放在厥阴病是错的\"（与§329\"真正厥阴病仅四条\"之考据一致印证）。"
+        },
+        {
+          "title": "第356条",
+          "start": 332596,
+          "end": 333068,
+          "chars": 472,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "伤寒厥而心下悸者宜先治水当服茯苓甘草汤却治其厥——\"治水即是治厥\"，与本工程§3.2治疗次序（先利水后治他证）子线直接相关。"
+        },
+        {
+          "title": "第357条",
+          "start": 333068,
+          "end": 333739,
+          "chars": 671,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "⭐⭐ 伤寒六七日大下后寸脉沉而迟手足厥逆下部脉不至咽喉不利唾脓血泄利不止者为难治麻黄升麻汤主之。作者明确判\"这不象仲景的话……我认为这个是错误的，各家都这么随便的说\"——又一例文本真伪判断，与§256/§270/§279/§318/§319同类，累计已达六例以上。"
+        },
+        {
+          "title": "第358条",
+          "start": 333739,
+          "end": 334160,
+          "chars": 421,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "伤寒四五日腹中痛若转气下趋少腹者此欲自利也——少阴传太阴之虚寒腹痛先兆。"
+        },
+        {
+          "title": "第359条",
+          "start": 334160,
+          "end": 334593,
+          "chars": 433,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "伤寒本自寒下医复吐下之寒格更逆吐下若食入口即吐干姜黄连黄芩人参汤主之——寒格证（胃虚有寒，上热下寒格拒）。"
+        },
+        {
+          "title": "第360条",
+          "start": 334593,
+          "end": 334615,
+          "chars": 22,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "下利有微热而渴脉弱者今自愈（条文，无展开讲解）。"
+        },
+        {
+          "title": "第361条",
+          "start": 334615,
+          "end": 334644,
+          "chars": 29,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "下利脉数有微热汗出今自愈设复紧为未解（条文，无展开讲解）。"
+        },
+        {
+          "title": "第362条",
+          "start": 334644,
+          "end": 334677,
+          "chars": 33,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "下利手足厥冷无脉者灸之不温若脉不还反微喘者死（条文，无展开讲解）。"
+        },
+        {
+          "title": "第363条",
+          "start": 334677,
+          "end": 334702,
+          "chars": 25,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "下利寸脉反浮数尺中自涩者必清脓血（条文，无展开讲解）。"
+        },
+        {
+          "title": "第364条",
+          "start": 334702,
+          "end": 334723,
+          "chars": 21,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "下清谷不可攻表汗出必胀满（条文，无展开讲解）。"
+        },
+        {
+          "title": "第365条",
+          "start": 334723,
+          "end": 334765,
+          "chars": 42,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "下利脉沉弦者下重也脉大者为未止脉微弱数者为欲自止虽发热不死（条文，无展开讲解）。"
+        },
+        {
+          "title": "第366条",
+          "start": 334765,
+          "end": 334825,
+          "chars": 60,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "下利脉沉而迟其人面少赤身有微热下利清谷者必郁冒汗出而解病人必微厥所以然者其面戴阳下虚故也（条文，无展开讲解）。"
+        },
+        {
+          "title": "第367条",
+          "start": 334825,
+          "end": 335045,
+          "chars": 220,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "下利脉数而渴者今自愈设不差必清脓血以有热故也——本条起接讲解：\"由于乱吃乱喝，肠胃中有热……泻利有时是好的一面，腐秽不去嘛\"，作者自评此段\"细腻的很\"。"
+        },
+        {
+          "title": "第368条",
+          "start": 335045,
+          "end": 335332,
+          "chars": 287,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "下利后脉绝手足厥冷卒时脉还手足温者生脉不还者死——虚寒下利死证，脉与手足温之恢复为生机判据。"
+        },
+        {
+          "title": "第369条",
+          "start": 335332,
+          "end": 335434,
+          "chars": 102,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "伤寒下利日十余行脉反实者死——热利，脉实为病实之反常凶候。"
+        },
+        {
+          "title": "第370条",
+          "start": 335434,
+          "end": 335735,
+          "chars": 301,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "下利清谷里寒外热汗出而厥者通脉四逆汤主之——与§366对比（同为外热但里寒程度不同，通脉四逆汤vs普通四逆汤）。"
+        },
+        {
+          "title": "第371条",
+          "start": 335735,
+          "end": 336417,
+          "chars": 682,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "热利下重者白头翁汤主之——作者自述临床（赤痢重症用白头翁加阿胶验案），并明说\"辨证辨到最后，最尖端\"即是方证。"
+        },
+        {
+          "title": "第372条",
+          "start": 336417,
+          "end": 336606,
+          "chars": 189,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "下利腹胀满身体疼痛者先温其里乃攻其表——治疗次序实例（与Z-01条件二直接印证：表里同病里虚寒需温补先救里）。"
+        },
+        {
+          "title": "第373条",
+          "start": 336606,
+          "end": 336787,
+          "chars": 181,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "下利欲饮水者以有热故也白头翁汤主之——渴之辨（阴病不渴，此渴属热）。"
+        },
+        {
+          "title": "第374条",
+          "start": 336787,
+          "end": 337088,
+          "chars": 301,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "下利谵语者有燥屎也宜小承气汤——作者自述临床（老太太痢疾拒按案，开承气汤一剂愈）。"
+        },
+        {
+          "title": "第375条",
+          "start": 337088,
+          "end": 337253,
+          "chars": 165,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "下利后更烦按之心下濡者为虚烦也宜栀子豉汤——腹诊鉴别虚实（濡软无力=虚烦，非胃家实）。"
+        },
+        {
+          "title": "第376条",
+          "start": 337253,
+          "end": 337275,
+          "chars": 22,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "呕家有痈脓者不可治呕脓尽自愈（条文，无展开讲解）。"
+        },
+        {
+          "title": "第377条",
+          "start": 337275,
+          "end": 337644,
+          "chars": 369,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "呕而脉弱小便复利身有微热见厥者难治四逆汤主之——阴寒之极虚阳外现（无根之火）之难治候。"
+        },
+        {
+          "title": "第378条",
+          "start": 337644,
+          "end": 338418,
+          "chars": 774,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "⭐⭐⭐ 干呕吐涎沫头痛者吴茱萸汤主之。作者原话：\"涎沫就是胃有停水……不一定吐涎沫，我们问病人，口水多，这也是寒饮往上的表现\"——⛔ 非新材料，与既有累计正文§3.7（涎沫非独立证据）完全一致，本条即该结论之原始出处，本批顺读复核确认无误，未生新内容。"
+        },
+        {
+          "title": "第379条",
+          "start": 338418,
+          "end": 338695,
+          "chars": 277,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "呕而发热者小柴胡汤主之——柴胡四证之一（心烦喜呕），作者明说\"这四段都是论呕……很清楚，绝不是厥阴病\"（呼应§329/§355/§357之考据）。"
+        },
+        {
+          "title": "第380条",
+          "start": 338695,
+          "end": 339107,
+          "chars": 412,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "伤寒大吐大下之极虚复极汗出者以其人外气怫郁复与之水以发其汗因得哕——太阴极虚误治致哕。"
+        },
+        {
+          "title": "第381条",
+          "start": 339107,
+          "end": 344161,
+          "chars": 5054,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "⭐⭐⭐ 伤寒哕而腹满视其前后知何部不利利之则愈。段末紧接【六经解——中医奥妙】总结章（篇幅巨大，占本单元绝大部分，本批仅记开篇边界与结构，未完整摘录）：①伤寒论成书背景（王叔和/皇甫谧/汤液经考据，与既有材料一致但更完整，含\"厥阴病四条正出自《汤液经》\"之明确判断）②六经的本质（非经络，表里相传之实证反驳《内经》经络说）③八纲解（全书最系统之表里/阴阳/寒热虚实定义总述，含\"阳证中有阳虚热\"完整表述，与既有§98/§203119一致印证）④中医辨证及治病的本质（\"六经八纲为万病一般规律，辨方证为辨证之尖端，中医是在一般规律基础上通治一般的病\"）——⭐⭐⭐ 直接命中本工程核心研究对象，本批仅记录位置与结构，未展开摘录分析，留待专题批次系统整理（已记入任务队列）。"
         }
       ],
-      "next_offset": 329985,
-      "last_completed_unit": "第348条",
-      "next_unit_title": "第349条",
+      "next_offset": 344161,
+      "last_completed_unit": "第381条",
+      "next_unit_title": "第382条",
       "known_gaps": [
         {
           "offset": 4614,
