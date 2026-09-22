@@ -3196,11 +3196,111 @@
           "speaker": "hu_lecture",
           "text_status": "accepted（⚠ OCR 本）",
           "note": "⚠ 126BB 补登：本条已于126AG以B档主题跳读读毕（少阴篇真武汤本条，作者明指之出处），分析见`evidence/两种虚证_V06_第67条与第82条_126AF.md`；此前未登记为A档sequential_unit。现顺读推进至此offset，补记为A档单元，⛔ 非重复阅读，内容归属126AG。"
+        },
+        {
+          "title": "第317条",
+          "start": 304766,
+          "end": 305786,
+          "chars": 1020,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "少阴病下利清谷里寒外热手足厥逆脉微欲绝身反不恶寒其人面赤色通脉四逆汤主之。与通脉四逆汤方解相印证，支持§315\"白通加猪胆汁汤应为通脉四逆加猪胆汁汤传抄之误\"这一文本考据结论（同一方剂药量分析）。"
+        },
+        {
+          "title": "第318条",
+          "start": 305786,
+          "end": 306914,
+          "chars": 1128,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "少阴病四逆或咳或悸或小便不利或腹中痛或泄利下重者四逆散主之。⭐ 作者明确文本批评：\"这个不是少阴病，这个根本就是少阳病……不应该搁在三阴篇里头\"——与§318/§319同类\"编次误置\"判断；作者自述临床广泛应用（治肝炎常用四逆散合当归芍药散）。"
+        },
+        {
+          "title": "第319条",
+          "start": 306914,
+          "end": 307466,
+          "chars": 552,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "少阴病下利六七日咳而呕渴心烦不得眠者猪苓汤主之。⭐ 作者明确批评：\"这个更不是少阴病……也不知道怎么搞到少阴病来了，我想这个也许这里头有错误\"——同类编次误置判断第三例（继§279/§318后）。猪苓汤与五苓散鉴别（有无表证/气上冲）。"
+        },
+        {
+          "title": "第320条",
+          "start": 307466,
+          "end": 308301,
+          "chars": 835,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "少阴病得之二三日口燥咽干者急下之宜大承气汤——少阴三急下证之一，津液枯竭迅速之辨。"
+        },
+        {
+          "title": "第321条",
+          "start": 308301,
+          "end": 309356,
+          "chars": 1055,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "少阴病自利清水色纯青心下必痛口干燥者急下之宜大承气汤——少阴三急下证之二（热结旁流/瘟疫类）。⭐⭐⭐ 作者罕见自述亲身患病经历：\"我得过这种病……四十年前……自利清水色纯清……差点没死……后来吃的调胃承气汤，吃了病就好了\"——第一人称、具体病程细节的自述医案，性质与§309邻居吴茱萸汤案同类但更详尽，可补入本工程\"作者自述临床\"第④层材料库。"
+        },
+        {
+          "title": "第322条",
+          "start": 309356,
+          "end": 309553,
+          "chars": 197,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "少阴病六七日腹胀不大便者急下之宜大承气汤——少阴三急下证之三。"
+        },
+        {
+          "title": "第323条",
+          "start": 309553,
+          "end": 310092,
+          "chars": 539,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "少阴病脉沉者急温之宜四逆汤——与§301麻黄附子细辛汤对照（同为脉沉但有无\"始得之反发热\"之别），引《金匮》\"脉沉者当责有水\"。"
+        },
+        {
+          "title": "第324条",
+          "start": 310092,
+          "end": 311667,
+          "chars": 1575,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "少阴病饮食入口则吐心中温温欲吐复不能吐始得之手足寒脉弦迟者此胸中实不可下也当吐之若膈上有寒饮干呕者不可吐也急温之宜四逆汤——瓜蒂散证（实，欲吐不得吐）与四逆汤证（虚寒干呕）之鉴别，作者明说\"这在临床上很要紧的，这二个你要用错了，生死的关系\"。"
+        },
+        {
+          "title": "第325条",
+          "start": 311667,
+          "end": 316189,
+          "chars": 4522,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "少阴病下利脉微涩呕而汗出必数更衣反少者当温其上灸之——\"当温其上\"考据（作者判为温胃／灸足三里，非百会）；再次确认§315白通汤/通脉四逆汤传抄之误的判断。段末为**少阴病篇总结**（大段方法论重复：少阴病亦属表证、非经络之说、辨证与经络之别的历史批评、\"太阳/少阴/少阳\"等六个类型之实证性），与§287/§300/§272等既有方法论段高度重复，仅记位置不另立任务。"
+        },
+        {
+          "title": "第326条",
+          "start": 316189,
+          "end": 317518,
+          "chars": 1329,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "厥阴病开篇，提纲：消渴气上撞心心中疼热饥而不欲食食则吐蛔下之利不止。⭐⭐⭐ 方法论核心段：作者明说少阳/厥阴提纲\"不够全面\"，六经辨证之实际方法为\"表里易知……除去表里，全是半表半里……半表半里属阳性者为少阳病，阴性者为厥阴病\"——即少阳/厥阴由\"排除法\"（非表非里）界定，⛔ 非独立特征描述——与此前§343939（126AJ已记）之同一表态相印证，非新材料，本批仅记位置强化既有认识。"
         }
       ],
-      "next_offset": 304766,
-      "last_completed_unit": "第316条",
-      "next_unit_title": "第317条",
+      "next_offset": 317518,
+      "last_completed_unit": "第326条",
+      "next_unit_title": "第327条",
       "known_gaps": [
         {
           "offset": 4614,
