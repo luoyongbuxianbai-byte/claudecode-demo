@@ -2806,11 +2806,111 @@
           "speaker": "hu_lecture",
           "text_status": "accepted（⚠ OCR 本）",
           "note": "自利不渴者属太阴，以脏有寒故也，当温之，宜服四逆辈。⭐⭐⭐ 作者明说\"宜服四逆辈\"概括理中汤、四逆汤、通脉四逆、附子汤、真武汤——\"因证而施\"，⭐ 与§5.2陈某案\"少阴太阴合病\"诊断中\"太阴\"一层直接相关（真武汤被作者本人列入太阴病治法范围内的候选之一），本批仅记录位置，未并入§5.2，留待后续核实是否可补强该案病位诊断之依据。"
+        },
+        {
+          "title": "第278条",
+          "start": 277066,
+          "end": 279272,
+          "chars": 2206,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "伤寒脉浮而缓手足自温系在太阴——太阴发黄机制（小便自利则不发黄）；暴烦下利日十余行必自止（脾家实，腐秽当去）。重申正邪分争理论（与§272/§262同类方法论段）。"
+        },
+        {
+          "title": "第279条",
+          "start": 279272,
+          "end": 280466,
+          "chars": 1194,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "本太阳病医反下之腹满时痛属太阴桂枝加芍药汤主之，大实痛者桂枝加大黄汤主之。⭐⭐⭐ 作者明确文本批评：\"这个著书的呀……他不是太阴病……这个也不应该列到太阴篇里头，不是，你往这列干什么\"——\"属太阴\"三字系鉴别性归类描述而非真太阴病诊断，太阴病不可下（用芍药大黄即误治），此二方证需与真太阴病鉴别。⭐ 与§5.2陈某案\"少阴太阴合病\"诊断的谨慎态度相呼应：作者本人示范\"属太阴\"措辞可以不等于真太阴病。"
+        },
+        {
+          "title": "第280条",
+          "start": 280466,
+          "end": 283194,
+          "chars": 2728,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "太阴为病脉弱，其人续自便利，设当行大黄芍药者宜减之，以胃气弱易动故也——与§279对照鉴别法。⭐⭐ 作者明说太阴病死证被安排收入少阴篇（\"他把太阴病的死证啊都搁到下一篇，都搁到少阴篇里头了\"），并说明少阴病\"在表时间最短\"，老年/素虚之人得外感常直接现少阴病。少阴篇开篇：作者明确批\"少阴病根据八纲看就是表阴证\"，非经络receiving邪之病，重申反经络论方法论立场（与§272/§262/§287同类）。"
+        },
+        {
+          "title": "第281条",
+          "start": 283194,
+          "end": 283431,
+          "chars": 237,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "少阴病提纲：脉微细，但欲寐也。"
+        },
+        {
+          "title": "第282条",
+          "start": 283431,
+          "end": 285619,
+          "chars": 2188,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "⭐⭐⭐ 本条已有既有分析文件`evidence/贯通样本_U01_第282条_一次完整判断如何成立与如何失败_126AR.md`（\"样本一\"），本批仅顺读复核，⛔ 非新材料。条文：欲吐不吐、心烦、但欲寐、五六日自利而渴者属少阴也（虚故引水自救），若小便色白者少阴病形悉具。作者明说\"下利不渴者属太阴，下利而渴者属少阴（虚渴）\"对照鉴别，并给出可操作验证手段——\"或者以脉，或者以尿\"，尿赤为热、尿白为下焦虚寒。已见于既有§3.4（观察通道互补）之引用〔284780〕。"
+        },
+        {
+          "title": "第283条",
+          "start": 285619,
+          "end": 286713,
+          "chars": 1094,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "病人脉阴阳俱紧反汗出者亡阳也此属少阴法当咽痛而复吐利——寸尺两候脉法辨表里，紧脉主寒饮／邪胜二义并存。"
+        },
+        {
+          "title": "第284条",
+          "start": 286713,
+          "end": 287054,
+          "chars": 341,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "少阴病咳而下利谵语者被火气劫故也，小便必难——火劫发汗禁忌之变证。"
+        },
+        {
+          "title": "第285条",
+          "start": 287054,
+          "end": 287346,
+          "chars": 292,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "少阴病脉细沉数病为在里不可发汗——脉沉主里，虚热在里不可汗。"
+        },
+        {
+          "title": "第286条",
+          "start": 287346,
+          "end": 287693,
+          "chars": 347,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "少阴病脉微不可发汗亡阳故也，阳已虚尺脉弱涩者复不可下之——脉微（欲绝）与脉微细之辨，寸尺分候表里再用。"
+        },
+        {
+          "title": "第287条",
+          "start": 287693,
+          "end": 290479,
+          "chars": 2786,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "少阴病脉紧至七八日自下利，脉暴微，手足反温者为欲解——与太阴篇\"腐秽当去\"可互参。⭐⭐⭐ 后紧接大段方法论总结（与§272/§262高度重复）：正邪交争理论、\"六经不是经络\"之再次强调、\"六个基本类型\"（表里半表半里各分阴阳）。⛔ 本条系此前已记录之方法论内容的重复申说，非新材料，仅记位置备查，不另立任务队列项。"
         }
       ],
-      "next_offset": 277066,
-      "last_completed_unit": "第277条",
-      "next_unit_title": "第278条",
+      "next_offset": 290479,
+      "last_completed_unit": "第287条",
+      "next_unit_title": "第288条",
       "known_gaps": [
         {
           "offset": 4614,
