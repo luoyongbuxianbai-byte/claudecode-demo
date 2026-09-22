@@ -3296,11 +3296,231 @@
           "speaker": "hu_lecture",
           "text_status": "accepted（⚠ OCR 本）",
           "note": "厥阴病开篇，提纲：消渴气上撞心心中疼热饥而不欲食食则吐蛔下之利不止。⭐⭐⭐ 方法论核心段：作者明说少阳/厥阴提纲\"不够全面\"，六经辨证之实际方法为\"表里易知……除去表里，全是半表半里……半表半里属阳性者为少阳病，阴性者为厥阴病\"——即少阳/厥阴由\"排除法\"（非表非里）界定，⛔ 非独立特征描述——与此前§343939（126AJ已记）之同一表态相印证，非新材料，本批仅记位置强化既有认识。"
+        },
+        {
+          "title": "第327条",
+          "start": 317518,
+          "end": 317622,
+          "chars": 104,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "厥阴中风脉微浮为欲愈不浮为未愈——由阴出阳为顺，由阳陷阴为凶。"
+        },
+        {
+          "title": "第328条",
+          "start": 317622,
+          "end": 317641,
+          "chars": 19,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "厥阴病欲解时从丑至卯上（极短）。"
+        },
+        {
+          "title": "第329条",
+          "start": 317641,
+          "end": 318974,
+          "chars": 1333,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "厥阴病渴欲饮水者少少与之愈。⭐⭐⭐ 作者明确文本考据：真正厥阴病条文仅此四条，此后至篇末皆《玉函经》另立之\"辨厥利呕哕病形脉证并治第十\"，系王叔和因厥阴病提纲后无证治而误编附入——\"皇甫谧看了，知道是有问题的……其实根据书的这个提法看，厥阴病只是这四段\"。作者提出王叔和附编之三层用意（胃为六经总结之枢纽／六经概括万病非独伤寒／补厥阴提纲证治之不足）。⭐ 与§329\"渴欲饮水少少与之愈\"直接反驳厥阴提纲之\"消渴\"：\"可见不是消渴，即便是有消渴，也不是厥阴病普遍都存在的\"。"
+        },
+        {
+          "title": "第330条",
+          "start": 318974,
+          "end": 319032,
+          "chars": 58,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "诸四逆厥者不可下之虚家亦然。"
+        },
+        {
+          "title": "第331条",
+          "start": 319032,
+          "end": 319214,
+          "chars": 182,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "伤寒先厥后发热而利者必自止，见厥复利——厥利与热往复，正邪交争，胃气盛衰之反映。"
+        },
+        {
+          "title": "第332条",
+          "start": 319214,
+          "end": 320375,
+          "chars": 1161,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "伤寒始发热六日厥反九日而利——除中之辨（食以索饼试验胃气存亡）；厥热相应日数推算预后。"
+        },
+        {
+          "title": "第333条",
+          "start": 320375,
+          "end": 320688,
+          "chars": 313,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "伤寒脉迟六七日而反与黄芩汤彻其热——误治除中死证之例（当救里而反去热，胃气愈败）。"
+        },
+        {
+          "title": "第334条",
+          "start": 320688,
+          "end": 320982,
+          "chars": 294,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "伤寒先厥后发热下利必自止而反汗出咽中痛者其喉为痹——阳进太过之两种表现（上亢喉痹／下迫便脓血）。"
+        },
+        {
+          "title": "第335条",
+          "start": 320982,
+          "end": 321368,
+          "chars": 386,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "伤寒一二日至四五日而厥者必发热前热者后必厥厥深者热亦深——热厥辨（厥应下之而反发汗者必口伤烂赤），与瓜蒂散实热厥同类。"
+        },
+        {
+          "title": "第336条",
+          "start": 321368,
+          "end": 321472,
+          "chars": 104,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "伤寒病厥五日热亦五日设六日当复厥不厥者自愈——厥不过五日自愈之候。"
+        },
+        {
+          "title": "第337条",
+          "start": 321472,
+          "end": 322089,
+          "chars": 617,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "凡厥者阴阳气不相顺接便为厥——厥之定义，作者以动静脉血液循环解剖类比阴阳气（动脉血供末梢不足则厥）。"
+        },
+        {
+          "title": "第338条",
+          "start": 322089,
+          "end": 324110,
+          "chars": 2021,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "⭐⭐ 伤寒脉微而厥至七八日肤冷其人躁无暂安时此为脏厥非蛔厥也——脏厥（死证）与蛔厥（乌梅丸主之）之鉴别。乌梅丸组方解析：大热药（附子/蜀椒/干姜/细辛）温中祛寒＋苦寒药（黄连/黄柏）解烦治利＋人参当归补益气血＋乌梅酸敛止渴兼制约诸药辛散太过——作者明说\"这个方子虽然寒热并用……是古人的方子……根据多实践的\"，久利亦可用（非独治蛔厥）。"
+        },
+        {
+          "title": "第339条",
+          "start": 324110,
+          "end": 324836,
+          "chars": 726,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "伤寒热少微厥指头寒默默不欲食烦躁——热厥之辨（柴胡证常见手足冷，非寒厥），厥而呕胸胁烦满者其后必便血（病进之兆）。"
+        },
+        {
+          "title": "第340条",
+          "start": 324836,
+          "end": 325715,
+          "chars": 879,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "病者手足厥冷言我不结胸小腹满按之痛者此冷结在膀胱关元也——沉寒客冷之厥，与《金匮》大乌头煎/大建中/附子粳米汤类互参。"
+        },
+        {
+          "title": "第341条",
+          "start": 325715,
+          "end": 325909,
+          "chars": 194,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "伤寒发热四日厥反三日复热四日厥少热多者其病当愈——厥热日数比例辨预后（阳进阴退为愈）。"
+        },
+        {
+          "title": "第342条",
+          "start": 325909,
+          "end": 326753,
+          "chars": 844,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "伤寒厥四日热反三日复厥五日其病为进——与§341相反（寒多热少，阳气退，病进）。"
+        },
+        {
+          "title": "第343条",
+          "start": 326753,
+          "end": 327280,
+          "chars": 527,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "伤寒六七日脉微手足厥冷烦躁灸厥阴厥不还者死——脏厥可治之时机窗口（六七日脉微手足厥冷尚可灸，至七八日肤冷躁无暂安时则死）。"
+        },
+        {
+          "title": "第344条",
+          "start": 327280,
+          "end": 328417,
+          "chars": 1137,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "伤寒发热下利厥逆躁不得卧者死——邪盛正虚之死候，与太阳病篇早期急当救里之治则相印证。"
+        },
+        {
+          "title": "第345条",
+          "start": 328417,
+          "end": 328865,
+          "chars": 448,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "伤寒发热下利至甚厥不止者死——与§344同类死证，反复强调\"胃气是人身之本，胃气败了人必死\"。"
+        },
+        {
+          "title": "第346条",
+          "start": 328865,
+          "end": 329314,
+          "chars": 449,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "伤寒六七日不利便发热而利其人汗出不止者死有阴无阳故也。⭐ 再次申论\"此无阳也＝津液/精气\"（与既有`evidence/读法迁移_RD01_无阳二字_126AH.md`一致，非新材料），并再引《内经·素问》\"邪气交争于骨肉\"阴阳交一段——与§272/§287/§325等既有方法论段同类重复，不另立任务。"
+        },
+        {
+          "title": "第347条",
+          "start": 329314,
+          "end": 329870,
+          "chars": 556,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "伤寒五六日不结胸腹濡脉虚复厥者不可下此为亡血下之死——虚寒之厥禁攻下，腹诊（结胸/腹濡/脉虚）作鉴别依据。"
+        },
+        {
+          "title": "第348条",
+          "start": 329870,
+          "end": 329985,
+          "chars": 115,
+          "genre": "lecture_transcript",
+          "speaker": "hu_lecture",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "发热而厥七日下利者为难治——病势渐重之预后判断。"
         }
       ],
-      "next_offset": 317518,
-      "last_completed_unit": "第326条",
-      "next_unit_title": "第327条",
+      "next_offset": 329985,
+      "last_completed_unit": "第348条",
+      "next_unit_title": "第349条",
       "known_gaps": [
         {
           "offset": 4614,
