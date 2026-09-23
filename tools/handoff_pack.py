@@ -315,11 +315,26 @@ def main():
             #    内容是 JSON 键名**的交接包——⭐ 而脚本仍打印「已写」。
             #    ⇒ 这是一次**静默产出错误**：无异常、无红项、文件存在。
             LED = json.load(open(led, encoding="utf-8"))
-            bk = LED["books"]["讲伤寒"]
+            # ⛔⛔ 126BP 订正（上级实查所指）：此前硬编码书名「讲伤寒」，
+            #    该书 100% 读完后 next_offset=395556／next_unit_title=None 仍被当作
+            #    当前断点续读——生成了「从395556、None续读」这种失真的交接包，
+            #    实际断点早已转移到下一本（讲金匮）。⇒ **续读断点须取 QUEUE 中
+            #    第一本未读完的书**，⛔ 不得固定指向某一本书名。
+            import corpus_guard as _CG
+            import reading_ledger as _RL  # QUEUE 定义执行顺序，⛔ 非 BASELINE 之字典序
+            _active_name = None
+            for _n in _RL.QUEUE:
+                _o = LED["books"].get(_n, {}).get("next_offset", 0)
+                if _o < _CG.BASELINE[_n]:
+                    _active_name = _n
+                    break
+            if _active_name is None:
+                _active_name = list(LED["books"].keys())[-1] if LED["books"] else "讲伤寒"
+            bk = LED["books"].get(_active_name, {"next_offset": 0, "next_unit_title": None,
+                                                   "src": {"cleaned_len": _CG.BASELINE.get(_active_name, 0)}})
             tot = bk["src"]["cleaned_len"]
             off = bk["next_offset"]
             # ⚠ 账本之 books 只含已开读之书；十二书总字数取自 corpus_guard 之冻结基线
-            import corpus_guard as _CG
             allbooks = sum(_CG.BASELINE.values())
             allread = sum(b.get("next_offset", 0) for b in LED["books"].values())
             # ⛔⛔ 上级 126Y 令四：**逐书状态同样由账本生成**。
@@ -479,10 +494,20 @@ def main():
     if missing:
         raise SystemExit("⛔ 交接包缺必要节：%s——已停" % "、".join(missing))
     # 断点一致性：正文所报之偏移须与账本一致
+    # ⚠ 126BP：取 QUEUE 中第一本未读完的书作校验对象，⛔ 不再硬编码「讲伤寒」
+    #    （该书读完后 next_offset 固定在书末，不再是「当前断点」）。
+    import corpus_guard as _CG2
+    import reading_ledger as _RL2
     _led = json.load(open(os.path.join(B, "evidence", "顺序首读账本.json"), encoding="utf-8"))
-    _off = _led["books"]["讲伤寒"]["next_offset"]
+    _active = None
+    for _n in _RL2.QUEUE:
+        _o = _led["books"].get(_n, {}).get("next_offset", 0)
+        if _o < _CG2.BASELINE[_n]:
+            _active = _n
+            break
+    _off = _led["books"][_active]["next_offset"] if _active else _led["books"]["讲伤寒"]["next_offset"]
     if ("[0,%d)" % _off) not in body:
-        raise SystemExit("⛔ 交接包所报断点与账本不一致（账本 next_offset=%d）——已停" % _off)
+        raise SystemExit("⛔ 交接包所报断点与账本不一致（账本 next_offset=%d，当前本 %s）——已停" % (_off, _active))
     # 来源存在性：台账所指之文件须真的在仓库里
     _st = json.load(open(os.path.join(B, "rules", "standing_tasks_v0.json"), encoding="utf-8"))
     import glob as _g
