@@ -4050,7 +4050,7 @@
       ],
       "next_offset": 387513,
       "last_completed_unit": "方证辨证论·柴胡剂类片段2（四逆散完成、医案举要四则、痹证/风湿类方证大段鉴别，段末转入新文档）",
-      "next_unit_title": "⚠ genre_anomaly 待核：《胡希恕的六经辨证观》——疑为书面文章非课堂实录，下批读取前须先判定体裁/来源，不得沿用 lecture_transcript 标签",
+      "next_unit_title": "《胡希恕的六经辨证观》（387513起，长约8043字）——⚠ 126BJ曾将此标记为「新发现的genre_anomaly」，126BK订正：126F批（见 reports/报告_第126F批.md §1.2）已核实此篇与「C卷」绪论同题同序（「一、何谓经方」），60字窗精确匹配8/40=20%（余差为C卷该处OCR/水印/繁简混排所致），126F已将其speaker由hu_lecture降级为unresolved并立G类『file_level_attribution_masking_passage_level』（同文转录不得计为独立来源），且126F『未做』第4项已列『末篇与C卷绪论之引录关系（谁引谁、署名、年代）』为待核之核心，非本批新阻碍。下批开工先读 126F 原文与该G类记录，按已有发现续核引录关系，⛔ 不得重新当作首次发现处理，读取时 speaker 暂记 unresolved，不沿用 hu_lecture。",
       "known_gaps": [
         {
           "offset": 4614,
