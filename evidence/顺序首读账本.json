@@ -4812,12 +4812,132 @@
           "speaker": "unresolved（编者/胡老，未核）",
           "text_status": "accepted（⚠ OCR 本）",
           "note": "126CN批批量顺读，14方连续单元，均含验案；详见批次报告与累计正文§3.11能力包/§5.4候选清单"
+        },
+        {
+          "title": "十七、桂枝去芍药汤方（§21，无验案；⭐按语驳王叔和数中一止之脉促释义）",
+          "start": 28842,
+          "end": 29272,
+          "chars": 430,
+          "genre": "formal_book_reference_entry",
+          "speaker": "unresolved（编者/胡老，未核）",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "126CP批顺读，含重大发现：甘草附子汤单元任某案与桂枝加附子汤单元任某案为同一患者之书内重复/歧异登记，详见报告_第126CP批.md与盲测第一轮_能力包对照_126CN.md补记"
+        },
+        {
+          "title": "十八、桂枝去芍药加附子汤方（§21续，无验案；⭐按语指出条文『若微恶寒』漏『脉』字应补，与用户此前所指之补脉字项疑似同型异号项，未核实是否即同一处，见126CP批说明）",
+          "start": 29272,
+          "end": 29553,
+          "chars": 281,
+          "genre": "formal_book_reference_entry",
+          "speaker": "unresolved（编者/胡老，未核）",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "126CP批顺读，含重大发现：甘草附子汤单元任某案与桂枝加附子汤单元任某案为同一患者之书内重复/歧异登记，详见报告_第126CP批.md与盲测第一轮_能力包对照_126CN.md补记"
+        },
+        {
+          "title": "十九、桂枝附子汤方（§174，无验案；⭐提及渴而下利小便数者皆不可发汗，《金匮水气病篇》互参，任务队列#2主题第四次出现）",
+          "start": 29553,
+          "end": 30109,
+          "chars": 556,
+          "genre": "formal_book_reference_entry",
+          "speaker": "unresolved（编者/胡老，未核）",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "126CP批顺读，含重大发现：甘草附子汤单元任某案与桂枝加附子汤单元任某案为同一患者之书内重复/歧异登记，详见报告_第126CP批.md与盲测第一轮_能力包对照_126CN.md补记"
+        },
+        {
+          "title": "二十、去桂加白术汤方（§174续，无验案）",
+          "start": 30109,
+          "end": 30268,
+          "chars": 159,
+          "genre": "formal_book_reference_entry",
+          "speaker": "unresolved（编者/胡老，未核）",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "126CP批顺读，含重大发现：甘草附子汤单元任某案与桂枝加附子汤单元任某案为同一患者之书内重复/歧异登记，详见报告_第126CP批.md与盲测第一轮_能力包对照_126CN.md补记"
+        },
+        {
+          "title": "二十一、桂枝去芍药加茯苓白术汤方（§28，无验案；⭐按语引《医宗金鉴》校去桂当是去芍药之误并采信）",
+          "start": 30268,
+          "end": 30894,
+          "chars": 626,
+          "genre": "formal_book_reference_entry",
+          "speaker": "unresolved（编者/胡老，未核）",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "126CP批顺读，含重大发现：甘草附子汤单元任某案与桂枝加附子汤单元任某案为同一患者之书内重复/歧异登记，详见报告_第126CP批.md与盲测第一轮_能力包对照_126CN.md补记"
+        },
+        {
+          "title": "二十二、甘草附子汤方（§175，验案1则：任某——⛔⛔ 与九、桂枝加附子汤单元之任某案〔23403〕同姓同龄同病历号131同初诊日期，但处方/转归记载不同，126CP已判定为同一患者之书内重复/歧异登记，见批次报告与盲测文件补记）",
+          "start": 30894,
+          "end": 31578,
+          "chars": 684,
+          "genre": "formal_book_reference_entry",
+          "speaker": "unresolved（编者/胡老，未核）",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "126CP批顺读，含重大发现：甘草附子汤单元任某案与桂枝加附子汤单元任某案为同一患者之书内重复/歧异登记，详见报告_第126CP批.md与盲测第一轮_能力包对照_126CN.md补记"
+        },
+        {
+          "title": "二十三、桂枝去芍药加皂荚汤方（《金匮》肺痿肺痈篇附方，无验案）",
+          "start": 31578,
+          "end": 31846,
+          "chars": 268,
+          "genre": "formal_book_reference_entry",
+          "speaker": "unresolved（编者/胡老，未核）",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "126CP批顺读，含重大发现：甘草附子汤单元任某案与桂枝加附子汤单元任某案为同一患者之书内重复/歧异登记，详见报告_第126CP批.md与盲测第一轮_能力包对照_126CN.md补记"
+        },
+        {
+          "title": "二十四、桂枝去芍药加蜀漆牡蛎龙骨汤方（§112/《金匮》惊悸篇，验案1则：王某受惊后痰鸣躁狂）",
+          "start": 31846,
+          "end": 32569,
+          "chars": 723,
+          "genre": "formal_book_reference_entry",
+          "speaker": "unresolved（编者/胡老，未核）",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "126CP批顺读，含重大发现：甘草附子汤单元任某案与桂枝加附子汤单元任某案为同一患者之书内重复/歧异登记，详见报告_第126CP批.md与盲测第一轮_能力包对照_126CN.md补记"
+        },
+        {
+          "title": "二十五、桂枝甘草汤方（§64，验案1则：李某心慌惊悸水气凌心）",
+          "start": 32569,
+          "end": 33031,
+          "chars": 462,
+          "genre": "formal_book_reference_entry",
+          "speaker": "unresolved（编者/胡老，未核）",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "126CP批顺读，含重大发现：甘草附子汤单元任某案与桂枝加附子汤单元任某案为同一患者之书内重复/歧异登记，详见报告_第126CP批.md与盲测第一轮_能力包对照_126CN.md补记"
+        },
+        {
+          "title": "二十六、半夏散及汤方（§313，验案1则：张某咽痛疑喉癌误诊）",
+          "start": 33031,
+          "end": 33559,
+          "chars": 528,
+          "genre": "formal_book_reference_entry",
+          "speaker": "unresolved（编者/胡老，未核）",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "126CP批顺读，含重大发现：甘草附子汤单元任某案与桂枝加附子汤单元任某案为同一患者之书内重复/歧异登记，详见报告_第126CP批.md与盲测第一轮_能力包对照_126CN.md补记"
+        },
+        {
+          "title": "二十七、桂枝甘草龙骨牡蛎汤方（§118，验案1则：刘某受惊后心慌恐惧）",
+          "start": 33559,
+          "end": 34028,
+          "chars": 469,
+          "genre": "formal_book_reference_entry",
+          "speaker": "unresolved（编者/胡老，未核）",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "126CP批顺读，含重大发现：甘草附子汤单元任某案与桂枝加附子汤单元任某案为同一患者之书内重复/歧异登记，详见报告_第126CP批.md与盲测第一轮_能力包对照_126CN.md补记"
+        },
+        {
+          "title": "二十八、防己茯苓汤方（《金匮》水气病篇§22，验案1则：冯某慢性肾炎水肿）",
+          "start": 34028,
+          "end": 34560,
+          "chars": 532,
+          "genre": "formal_book_reference_entry",
+          "speaker": "unresolved（编者/胡老，未核）",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "126CP批顺读，含重大发现：甘草附子汤单元任某案与桂枝加附子汤单元任某案为同一患者之书内重复/歧异登记，详见报告_第126CP批.md与盲测第一轮_能力包对照_126CN.md补记"
         }
       ],
-      "next_offset": 28842,
-      "last_completed_unit": "十六、黄芪桂枝五物汤方（《金匮》血痹虚劳篇第2条，验案1则：马某外伤后血痹麻木）",
-      "next_unit_title": "第一章桂枝汤类方·十七、桂枝去芍药汤方",
-      "status": "C卷 顺序首读 进行中（28842/159923，约18.03%）——第一章桂枝汤类方已读至第16方（黄芪桂枝五物汤），累计验案约17则",
+      "next_offset": 34560,
+      "last_completed_unit": "二十八、防己茯苓汤方（《金匮》水气病篇§22，验案1则：冯某慢性肾炎水肿）",
+      "next_unit_title": "第一章桂枝汤类方·二十九、防己黄芪汤方",
+      "status": "C卷 顺序首读 进行中（34560/159923，约21.61%）——第一章桂枝汤类方已读至第28方（防己茯苓汤），发现同一患者（任某/骨质增生）在第9与第22方单元被重复/歧异登记",
       "src": {
         "book": "C卷",
         "cleaned_len": 159923,
