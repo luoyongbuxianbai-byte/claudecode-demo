@@ -4672,12 +4672,152 @@
           "speaker": "unresolved（编者/胡老，未核）",
           "text_status": "accepted（⚠ OCR 本）",
           "note": "奔豚病病因辨——作者驳'惊恐'为外来刺激说，释为机体自身之神经证；验案1则（张某，练气功不得法致气上冲，含门诊病历号）"
+        },
+        {
+          "title": "三、桂枝加芍药汤方（§279前半，验案1则：刘某胃脘痛兼胸胁满闷）",
+          "start": 19019,
+          "end": 19561,
+          "chars": 542,
+          "genre": "formal_book_reference_entry",
+          "speaker": "unresolved（编者/胡老，未核）",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "126CN批批量顺读，14方连续单元，均含验案；详见批次报告与累计正文§3.11能力包/§5.4候选清单"
+        },
+        {
+          "title": "四、桂枝加大黄汤方（§279后半、大实痛条，验案1则：赖某左腹痛便闭）",
+          "start": 19561,
+          "end": 20041,
+          "chars": 480,
+          "genre": "formal_book_reference_entry",
+          "speaker": "unresolved（编者/胡老，未核）",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "126CN批批量顺读，14方连续单元，均含验案；详见批次报告与累计正文§3.11能力包/§5.4候选清单"
+        },
+        {
+          "title": "五、桂枝加葛根汤方（§12异文/项背强几几，验案1则：任某项背强）",
+          "start": 20041,
+          "end": 20582,
+          "chars": 541,
+          "genre": "formal_book_reference_entry",
+          "speaker": "unresolved（编者/胡老，未核）",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "126CN批批量顺读，14方连续单元，均含验案；详见批次报告与累计正文§3.11能力包/§5.4候选清单"
+        },
+        {
+          "title": "六、栝蒌桂枝汤方（《金匮》痉病篇第11条，验案1则：冯某低热拘急口渴）",
+          "start": 20582,
+          "end": 21119,
+          "chars": 537,
+          "genre": "formal_book_reference_entry",
+          "speaker": "unresolved（编者/胡老，未核）",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "126CN批批量顺读，14方连续单元，均含验案；详见批次报告与累计正文§3.11能力包/§5.4候选清单"
+        },
+        {
+          "title": "七、桂枝加黄芪汤方（《金匮》水气病篇黄汗条+黄疸病篇，验案1则：韩某黄汗误诊肝硬变案，⭐⭐⭐⭐诊断转折完整）",
+          "start": 21119,
+          "end": 22359,
+          "chars": 1240,
+          "genre": "formal_book_reference_entry",
+          "speaker": "unresolved（编者/胡老，未核）",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "126CN批批量顺读，14方连续单元，均含验案；详见批次报告与累计正文§3.11能力包/§5.4候选清单"
+        },
+        {
+          "title": "八、黄芪芍药桂枝苦酒汤方（黄汗条，验案1则：李某长期低烧黄汗）",
+          "start": 22359,
+          "end": 22986,
+          "chars": 627,
+          "genre": "formal_book_reference_entry",
+          "speaker": "unresolved（编者/胡老，未核）",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "126CN批批量顺读，14方连续单元，均含验案；详见批次报告与累计正文§3.11能力包/§5.4候选清单"
+        },
+        {
+          "title": "九、桂枝加附子汤方（§20，验案1则：任某骨质增生兼表阳虚）",
+          "start": 22986,
+          "end": 23594,
+          "chars": 608,
+          "genre": "formal_book_reference_entry",
+          "speaker": "unresolved（编者/胡老，未核）",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "126CN批批量顺读，14方连续单元，均含验案；详见批次报告与累计正文§3.11能力包/§5.4候选清单"
+        },
+        {
+          "title": "十、桂枝加芍药生姜各一两人参三两新加汤方（§62，验案1则：宋某周期发热+纳差脉沉迟）",
+          "start": 23594,
+          "end": 24245,
+          "chars": 651,
+          "genre": "formal_book_reference_entry",
+          "speaker": "unresolved（编者/胡老，未核）",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "126CN批批量顺读，14方连续单元，均含验案；详见批次报告与累计正文§3.11能力包/§5.4候选清单"
+        },
+        {
+          "title": "十一、桂枝加厚朴杏子汤方（§28/§43，验案1则：张某咳喘兼胃脘动悸）",
+          "start": 24245,
+          "end": 24739,
+          "chars": 494,
+          "genre": "formal_book_reference_entry",
+          "speaker": "unresolved（编者/胡老，未核）",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "126CN批批量顺读，14方连续单元，均含验案；详见批次报告与累计正文§3.11能力包/§5.4候选清单"
+        },
+        {
+          "title": "十二、桂枝加龙骨牡蛎汤方（《金匮》血痹虚劳篇第8条，验案1则：蒲某遗精脉浮虚）",
+          "start": 24739,
+          "end": 25429,
+          "chars": 690,
+          "genre": "formal_book_reference_entry",
+          "speaker": "unresolved（编者/胡老，未核）",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "126CN批批量顺读，14方连续单元，均含验案；详见批次报告与累计正文§3.11能力包/§5.4候选清单"
+        },
+        {
+          "title": "十三、小建中汤方（§100/§102/《金匮》虚劳篇/妇人杂病篇，验案2则：张某胃脘痛+刘某前阴抽痛）",
+          "start": 25429,
+          "end": 26673,
+          "chars": 1244,
+          "genre": "formal_book_reference_entry",
+          "speaker": "unresolved（编者/胡老，未核）",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "126CN批批量顺读，14方连续单元，均含验案；详见批次报告与累计正文§3.11能力包/§5.4候选清单"
+        },
+        {
+          "title": "十四、当归建中汤方（《金匮》妇人产后病附方，验案1则：刘某胃穿孔术后表里俱虚）",
+          "start": 26673,
+          "end": 27284,
+          "chars": 611,
+          "genre": "formal_book_reference_entry",
+          "speaker": "unresolved（编者/胡老，未核）",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "126CN批批量顺读，14方连续单元，均含验案；详见批次报告与累计正文§3.11能力包/§5.4候选清单"
+        },
+        {
+          "title": "十五、黄芪建中汤方（《金匮》虚劳篇/黄疸篇，验案1则：蔡某高烧腹痛，先温阳化饮后转黄芪建中）",
+          "start": 27284,
+          "end": 28223,
+          "chars": 939,
+          "genre": "formal_book_reference_entry",
+          "speaker": "unresolved（编者/胡老，未核）",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "126CN批批量顺读，14方连续单元，均含验案；详见批次报告与累计正文§3.11能力包/§5.4候选清单"
+        },
+        {
+          "title": "十六、黄芪桂枝五物汤方（《金匮》血痹虚劳篇第2条，验案1则：马某外伤后血痹麻木）",
+          "start": 28223,
+          "end": 28842,
+          "chars": 619,
+          "genre": "formal_book_reference_entry",
+          "speaker": "unresolved（编者/胡老，未核）",
+          "text_status": "accepted（⚠ OCR 本）",
+          "note": "126CN批批量顺读，14方连续单元，均含验案；详见批次报告与累计正文§3.11能力包/§5.4候选清单"
         }
       ],
-      "next_offset": 19019,
-      "last_completed_unit": "第一章桂枝汤类方·二、桂枝加桂汤方（§117条+按语、辨证要点、验案1则）",
-      "next_unit_title": "第一章桂枝汤类方·三、桂枝加芍药汤方",
-      "status": "C卷 顺序首读 进行中（19019/159923，约11.89%）——已读目录+绪论+桂枝汤+桂枝加桂汤",
+      "next_offset": 28842,
+      "last_completed_unit": "十六、黄芪桂枝五物汤方（《金匮》血痹虚劳篇第2条，验案1则：马某外伤后血痹麻木）",
+      "next_unit_title": "第一章桂枝汤类方·十七、桂枝去芍药汤方",
+      "status": "C卷 顺序首读 进行中（28842/159923，约18.03%）——第一章桂枝汤类方已读至第16方（黄芪桂枝五物汤），累计验案约17则",
       "src": {
         "book": "C卷",
         "cleaned_len": 159923,
