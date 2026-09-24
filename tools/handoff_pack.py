@@ -505,8 +505,17 @@ def main():
         if _o < _CG2.BASELINE[_n]:
             _active = _n
             break
-    _off = _led["books"][_active]["next_offset"] if _active else _led["books"]["讲伤寒"]["next_offset"]
-    if ("[0,%d)" % _off) not in body:
+    # ⛔⛔ 126CJ 订正（讲金匮读毕转入C卷时实测触发）：_active 可能是账本 books
+    #    里尚未建条目的下一本书（如刚从讲金匮转入C卷），直接索引 _led["books"][_active]
+    #    会 KeyError——同一份文件里上方主报告生成块（327行）已用 .get() 防御过，
+    #    这里须用同一模式，⛔ 不得因为「不是这次改的代码」就漏掉。
+    _off = _led["books"].get(_active, {}).get("next_offset", 0) if _active else _led["books"]["讲伤寒"]["next_offset"]
+    # ⛔⛔ 126CJ 再订正：`"[0,%d)"` 这个标记只在「逐书状态」列表里出现，而该列表
+    #    用 `if o:` 过滤掉了 offset=0 的书（327/345行）——一本书刚从上一本转入、
+    #    一字未读时（如本批讲金匮读毕转C卷的瞬间），off=0，"[0,0)" 永远不会出现在
+    #    正文里，旧检查在这一刻必然误报。断点行（353行 nxt）不受这个过滤影响，
+    #    对任何 off 值都会写「从 **%d、」，改用这个做校验标记。
+    if ("从 **%d、" % _off) not in body:
         raise SystemExit("⛔ 交接包所报断点与账本不一致（账本 next_offset=%d，当前本 %s）——已停" % (_off, _active))
     # 来源存在性：台账所指之文件须真的在仓库里
     _st = json.load(open(os.path.join(B, "rules", "standing_tasks_v0.json"), encoding="utf-8"))
